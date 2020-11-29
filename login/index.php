@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="build/login.min.css">
-		<title>Login</title>
+		<title>NetSchool PTHS | Login</title>
 	</head>
 	<body>
 		<div class="container">
@@ -22,6 +22,7 @@ if (isset($_SESSION["user_id"])) {
 			<form id="login_form">
 				<input id="username" type="text" placeholder="Username">
 				<input id="password" type="password" placeholder="Password">
+				<p class="statusbar"></p>
 				<input type="submit" value="Войти">
 			</form>
 		</div>

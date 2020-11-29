@@ -25,7 +25,7 @@ if (!isset($_SESSION["user_id"]) || !verifySession()) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="build/home.min.css">
-		<title>Announcements</title>
+		<title>NetSchool PTHS</title>
 	</head>
 	<body>
 

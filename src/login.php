@@ -6,17 +6,17 @@ if (isset($_SESSION['user_id'])) exit("Already logged in");
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
+if (strlen($username) < 8 ) exit("Username is too small");
+if (strlen($password) < 4) exit("Password is too small");
+
 $mysqli = mysqli_connect($config['db_hostname'], $config['db_username'], $config['db_password'], $config['db_name']);
 
 if (!$mysqli) {
     // echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
     // echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
     // echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-    exit("Connection failed");
+    exit("Database connection failed");
 }
-
-// echo "Соединение с MySQL установлено!" . PHP_EOL;
-// echo "Информация о сервере: " . mysqli_get_host_info($mysqli) . PHP_EOL;
 
 mysqli_query($mysqli, 'SET NAMES UTF8');
 
@@ -24,7 +24,7 @@ $query = mysqli_query($mysqli, 'SELECT `id`, `password`, `first_name`, `middle_n
 
 if (!$query) exit("0");
 
-if (mysqli_num_rows($query) > 1) exit("Too many rows");
+if (mysqli_num_rows($query) > 1) exit("Please, contact administrator (too many rows)");
 
 if (mysqli_num_rows($query) == 0) exit("Login not found");
 

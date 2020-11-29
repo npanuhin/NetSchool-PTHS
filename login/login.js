@@ -1,31 +1,36 @@
 var
 	form = document.getElementById("login_form"),
 	username_input = document.getElementById("username"),
-	password_input = document.getElementById("password");
+	password_input = document.getElementById("password"),
+	statusbar = document.getElementsByClassName("statusbar")[0];
 
-Event.add(form, "submit", (e) => {
-	e.preventDefault();
+Event.add(window, "load", () => {
+	Event.add(form, "submit", (e) => {
+		e.preventDefault();
 
-	let username = username_input.value.trim(),
-		password = password_input.value.trim();
+		let username = username_input.value.trim(),
+			password = password_input.value.trim();
 
-	ajax(
-		"POST",
-		"/src/login.php", {
-			"username": username,
-			"password": password
-		},
-		(req) => {
-			console.log(req.responseText);
-			if (req.responseText == "success") {
-				window.location = "../";
-			} else {
+		ajax(
+			"POST",
+			"/src/login.php", {
+				"username": username,
+				"password": password
+			},
+			(req) => {
+				// console.log(req.responseText);
+				if (req.responseText == "success") {
+					window.location = "../";
+				} else {
+					console.log(statusbar, req.responseText);
+					statusbar.innerHTML = req.responseText;
+					// alert(req.responseText);
+				}
+			},
+			(req) => {
+				alert("Error");
 				alert(req.responseText);
 			}
-		},
-		(req) => {
-			alert("Error");
-			alert(req.responseText);
-		}
-	);
+		);
+	});
 });
