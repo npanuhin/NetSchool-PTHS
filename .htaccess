@@ -1,0 +1,92 @@
+Options  -Indexes
+
+<IfModule mod_setenvif.c>
+	SetEnv TZ Europe/Moscow
+</IfModule>
+ServerSignature Off
+AddDefaultCharset UTF-8
+
+#=======================| Redirect |=======================
+
+RewriteEngine on 
+Rewritecond %{HTTP_HOST} !^netschool.npanuhin\.me
+Rewritecond %{HTTP_HOST} !^netschool\.loc
+RewriteRule ^(.*)$ https://netschool.npanuhin.me/$1 [R=301,L]
+
+#======================| File types |======================
+
+AddHandler application/x-httpd-php .html
+AddHandler cgi-script .pl .py .jsp .asp .htm .shtml .sh .cgi
+AddType application/x-javascript .js
+AddType text/css .css
+AddType text/xml .xml
+AddType application/octet-stream .doc .mov .avi .pdf .xls
+# ForceType application/x-httpd-php
+
+AddType video/ogg .ogv
+AddType video/ogg .ogg
+AddType video/mp4 .mp4
+AddType video/webm .webm
+AddType application/x-shockwave-flash swf
+
+#=========================| PHP |==========================
+
+php_value session.gc_maxlifetime 3600
+# php_value session.cookie_lifetime 3600
+
+#============| HTTP status codes |=============
+
+# ------------4XX------------------
+
+# Bad Rquest
+ErrorDocument 400 /fails/400.html
+
+# Authorization Required
+# ErrorDocument 401 /fails/401.html
+
+# Forbidden
+ErrorDocument 403 /fails/403.html
+
+# Not found
+ErrorDocument 404 /fails/404.php
+
+# Method Not Allowed
+ErrorDocument 405 /fails/405.html
+
+# Proxy Authentication Required
+ErrorDocument 407 /fails/407.html
+
+# Request Timed Out
+ErrorDocument 408 /fails/408.html
+
+# Request URI Too Long
+ErrorDocument 414 /fails/414.html
+
+# Too Many Requests
+ErrorDocument 429 /fails/429.html
+
+# ------------5XX------------------
+
+# Internal Server Error
+ErrorDocument 500 /fails/500.html
+
+# Not Implemented
+# ErrorDocument 501 /fails/501.html
+
+# Bad Gateway 
+ErrorDocument 502 /fails/502.html
+
+# Service Unavailable 
+ErrorDocument 503 /fails/503.html
+
+# Gateway Timeout
+ErrorDocument 504 /fails/504.html
+
+# Loop Detected
+ErrorDocument 508 /fails/508.html
+
+# Unknown Error
+# ErrorDocument 520 /fails/520.html
+
+# Connection Timed Out
+# ErrorDocument 522 /fails/522.html

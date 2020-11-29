@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/files/fonts/OpenSans/OpenSans-Light.eot");
+  src: local("Open Sans Light"), local("OpenSans-Light"), url("/files/fonts/OpenSans/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("/files/fonts/OpenSans/OpenSans-Light.woff2") format("woff2"), url("/files/fonts/OpenSans/OpenSans-Light.woff") format("woff"), url("/files/fonts/OpenSans/OpenSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; }
+
+* {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  /* top: 0; */
+  /* left: 0; */
+  text-decoration: none;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  z-index: 1;
+  color: #000;
+  outline: none;
+  transform-origin: center center;
+  font-family: Arial, Helvetica, sans-serif;
+  /* box-sizing: border-box; */
+  /* box-sizing: content-box; */
+  /* image-rendering: optimizeQuality; */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* transition-duration: 0s;  */ }
+
+input[type="submit"] {
+  cursor: pointer; }
+
+body {
+  background-color: #369; }
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px;
+  background-color: #58b;
+  padding: 40px 10px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px #205182; }
+  .container .title {
+    width: 100%;
+    text-align: center;
+    font-family: 'Open Sans', Verdana;
+    color: #fff;
+    font-size: 3.1em;
+    font-weight: 300;
+    letter-spacing: -.02em;
+    margin-bottom: 30px; }
+  .container input {
+    position: relative;
+    width: 60%;
+    height: 30px;
+    margin: 10px 0 10px 19%;
+    padding: 7px 2%;
+    font-size: 1.1em;
+    border: 2px inset #aaa;
+    border-radius: 5px; }
+    .container input[type="text"], .container input[type="password"] {
+      border-color: #517cc2;
+      background: #517da8;
+      color: #def; }
+  .container #submit {
+    padding: 0 0;
+    width: 50%;
+    height: 45px;
+    margin: 25px 0 10px 25%;
+    text-align: center;
+    font-size: 1.15em;
+    border: 2px outset #e47805;
+    background-color: #ff8605; }
+    .container #submit:hover {
+      padding: 2px 0 0 2px;
+      border: 2px inset #e47805; }
