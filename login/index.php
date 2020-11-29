@@ -22,7 +22,7 @@ if (isset($_SESSION["user_id"])) {
 			<form id="login_form">
 				<input id="username" type="text" placeholder="Username">
 				<input id="password" type="password" placeholder="Password">
-				<input id="submit" type="submit" value="Войти">
+				<input type="submit" value="Войти">
 			</form>
 		</div>
 

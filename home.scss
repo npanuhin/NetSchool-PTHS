@@ -16,8 +16,8 @@
 	padding: 0;
 	width: auto;
 	height: auto;
-	/* top: 0; */
-	/* left: 0; */
+	// top: 0; 
+	// left: 0; 
 	text-decoration: none;
 	text-align: left;
 	font-style: normal;
@@ -28,15 +28,15 @@
 	transform-origin: center center;
 	font-family: Arial, Helvetica, sans-serif;
 
-	/* box-sizing: border-box; */
-	/* box-sizing: content-box; */
+	// box-sizing: border-box; 
+	// box-sizing: content-box; 
 
-	/* image-rendering: optimizeQuality; */
+	// image-rendering: optimizeQuality; 
 	backface-visibility: hidden;
-	/* transition-duration: 0s;  */
+	// transition-duration: 0s;  
 }
 
-$header_color: #58b;
+$header_color: #5f8fbf;
 
 header {
 	width: 100%;

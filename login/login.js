@@ -1,6 +1,5 @@
 var
 	form = document.getElementById("login_form"),
-	// submit_button = document.getElementById("submit"),
 	username_input = document.getElementById("username"),
 	password_input = document.getElementById("password");
 
