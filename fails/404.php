@@ -1,6 +1,6 @@
 <?php
-header('Location: http://' . $_SERVER['HTTP_HOST']);
-exit();
+header('Location: /');
+exit;
 ?>
 
 <!DOCTYPE html>
