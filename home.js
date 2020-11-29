@@ -1,5 +1,5 @@
 var
-	logout_button = document.getElementById("logout");
+	logout_button = document.getElementsByClassName("sign-out")[0];
 
 Event.add(logout_button, "click", () => {
 	ajax(

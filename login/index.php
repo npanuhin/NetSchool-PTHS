@@ -26,8 +26,8 @@ if (isset($_SESSION["user_id"])) {
 			</form>
 		</div>
 
-		<script type="text/javascript" src="/src/event.js"></script>
-		<script type="text/javascript" src="/src/ajax.js"></script>
-		<script type="text/javascript" src="login.js"></script>
+		<script type="text/javascript" src="/src/event.js" defer></script>
+		<script type="text/javascript" src="/src/ajax.js" defer></script>
+		<script type="text/javascript" src="build/login.min.js" defer></script>
 	</body>
 </html>

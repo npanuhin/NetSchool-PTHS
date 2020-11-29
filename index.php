@@ -24,19 +24,20 @@ if (!isset($_SESSION["user_id"]) || !verifySession()) {
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="build/home.min.css">
 		<title>Announcements</title>
 	</head>
 	<body>
-		<?php
-		echo $_SESSION["last_name"] . " " . $_SESSION["first_name"];
-		?>
 
-		<br>
-
-		<input id="logout" type="submit" value="logout">
+		<header>
+			<div class="exit_icon">
+				<?php include_once "files/icons/sign-out.svg" ?>
+			</div>
+			<div class="name"><?php echo $_SESSION["last_name"] . ' ' . $_SESSION["first_name"]?></div>
+		</header>
 
 		<script type="text/javascript" src="/src/event.js"></script>
 		<script type="text/javascript" src="/src/ajax.js"></script>
-		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="build/home.min.js"></script>
 	</body>
 </html>
