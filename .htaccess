@@ -31,8 +31,8 @@ AddType application/x-shockwave-flash swf
 
 #=========================| PHP |==========================
 
-php_value session.gc_maxlifetime 3600
-# php_value session.cookie_lifetime 3600
+php_value session.gc_maxlifetime 3153600000
+php_value session.cookie_lifetime 3153600000
 
 #============| HTTP status codes |=============
 

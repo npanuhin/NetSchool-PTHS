@@ -8,7 +8,7 @@ Event.add(logout_button, "click", () => {
 		{},
 		(req) => {
 			if (req.responseText == "success") {
-				window.location = "/";
+				window.location = "/login/";
 			} else {
 				alert("Error");
 				alert(req.responseText);
