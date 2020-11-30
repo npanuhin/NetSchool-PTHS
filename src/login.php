@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) exit("Already logged in");
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
-if (strlen($username) < 8 ) exit("Username is too small");
+if (strlen($username) < 6) exit("Username is too small");
 if (strlen($password) < 4) exit("Password is too small");
 
 $mysqli = mysqli_connect($config['db_hostname'], $config['db_username'], $config['db_password'], $config['db_name']);

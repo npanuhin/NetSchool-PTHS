@@ -25,6 +25,9 @@ if (isset($_SESSION["user_id"])) {
 				<p class="statusbar"></p>
 				<input type="submit" value="Войти">
 			</form>
+			<div class="loading">
+				<span>Loading...</span>
+			</div>
 		</div>
 
 		<script type="text/javascript" src="/src/event.js" defer></script>
