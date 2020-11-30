@@ -50,12 +50,24 @@ header {
 		font-family: "Segoe UI";
 		font-size: 1.05em;
 
-		margin: 8px 17px;
+		padding: 7px 17px 0 17px;
+	}
+
+	.last_update {
+		position: relative;
+		float: right;
+		color: #fff;
+
+		font-family: "Segoe UI";
+		font-size: 1.05em;
+
+		padding: 7px 17px 0 17px;
 	}
 
 	.exit_icon {
 		position: relative;
 		float: right;
+		height: 40px;
 
 		.sign-out {
 			width: 20px;
@@ -66,15 +78,15 @@ header {
 				color: #1963a1;
 			}
 		}
+	}
 
-		&::before {
-			content: "";
-			position: absolute;
-			right: 41px;
-			width: 1px;
-			height: 40px;
-			// background-color: #000;
-			background: radial-gradient(#fff 0%, $header_color 60%);
-		}
+	.exit_icon::before, .last_update::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -1px;
+		width: 1px;
+		height: 40px;
+		background: radial-gradient(#fff 0%, $header_color 60%);
 	}
 }

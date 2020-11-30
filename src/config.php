@@ -1,6 +1,6 @@
 <?php
-ini_set("display_errors", 0);
-ini_set("display_startup_errors", 0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 session_start();
@@ -18,6 +18,17 @@ function verifySession() {
 		$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
 	}
 	return true;
+}
+
+function dbConnect() {
+	global $config;
+	$mysqli = mysqli_connect($config['db_hostname'], $config['db_username'], $config['db_password'], $config['db_name']);
+
+	if (!$mysqli) return false;
+	
+	mysqli_query($mysqli, 'SET NAMES UTF8');
+
+	return $mysqli;
 }
 
 function logout() {

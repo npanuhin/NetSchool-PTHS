@@ -1,36 +1,34 @@
 <?php
-require_once "config.php";
+require_once 'config.php';
 
-if (isset($_SESSION['user_id'])) exit("Already logged in");
+if (isset($_SESSION['user_id'])) exit('Already logged in');
 
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
-if (strlen($username) < 6) exit("Username is too small");
-if (strlen($password) < 4) exit("Password is too small");
+if (strlen($username) < 6) exit('Username is too small');
+if (strlen($password) < 4) exit('Password is too small');
 
-$mysqli = mysqli_connect($config['db_hostname'], $config['db_username'], $config['db_password'], $config['db_name']);
+$mysqli = dbConnect();
 
 if (!$mysqli) {
-    // echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
-    // echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-    // echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-    exit("Database connection failed");
+    // echo 'Ошибка: Невозможно установить соединение с MySQL.' . PHP_EOL;
+    // echo 'Код ошибки errno: ' . mysqli_connect_errno() . PHP_EOL;
+    // echo 'Текст ошибки error: ' . mysqli_connect_error() . PHP_EOL;
+    exit('Database connection failed');
 }
 
-mysqli_query($mysqli, 'SET NAMES UTF8');
+$query = mysqli_query($mysqli, 'SELECT `id`, `password`, `first_name`, `middle_name`, `last_name` FROM `users` WHERE `username` = "' . $username . '" LIMIT 2');
 
-$query = mysqli_query($mysqli, 'SELECT `id`, `password`, `first_name`, `middle_name`, `last_name` FROM `users` WHERE `username` = "' . $username . '" LIMIT 5');
+if (!$query) exit('0');
 
-if (!$query) exit("0");
+if (mysqli_num_rows($query) > 1) exit('Please, contact administrator (too many rows)');
 
-if (mysqli_num_rows($query) > 1) exit("Please, contact administrator (too many rows)");
-
-if (mysqli_num_rows($query) == 0) exit("Login not found");
+if (mysqli_num_rows($query) == 0) exit('Login not found');
 
 $row = mysqli_fetch_assoc($query);
 
-if ($row['password'] != $password) exit("Wrong password");
+if ($row['password'] != $password) exit('Wrong password');
 
 $_SESSION['user_id'] = $row['id'];
 $_SESSION['username'] = $username;

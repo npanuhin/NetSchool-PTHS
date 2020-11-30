@@ -1,5 +1,5 @@
 var
-	logout_button = document.getElementsByClassName("sign-out")[0];
+	logout_button = document.getElementsByClassName("exit_icon")[0];
 
 Event.add(window, "load", () => {
 	Event.add(logout_button, "click", () => {
