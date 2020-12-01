@@ -40,30 +40,47 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		if (!$mysqli) {
 			error("Database connection failed");
-		} else {
-
-			$query = mysqli_query($mysqli, 'SELECT * FROM `users` WHERE `id` = "' . $_SESSION['user_id'] . '" LIMIT 2');
-
-			if (mysqli_num_rows($query) > 1) error("Please, contact administrator (too many rows)");
-
-			if (mysqli_num_rows($query) == 0) {
-				error("ID not found, please try login again <a href='/src/logout.php'>(click to logout)</a>");
-			}
-
-			$person = mysqli_fetch_assoc($query);
-
-			?>
-
-			<header>
-				<div class="exit_icon"><?php include_once 'files/icons/sign-out.svg' ?></div>
-				<div class="last_update">
-					UPD <?php echo date('H:i:s', strtotime($person['last_update'])) ?>
-				</div>
-				<div class="name"><?php echo $_SESSION['last_name'] . ' ' . $_SESSION['first_name']?></div>
-			</header>
-
-			<?php
 		}
+
+		$query = mysqli_query($mysqli, 'SELECT * FROM `users` WHERE `id` = "' . $_SESSION['user_id'] . '" LIMIT 2');
+
+		if (mysqli_num_rows($query) > 1) error("Please, contact administrator (too many rows)");
+
+		if (mysqli_num_rows($query) == 0) {
+			error("ID not found, please try login again <a href='/src/logout.php'>(click to logout)</a>");
+		}
+
+		$person = mysqli_fetch_assoc($query);
+		?>
+
+		<div class="statusbar">
+			<div class="name"><?php echo $_SESSION['last_name'] . ' ' . $_SESSION['first_name']?></div>
+			<div class="last_update">
+				<?php echo date('H:i:s', strtotime($person['last_update'])) ?>
+			</div>
+			<div class="exit_icon"><?php include_once 'files/icons/sign-out.svg' ?></div>
+		</div>
+
+		<main>
+			<div class="current_tasks">
+				
+			</div>
+			<?php
+			$announcements = mysqli_query($mysqli, 'SELECT * FROM `announcements` ORDER BY `id` LIMIT 1');
+
+			if (mysqli_num_rows($query) != 0) {
+				$announcements = mysqli_fetch_assoc($announcements);
+				?>
+				<!-- <div class="announcements">
+					<?php // include_once "files/icons/cross.svg" ?>
+					<div class="title"></div>
+				</div> -->
+				<?php
+			}
+			?>
+		</main>
+
+		<?php
 		mysqli_close($mysqli);
 		?>
 

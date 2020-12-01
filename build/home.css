@@ -6,6 +6,14 @@
   font-style: normal;
   font-display: swap; }
 
+@font-face {
+  font-family: 'Manrope';
+  src: url("/files/fonts/Manrope/Manrope-Thin.eot");
+  src: local("Manrope Thin"), local("Manrope-Thin"), url("/files/fonts/Manrope/Manrope-Thin.eot?#iefix") format("embedded-opentype"), url("/files/fonts/Manrope/Manrope-Thin.woff2") format("woff2"), url("/files/fonts/Manrope/Manrope-Thin.woff") format("woff"), url("/files/fonts/Manrope/Manrope-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap; }
+
 * {
   margin: 0;
   padding: 0;
@@ -23,38 +31,44 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-header {
-  width: 100%;
-  background-color: #5f8fbf;
-  overflow: hidden; }
-  header .name {
-    float: right;
+.statusbar {
+  position: absolute;
+  height: 65px;
+  right: calc(50vw - 600px);
+  font-family: "Manrope";
+  display: flex;
+  align-items: center; }
+  @media (max-width: 1200px) {
+    .statusbar {
+      right: 0; } }
+  .statusbar .name, .statusbar .last_update {
     color: #fff;
-    font-family: "Segoe UI";
-    font-size: 1.05em;
-    padding: 7px 17px 0 17px; }
-  header .last_update {
-    position: relative;
-    float: right;
-    color: #fff;
-    font-family: "Segoe UI";
-    font-size: 1.05em;
-    padding: 7px 17px 0 17px; }
-  header .exit_icon {
-    position: relative;
-    float: right;
-    height: 40px; }
-    header .exit_icon .sign-out {
-      width: 20px;
-      padding: 10px;
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 36px;
+    height: 65px;
+    line-height: 65px;
+    margin: 0 17px; }
+  .statusbar .exit_icon {
+    width: 50px;
+    margin: 0 17px; }
+    .statusbar .exit_icon .sign-out {
       cursor: pointer; }
-      header .exit_icon .sign-out path {
-        color: #1963a1; }
-  header .exit_icon::before, header .last_update::before {
-    content: "";
+      .statusbar .exit_icon .sign-out path {
+        color: #307FBD; }
+
+body {
+  background-color: #1963A1; }
+
+main .announcements {
+  background: #FFFFFF;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 30px; }
+  main .announcements .cross {
     position: absolute;
-    top: 0;
-    left: -1px;
-    width: 1px;
-    height: 40px;
-    background: radial-gradient(#fff 0%, #5f8fbf 60%); }
+    left: 77.75%;
+    right: 21%;
+    top: 9.57%;
+    bottom: 89.08%;
+    background: #1963A1; }
