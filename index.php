@@ -7,8 +7,6 @@ if (!verifySession()) {
 	exit;
 }
 
-// print_r($_SESSION);
-
 if (!isset($_SESSION['user_id']) || !verifySession()) {
 	logout();
 	redirect('/login/');

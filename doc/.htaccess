@@ -1,0 +1,7 @@
+php_flag engine 0
+RemoveHandler .phtml .php .php2 .php3 .php4 .php5 .php7 .phps .cgi .pl .asp .aspx .shtml .shtm .fcgi .fpl .htm .html
+AddType text/plain .phtml .php .php2 .php3 .php4 .php5 .php6 .php7 .phps .cgi .pl .asp .aspx .shtml .shtm .fcgi .fpl .htm .html
+
+<FilesMatch "\.*">
+SetHandler none
+</FilesMatch>
