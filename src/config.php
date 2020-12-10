@@ -7,7 +7,7 @@ session_start();
 
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
-function redirect($url) {
+function redirect($url='/') {
 	header('Refresh: 0; url=' . $url);
 }
 
