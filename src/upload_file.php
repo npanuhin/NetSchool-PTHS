@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
 
-if ( $_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) ||!isset($_POST['file_upload_key']) ||
+if ( $_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST['file_upload_key']) ||
     json_decode(file_get_contents('config/config.json'), true)['file_upload_key'] != $_POST['password'] ) {
     header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
     redirect();

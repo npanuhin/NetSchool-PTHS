@@ -1,13 +1,21 @@
 <?php
 require_once 'config.php';
 
-if (isset($_SESSION['user_id'])) exit('Already logged in');
+if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
+	header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
+    redirect();
+    exit;
+}
+
+header('Content-Type: application/json');
+
+if (isset($_SESSION['user_id'])) exit(json_encode(array('alert', 'Вы уже вошли')));
 
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
-if (strlen($username) < 6) exit('Username is too small');
-if (strlen($password) < 4) exit('Password is too small');
+if (strlen($username) < 6) exit(json_encode(array('username', 'Логин слишком короткий')));
+if (strlen($password) < 4) exit(json_encode(array('password', 'Пароль слишком короткий')));
 
 $mysqli = dbConnect();
 
@@ -22,13 +30,13 @@ $query = mysqli_query($mysqli, 'SELECT `id`, `password`, `first_name`, `middle_n
 
 if (!$query) exit('0');
 
-if (mysqli_num_rows($query) > 1) exit('Please, contact administrator (too many rows)');
+if (mysqli_num_rows($query) > 1) exit(json_encode(array('alert', 'Please, contact administrator (too many rows)')));
 
-if (mysqli_num_rows($query) == 0) exit('Login not found');
+if (mysqli_num_rows($query) == 0) exit(json_encode(array('username', 'Логин не найден')));
 
 $row = mysqli_fetch_assoc($query);
 
-if ($row['password'] != $password) exit('Wrong password');
+if ($row['password'] != $password) exit(json_encode(array('password', 'Неверный пароль')));
 
 $_SESSION['user_id'] = $row['id'];
 $_SESSION['username'] = $username;

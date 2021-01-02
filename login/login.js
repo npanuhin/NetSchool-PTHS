@@ -2,12 +2,14 @@ var
 	form = document.getElementById("login_form"),
 	username_input = document.getElementById("username"),
 	password_input = document.getElementById("password"),
-	statusbar = document.getElementsByClassName("statusbar")[0],
 	loading = document.getElementsByClassName("loading")[0];
 
 Event.add(window, "load", () => {
 	Event.add(form, "submit", (e) => {
 		e.preventDefault();
+
+		username_input.classList.remove("invalid");
+		password_input.classList.remove("invalid");
 
 		let username = username_input.value.trim(),
 			password = password_input.value.trim();
@@ -26,9 +28,23 @@ Event.add(window, "load", () => {
 					window.location = "../";
 				} else {
 					loading.classList.remove("shown");
-					statusbar.innerHTML = req.responseText;
-					console.log(statusbar, req.responseText);
-					// alert(req.responseText);
+
+					r = JSON.parse(req.responseText);
+
+					if (r[0] == "username") {
+						username_input.classList.add("invalid");
+						username_input.placeholder = r[1];
+						username_input.value = "";
+
+					} else if (r[0] == "password") {
+						password_input.classList.add("invalid");
+						password_input.placeholder = r[1];
+						password_input.value = "";
+
+					} else {
+						alert(req.responseText);
+					}
+					// console.log(req.response);
 				}
 			},
 			(req) => {
