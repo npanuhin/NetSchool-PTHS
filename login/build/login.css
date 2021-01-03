@@ -46,7 +46,7 @@ body {
   transform: translate(-50%, -50%);
   width: 800px;
   height: 500px;
-  background: #FFFFFF;
+  background: #FFF;
   border-radius: 30px;
   box-shadow: 10px 10px 20px #205182;
   overflow: hidden; }
@@ -82,16 +82,6 @@ body {
       .container #login_form input.invalid {
         color: #FE8708;
         border: 1px solid #FE8708; }
-    .container #login_form .statusbar {
-      width: 100%;
-      height: 1.5em;
-      margin-top: 5px;
-      text-align: center;
-      font-family: Segoe UI;
-      color: #f55;
-      font-size: 1.3em;
-      font-weight: bold;
-      letter-spacing: -.02em; }
     .container #login_form input[type="submit"] {
       padding: 9px 115px;
       width: 290px;
@@ -107,7 +97,7 @@ body {
       background: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
       box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
       border-radius: 30px;
-      color: #fff; }
+      color: #FFF; }
       .container #login_form input[type="submit"]:hover {
         box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35); }
   .container .loading {
@@ -138,10 +128,10 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: #fff;
+      color: #FFF;
       font-size: 2em; }
       .container .loading p span {
-        color: #fff;
+        color: #FFF;
         opacity: 0; }
         .container .loading p span:nth-child(1) {
           -webkit-animation: loading_dots1 2s ease-in-out 0s infinite;

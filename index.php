@@ -60,22 +60,36 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		</div>
 
 		<main>
-			<div class="current_tasks">
-				
-			</div>
 			<?php
 			$announcements = mysqli_query($mysqli, 'SELECT * FROM `announcements` ORDER BY `id` LIMIT 1');
+			$has_announcements = (mysqli_num_rows($announcements) != 0);
+			?>
 
-			if (mysqli_num_rows($query) != 0) {
+			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
+				<h3>Задания</h3>
+				<ul>
+					<li>Английский на 04.12.2020</li>
+					<li>Физика на 2.10.2020</li>
+					<li>Староста: по русскому тоже было дз честно...</li>
+				</ul>
+			</div>
+
+			<?php
+			if ($has_announcements) {
 				$announcements = mysqli_fetch_assoc($announcements);
 				?>
-				<!-- <div class="announcements">
+				<div class="announcements">
 					<?php // include_once "files/icons/cross.svg" ?>
 					<div class="title"></div>
-				</div> -->
+				</div>
 				<?php
 			}
 			?>
+
+			<div class="timetable">
+				
+			</div>
+			
 		</main>
 
 		<?php

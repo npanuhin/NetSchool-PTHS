@@ -1,3 +1,15 @@
+// COLORS:
+$background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%);
+
+$container: #FFF;
+$container-shadow: 10px 10px 20px #205182;
+
+$text: #1963A1;
+
+$orange: #FE8708;
+$orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+
+// FONTS:
 @font-face {
     font-family: 'Manrope';
     src: url('/files/fonts/Manrope/Manrope-Regular.eot');
@@ -23,7 +35,6 @@
     font-style: normal;
     font-display: swap;
 }
-
 
 * {
 	margin: 0;
@@ -57,7 +68,7 @@ input[type="submit"] {
 body {
 	width: 100vw;
 	height: 100vh;
-	background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%);
+	background: $background;
 }
 
 .container {
@@ -68,9 +79,9 @@ body {
 	width: 800px;
 	height: 500px;
 
-	background: #FFFFFF;
+	background: $container;
 	border-radius: 30px;
-	box-shadow: 10px 10px 20px #205182;
+	box-shadow: $container-shadow;
 
 	overflow: hidden;
 
@@ -88,7 +99,7 @@ body {
 		letter-spacing: -0.005em;
 		line-height: 60px;
 
-		color: #1963A1;
+		color: $text;
 	}
 
 	#login_form {
@@ -104,7 +115,7 @@ body {
 
 			padding: 12px 24px;
 
-			border: 1px solid #1963A1;
+			border: 1px solid $text;
 			border-radius: 30px;
 
 			font-family: Manrope;
@@ -114,27 +125,14 @@ body {
 
 			letter-spacing: -0.005em;
 
-			color: #1963A1;
+			color: $text;
 
 			&.invalid {
-				color: #FE8708;
-				border: 1px solid #FE8708;
+				color: $orange;
+				border: 1px solid $orange;
 			}
 		}
 
-		.statusbar {
-			width: 100%;
-			height: 1.5em;
-			margin-top: 5px;
-			text-align: center;
-
-			font-family: Segoe UI;
-			color: #f55;
-			font-size: 1.3em;
-			font-weight: bold;
-			letter-spacing: -.02em;
-		}
-		
 		input[type="submit"] {
 			padding: 9px 115px;
 			width: 290px;
@@ -149,10 +147,10 @@ body {
 			letter-spacing: -0.005em;
 
 			border: none;
-			background: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+			background: $orange-gradient;
 			box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
 			border-radius: 30px;
-			color: #fff;
+			color: #FFF;
 
 			&:hover {
 				box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
@@ -194,11 +192,11 @@ body {
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			color: #fff;
+			color: #FFF;
 			font-size: 2em;
 
 			span {
-				color: #fff;
+				color: #FFF;
 				opacity: 0;
 
 				&:nth-child(1) {
