@@ -97,7 +97,8 @@ body {
       background: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
       box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
       border-radius: 30px;
-      color: #FFF; }
+      color: #FFF;
+      transition: 0.2s box-shadow ease-out; }
       .container #login_form input[type="submit"]:hover {
         box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35); }
   .container .loading {

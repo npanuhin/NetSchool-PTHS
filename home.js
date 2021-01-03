@@ -1,4 +1,5 @@
 var
+	html = document.getElementsByTagName("html")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 	timetable = document.getElementsByClassName("timetable")[0],
 	timetable_previous = document.getElementById("timetable_previous"),
@@ -9,7 +10,10 @@ var
 	);
 
 Event.add(window, "load", () => {
+
 	Event.add(logout_button, "click", () => {
+		html.classList.add("loaded");
+		
 		ajax(
 			"POST",
 			"/src/logout.php",
@@ -32,6 +36,8 @@ Event.add(window, "load", () => {
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 
 	Event.add(timetable_previous, "click", () => {
+		html.classList.add("loaded");
+
 		if (!timetable_previous.classList.contains("hidden")) {
 			for (let week of weeks) week.classList.remove("shown");
 			weeks[--cur_week].classList.add("shown");
@@ -44,6 +50,8 @@ Event.add(window, "load", () => {
 	});
 
 	Event.add(timetable_next, "click", () => {
+		html.classList.add("loaded");
+
 		if (!timetable_next.classList.contains("hidden")) {
 			for (let week of weeks) week.classList.remove("shown");
 			weeks[++cur_week].classList.add("shown");

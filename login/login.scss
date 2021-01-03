@@ -152,6 +152,8 @@ body {
 			border-radius: 30px;
 			color: #FFF;
 
+			transition: 0.2s box-shadow ease-out;
+
 			&:hover {
 				box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
 			}

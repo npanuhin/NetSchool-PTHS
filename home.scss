@@ -190,37 +190,79 @@ main {
 		margin: 116px auto 100px auto;
 		width: 970px;
 
-		h3 {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: bold;
-			font-size: 36px;
-			line-height: 65px;
-			color: #FFF;
-			text-shadow: $text-shadow;
-		}
-
 		.week {
 			position: absolute;
 			width: 100%;
 
-			transition: 0.5s all ease-in-out, visibility 0.5s;
-			opacity: 0;
-			visibility: hidden;
+			// transition: 0.5s all ease-in-out, visibility 0.5s;
+			// opacity: 0;
+			// visibility: hidden;
+
+			pointer-events: none;
+
+			h3 {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 36px;
+				line-height: 65px;
+				color: #FFF;
+				text-shadow: $text-shadow;
+
+				animation: week_header_hide 0.5s ease-in-out forwards;
+				animation-duration: 0s;
+
+				html.loaded & {
+					animation-duration: 0.5s;
+				}
+			}
 
 			&.shown {
-				transition: 0.5s all ease-in-out, visibility 0.5s;
-				opacity: 1;
-				visibility: visible;
+				pointer-events: auto;
+				
+				h3 {
+					animation: week_header_show 0.5s ease-in-out forwards;
+					animation-duration: 0s;
+
+					html.loaded & {
+						animation-duration: 0.5s;
+					}
+				}
+			}
+
+			@keyframes week_header_hide {
+				0% {
+					opacity: 1;
+					transform: translateY(0px);
+				}
+				45%, 100% {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+			}
+
+			@keyframes week_header_show {
+				0%, 55% {
+					opacity: 0;
+					transform: translateY(-15px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0px);
+				}
 			}
 
 			.days {
-				margin-top: 7px;
+				margin-top: 8px;
 
 				display: grid;
 				grid-template-rows: 1fr 1fr;
 				grid-template-columns: 1fr 1fr 1fr;
 				grid-gap: 80px;
+
+				transition: 0.5s all ease-in-out, visibility 0.5s;
+				opacity: 0;
+				visibility: hidden;
 
 				.day {
 					padding: 31px 40px;
@@ -252,6 +294,12 @@ main {
 					}
 				}
 			}
+
+			&.shown .days {
+				transition: 0.5s all ease-in-out, visibility 0.5s;
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 
 		#timetable_previous, #timetable_next {
@@ -264,7 +312,7 @@ main {
 			cursor: pointer;
 			padding: 0 50px;
 
-			transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
+			transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
 
 			&.hidden {
 				opacity: 0;

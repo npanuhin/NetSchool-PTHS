@@ -113,30 +113,76 @@ main {
     position: relative;
     margin: 116px auto 100px auto;
     width: 970px; }
-    main .timetable h3 {
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 36px;
-      line-height: 65px;
-      color: #FFF;
-      text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25); }
     main .timetable .week {
       position: absolute;
       width: 100%;
-      transition: 0.5s all ease-in-out, visibility 0.5s;
-      opacity: 0;
-      visibility: hidden; }
+      pointer-events: none; }
+      main .timetable .week h3 {
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 65px;
+        color: #FFF;
+        text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+        -webkit-animation: week_header_hide 0.5s ease-in-out forwards;
+        animation: week_header_hide 0.5s ease-in-out forwards;
+        -webkit-animation-duration: 0s;
+        animation-duration: 0s; }
+        html.loaded main .timetable .week h3 {
+          -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s; }
       main .timetable .week.shown {
-        transition: 0.5s all ease-in-out, visibility 0.5s;
-        opacity: 1;
-        visibility: visible; }
+        pointer-events: auto; }
+        main .timetable .week.shown h3 {
+          -webkit-animation: week_header_show 0.5s ease-in-out forwards;
+          animation: week_header_show 0.5s ease-in-out forwards;
+          -webkit-animation-duration: 0s;
+          animation-duration: 0s; }
+          html.loaded main .timetable .week.shown h3 {
+            -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s; }
+
+@-webkit-keyframes week_header_hide {
+  0% {
+    opacity: 1;
+    transform: translateY(0px); }
+  45%, 100% {
+    opacity: 0;
+    transform: translateY(10px); } }
+
+@keyframes week_header_hide {
+  0% {
+    opacity: 1;
+    transform: translateY(0px); }
+  45%, 100% {
+    opacity: 0;
+    transform: translateY(10px); } }
+
+@-webkit-keyframes week_header_show {
+  0%, 55% {
+    opacity: 0;
+    transform: translateY(-15px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0px); } }
+
+@keyframes week_header_show {
+  0%, 55% {
+    opacity: 0;
+    transform: translateY(-15px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0px); } }
       main .timetable .week .days {
-        margin-top: 7px;
+        margin-top: 8px;
         display: grid;
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 80px; }
+        grid-gap: 80px;
+        transition: 0.5s all ease-in-out, visibility 0.5s;
+        opacity: 0;
+        visibility: hidden; }
         main .timetable .week .days .day {
           padding: 31px 40px;
           background-color: #FFF;
@@ -159,6 +205,10 @@ main {
               font-size: 15px;
               line-height: 25px;
               color: #1963A1; }
+      main .timetable .week.shown .days {
+        transition: 0.5s all ease-in-out, visibility 0.5s;
+        opacity: 1;
+        visibility: visible; }
     main .timetable #timetable_previous, main .timetable #timetable_next {
       position: absolute;
       top: calc(36px + 50%);
@@ -169,9 +219,9 @@ main {
       filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
       cursor: pointer;
       padding: 0 50px;
-      transition: 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
-      transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
-      transition: 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out; }
+      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
+      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
+      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out; }
       main .timetable #timetable_previous.hidden, main .timetable #timetable_next.hidden {
         opacity: 0; }
     main .timetable #timetable_previous {
