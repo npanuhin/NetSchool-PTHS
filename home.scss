@@ -3,6 +3,8 @@ $background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%);
 
 $block-color: #FFF;
 $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 
 $text: #1963A1;
 
@@ -78,22 +80,24 @@ $buttons_color: #307FBD;
 	// transition-duration: 0s;  
 }
 
-body {
+html {
 	min-height: 100vh;
+	overflow: auto;
+}
+
+body {
 	background: $background;
+	overflow: hidden;
 }
 
 .statusbar {
 	position: absolute;
+	top: 0;
 	// width: 520.25px;
 	height: 65px;
 	right: calc(50vw - 600px);
 
-	@media (max-width: 1200px) {
-		right: 0;
-	}
-
-	font-family: "Manrope";
+	@media (max-width: 1200px) {right: 0;}
 
 	display: flex;
 	align-items: center;
@@ -124,36 +128,19 @@ body {
 			}
 		}
 	}
-
-	// .exit_icon::before, .last_update::before {
-	// 	content: "";
-	// 	position: absolute;
-	// 	top: 0;
-	// 	left: -1px;
-	// 	width: 1px;
-	// 	height: 40px;
-	// 	background: radial-gradient(#fff 0%, $header_color 60%);
-	// }
 }
 
-
 main {
-
-	position: absolute;
+	position: relative;
 	left: 50%;
-	top: 133px;
+	margin-top: 133px;
 	transform: translateX(-50%);
 	width: 1170px;
-	// min-height: 100px;
-	// background-color: #fff;
 
 	.tasks {
 		margin: 0 auto;
-		// position: relative;
 
 		// width: 972px;  // TODO
-		// left: 485px;
-		// top: 133px;
 
 		background-color: $block-color;
 		box-shadow: $block-shadow;
@@ -163,7 +150,7 @@ main {
 			width: 972px;
 		}
 
-		h3 {
+		h2 {
 			padding-top: 19px;
 			text-align: center;
 
@@ -178,7 +165,7 @@ main {
 
 		ul {
 			width: 78%;
-			padding: 16px 0 30px 0;
+			padding: 16px 0 40px 0;
 			margin: 0 auto;
 
 			font-family: Manrope;
@@ -195,19 +182,110 @@ main {
 	}
 
 	.announcements {
-		// background: #FFFFFF;
-		// box-shadow: $block-shadow;
-		// border-radius: 30px;
-
-		// .cross {
-		// 	position: absolute;
-		// 	left: 77.75%;
-		// 	right: 21%;
-		// 	top: 9.57%;
-		// 	bottom: 89.08%;
-
-		// 	background: $page_color;
-		// }
+		// TODO
 	}
 
+	.timetable {
+		position: relative;
+		margin: 116px auto 100px auto;
+		width: 970px;
+
+		h3 {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: bold;
+			font-size: 36px;
+			line-height: 65px;
+			color: #FFF;
+			text-shadow: $text-shadow;
+		}
+
+		.week {
+			position: absolute;
+			width: 100%;
+
+			transition: 0.5s all ease-in-out, visibility 0.5s;
+			opacity: 0;
+			visibility: hidden;
+
+			&.shown {
+				transition: 0.5s all ease-in-out, visibility 0.5s;
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.days {
+				margin-top: 7px;
+
+				display: grid;
+				grid-template-rows: 1fr 1fr;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-gap: 80px;
+
+				.day {
+					padding: 31px 40px;
+					background-color: #FFF;
+					box-shadow: $block-shadow;
+					border-radius: 30px;
+
+					h4 {
+						text-align: center;
+						font-family: Manrope;
+						font-style: normal;
+						font-weight: 600;
+						font-size: 21px;
+						line-height: 33px;
+						color: $text;
+					}
+
+					ul {
+						margin-top: 25px;
+
+						li {
+							font-family: Manrope;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 15px;
+							line-height: 25px;
+							color: $text;
+						}
+					}
+				}
+			}
+		}
+
+		#timetable_previous, #timetable_next {
+			position: absolute;
+			top: calc(36px + 50%);
+			transform: translateY(-50%);
+			height: calc(100% - 72px);
+			width: 39.9px;
+			filter: drop-shadow($arrows-shadow);
+			cursor: pointer;
+			padding: 0 50px;
+
+			transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
+
+			&.hidden {
+				opacity: 0;
+			}
+		}
+
+		#timetable_previous {
+			left: -133px;
+			&:hover {
+				padding-right: 55px;
+				transform: translateX(-5px) translateY(-50%);
+			}
+
+		}
+
+		#timetable_next {
+			right: -133px;
+			&:hover {
+				padding-left: 55px;
+				transform: translateX(5px) translateY(-50%);
+			}
+		}
+	}
 }

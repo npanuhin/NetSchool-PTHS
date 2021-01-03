@@ -53,10 +53,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		<div class="statusbar">
 			<div class="name"><?php echo $_SESSION['last_name'] . ' ' . $_SESSION['first_name']?></div>
-			<div class="last_update">
+			<div class="last_update" title="Время последнего обновления">
 				<?php echo date('H:i:s', strtotime($person['last_update'])) ?>
 			</div>
-			<div class="exit_icon"><?php include_once 'files/icons/sign-out.svg' ?></div>
+			<div class="exit_icon" title="Выйти"><?php include_once 'files/icons/sign-out.svg' ?></div>
 		</div>
 
 		<main>
@@ -66,7 +66,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			?>
 
 			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
-				<h3>Задания</h3>
+				<h2>Задания</h2>
 				<ul>
 					<li>Английский на 04.12.2020</li>
 					<li>Физика на 2.10.2020</li>
@@ -87,7 +87,81 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			?>
 
 			<div class="timetable">
-				
+				<svg id="timetable_previous" viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1.48438 31.5346L31.5833 1.43668C33.498 -0.478897 36.6023 -0.478897 38.516 1.43668C40.4299 3.35056 40.4299 6.45469 38.516 8.36841L11.8831 35.0005L38.5152 61.6317C40.4291 63.5463 40.4291 66.6501 38.5152 68.564C36.6013 70.4787 33.4972 70.4787 31.5826 68.564L1.4836 38.4656C0.526657 37.5082 0.0487289 36.2547 0.0487289 35.0007C0.0487289 33.746 0.527588 32.4916 1.48438 31.5346Z" fill="white"/>
+				</svg>
+
+				<?php
+				$timetable = json_decode($person['timetable'], true);
+
+				$cur_monday = new DateTime('monday this week');
+
+				$cur_year = date('Y');
+				if (date('m') < 9) --$cur_year;
+
+				$year_begin = new DateTime($cur_year . '-09-01 Monday this week');
+				$year_end = new DateTime(($cur_year + 1) . '-05-31 Monday this week tomorrow');
+
+				$week_period = new DatePeriod($year_begin, DateInterval::createFromDateString('1 week'), $year_end);
+
+				foreach ($week_period as $monday) {
+					$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
+					?>
+
+					<div class="week <?php echo $monday->format('Y-m-d') ?> <?php if ($monday == $cur_monday) echo 'shown'; ?>">
+						<h3>
+							<?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1]?>
+							-
+							<?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
+						</h3>
+						
+						<div class="days">
+					
+							<?php
+							$day_period = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
+							$weekday_index = 0;
+							foreach ($day_period as $day) {
+								?>
+
+								<div class="day <?php echo $day->format('Y-m-d') ?>">
+									<h4><?php echo $weekdays[$weekday_index] ?></h4>
+									<ul>
+										<?php
+										if (array_key_exists($day->format('Y-m-d'), $timetable) && !is_null($timetable[$day->format('Y-m-d')]) ) {
+											foreach ($timetable[$day->format('Y-m-d')] as $item) {
+												?>
+
+												<li>
+													<?php
+													$type = $item[0];
+													$start_time = new DateTime($item[1][0]);
+													$end_time = new DateTime($item[1][1]);
+													$name = $item[2];
+
+													echo $name;
+													?>
+												</li>
+												
+												<?php
+											}
+										}
+										?>
+									</ul>
+								</div>
+
+								<?php
+								++$weekday_index;
+							}
+							?>
+						</div>
+					</div>
+					<?php
+				}
+				?>
+
+				<svg id="timetable_next" viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
+					<path d="M38.5156 38.4654L8.41667 68.5633C6.50201 70.4789 3.39772 70.4789 1.484 68.5633C-0.429887 66.6494 -0.429887 63.5453 1.484 61.6316L28.1169 34.9995L1.48477 8.36834C-0.429113 6.45368 -0.429113 3.34987 1.48477 1.43599C3.39865 -0.478663 6.50279 -0.478663 8.41744 1.43599L38.5164 31.5344C39.4733 32.4918 39.9513 33.7453 39.9513 34.9993C39.9513 36.254 39.4724 37.5084 38.5156 38.4654Z" fill="#FF890C"/>
+				</svg>
 			</div>
 			
 		</main>
