@@ -6,13 +6,15 @@ $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 $text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 $arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 
-$text: #1963A1;
+$page_color: #1963A1;
 
 // $orange: #FE8708;
 // $orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
 
-$page_color: #1963A1;
+$text: $page_color;
 $buttons_color: #307FBD;
+
+$vacation-color: #0f0;
 
 // FONTS:
 @font-face {
@@ -137,7 +139,7 @@ body {
 	display: flex;
 	align-items: center;
 
-	.name, .last_update {
+	.name, .last_update, .last_update span {
 		color: #fff;
 
 		font-family: Manrope;
@@ -148,6 +150,20 @@ body {
 		line-height: 65px;
 
 		margin: 0 17px;
+	}
+
+	.last_update span {
+		margin: -5px;
+		animation: last_update_blink 1s ease-in-out infinite;
+	}
+
+	@keyframes last_update_blink {
+		0%, 10%, 90%, 100% {
+			opacity: 0;
+		}
+		40%, 70% {
+			opacity: 1;
+		}
 	}
 
 	.last_update {
@@ -300,7 +316,7 @@ main {
 				grid-template-rows: 1fr 1fr;
 				grid-template-columns: 1fr 1fr 1fr;
 				grid-row-gap: 70px;
-				grid-column-gap: 70px;
+				grid-column-gap: 60px;
 
 				@media (max-width: 1170px) {
 					grid-template-rows: 1fr 1fr 1fr;
@@ -319,7 +335,7 @@ main {
 				visibility: hidden;
 
 				.day {
-					padding: 31px 40px;
+					padding: 30px 32px;
 					background-color: #FFF;
 					box-shadow: $block-shadow;
 					border-radius: 30px;
@@ -344,6 +360,10 @@ main {
 							font-size: 15px;
 							line-height: 25px;
 							color: $text;
+
+							&.vacation {
+								color: $vacation-color;
+							}
 						}
 					}
 				}

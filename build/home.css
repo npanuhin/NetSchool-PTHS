@@ -81,7 +81,7 @@ body {
   @media (max-width: 1200px) {
     .statusbar {
       right: 0; } }
-  .statusbar .name, .statusbar .last_update {
+  .statusbar .name, .statusbar .last_update, .statusbar .last_update span {
     color: #fff;
     font-family: Manrope;
     font-style: normal;
@@ -90,6 +90,22 @@ body {
     height: 65px;
     line-height: 65px;
     margin: 0 17px; }
+  .statusbar .last_update span {
+    margin: -5px;
+    -webkit-animation: last_update_blink 1s ease-in-out infinite;
+    animation: last_update_blink 1s ease-in-out infinite; }
+
+@-webkit-keyframes last_update_blink {
+  0%, 10%, 90%, 100% {
+    opacity: 0; }
+  40%, 70% {
+    opacity: 1; } }
+
+@keyframes last_update_blink {
+  0%, 10%, 90%, 100% {
+    opacity: 0; }
+  40%, 70% {
+    opacity: 1; } }
   @media (max-width: 850px) {
     .statusbar .last_update {
       display: none; } }
@@ -207,7 +223,7 @@ main {
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
         grid-row-gap: 70px;
-        grid-column-gap: 70px;
+        grid-column-gap: 60px;
         transition: 0.5s all ease-in-out, visibility 0.5s;
         opacity: 0;
         visibility: hidden; }
@@ -222,7 +238,7 @@ main {
             grid-template-columns: 1fr;
             grid-row-gap: 40px; } }
         main .timetable .week .days .day {
-          padding: 31px 40px;
+          padding: 30px 32px;
           background-color: #FFF;
           box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
           border-radius: 30px; }
@@ -243,6 +259,8 @@ main {
               font-size: 15px;
               line-height: 25px;
               color: #1963A1; }
+              main .timetable .week .days .day ul li.vacation {
+                color: #0f0; }
       main .timetable .week.shown .days {
         transition: 0.5s all ease-in-out, visibility 0.5s;
         opacity: 1;

@@ -63,7 +63,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		<div class="statusbar">
 			<div class="name"><?php echo $_SESSION['last_name'] . ' ' . $_SESSION['first_name']?></div>
 			<div class="last_update" title="Время последнего обновления">
-				<?php echo date('H:i:s', strtotime($person['last_update'])) ?>
+				<?php echo date('H', strtotime($person['last_update'])) ?>
+				<span>:</span>
+				<?php echo date('i', strtotime($person['last_update'])) ?>
 			</div>
 			<div class="exit_icon" title="Выйти"><?php include_once 'files/icons/sign-out.svg' ?></div>
 		</div>
@@ -140,20 +142,22 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 										<?php
 										if (array_key_exists($day->format('Y-m-d'), $timetable) && !is_null($timetable[$day->format('Y-m-d')]) ) {
 											foreach ($timetable[$day->format('Y-m-d')] as $item) {
-												?>
+												$type = $item[0];
+												$start_time = new DateTime($item[1][0]);
+												$end_time = new DateTime($item[1][1]);
+												$name = $item[2];
 
-												<li>
-													<?php
-													$type = $item[0];
-													$start_time = new DateTime($item[1][0]);
-													$end_time = new DateTime($item[1][1]);
-													$name = $item[2];
-
-													echo $name;
+												if ($type == "lesson" || $type == "vacation") {
 													?>
-												</li>
-												
-												<?php
+
+													<li class="<?php if ($type == 'vacation') {echo 'vacation';} ?>">
+														<?php
+														echo $name;
+														?>
+													</li>
+													
+													<?php
+												}
 											}
 										}
 										?>
