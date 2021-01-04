@@ -31,9 +31,6 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-input[type="submit"] {
-  cursor: pointer; }
-
 body {
   width: 100vw;
   height: 100vh;
@@ -45,6 +42,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
+  max-width: calc(100% - 40px);
   height: 500px;
   background: #FFF;
   border-radius: 30px;
@@ -68,6 +66,7 @@ body {
     .container #login_form input {
       position: relative;
       width: 377px;
+      max-width: calc(100% - 85px);
       height: 35px;
       margin-top: 35px;
       padding: 12px 24px;
@@ -83,8 +82,10 @@ body {
         color: #FE8708;
         border: 1px solid #FE8708; }
     .container #login_form input[type="submit"] {
-      padding: 9px 115px;
+      text-align: center;
+      padding: 9px 0;
       width: 290px;
+      max-width: calc(100% - 30px);
       height: 45px;
       font-family: Manrope;
       font-style: normal;
@@ -98,6 +99,7 @@ body {
       box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
       border-radius: 30px;
       color: #FFF;
+      cursor: pointer;
       transition: 0.2s box-shadow ease-out; }
       .container #login_form input[type="submit"]:hover {
         box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35); }

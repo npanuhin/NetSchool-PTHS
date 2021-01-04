@@ -45,12 +45,35 @@ html {
   overflow: auto; }
 
 body {
-  background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%);
+  background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
   overflow: hidden; }
+  @media (max-width: 1300px) {
+    body {
+      background: #1963A1; } }
+
+.menu {
+  position: absolute;
+  left: 14.6%; }
+  @media (max-width: 1400px) {
+    .menu {
+      left: calc(50vw - 500px); } }
+  @media (max-width: 1170px) {
+    .menu {
+      left: 85px; } }
+  .menu .menu_icon_wrapper, .menu .moon_icon_wrapper {
+    display: inline-block;
+    cursor: pointer; }
+  .menu .menu-icon path, .menu .moon-icon path {
+    fill: #307FBD; }
+  .menu .menu-icon {
+    padding: 8px 17px;
+    width: 50px; }
+  .menu .moon-icon {
+    width: 40px;
+    padding: 10.5px 17px; }
 
 .statusbar {
   position: absolute;
-  top: 0;
   height: 65px;
   right: calc(50vw - 600px);
   display: flex;
@@ -67,27 +90,31 @@ body {
     height: 65px;
     line-height: 65px;
     margin: 0 17px; }
+  @media (max-width: 850px) {
+    .statusbar .last_update {
+      display: none; } }
   .statusbar .exit_icon {
     width: 50px;
-    margin: 0 17px; }
-    .statusbar .exit_icon .sign-out {
-      cursor: pointer; }
-      .statusbar .exit_icon .sign-out path {
-        color: #307FBD; }
+    padding: 7px 17px;
+    cursor: pointer; }
+    .statusbar .exit_icon .sign-out-icon path {
+      fill: #307FBD; }
 
 main {
   position: relative;
   left: 50%;
   margin-top: 133px;
   transform: translateX(-50%);
-  width: 1170px; }
+  width: 1170px;
+  max-width: 100%; }
   main .tasks {
     margin: 0 auto;
     background-color: #FFF;
     box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
     border-radius: 30px; }
     main .tasks.wide {
-      width: 972px; }
+      width: 970px;
+      max-width: calc(100% - 200px); }
     main .tasks h2 {
       padding-top: 19px;
       text-align: center;
@@ -112,7 +139,7 @@ main {
   main .timetable {
     position: relative;
     margin: 116px auto 100px auto;
-    width: 970px; }
+    width: calc(100% - 200px); }
     main .timetable .week {
       position: absolute;
       width: 100%;
@@ -179,10 +206,21 @@ main {
         display: grid;
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 80px;
+        grid-row-gap: 70px;
+        grid-column-gap: 70px;
         transition: 0.5s all ease-in-out, visibility 0.5s;
         opacity: 0;
         visibility: hidden; }
+        @media (max-width: 1170px) {
+          main .timetable .week .days {
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 50px; } }
+        @media (max-width: 850px) {
+          main .timetable .week .days {
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
+            grid-row-gap: 40px; } }
         main .timetable .week .days .day {
           padding: 31px 40px;
           background-color: #FFF;

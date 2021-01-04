@@ -51,6 +51,15 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		$person = mysqli_fetch_assoc($query);
 		?>
 
+		<div class="menu">
+			<div class="menu_icon_wrapper" title="Menu">
+				<?php include_once 'files/icons/menu.svg' ?>
+			</div>
+			<div class="moon_icon_wrapper" title="Night mode">
+				<?php include_once 'files/icons/moon.svg' ?>
+			</div>
+		</div>
+
 		<div class="statusbar">
 			<div class="name"><?php echo $_SESSION['last_name'] . ' ' . $_SESSION['first_name']?></div>
 			<div class="last_update" title="Время последнего обновления">

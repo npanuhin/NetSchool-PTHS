@@ -1,5 +1,5 @@
 // COLORS:
-$background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%);
+$background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
 
 $block-color: #FFF;
 $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
@@ -88,16 +88,51 @@ html {
 body {
 	background: $background;
 	overflow: hidden;
+
+	@media (max-width: 1300px) {
+		background: $page_color;
+	}
+}
+
+.menu {
+	position: absolute;
+	left: 14.6%;
+	@media (max-width: 1400px) {
+		left: calc(50vw - 500px);
+	}
+	@media (max-width: 1170px) {
+		left: 85px;
+	}
+
+	.menu_icon_wrapper, .moon_icon_wrapper {
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.menu-icon path, .moon-icon path{
+		fill: $buttons-color;
+	}
+
+	.menu-icon {
+		padding: 8px 17px;
+		width: 50px;
+	}
+
+	.moon-icon {
+		width: 40px;
+		padding: 10.5px 17px;
+	}
 }
 
 .statusbar {
 	position: absolute;
-	top: 0;
+	// top: 0;
 	// width: 520.25px;
 	height: 65px;
 	right: calc(50vw - 600px);
-
-	@media (max-width: 1200px) {right: 0;}
+	@media (max-width: 1200px) {
+		right: 0;
+	}
 
 	display: flex;
 	align-items: center;
@@ -115,16 +150,20 @@ body {
 		margin: 0 17px;
 	}
 
+	.last_update {
+		@media (max-width: 850px) {
+			display: none;
+		}
+	}
+
 	.exit_icon {
 		width: 50px;
+		padding: 7px 17px;
+		cursor: pointer;
 
-		margin: 0 17px;
-
-		.sign-out {
-			cursor: pointer;
-
+		.sign-out-icon {
 			path {
-				color: $buttons_color;
+				fill: $buttons_color;
 			}
 		}
 	}
@@ -136,6 +175,7 @@ main {
 	margin-top: 133px;
 	transform: translateX(-50%);
 	width: 1170px;
+	max-width: 100%;
 
 	.tasks {
 		margin: 0 auto;
@@ -147,7 +187,8 @@ main {
 		border-radius: 30px;
 
 		&.wide {
-			width: 972px;
+			width: 970px;
+			max-width: calc(100% - 200px);
 		}
 
 		h2 {
@@ -188,7 +229,7 @@ main {
 	.timetable {
 		position: relative;
 		margin: 116px auto 100px auto;
-		width: 970px;
+		width: calc(100% - 200px);
 
 		.week {
 			position: absolute;
@@ -258,7 +299,20 @@ main {
 				display: grid;
 				grid-template-rows: 1fr 1fr;
 				grid-template-columns: 1fr 1fr 1fr;
-				grid-gap: 80px;
+				grid-row-gap: 70px;
+				grid-column-gap: 70px;
+
+				@media (max-width: 1170px) {
+					grid-template-rows: 1fr 1fr 1fr;
+					grid-template-columns: 1fr 1fr;
+					grid-column-gap: 50px;
+				}
+
+				@media (max-width: 850px) {
+					grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+					grid-template-columns: 1fr;
+					grid-row-gap: 40px;
+				}
 
 				transition: 0.5s all ease-in-out, visibility 0.5s;
 				opacity: 0;

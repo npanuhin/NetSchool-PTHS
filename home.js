@@ -11,6 +11,11 @@ var
 
 Event.add(window, "load", () => {
 
+	Event.add(window, "resize", () => {
+		timetable.style.height = weeks[cur_week].offsetHeight + "px";
+	});
+	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+
 	Event.add(logout_button, "click", () => {
 		html.classList.add("loaded");
 		
@@ -32,8 +37,6 @@ Event.add(window, "load", () => {
 			}
 		);
 	});
-
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 
 	Event.add(timetable_previous, "click", () => {
 		html.classList.add("loaded");
