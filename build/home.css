@@ -32,7 +32,6 @@
   text-align: left;
   font-style: normal;
   font-weight: normal;
-  z-index: 1;
   color: #000;
   outline: none;
   transform-origin: center center;
@@ -91,21 +90,7 @@ body {
     line-height: 65px;
     margin: 0 17px; }
   .statusbar .last_update span {
-    margin: -5px;
-    -webkit-animation: last_update_blink 1s ease-in-out infinite;
-    animation: last_update_blink 1s ease-in-out infinite; }
-
-@-webkit-keyframes last_update_blink {
-  0%, 10%, 90%, 100% {
-    opacity: 0; }
-  40%, 70% {
-    opacity: 1; } }
-
-@keyframes last_update_blink {
-  0%, 10%, 90%, 100% {
-    opacity: 0; }
-  40%, 70% {
-    opacity: 1; } }
+    margin: -5px; }
   @media (max-width: 850px) {
     .statusbar .last_update {
       display: none; } }
@@ -253,14 +238,37 @@ main {
           main .timetable .week .days .day ul {
             margin-top: 25px; }
             main .timetable .week .days .day ul li {
-              font-family: Manrope;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 15px;
-              line-height: 25px;
-              color: #1963A1; }
-              main .timetable .week .days .day ul li.vacation {
-                color: #0f0; }
+              position: relative;
+              cursor: pointer; }
+              main .timetable .week .days .day ul li a {
+                font-family: Manrope;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 25px;
+                color: #1963A1; }
+              main .timetable .week .days .day ul li.vacation a {
+                color: #20822A; }
+              main .timetable .week .days .day ul li .details {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                padding: 20px;
+                border-radius: 20px;
+                z-index: 100;
+                white-space: nowrap;
+                background-color: #fff;
+                box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+                color: #1963A1;
+                visibility: hidden;
+                opacity: 0;
+                transition: 0.1s opacity ease-in-out, 0s visibility 0.2s; }
+              main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details, main .timetable .week .days .day ul li.active .details {
+                visibility: visible;
+                opacity: 1;
+                transition: 0.1s opacity ease-in-out, 0s visibility 0s; }
+          main .timetable .week .days .day.today h4 {
+            color: #FF890C; }
       main .timetable .week.shown .days {
         transition: 0.5s all ease-in-out, visibility 0.5s;
         opacity: 1;
@@ -275,11 +283,13 @@ main {
       filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
       cursor: pointer;
       padding: 0 50px;
-      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
-      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
-      transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out; }
+      transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
+      transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
+      transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out; }
       main .timetable #timetable_previous.hidden, main .timetable #timetable_next.hidden {
         opacity: 0; }
+      main .timetable #timetable_previous path, main .timetable #timetable_next path {
+        fill: #fff; }
     main .timetable #timetable_previous {
       left: -133px; }
       main .timetable #timetable_previous:hover {

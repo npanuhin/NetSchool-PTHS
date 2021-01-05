@@ -6,15 +6,15 @@ $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 $text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 $arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 
-$page_color: #1963A1;
+$page-color: #1963A1;
 
-// $orange: #FE8708;
+$orange-color: #FF890C;
 // $orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
 
-$text: $page_color;
-$buttons_color: #307FBD;
+$text: $page-color;
+$buttons-color: #307FBD;
 
-$vacation-color: #0f0;
+$vacation-color: #20822A;
 
 // FONTS:
 @font-face {
@@ -68,7 +68,7 @@ $vacation-color: #0f0;
 	text-align: left;
 	font-style: normal;
 	font-weight: normal;
-	z-index: 1;
+	// z-index: 0;
 	color: #000;
 	outline: none;
 	transform-origin: center center;
@@ -92,7 +92,7 @@ body {
 	overflow: hidden;
 
 	@media (max-width: 1300px) {
-		background: $page_color;
+		background: $page-color;
 	}
 }
 
@@ -154,17 +154,17 @@ body {
 
 	.last_update span {
 		margin: -5px;
-		animation: last_update_blink 1s ease-in-out infinite;
+		// animation: last_update_blink 1s ease-in-out infinite;
 	}
 
-	@keyframes last_update_blink {
-		0%, 10%, 90%, 100% {
-			opacity: 0;
-		}
-		40%, 70% {
-			opacity: 1;
-		}
-	}
+	// @keyframes last_update_blink {
+	// 	0%, 10%, 90%, 100% {
+	// 		opacity: 0;
+	// 	}
+	// 	40%, 70% {
+	// 		opacity: 1;
+	// 	}
+	// }
 
 	.last_update {
 		@media (max-width: 850px) {
@@ -179,7 +179,7 @@ body {
 
 		.sign-out-icon {
 			path {
-				fill: $buttons_color;
+				fill: $buttons-color;
 			}
 		}
 	}
@@ -354,17 +354,51 @@ main {
 						margin-top: 25px;
 
 						li {
-							font-family: Manrope;
-							font-style: normal;
-							font-weight: normal;
-							font-size: 15px;
-							line-height: 25px;
-							color: $text;
+							position: relative;
+							cursor: pointer;
 
-							&.vacation {
+							a {
+								font-family: Manrope;
+								font-style: normal;
+								font-weight: normal;
+								font-size: 15px;
+								line-height: 25px;
+								color: $text;
+							}
+							
+							&.vacation a {
 								color: $vacation-color;
 							}
+
+							.details {
+								position: absolute;
+								top: 0;
+								left: 100%;
+								padding: 20px;
+								border-radius: 20px;
+								z-index: 100;
+								white-space: nowrap;
+								background-color: #fff;
+								box-shadow: $block-shadow;
+								color: $text;
+
+								visibility: hidden;
+								opacity: 0;
+								transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+							}
+
+							&:hover, &:active, &.active {
+								.details {
+									visibility: visible;
+									opacity: 1;
+									transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+								}
+							}
 						}
+					}
+
+					&.today h4 {
+						color: $orange-color;
 					}
 				}
 			}
@@ -386,10 +420,14 @@ main {
 			cursor: pointer;
 			padding: 0 50px;
 
-			transition: 0.5s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
+			transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
 
 			&.hidden {
 				opacity: 0;
+			}
+
+			path {
+				fill: #fff;
 			}
 		}
 
