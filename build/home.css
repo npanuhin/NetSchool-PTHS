@@ -237,6 +237,7 @@ main {
             grid-template-columns: 1fr;
             grid-row-gap: 40px; } }
         main .timetable .week .days .day {
+          position: relative;
           padding: 30px 32px;
           background-color: #FFF;
           box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
@@ -291,6 +292,28 @@ main {
                 visibility: visible;
                 opacity: 1;
                 transition: 0.1s opacity ease-in-out, 0s visibility 0s; }
+          main .timetable .week .days .day .pending {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: inherit;
+            width: 100%;
+            height: 100%;
+            background-color: #aaa; }
+            main .timetable .week .days .day .pending p {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 75%;
+              max-height: 100%;
+              text-align: center;
+              font-family: Manrope;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 20px;
+              line-height: 30px;
+              color: #fff; }
           main .timetable .week .days .day.today h4, main .timetable .week .days .day.today .day_info {
             color: #FF890C; }
       main .timetable .week.shown .days {

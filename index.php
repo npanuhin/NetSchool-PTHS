@@ -123,7 +123,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
 							<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
 							-
-							<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
+							<?php echo ltrim($sunday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
 						</h3>
 
 						<?php
@@ -153,9 +153,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 										?>
 									</div>
 
-									<ul>
-										<?php
-										if (array_key_exists($day->format('Y-m-d'), $timetable) && !is_null($timetable[$day->format('Y-m-d')]) ) {
+									<?php
+
+									if (array_key_exists($day->format('Y-m-d'), $timetable) && !is_null($timetable[$day->format('Y-m-d')])) {
+										?>
+
+										<ul>
+											<?php
 											foreach ($timetable[$day->format('Y-m-d')] as $item) {
 												$type = $item[0];
 												$start_time = new DateTime($item[1][0]);
@@ -194,9 +198,20 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													<?php
 												}
 											}
-										}
+											?>
+										</ul>
+
+										<?php
+									} else {
 										?>
-									</ul>
+
+										<div class="pending">
+											<p>Раписание на этот день не загружено</p>
+										</div>
+
+										<?php
+									}
+									?>
 								</div>
 
 								<?php

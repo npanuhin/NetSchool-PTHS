@@ -362,6 +362,7 @@ main {
 				visibility: hidden;
 
 				.day {
+					position: relative;
 					padding: 30px 32px;
 					background-color: #FFF;
 					box-shadow: $block-shadow;
@@ -436,6 +437,35 @@ main {
 									transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 								}
 							}
+						}
+					}
+
+					.pending {
+						position: absolute;
+						top: 0;
+						left: 0;
+						border-radius: inherit;
+						width: 100%;
+						height: 100%;
+						background-color: #aaa;
+
+						p {
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							width: 75%;
+							max-height: 100%;
+
+							text-align: center;
+
+							font-family: Manrope;
+							font-style: normal;
+							font-weight: normal;
+							font-size: 20px;
+							line-height: 30px;
+
+							color: #fff;
 						}
 					}
 
