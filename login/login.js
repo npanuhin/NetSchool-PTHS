@@ -2,7 +2,7 @@ var
 	form = document.getElementById("login_form"),
 	username_input = document.getElementById("username"),
 	password_input = document.getElementById("password"),
-	loading = document.getElementsByClassName("loading")[0];
+	message = document.getElementsByClassName("message")[0];
 
 Event.add(window, "load", () => {
 	Event.add(form, "submit", (e) => {
@@ -14,7 +14,7 @@ Event.add(window, "load", () => {
 		let username = username_input.value.trim(),
 			password = password_input.value.trim();
 
-		loading.classList.add("shown");
+		message.classList.add("shown");
 
 		ajax(
 			"POST",
@@ -27,7 +27,9 @@ Event.add(window, "load", () => {
 				if (req.responseText == "success") {
 					window.location = "../";
 				} else {
-					loading.classList.remove("shown");
+					message.classList.remove("shown");
+
+					console.log(req.responseText);
 
 					r = JSON.parse(req.responseText);
 
@@ -41,14 +43,19 @@ Event.add(window, "load", () => {
 						password_input.placeholder = r[1];
 						password_input.value = "";
 
+					} else if (r[0] == "message") {
+						console.log(r);
+						message.getElementsByTagName("p")[0].innerHTML = r[1];
+						message.classList.add("small");
+						message.classList.add("shown");
+
 					} else {
 						alert(req.responseText);
 					}
-					// console.log(req.response);
 				}
 			},
 			(req) => {
-				loading.classList.remove("shown");
+				message.classList.remove("shown");
 				alert("Error");
 				alert(req.responseText);
 			}

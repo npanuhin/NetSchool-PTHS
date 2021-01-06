@@ -26,7 +26,7 @@ if (isset($_SESSION["user_id"])) {
 				<br>
 				<input type="submit" value="Войти">
 			</form>
-			<div class="loading">
+			<div class="message">
 				<p>Загрузка<span>.</span><span>.</span><span>.</span></p>
 			</div>
 		</div>

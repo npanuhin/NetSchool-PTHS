@@ -34,7 +34,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(90deg, #307FBD 0%, #1963A1 17.79%); }
+  background: #1963A1; }
 
 .container {
   position: absolute;
@@ -103,7 +103,7 @@ body {
       transition: 0.2s box-shadow ease-out; }
       .container #login_form input[type="submit"]:hover {
         box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35); }
-  .container .loading {
+  .container .message {
     position: absolute;
     top: 0;
     left: 0;
@@ -111,7 +111,7 @@ body {
     height: 100%;
     visibility: hidden;
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
     font-family: Manrope;
     font-style: normal;
     font-weight: 500;
@@ -120,33 +120,38 @@ body {
     text-align: center;
     letter-spacing: -0.005em;
     transition: 0.5s opacity ease-in-out; }
-    .container .loading.shown {
+    .container .message.shown {
       visibility: visible;
       opacity: 1; }
-      .container .loading.shown p span:nth-child(1), .container .loading.shown p span:nth-child(2), .container .loading.shown p span:nth-child(3) {
+      .container .message.shown p span:nth-child(1), .container .message.shown p span:nth-child(2), .container .message.shown p span:nth-child(3) {
         -webkit-animation-play-state: running;
         animation-play-state: running; }
-    .container .loading p {
+    .container .message.small {
+      font-size: 14px;
+      line-height: 55px; }
+    .container .message p {
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 80%;
       transform: translate(-50%, -50%);
       color: #FFF;
-      font-size: 2em; }
-      .container .loading p span {
+      font-size: 2em;
+      text-align: center; }
+      .container .message p span {
         color: #FFF;
         opacity: 0; }
-        .container .loading p span:nth-child(1) {
+        .container .message p span:nth-child(1) {
           -webkit-animation: loading_dots1 2s ease-in-out 0s infinite;
           animation: loading_dots1 2s ease-in-out 0s infinite;
           -webkit-animation-play-state: paused;
           animation-play-state: paused; }
-        .container .loading p span:nth-child(2) {
+        .container .message p span:nth-child(2) {
           -webkit-animation: loading_dots2 2s ease-in-out 0s infinite;
           animation: loading_dots2 2s ease-in-out 0s infinite;
           -webkit-animation-play-state: paused;
           animation-play-state: paused; }
-        .container .loading p span:nth-child(3) {
+        .container .message p span:nth-child(3) {
           -webkit-animation: loading_dots3 2s ease-in-out 0s infinite;
           animation: loading_dots3 2s ease-in-out 0s infinite;
           -webkit-animation-play-state: paused;

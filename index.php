@@ -34,8 +34,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			exit;
 		}
 
-		$mysqli = dbConnect();
-
 		if (!$mysqli) {
 			error("Database connection failed");
 		}
