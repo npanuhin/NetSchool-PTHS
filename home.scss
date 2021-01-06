@@ -1,5 +1,5 @@
 // COLORS:
-$background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
+// $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
 
 $block-color: #FFF;
 $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
@@ -88,12 +88,8 @@ html {
 }
 
 body {
-	background: $background;
+	background: $page-color;
 	overflow: hidden;
-
-	@media (max-width: 1300px) {
-		background: $page-color;
-	}
 }
 
 .menu {
@@ -309,6 +305,37 @@ main {
 				}
 			}
 
+			.goto_today {
+				position: absolute;
+				opacity: 0;
+				top: 20px;
+				right: 20px;
+
+				padding: 7px;
+
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 27px;
+
+				cursor: pointer;
+
+				// text-decoration: underline;
+				// text-decoration-style: dashed;
+
+				// border-bottom: 1px dashed #fff;
+
+				color: #fff;
+
+				transition: 0.15s opacity 0.2s ease-in-out;
+			}
+
+			&.shown .goto_today {
+				transition: 0.2s opacity 0s ease-in-out;
+				opacity: 1;
+			}
+
 			.days {
 				margin-top: 8px;
 
@@ -350,8 +377,21 @@ main {
 						color: $text;
 					}
 
+					.day_info {
+						font-family: Manrope;
+						font-style: normal;
+						font-weight: normal;
+						font-size: 15px;
+						line-height: 32px;
+
+						width: 100%;
+						text-align: center;
+
+						color: $text;
+					}
+
 					ul {
-						margin-top: 25px;
+						margin-top: 20px;
 
 						li {
 							position: relative;
@@ -374,7 +414,7 @@ main {
 								position: absolute;
 								top: 0;
 								left: 100%;
-								padding: 20px;
+								padding: 15px 20px;
 								border-radius: 20px;
 								z-index: 100;
 								white-space: nowrap;
@@ -385,6 +425,8 @@ main {
 								visibility: hidden;
 								opacity: 0;
 								transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+
+								line-height: 23px;
 							}
 
 							&:hover, &:active, &.active {
@@ -397,8 +439,10 @@ main {
 						}
 					}
 
-					&.today h4 {
-						color: $orange-color;
+					&.today {
+						h4, .day_info {
+							color: $orange-color;
+						}
 					}
 				}
 			}

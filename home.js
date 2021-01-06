@@ -7,7 +7,8 @@ var
 	weeks = timetable.getElementsByClassName("week"),
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
-	);
+	),
+	goto_today = timetable.getElementsByClassName("goto_today");
 
 Event.add(window, "load", () => {
 

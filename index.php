@@ -55,9 +55,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			<div class="menu_icon_wrapper" title="Menu">
 				<?php include_once 'files/icons/menu.svg' ?>
 			</div>
-			<div class="moon_icon_wrapper" title="Night mode">
-				<?php include_once 'files/icons/moon.svg' ?>
-			</div>
+			<!-- <div class="moon_icon_wrapper" title="Night mode">
+				<?php // include_once 'files/icons/moon.svg' ?>
+			</div> -->
 		</div>
 
 		<div class="statusbar">
@@ -123,10 +123,18 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					<div class="week <?php echo $monday->format('Y-m-d') ?> <?php if ($monday == $cur_monday) echo 'shown'; ?>">
 
 						<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
-							<?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1]?>
+							<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
 							-
-							<?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
+							<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
 						</h3>
+
+						<?php
+						if ( $today->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $today->getTimestamp()) {
+							?>
+							<div class="goto_today">Сегодня &#8594;</div>
+							<?php
+						}
+						?>
 						
 						<div class="days">
 							<?php
@@ -135,9 +143,17 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							foreach ($day_period as $day) {
 								?>
 
-								<div class="day <?php echo $day->format('Y-m-d') ?> <?php if ($day == $today) echo 'today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] ?>">
+								<div class="day <?php echo $day->format('Y-m-d') ?> <?php if ($day == $today) echo 'today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 									<h4><?php echo $weekdays[$weekday_index] ?></h4>
+
+									<div class="day_info">
+										<?php
+
+										echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1];
+
+										?>
+									</div>
 
 									<ul>
 										<?php
@@ -149,6 +165,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 												$name = $item[2];
 
 												if ($type == 'lesson' || $type == 'vacation') {
+
+													preg_match_all('/(.*)\[(\d+)\]/', $name, $cabinet, PREG_PATTERN_ORDER);
+
+													if (trim($cabinet[1][0])) {
+														$name = trim($cabinet[1][0]);
+													}
+													$cabinet = trim($cabinet[2][0]);
 													?>
 
 													<li class="<?php if ($type == 'vacation') echo 'vacation' ?>" onclick="this.classList.toggle('active')">
@@ -159,6 +182,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
 															<br>
 															Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
+															<?php
+															if ($cabinet) {
+																?>
+																<br>
+																Кабинет: <?php echo $cabinet ?>
+																<?php
+															}
+															?>
 														</div>
 													</li>
 													

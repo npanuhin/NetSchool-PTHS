@@ -44,11 +44,8 @@ html {
   overflow: auto; }
 
 body {
-  background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
+  background: #1963A1;
   overflow: hidden; }
-  @media (max-width: 1300px) {
-    body {
-      background: #1963A1; } }
 
 .menu {
   position: absolute;
@@ -202,6 +199,23 @@ main {
   100% {
     opacity: 1;
     transform: translateY(0px); } }
+      main .timetable .week .goto_today {
+        position: absolute;
+        opacity: 0;
+        top: 20px;
+        right: 20px;
+        padding: 7px;
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+        cursor: pointer;
+        color: #fff;
+        transition: 0.15s opacity 0.2s ease-in-out; }
+      main .timetable .week.shown .goto_today {
+        transition: 0.2s opacity 0s ease-in-out;
+        opacity: 1; }
       main .timetable .week .days {
         margin-top: 8px;
         display: grid;
@@ -235,8 +249,17 @@ main {
             font-size: 21px;
             line-height: 33px;
             color: #1963A1; }
+          main .timetable .week .days .day .day_info {
+            font-family: Manrope;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 32px;
+            width: 100%;
+            text-align: center;
+            color: #1963A1; }
           main .timetable .week .days .day ul {
-            margin-top: 25px; }
+            margin-top: 20px; }
             main .timetable .week .days .day ul li {
               position: relative;
               cursor: pointer; }
@@ -253,7 +276,7 @@ main {
                 position: absolute;
                 top: 0;
                 left: 100%;
-                padding: 20px;
+                padding: 15px 20px;
                 border-radius: 20px;
                 z-index: 100;
                 white-space: nowrap;
@@ -262,12 +285,13 @@ main {
                 color: #1963A1;
                 visibility: hidden;
                 opacity: 0;
-                transition: 0.1s opacity ease-in-out, 0s visibility 0.2s; }
+                transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+                line-height: 23px; }
               main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details, main .timetable .week .days .day ul li.active .details {
                 visibility: visible;
                 opacity: 1;
                 transition: 0.1s opacity ease-in-out, 0s visibility 0s; }
-          main .timetable .week .days .day.today h4 {
+          main .timetable .week .days .day.today h4, main .timetable .week .days .day.today .day_info {
             color: #FF890C; }
       main .timetable .week.shown .days {
         transition: 0.5s all ease-in-out, visibility 0.5s;
