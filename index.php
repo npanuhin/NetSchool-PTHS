@@ -166,12 +166,12 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 												if ($type == 'lesson' || $type == 'vacation') {
 
-													preg_match_all('/(.*)\[(\d+)\]/', $name, $cabinet, PREG_PATTERN_ORDER);
+													preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-													if (trim($cabinet[1][0])) {
-														$name = trim($cabinet[1][0]);
+													if (trim($match[1][0])) {
+														$name = trim($match[1][0]);
 													}
-													$cabinet = trim($cabinet[2][0]);
+													$cabinet = trim($match[2][0]);
 													?>
 
 													<li class="<?php if ($type == 'vacation') echo 'vacation' ?>" onclick="this.classList.toggle('active')">

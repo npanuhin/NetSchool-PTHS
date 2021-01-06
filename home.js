@@ -8,7 +8,31 @@ var
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
 	),
-	goto_today = timetable.getElementsByClassName("goto_today");
+	days = timetable.getElementsByClassName("day"),
+
+	today = timetable.getElementsByClassName("today")[0],
+	today_date = Array.prototype.slice.call(today.classList).find((value) => {
+		return value != "day" && value != "today"
+	}),
+
+	goto_today_buttons = timetable.getElementsByClassName("goto_today");
+
+
+function goto_day(date) {
+	html.classList.add("loaded");
+
+	cur_week = Array.prototype.slice.call(weeks).indexOf(
+		timetable.getElementsByClassName(date)[0].parentNode.parentNode
+	);
+
+	for (let week of weeks) week.classList.remove("shown");
+	weeks[cur_week].classList.add("shown");
+
+	timetable_previous.classList.toggle("hidden", cur_week <= 0);
+	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+
+	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+}
 
 Event.add(window, "load", () => {
 
@@ -66,4 +90,10 @@ Event.add(window, "load", () => {
 			timetable.style.height = weeks[cur_week].offsetHeight + "px";
 		}
 	});
+
+	for (let goto_today_button of goto_today_buttons) {
+		Event.add(goto_today_button, "click", () => {
+			goto_day(today_date);
+		});
+	}
 });
