@@ -24,15 +24,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	</head>
 	<body>
 
-		<?php 
-		include_once 'src/error.html';
+		<?php
 
-		function error($message) {
-			?>
-			<script type="text/javascript">error("<?php echo $message ?>")</script>
-			<?php
-			exit;
-		}
+		require_once 'src/error.php'; 
 
 		if (!$mysqli) {
 			error("Database connection failed");
@@ -43,7 +37,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		if (mysqli_num_rows($query) > 1) error("Please, contact administrator (too many rows)");
 
 		if (mysqli_num_rows($query) == 0) {
-			error("ID not found, please try login again <a href='/src/logout.php'>(click to logout)</a>");
+			error("ID not found, please try to login again<br><a href='/src/logout.php'>(click to logout)</a>");
 		}
 
 		$person = mysqli_fetch_assoc($query);
@@ -176,22 +170,24 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													$cabinet = trim($match[2][0]);
 													?>
 
-													<li class="<?php if ($type == 'vacation') echo 'vacation' ?>">
+													<li<?php if ($type == 'vacation') echo ' class="vacation"' ?>>
 														<a><?php echo $name ?></a>
 														<div class="details">
-															<h5<?php if ($type == 'vacation') echo ' class="vacation"' ?>><?php echo $name ?></h5>
+															<h5><?php echo $name ?></h5>
 															<!-- Тип: <?php echo $type ?>
 															<br> -->
 															Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
 															<br>
 															Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
 															<?php
+															
 															if ($cabinet) {
 																?>
 																<br>
 																Кабинет: <?php echo $cabinet ?>
 																<?php
 															}
+															
 															?>
 														</div>
 													</li>

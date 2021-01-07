@@ -269,14 +269,13 @@ main {
                 font-style: normal;
                 font-weight: normal;
                 font-size: 15px;
-                line-height: 25px;
                 color: #1963A1; }
-              main .timetable .week .days .day ul li.vacation a {
+              main .timetable .week .days .day ul li.vacation a, main .timetable .week .days .day ul li.vacation .details h5 {
                 color: #20822A; }
               main .timetable .week .days .day ul li .details {
                 position: absolute;
-                top: 0px;
-                left: 0px;
+                top: 0;
+                left: 0;
                 padding: 15px 20px;
                 border-radius: 20px;
                 z-index: 100;
@@ -291,8 +290,6 @@ main {
                 main .timetable .week .days .day ul li .details h5 {
                   text-align: center;
                   margin-bottom: 7px; }
-                  main .timetable .week .days .day ul li .details h5.vacation {
-                    color: #20822A; }
               main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details {
                 visibility: visible;
                 opacity: 1;

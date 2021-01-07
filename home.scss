@@ -403,18 +403,20 @@ main {
 								font-style: normal;
 								font-weight: normal;
 								font-size: 15px;
-								line-height: 25px;
+								// line-height: 25px;
 								color: $text;
 							}
-							
-							&.vacation a {
-								color: $vacation-color;
-							}
 
+							&.vacation {
+								a, .details h5 {
+									color: $vacation-color;
+								}
+							}
+							
 							.details {
 								position: absolute;
-								top: 0px;
-								left: 0px;
+								top: 0;
+								left: 0;
 								padding: 15px 20px;
 								border-radius: 20px;
 								z-index: 100;
@@ -432,10 +434,6 @@ main {
 								h5 {
 									text-align: center;
 									margin-bottom: 7px;
-
-									&.vacation {
-										color: $vacation-color;
-									}
 								}
 							}
 

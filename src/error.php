@@ -13,8 +13,17 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			color: #fff;
 			font-size: 1.5em;
+			text-align: center;
+		}
+		#error * {
+			color: #fff;
+		}
+		#error .message a {
+			color: #00f;
+		}
+		#error .message a:hover {
+			text-decoration: underline;
 		}
 		html.error #error {
 			visibility: visible;
@@ -33,3 +42,14 @@
 		}
 	</script>
 </div>
+
+<?php
+
+function error($message) {
+	?>
+	<script type="text/javascript">error("<?php echo $message ?>")</script>
+	<?php
+	exit;
+}
+
+?>

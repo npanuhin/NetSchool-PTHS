@@ -18,6 +18,7 @@ var
 	goto_today_buttons = timetable.getElementsByClassName("goto_today");
 
 
+
 function goto_day(date) {
 	html.classList.add("loaded");
 
@@ -33,6 +34,8 @@ function goto_day(date) {
 
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 }
+
+
 
 Event.add(window, "load", () => {
 
@@ -99,15 +102,12 @@ Event.add(window, "load", () => {
 
 	for (let day of days) {
 		for (let item of day.getElementsByTagName("li")) {
-			Event.add(item, "mousemove", (e) => {
-				console.log(html.scrollTop);
-				item.getElementsByClassName("details")[0].style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
 
-				item.getElementsByClassName("details")[0].style.left = Math.min(
-					e.pageX - item.getBoundingClientRect().left + 20,
-					item.getBoundingClientRect().right
-				) + "px";
+			Event.add(item, "mousemove", (e) => {
+				item.getElementsByClassName("details")[0].style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
+				item.getElementsByClassName("details")[0].style.left = e.pageX - item.getBoundingClientRect().left + 20 + "px";
 			});
+
 		}
 	}
 });
