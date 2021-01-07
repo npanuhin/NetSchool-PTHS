@@ -264,7 +264,7 @@ main {
             main .timetable .week .days .day ul li {
               position: relative;
               cursor: pointer; }
-              main .timetable .week .days .day ul li a {
+              main .timetable .week .days .day ul li a, main .timetable .week .days .day ul li .details, main .timetable .week .days .day ul li .details h5 {
                 font-family: Manrope;
                 font-style: normal;
                 font-weight: normal;
@@ -275,8 +275,8 @@ main {
                 color: #20822A; }
               main .timetable .week .days .day ul li .details {
                 position: absolute;
-                top: 0;
-                left: 100%;
+                top: 0px;
+                left: 0px;
                 padding: 15px 20px;
                 border-radius: 20px;
                 z-index: 100;
@@ -288,7 +288,12 @@ main {
                 opacity: 0;
                 transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
                 line-height: 23px; }
-              main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details, main .timetable .week .days .day ul li.active .details {
+                main .timetable .week .days .day ul li .details h5 {
+                  text-align: center;
+                  margin-bottom: 7px; }
+                  main .timetable .week .days .day ul li .details h5.vacation {
+                    color: #20822A; }
+              main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details {
                 visibility: visible;
                 opacity: 1;
                 transition: 0.1s opacity ease-in-out, 0s visibility 0s; }

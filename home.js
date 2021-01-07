@@ -96,4 +96,18 @@ Event.add(window, "load", () => {
 			goto_day(today_date);
 		});
 	}
+
+	for (let day of days) {
+		for (let item of day.getElementsByTagName("li")) {
+			Event.add(item, "mousemove", (e) => {
+				console.log(html.scrollTop);
+				item.getElementsByClassName("details")[0].style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
+
+				item.getElementsByClassName("details")[0].style.left = Math.min(
+					e.pageX - item.getBoundingClientRect().left + 20,
+					item.getBoundingClientRect().right
+				) + "px";
+			});
+		}
+	}
 });

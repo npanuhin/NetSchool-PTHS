@@ -176,9 +176,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													$cabinet = trim($match[2][0]);
 													?>
 
-													<li class="<?php if ($type == 'vacation') echo 'vacation' ?>" onclick="this.classList.toggle('active')">
+													<li class="<?php if ($type == 'vacation') echo 'vacation' ?>">
 														<a><?php echo $name ?></a>
 														<div class="details">
+															<h5<?php if ($type == 'vacation') echo ' class="vacation"' ?>><?php echo $name ?></h5>
 															<!-- Тип: <?php echo $type ?>
 															<br> -->
 															Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
