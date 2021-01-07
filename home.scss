@@ -13,6 +13,7 @@ $orange-color: #FF890C;
 
 $text: $page-color;
 $buttons-color: #307FBD;
+$buttons-hover-color: #205182;
 
 $vacation-color: #20822A;
 
@@ -92,7 +93,7 @@ body {
 	overflow: hidden;
 }
 
-.menu {
+.menubar {
 	position: absolute;
 	left: 14.6%;
 	@media (max-width: 1400px) {
@@ -109,11 +110,22 @@ body {
 
 	.menu-icon path, .moon-icon path{
 		fill: $buttons-color;
+		transition: 0.08s fill ease-in-out;
 	}
 
-	.menu-icon {
-		padding: 8px 17px;
-		width: 50px;
+	.menu_icon_wrapper {
+
+		.menu-icon {
+			padding: 8px 17px;
+			width: 50px;
+			
+		}
+
+		&:hover, &.active {
+			.menu-icon path {
+				fill: $buttons-hover-color;
+			}
+		}
 	}
 
 	.moon-icon {
@@ -173,30 +185,112 @@ body {
 		padding: 7px 17px;
 		cursor: pointer;
 
-		.sign-out-icon {
-			path {
-				fill: $buttons-color;
-			}
+		.sign-out-icon path{
+			fill: $buttons-color;
+			transition: 0.08s fill ease-in-out;
+		}
+
+		&:hover .sign-out-icon path{
+			fill: $buttons-hover-color;
 		}
 	}
 }
 
 main {
 	position: relative;
-	left: 50%;
-	margin-top: 133px;
-	transform: translateX(-50%);
+	margin: 120px auto 0 auto;
+	// left: 50%;
+	// transform: translateX(-50%);
 	width: 1170px;
 	max-width: 100%;
 
+	.menu {
+		position: absolute;
+		z-index: 5;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 970px;
+		max-width: calc(100% - 200px);
+
+		ul {
+			margin: 0 auto;
+			width: 100%;
+
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-row-gap: 10px;
+			grid-column-gap: 100px;
+
+			@media (max-width: 1170px) {
+				width: 80%;
+				grid-template-rows: 1fr 1fr 1fr;
+				grid-template-columns: 1fr 1fr;
+				grid-column-gap: 95px;
+			}
+
+			@media (max-width: 850px) {
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+				grid-template-columns: 1fr;
+				grid-row-gap: 5px;
+			}
+
+			li {
+				a {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: bold;
+					font-size: 36px;
+					line-height: 65px;
+					cursor: pointer;
+
+					border-bottom: 2.5px solid transparent;
+					color: #fff;
+
+					transition: 0.1s border-color ease-in-out;
+
+					&:hover {
+						border-color: #fff;
+					}
+				}
+			}
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			height: 100%;
+			width: 100%;
+			background-color: $page-color;
+
+			transition: 0.3s transform ease-in-out;
+
+			transform-origin: bottom center;
+		}
+
+		&.shown {
+			&::after {
+				transform: scaleY(0);
+			}
+		}
+
+	}
+
 	.tasks {
+		position: relative;
+		top: 30px;
 		margin: 0 auto;
+		z-index: 10;
 
 		// width: 972px;  // TODO
 
 		background-color: $block-color;
 		box-shadow: $block-shadow;
 		border-radius: 30px;
+
+		transition: 0.3s transform ease-in-out;
 
 		&.wide {
 			width: 970px;
@@ -236,12 +330,16 @@ main {
 
 	.announcements {
 		// TODO
+		z-index: 10;
 	}
 
 	.timetable {
 		position: relative;
+		z-index: 10;
 		margin: 116px auto 100px auto;
 		width: calc(100% - 200px);
+
+		transition: 0.3s transform ease-in-out;
 
 		.week {
 			position: absolute;

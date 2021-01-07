@@ -47,7 +47,7 @@
 
 function error($message) {
 	?>
-	<script type="text/javascript">error("<?php echo $message ?>")</script>
+	<script type="text/javascript">error("<?php echo addslashes($message) ?>")</script>
 	<?php
 	exit;
 }

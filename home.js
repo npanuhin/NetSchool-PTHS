@@ -1,9 +1,17 @@
 var
 	html = document.getElementsByTagName("html")[0],
+
+	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
+
+	menu = document.getElementsByClassName("menu")[0],
+
+	task_block = document.getElementsByClassName("tasks")[0],
+	
 	timetable = document.getElementsByClassName("timetable")[0],
 	timetable_previous = document.getElementById("timetable_previous"),
 	timetable_next = document.getElementById("timetable_next"),
+	
 	weeks = timetable.getElementsByClassName("week"),
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
@@ -18,6 +26,10 @@ var
 	goto_today_buttons = timetable.getElementsByClassName("goto_today");
 
 
+
+function onResize() {
+	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+}
 
 function goto_day(date) {
 	html.classList.add("loaded");
@@ -39,10 +51,25 @@ function goto_day(date) {
 
 Event.add(window, "load", () => {
 
-	Event.add(window, "resize", () => {
-		timetable.style.height = weeks[cur_week].offsetHeight + "px";
+	Event.add(window, "resize", onResize);
+	onResize();
+
+	Event.add(menu_button, "click", () => {
+		html.classList.add("loaded");
+
+		if (menu.classList.contains("shown")) {
+			menu_button.classList.remove("active");
+			menu.classList.remove("shown");
+			task_block.style.transform = "";
+			timetable.style.transform = "";
+
+		} else {
+			menu_button.classList.add("active");
+			menu.classList.add("shown");
+			task_block.style.transform = "translateY(" + menu.clientHeight + "px)";
+			timetable.style.transform = "translateY(" + menu.clientHeight + "px)";
+		}
 	});
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 
 	Event.add(logout_button, "click", () => {
 		html.classList.add("loaded");
