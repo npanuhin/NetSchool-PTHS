@@ -403,13 +403,29 @@ main {
 								font-style: normal;
 								font-weight: normal;
 								font-size: 15px;
-								// line-height: 25px;
+								line-height: 25px;
 								color: $text;
 							}
 
 							&.vacation {
 								a, .details h5 {
 									color: $vacation-color;
+								}
+							}
+
+							.no_lesson {
+								width: 100%;
+								height: 25px;
+
+								&::before {
+									content: "";
+									position: absolute;
+									top: 5px;
+									left: 0;
+									width: 100%;
+									height: 15px;
+									background-color: #C9DDF0;
+									border-radius: 2px;
 								}
 							}
 							
@@ -434,6 +450,7 @@ main {
 								h5 {
 									text-align: center;
 									margin-bottom: 7px;
+									font-weight: 600;
 								}
 							}
 

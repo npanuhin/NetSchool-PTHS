@@ -155,43 +155,54 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 										<ul>
 											<?php
 											foreach ($timetable[$day->format('Y-m-d')] as $item) {
-												$type = $item[0];
-												$start_time = new DateTime($item[1][0]);
-												$end_time = new DateTime($item[1][1]);
-												$name = $item[2];
 
-												if ($type == 'lesson' || $type == 'vacation') {
+												if (!is_null($item)) {
+													$type = $item[0];
+													$start_time = new DateTime($item[1][0]);
+													$end_time = new DateTime($item[1][1]);
+													$name = $item[2];
 
-													preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+													if ($type == 'lesson' || $type == 'vacation') {
 
-													if (trim($match[1][0])) {
-														$name = trim($match[1][0]);
+														preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+														if (trim($match[1][0])) {
+															$name = trim($match[1][0]);
+														}
+														$cabinet = trim($match[2][0]);
+														?>
+
+														<li<?php if ($type == 'vacation') echo ' class="vacation"' ?>>
+															<a><?php echo $name ?></a>
+															<div class="details">
+																<h5><?php echo $name ?></h5>
+																<!-- Тип: <?php echo $type ?>
+																<br> -->
+																Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
+																<br>
+																Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
+																<?php
+																
+																if ($cabinet) {
+																	?>
+																	<br>
+																	Кабинет: <?php echo $cabinet ?>
+																	<?php
+																}
+																
+																?>
+															</div>
+														</li>
+														
+														<?php
 													}
-													$cabinet = trim($match[2][0]);
+												} else {
 													?>
 
-													<li<?php if ($type == 'vacation') echo ' class="vacation"' ?>>
-														<a><?php echo $name ?></a>
-														<div class="details">
-															<h5><?php echo $name ?></h5>
-															<!-- Тип: <?php echo $type ?>
-															<br> -->
-															Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
-															<br>
-															Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
-															<?php
-															
-															if ($cabinet) {
-																?>
-																<br>
-																Кабинет: <?php echo $cabinet ?>
-																<?php
-															}
-															
-															?>
-														</div>
+													<li>
+														<div class="no_lesson"></div>
 													</li>
-													
+
 													<?php
 												}
 											}
