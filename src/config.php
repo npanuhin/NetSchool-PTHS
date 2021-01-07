@@ -3,7 +3,7 @@
 // ini_set('display_startup_errors', 0);
 // error_reporting(0);
 
-session_start();
+require_once 'safemysql.class.php';
 
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
@@ -13,16 +13,15 @@ function redirect($url='/') {
 
 function dbConnect() {
 	global $config;
-	$mysqli = mysqli_connect($config['db_hostname'], $config['db_username'], $config['db_password'], $config['db_name']);
-
-	if (!$mysqli) return false;
 	
-	mysqli_query($mysqli, 'SET NAMES UTF8');
-
-	return $mysqli;
+	return new SafeMysql(array(
+		'host' => $config['db_hostname'],
+		'user' => $config['db_username'],
+		'pass' => $config['db_password'],
+		'db' => $config['db_name'],
+		'charset' => 'utf8'
+	));
 }
-
-$mysqli = dbConnect();
 
 function verifySession() {
 	if (isset($_SESSION['HTTP_USER_AGENT'])) {
@@ -42,4 +41,6 @@ function logout() {
 $weekdays = array('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье');
 $months = array('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
 $months_genetive = array('Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря');
+
+session_start();
 ?>

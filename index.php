@@ -26,21 +26,25 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		<?php
 
-		require_once 'src/error.php'; 
+		require_once 'src/error.php';
 
-		if (!$mysqli) {
-			error("Database connection failed");
+		try {
+		    $db = dbConnect();
+		} catch (Exception $e) {
+		    error('Database connection failed');
 		}
 
-		$query = mysqli_query($mysqli, 'SELECT * FROM `users` WHERE `id` = "' . $_SESSION['user_id'] . '" LIMIT 2');
-
-		if (mysqli_num_rows($query) > 1) error("Please, contact administrator (too many rows)");
-
-		if (mysqli_num_rows($query) == 0) {
-			error("ID not found, please try to login again<br><a href='/src/logout.php'>(click to logout)</a>");
+		try {
+		    $data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION["user_id"], 2);
+		} catch (Exception $e) {
+		    exit(json_encode(array('message', 'Database request failed')));
 		}
 
-		$person = mysqli_fetch_assoc($query);
+		if (count($data) > 1) error('Please, contact administrator (too many rows)');
+
+		if (count($data) == 0) error('ID not found, please try to login again<br><a href="/src/logout.php">(click to logout)</a>');
+
+		$person = $data[0];
 		?>
 
 		<div class="menu">
@@ -64,8 +68,12 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		<main>
 			<?php
-			$announcements = mysqli_query($mysqli, 'SELECT * FROM `announcements` ORDER BY `id` LIMIT 1');
-			$has_announcements = (mysqli_num_rows($announcements) != 0);
+			try {
+			    $announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id` LIMIT ?i', 1);
+			} catch (Exception $e) {
+			    exit(json_encode(array('message', 'Database request failed')));
+			}
+			$has_announcements = (count($announcements) != 0);
 			?>
 
 			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
@@ -79,7 +87,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<?php
 			if ($has_announcements) {
-				$announcements = mysqli_fetch_assoc($announcements);
 				?>
 				<div class="announcements">
 					<?php // include_once "files/icons/cross.svg" ?>
@@ -239,10 +246,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			</div>
 			
 		</main>
-
-		<?php
-		mysqli_close($mysqli);
-		?>
 
 		<script type="text/javascript" src="/src/event.js"></script>
 		<script type="text/javascript" src="/src/ajax.js"></script>
