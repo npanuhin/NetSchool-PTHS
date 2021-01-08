@@ -1,73 +1,8 @@
-// COLORS:
-$page-color: #1963A1;
+@import '../src/styles/main';
 
-$background: $page-color;
-
-$container: #FFF;
+$container-background: #fff;
 $container-shadow: 10px 10px 20px #205182;
 
-$text-color: $page-color;
-
-$orange: #FE8708;
-$orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
-
-// FONTS:
-@font-face {
-    font-family: 'Manrope';
-    src: url('/files/fonts/Manrope/Manrope-Regular.eot');
-    src: local('Manrope Regular'), local('Manrope-Regular'),
-        url('/files/fonts/Manrope/Manrope-Regular.eot?#iefix') format('embedded-opentype'),
-        url('/files/fonts/Manrope/Manrope-Regular.woff2') format('woff2'),
-        url('/files/fonts/Manrope/Manrope-Regular.woff') format('woff'),
-        url('/files/fonts/Manrope/Manrope-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Manrope';
-    src: url('/files/fonts/Manrope/Manrope-Semibold.eot');
-    src: local('Manrope Semibold'), local('Manrope-Semibold'),
-        url('/files/fonts/Manrope/Manrope-Semibold.eot?#iefix') format('embedded-opentype'),
-        url('/files/fonts/Manrope/Manrope-Semibold.woff2') format('woff2'),
-        url('/files/fonts/Manrope/Manrope-Semibold.woff') format('woff'),
-        url('/files/fonts/Manrope/Manrope-Semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-	width: auto;
-	height: auto;
-	// top: 0;
-	// left: 1;
-	text-decoration: none;
-	text-align: left;
-	font-style: normal;
-	font-weight: normal;
-	z-index: 1;
-	color: #000;
-	outline: none;
-	transform-origin: center center;
-	font-family: Arial, Helvetica, sans-serif;
-
-	// box-sizing: border-box;
-	// box-sizing: content-box;
-
-	// image-rendering: optimizeQuality;
-	backface-visibility: hidden;
-	// transition-duration: 0s;
-}
-
-body {
-	width: 100vw;
-	height: 100vh;
-	background: $background;
-}
 
 .container {
 	position: absolute;
@@ -78,7 +13,7 @@ body {
 	max-width: calc(100% - 40px);
 	height: 500px;
 
-	background: $container;
+	background: $container-background;
 	border-radius: 30px;
 	box-shadow: $container-shadow;
 
@@ -98,7 +33,7 @@ body {
 		letter-spacing: -0.005em;
 		line-height: 60px;
 
-		color: $text-color;
+		color: $text;
 	}
 
 	#login_form {
@@ -115,7 +50,7 @@ body {
 
 			padding: 12px 24px;
 
-			border: 1px solid $text-color;
+			border: 1px solid $text;
 			border-radius: 30px;
 
 			font-family: Manrope;
@@ -125,11 +60,11 @@ body {
 
 			letter-spacing: -0.005em;
 
-			color: $text-color;
+			color: $text;
 
 			&.invalid {
-				color: $orange;
-				border: 1px solid $orange;
+				color: $orange-color;
+				border: 1px solid $orange-color;
 			}
 		}
 

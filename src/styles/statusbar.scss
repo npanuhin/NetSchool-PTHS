@@ -1,0 +1,61 @@
+.statusbar {
+	position: absolute;
+	// top: 0;
+	// width: 520.25px;
+	height: 65px;
+	right: calc(50vw - 600px);
+	@media (max-width: 1200px) {
+		right: 0;
+	}
+
+	display: flex;
+	align-items: center;
+
+	.name, .last_update, .last_update span {
+		color: #fff;
+
+		font-family: Manrope;
+		font-style: normal;
+		font-weight: 100;
+		font-size: 36px;
+		height: 65px;
+		line-height: 65px;
+
+		margin: 0 17px;
+	}
+
+	.last_update span {
+		margin: -5px;
+		// animation: last_update_blink 1s ease-in-out infinite;
+	}
+
+	// @keyframes last_update_blink {
+	// 	0%, 10%, 90%, 100% {
+	// 		opacity: 0;
+	// 	}
+	// 	40%, 70% {
+	// 		opacity: 1;
+	// 	}
+	// }
+
+	.last_update {
+		@media (max-width: 850px) {
+			display: none;
+		}
+	}
+
+	.exit_icon {
+		width: 50px;
+		padding: 7px 17px;
+		cursor: pointer;
+
+		.sign-out-icon path{
+			fill: $buttons-color;
+			transition: 0.08s fill ease-in-out;
+		}
+
+		&:hover .sign-out-icon path{
+			fill: $buttons-hover-color;
+		}
+	}
+}

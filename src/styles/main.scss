@@ -1,0 +1,96 @@
+// COLORS:
+// $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
+
+$block-color: #FFF;
+$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+
+$page-color: #1963A1;
+
+$orange-color: #FF890C;
+$orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+
+$text: $page-color;
+$buttons-color: #307FBD;
+$buttons-hover-color: #205182;
+
+$vacation-color: #20822A;
+
+
+// FONTS:
+@font-face {
+    font-family: 'Manrope';
+    src: url('/files/fonts/Manrope/Manrope-Thin.eot');
+    src: local('Manrope Thin'), local('Manrope-Thin'),
+        url('/files/fonts/Manrope/Manrope-Thin.eot?#iefix') format('embedded-opentype'),
+        url('/files/fonts/Manrope/Manrope-Thin.woff2') format('woff2'),
+        url('/files/fonts/Manrope/Manrope-Thin.woff') format('woff'),
+        url('/files/fonts/Manrope/Manrope-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('/files/fonts/Manrope/Manrope-Regular.eot');
+    src: local('Manrope Regular'), local('Manrope-Regular'),
+        url('/files/fonts/Manrope/Manrope-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/files/fonts/Manrope/Manrope-Regular.woff2') format('woff2'),
+        url('/files/fonts/Manrope/Manrope-Regular.woff') format('woff'),
+        url('/files/fonts/Manrope/Manrope-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('/files/fonts/Manrope/Manrope-Semibold.eot');
+    src: local('Manrope Semibold'), local('Manrope-Semibold'),
+        url('/files/fonts/Manrope/Manrope-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('/files/fonts/Manrope/Manrope-Semibold.woff2') format('woff2'),
+        url('/files/fonts/Manrope/Manrope-Semibold.woff') format('woff'),
+        url('/files/fonts/Manrope/Manrope-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+	// top: 0; 
+	// left: 0; 
+	text-decoration: none;
+	list-style: none;
+	text-align: left;
+	font-style: normal;
+	font-weight: normal;
+	// z-index: 0;
+	color: #000;
+	outline: none;
+	transform-origin: center center;
+	font-family: Arial, Helvetica, sans-serif;
+
+	// box-sizing: border-box; 
+	// box-sizing: content-box; 
+
+	// image-rendering: optimizeQuality; 
+	backface-visibility: hidden;
+	// transition-duration: 0s;  
+}
+
+html {
+	min-height: 100vh;
+	overflow: auto;
+}
+
+body {
+	background: $page-color;
+	overflow: hidden;
+}

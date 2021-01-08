@@ -1,12 +1,6 @@
 <?php
 require_once 'src/config.php';
 
-if (!verifySession()) {
-	logout();
-	redirect('/login/');
-	exit;
-}
-
 if (!isset($_SESSION['user_id']) || !verifySession()) {
 	logout();
 	redirect('/login/');
@@ -83,7 +77,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<li><a>Расписание</a></li>
 				<li><a>Задания</a></li>
 				<li><a>Объявления</a></li>
-				<li><a>Оценки</a></li>
+				<li><a href="/marks">Оценки</a></li>
 				<li><a>Сообщения</a></li>
 			</ul>
 		</div>

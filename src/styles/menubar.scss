@@ -1,0 +1,40 @@
+.menubar {
+	position: absolute;
+	left: 14.6%;
+	@media (max-width: 1400px) {
+		left: calc(50vw - 500px);
+	}
+	@media (max-width: 1170px) {
+		left: 85px;
+	}
+
+	.menu_icon_wrapper, .moon_icon_wrapper {
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.menu-icon path, .moon-icon path{
+		fill: $buttons-color;
+		transition: 0.08s fill ease-in-out;
+	}
+
+	.menu_icon_wrapper {
+
+		.menu-icon {
+			padding: 8px 17px;
+			width: 50px;
+			
+		}
+
+		&:hover, &.active {
+			.menu-icon path {
+				fill: $buttons-hover-color;
+			}
+		}
+	}
+
+	.moon-icon {
+		width: 40px;
+		padding: 10.5px 17px;
+	}
+}

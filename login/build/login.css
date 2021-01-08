@@ -1,40 +1,54 @@
 @font-face {
-  font-family: 'Manrope';
+  font-family: "Manrope";
+  src: url("/files/fonts/Manrope/Manrope-Thin.eot");
+  src: local("Manrope Thin"), local("Manrope-Thin"), url("/files/fonts/Manrope/Manrope-Thin.eot?#iefix") format("embedded-opentype"), url("/files/fonts/Manrope/Manrope-Thin.woff2") format("woff2"), url("/files/fonts/Manrope/Manrope-Thin.woff") format("woff"), url("/files/fonts/Manrope/Manrope-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Regular.eot");
   src: local("Manrope Regular"), local("Manrope-Regular"), url("/files/fonts/Manrope/Manrope-Regular.eot?#iefix") format("embedded-opentype"), url("/files/fonts/Manrope/Manrope-Regular.woff2") format("woff2"), url("/files/fonts/Manrope/Manrope-Regular.woff") format("woff"), url("/files/fonts/Manrope/Manrope-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  font-display: swap; }
-
+  font-display: swap;
+}
 @font-face {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Semibold.eot");
   src: local("Manrope Semibold"), local("Manrope-Semibold"), url("/files/fonts/Manrope/Manrope-Semibold.eot?#iefix") format("embedded-opentype"), url("/files/fonts/Manrope/Manrope-Semibold.woff2") format("woff2"), url("/files/fonts/Manrope/Manrope-Semibold.woff") format("woff"), url("/files/fonts/Manrope/Manrope-Semibold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap; }
-
+  font-display: swap;
+}
 * {
   margin: 0;
   padding: 0;
   width: auto;
   height: auto;
   text-decoration: none;
+  list-style: none;
   text-align: left;
   font-style: normal;
   font-weight: normal;
-  z-index: 1;
   color: #000;
   outline: none;
   transform-origin: center center;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; }
+  backface-visibility: hidden;
+}
+
+html {
+  min-height: 100vh;
+  overflow: auto;
+}
 
 body {
-  width: 100vw;
-  height: 100vh;
-  background: #1963A1; }
+  background: #1963A1;
+  overflow: hidden;
+}
 
 .container {
   position: absolute;
@@ -44,151 +58,179 @@ body {
   width: 800px;
   max-width: calc(100% - 40px);
   height: 500px;
-  background: #FFF;
+  background: #fff;
   border-radius: 30px;
   box-shadow: 10px 10px 20px #205182;
-  overflow: hidden; }
-  .container .title {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    margin-top: 85px;
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 50px;
-    letter-spacing: -0.005em;
-    line-height: 60px;
-    color: #1963A1; }
-  .container #login_form {
-    position: relative;
-    text-align: center; }
-    .container #login_form input {
-      position: relative;
-      width: 377px;
-      max-width: calc(100% - 85px);
-      height: 35px;
-      margin-top: 35px;
-      padding: 12px 24px;
-      border: 1px solid #1963A1;
-      border-radius: 30px;
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 24px;
-      letter-spacing: -0.005em;
-      color: #1963A1; }
-      .container #login_form input.invalid {
-        color: #FE8708;
-        border: 1px solid #FE8708; }
-    .container #login_form input[type="submit"] {
-      text-align: center;
-      padding: 9px 0;
-      width: 290px;
-      max-width: calc(100% - 30px);
-      height: 45px;
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 27px;
-      text-align: center;
-      letter-spacing: -0.005em;
-      border: none;
-      background: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
-      box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
-      border-radius: 30px;
-      color: #FFF;
-      cursor: pointer;
-      transition: 0.2s box-shadow ease-out; }
-      .container #login_form input[type="submit"]:hover {
-        box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35); }
-  .container .message {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.85);
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 87px;
-    text-align: center;
-    letter-spacing: -0.005em;
-    transition: 0.5s opacity ease-in-out; }
-    .container .message.shown {
-      visibility: visible;
-      opacity: 1; }
-      .container .message.shown p span:nth-child(1), .container .message.shown p span:nth-child(2), .container .message.shown p span:nth-child(3) {
-        -webkit-animation-play-state: running;
-        animation-play-state: running; }
-    .container .message.small {
-      font-size: 14px;
-      line-height: 55px; }
-    .container .message p {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 80%;
-      transform: translate(-50%, -50%);
-      color: #FFF;
-      font-size: 2em;
-      text-align: center; }
-      .container .message p span {
-        color: #FFF;
-        opacity: 0; }
-        .container .message p span:nth-child(1) {
-          -webkit-animation: loading_dots1 2s ease-in-out 0s infinite;
-          animation: loading_dots1 2s ease-in-out 0s infinite;
-          -webkit-animation-play-state: paused;
-          animation-play-state: paused; }
-        .container .message p span:nth-child(2) {
-          -webkit-animation: loading_dots2 2s ease-in-out 0s infinite;
-          animation: loading_dots2 2s ease-in-out 0s infinite;
-          -webkit-animation-play-state: paused;
-          animation-play-state: paused; }
-        .container .message p span:nth-child(3) {
-          -webkit-animation: loading_dots3 2s ease-in-out 0s infinite;
-          animation: loading_dots3 2s ease-in-out 0s infinite;
-          -webkit-animation-play-state: paused;
-          animation-play-state: paused; }
-
+  overflow: hidden;
+}
+.container .title {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  margin-top: 85px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  letter-spacing: -0.005em;
+  line-height: 60px;
+  color: #1963A1;
+}
+.container #login_form {
+  position: relative;
+  text-align: center;
+}
+.container #login_form input {
+  position: relative;
+  width: 377px;
+  max-width: calc(100% - 85px);
+  height: 35px;
+  margin-top: 35px;
+  padding: 12px 24px;
+  border: 1px solid #1963A1;
+  border-radius: 30px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  letter-spacing: -0.005em;
+  color: #1963A1;
+}
+.container #login_form input.invalid {
+  color: #FF890C;
+  border: 1px solid #FF890C;
+}
+.container #login_form input[type=submit] {
+  text-align: center;
+  padding: 9px 0;
+  width: 290px;
+  max-width: calc(100% - 30px);
+  height: 45px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: -0.005em;
+  border: none;
+  background: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+  box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
+  border-radius: 30px;
+  color: #FFF;
+  cursor: pointer;
+  transition: 0.2s box-shadow ease-out;
+}
+.container #login_form input[type=submit]:hover {
+  box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
+}
+.container .message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 87px;
+  text-align: center;
+  letter-spacing: -0.005em;
+  transition: 0.5s opacity ease-in-out;
+}
+.container .message.shown {
+  visibility: visible;
+  opacity: 1;
+}
+.container .message.shown p span:nth-child(1), .container .message.shown p span:nth-child(2), .container .message.shown p span:nth-child(3) {
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+.container .message.small {
+  font-size: 14px;
+  line-height: 55px;
+}
+.container .message p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  color: #FFF;
+  font-size: 2em;
+  text-align: center;
+}
+.container .message p span {
+  color: #FFF;
+  opacity: 0;
+}
+.container .message p span:nth-child(1) {
+  -webkit-animation: loading_dots1 2s ease-in-out 0s infinite;
+  animation: loading_dots1 2s ease-in-out 0s infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.container .message p span:nth-child(2) {
+  -webkit-animation: loading_dots2 2s ease-in-out 0s infinite;
+  animation: loading_dots2 2s ease-in-out 0s infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.container .message p span:nth-child(3) {
+  -webkit-animation: loading_dots3 2s ease-in-out 0s infinite;
+  animation: loading_dots3 2s ease-in-out 0s infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
 @-webkit-keyframes loading_dots1 {
   0%, 20% {
-    opacity: 0; }
+    opacity: 0;
+  }
   35%, 85% {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 @keyframes loading_dots1 {
   0%, 20% {
-    opacity: 0; }
+    opacity: 0;
+  }
   35%, 85% {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 @-webkit-keyframes loading_dots2 {
   0%, 40% {
-    opacity: 0; }
+    opacity: 0;
+  }
   55%, 85% {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 @keyframes loading_dots2 {
   0%, 40% {
-    opacity: 0; }
+    opacity: 0;
+  }
   55%, 85% {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 @-webkit-keyframes loading_dots3 {
   0%, 60% {
-    opacity: 0; }
+    opacity: 0;
+  }
   75%, 85% {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 @keyframes loading_dots3 {
   0%, 60% {
-    opacity: 0; }
+    opacity: 0;
+  }
   75%, 85% {
-    opacity: 1; } }
+    opacity: 1;
+  }
+}

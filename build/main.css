@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  color: #000;
+  outline: none;
+  transform-origin: center center;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+html {
+  min-height: 100vh;
+  overflow: auto; }
+
+body {
+  background: #1963A1;
+  overflow: hidden; }
