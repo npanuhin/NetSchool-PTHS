@@ -10,79 +10,7 @@ main {
 	width: 1170px;
 	max-width: 100%;
 
-	.menu {
-		position: absolute;
-		z-index: 5;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 970px;
-		max-width: calc(100% - 200px);
-
-		ul {
-			margin: 0 auto;
-			width: 100%;
-
-			display: grid;
-			grid-template-rows: 1fr 1fr;
-			grid-template-columns: 1fr 1fr 1fr;
-			grid-row-gap: 10px;
-			grid-column-gap: 100px;
-
-			@media (max-width: 1170px) {
-				width: 80%;
-				grid-template-rows: 1fr 1fr 1fr;
-				grid-template-columns: 1fr 1fr;
-				grid-column-gap: 95px;
-			}
-
-			@media (max-width: 850px) {
-				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-				grid-template-columns: 1fr;
-				grid-row-gap: 5px;
-			}
-
-			li {
-				a {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: bold;
-					font-size: 36px;
-					line-height: 65px;
-					cursor: pointer;
-
-					border-bottom: 2.5px solid transparent;
-					color: #fff;
-
-					transition: 0.1s border-color ease-in-out;
-
-					&:hover {
-						border-color: #fff;
-					}
-				}
-			}
-		}
-
-		&::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			height: 100%;
-			width: 100%;
-			background-color: $page-color;
-
-			transition: 0.3s transform ease-in-out;
-
-			transform-origin: bottom center;
-		}
-
-		&.shown {
-			&::after {
-				transform: scaleY(0);
-			}
-		}
-
-	}
+	@import 'src/styles/menu';
 
 	.tasks {
 		position: relative;
@@ -113,7 +41,7 @@ main {
 			font-size: 36px;
 			line-height: 179.2%;
 
-			color: $text;
+			color: $text-color;
 		}
 
 		ul {
@@ -128,7 +56,7 @@ main {
 			line-height: 32px;
 
 			li {
-				color: $text;
+				color: $text-color;
 				list-style: disc;
 			}
 		}
@@ -279,7 +207,7 @@ main {
 						font-weight: 600;
 						font-size: 21px;
 						line-height: 33px;
-						color: $text;
+						color: $text-color;
 					}
 
 					.day_info {
@@ -292,7 +220,7 @@ main {
 						width: 100%;
 						text-align: center;
 
-						color: $text;
+						color: $text-color;
 					}
 
 					ul {
@@ -308,7 +236,7 @@ main {
 								font-weight: normal;
 								font-size: 15px;
 								line-height: 25px;
-								color: $text;
+								color: $text-color;
 							}
 
 							&.vacation {
@@ -343,7 +271,7 @@ main {
 								white-space: nowrap;
 								background-color: #fff;
 								box-shadow: $block-shadow;
-								color: $text;
+								color: $text-color;
 
 								visibility: hidden;
 								opacity: 0;
@@ -372,10 +300,10 @@ main {
 						position: absolute;
 						top: 0;
 						left: 0;
-						border-radius: inherit;
-						width: 100%;
-						height: 100%;
+						width: 100.01%;
+						height: 100.01%;
 						background-color: #aaa;
+						border-radius: inherit;
 
 						p {
 							position: absolute;

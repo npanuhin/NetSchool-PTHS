@@ -62,15 +62,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	</div>
 
 	<main>
-		<?php
-		try {
-		    $announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id` LIMIT ?i', 1);
-		} catch (Exception $e) {
-		    exit(json_encode(array('message', 'Database request failed')));
-		}
-		$has_announcements = (count($announcements) != 0);
-		?>
-
 		<div class="menu">
 			<ul>
 				<li><a href="/">Главная</a></li>
@@ -81,6 +72,15 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<li><a>Сообщения</a></li>
 			</ul>
 		</div>
+
+		<?php
+		try {
+		    $announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id` LIMIT ?i', 1);
+		} catch (Exception $e) {
+		    exit(json_encode(array('message', 'Database request failed')));
+		}
+		$has_announcements = (count($announcements) != 0);
+		?>
 
 		<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
 			<h2>Задания</h2>

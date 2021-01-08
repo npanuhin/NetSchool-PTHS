@@ -126,3 +126,89 @@ body {
   width: 40px;
   padding: 10.5px 17px;
 }
+
+main {
+  position: relative;
+  margin: 120px auto 100px auto;
+  width: 1170px;
+  max-width: 100%;
+}
+main .menu {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 970px;
+  max-width: calc(100% - 200px);
+}
+main .menu ul {
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 100px;
+}
+@media (max-width: 1170px) {
+  main .menu ul {
+    width: 80%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 95px;
+  }
+}
+@media (max-width: 850px) {
+  main .menu ul {
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+  }
+}
+main .menu ul li a {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 65px;
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  color: #fff;
+  transition: 0.1s border-color ease-in-out;
+}
+main .menu ul li a:hover {
+  border-color: #fff;
+}
+main .menu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #1963A1;
+  transition: 0.3s transform ease-in-out;
+  transform-origin: bottom center;
+}
+main .menu.shown::after {
+  transform: scaleY(0);
+}
+main .marks {
+  position: relative;
+  padding: 40px 32px 50px 32px;
+  top: 30px;
+  margin: 0 auto;
+  z-index: 10;
+  background-color: #FFF;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  transition: 0.3s transform ease-in-out;
+}
+main .marks h3 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  text-align: center;
+  color: #1963A1;
+}

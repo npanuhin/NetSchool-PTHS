@@ -52,6 +52,8 @@ function goto_day(date) {
 
 Event.add(window, "load", () => {
 
+	main.style.minHeight = menu.clientHeight + "px";
+
 	Event.add(window, "resize", onResize);
 	onResize();
 
@@ -63,14 +65,18 @@ Event.add(window, "load", () => {
 			menu.classList.remove("shown");
 			tasks_block.style.transform = "translateY(0px)";
 			timetable.style.transform = "translateY(0px)";
-			main.style.height = "auto";
+
+			setTimeout(() => {
+				main.style.minHeight = menu.clientHeight + "px";
+			}, 300);
 
 		} else {
 			menu_button.classList.add("active");
 			menu.classList.add("shown");
 			tasks_block.style.transform = "translateY(" + menu.clientHeight + "px)";
 			timetable.style.transform = "translateY(" + menu.clientHeight + "px)";
-			main.style.height = main.clientHeight + menu.clientHeight + "px";
+
+			main.style.minHeight = main.clientHeight + menu.clientHeight + "px";
 		}
 	});
 

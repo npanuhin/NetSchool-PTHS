@@ -1,3 +1,40 @@
 @import '../src/styles/main';
 @import '../src/styles/statusbar';
 @import '../src/styles/menubar';
+
+
+main {
+	position: relative;
+	margin: 120px auto 100px auto;
+	// left: 50%;
+	// transform: translateX(-50%);
+	width: 1170px;
+	max-width: 100%;
+
+	@import '../src/styles/menu';
+
+	.marks {
+		position: relative;
+		padding: 40px 32px 50px 32px;
+		top: 30px;
+		margin: 0 auto;
+		z-index: 10;
+
+		background-color: $block-color;
+
+		box-shadow: $block-shadow;
+		border-radius: 30px;
+
+		transition: 0.3s transform ease-in-out;
+
+		h3 {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 36px;
+			text-align: center;
+
+			color: $text-color;
+		}
+	}
+}

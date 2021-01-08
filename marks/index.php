@@ -62,12 +62,31 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	</div>
 
 	<main>
-		
+
+		<div class="menu">
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a>Расписание</a></li>
+				<li><a>Задания</a></li>
+				<li><a>Объявления</a></li>
+				<li><a href="/marks">Оценки</a></li>
+				<li><a>Сообщения</a></li>
+			</ul>
+		</div>
+
+		<div class="marks">
+			<h3>Оценки</h3>
+
+			<table>
+				
+			</table>
+		</div>
+
 	</main>
 
 	<script type="text/javascript" src="/src/event.js"></script>
 	<script type="text/javascript" src="/src/ajax.js"></script>
-	<script type="text/javascript" src="build/home.min.js"></script>
+	<script type="text/javascript" src="build/marks.min.js"></script>
 </body>
 
 </html>

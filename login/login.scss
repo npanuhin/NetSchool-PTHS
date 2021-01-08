@@ -33,7 +33,7 @@ $container-shadow: 10px 10px 20px #205182;
 		letter-spacing: -0.005em;
 		line-height: 60px;
 
-		color: $text;
+		color: $text-color;
 	}
 
 	#login_form {
@@ -50,7 +50,7 @@ $container-shadow: 10px 10px 20px #205182;
 
 			padding: 12px 24px;
 
-			border: 1px solid $text;
+			border: 1px solid $text-color;
 			border-radius: 30px;
 
 			font-family: Manrope;
@@ -60,7 +60,7 @@ $container-shadow: 10px 10px 20px #205182;
 
 			letter-spacing: -0.005em;
 
-			color: $text;
+			color: $text-color;
 
 			&.invalid {
 				color: $orange-color;
