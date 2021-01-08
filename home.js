@@ -1,12 +1,13 @@
 var
 	html = document.getElementsByTagName("html")[0],
+	main = document.getElementsByTagName("main")[0],
 
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
 
-	task_block = document.getElementsByClassName("tasks")[0],
+	tasks_block = document.getElementsByClassName("tasks")[0],
 	
 	timetable = document.getElementsByClassName("timetable")[0],
 	timetable_previous = document.getElementById("timetable_previous"),
@@ -60,14 +61,16 @@ Event.add(window, "load", () => {
 		if (menu.classList.contains("shown")) {
 			menu_button.classList.remove("active");
 			menu.classList.remove("shown");
-			task_block.style.transform = "";
-			timetable.style.transform = "";
+			tasks_block.style.transform = "translateY(0px)";
+			timetable.style.transform = "translateY(0px)";
+			main.style.height = "auto";
 
 		} else {
 			menu_button.classList.add("active");
 			menu.classList.add("shown");
-			task_block.style.transform = "translateY(" + menu.clientHeight + "px)";
+			tasks_block.style.transform = "translateY(" + menu.clientHeight + "px)";
 			timetable.style.transform = "translateY(" + menu.clientHeight + "px)";
+			main.style.height = main.clientHeight + menu.clientHeight + "px";
 		}
 	});
 
@@ -129,12 +132,14 @@ Event.add(window, "load", () => {
 
 	for (let day of days) {
 		for (let item of day.getElementsByTagName("li")) {
+			let details = item.getElementsByClassName("details")[0];
 
-			Event.add(item, "mousemove", (e) => {
-				item.getElementsByClassName("details")[0].style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
-				item.getElementsByClassName("details")[0].style.left = e.pageX - item.getBoundingClientRect().left + 20 + "px";
-			});
-
+			if (details !== undefined) {
+				Event.add(item, "mousemove", (e) => {
+					details.style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
+					details.style.left = e.pageX - item.getBoundingClientRect().left + 20 + "px";
+				});
+			}
 		}
 	}
 });

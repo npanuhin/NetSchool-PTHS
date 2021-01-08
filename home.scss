@@ -198,7 +198,7 @@ body {
 
 main {
 	position: relative;
-	margin: 120px auto 0 auto;
+	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: 1170px;
@@ -336,7 +336,7 @@ main {
 	.timetable {
 		position: relative;
 		z-index: 10;
-		margin: 116px auto 100px auto;
+		margin: 116px auto 0 auto;
 		width: calc(100% - 200px);
 
 		transition: 0.3s transform ease-in-out;

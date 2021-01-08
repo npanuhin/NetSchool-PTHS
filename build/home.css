@@ -106,7 +106,7 @@ body {
 
 main {
   position: relative;
-  margin: 120px auto 0 auto;
+  margin: 120px auto 100px auto;
   width: 1170px;
   max-width: 100%; }
   main .menu {
@@ -197,7 +197,7 @@ main {
   main .timetable {
     position: relative;
     z-index: 10;
-    margin: 116px auto 100px auto;
+    margin: 116px auto 0 auto;
     width: calc(100% - 200px);
     transition: 0.3s transform ease-in-out; }
     main .timetable .week {
