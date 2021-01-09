@@ -24,15 +24,15 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	require_once 'src/error.php';
 
 	try {
-	    $db = dbConnect();
+		$db = dbConnect();
 	} catch (Exception $e) {
-	    error('Database connection failed');
+		error('Database connection failed');
 	}
 
 	try {
-	    $data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION["user_id"], 2);
+		$data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION["user_id"], 2);
 	} catch (Exception $e) {
-	    exit(json_encode(array('message', 'Database request failed')));
+		exit(json_encode(array('message', 'Database request failed')));
 	}
 
 	if (count($data) > 1) error('Please, contact administrator (too many rows)');
@@ -75,14 +75,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		<?php
 		try {
-		    $announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id` LIMIT ?i', 1);
+			$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id` LIMIT ?i', 1);
 		} catch (Exception $e) {
-		    exit(json_encode(array('message', 'Database request failed')));
+			exit(json_encode(array('message', 'Database request failed')));
 		}
 		$has_announcements = (count($announcements) != 0);
 		?>
 
-		<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
+		<div class="tasks <?php if (!$has_announcement || true) echo 'wide' ?>">
 			<h2>Задания</h2>
 			<ul>
 				<li>Английский на 04.12.2020</li>
@@ -118,7 +118,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			if ($today->format('m') < 9) --$cur_year;
 
 			$year_begin = new DateTime($cur_year . '-09-01 Monday this week');
-			$year_end = new DateTime(($cur_year + 1) . '-05-31 Monday this week tomorrow');
+			$year_end = new DateTime(($cur_year + 1) . '-05-31 Monday this week next week');
 
 			$week_period = new DatePeriod($year_begin, DateInterval::createFromDateString('1 week'), $year_end);
 			foreach ($week_period as $monday) {
@@ -171,11 +171,19 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 											if (!is_null($item)) {
 												$type = $item[0];
-												$start_time = new DateTime($item[1][0]);
-												$end_time = new DateTime($item[1][1]);
-												$name = $item[2];
+												$name = $item[1];
+												$start_time = $item[2];
+												$end_time = $item[3];
 
-												if ($type == 'lesson' || $type == 'vacation') {
+												if (is_null($name)) {
+													?>
+
+													<li>
+														<div class="no_lesson"></div>
+													</li>
+
+													<?php
+												} else if ($type == 'lesson' || $type == 'vacation') {
 
 													preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
@@ -186,20 +194,39 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													?>
 
 													<li<?php if ($type == 'vacation') echo ' class="vacation"' ?>>
-														<a><?php echo $name ?></a>
+														<a><?php echo handle_lesson_name($name) ?></a>
 														<div class="details">
-															<h5><?php echo $name ?></h5>
+															<h5><?php echo handle_lesson_name($name) ?></h5>
 															<!-- Тип: <?php echo $type ?>
 															<br> -->
-															Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
-															<br>
-															Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
 															<?php
+
+															if (!is_null($start_time)) {
+																$start_time = new DateTime($start_time);
+																?>
+
+																Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
+																<br>
+
+																<?php
+															}
+
+															if (!is_null($end_time)) {
+																$end_time = new DateTime($end_time);
+																?>
+																
+																Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
+																<br>
+
+																<?php
+															}
 															
 															if ($cabinet) {
 																?>
-																<br>
+																
 																Кабинет: <?php echo $cabinet ?>
+																<br>
+
 																<?php
 															}
 															

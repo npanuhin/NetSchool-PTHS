@@ -3,10 +3,32 @@
 // ini_set('display_startup_errors', 0);
 // error_reporting(0);
 
+// MODULES:
 require_once 'safemysql.class.php';
 
+
+// CONFIG:
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
+
+// CONST:
+$weekdays = array('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье');
+$months = array('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
+$months_genetive = array('Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря');
+
+$_lesson_name_regex = '/^\s*(.+?)(?:[\\\\\/]?базовый)?\s*$/umi';
+
+$_lesson_name_replace = array(
+	'Информ.' => 'Информатика',
+	'Эксп.физика' => 'Экспериментальная физика',
+	'Физкульт.' => 'Физкультура',
+	'Рус.язык' => 'Русский язык',
+	'Англ.язык' => 'Английский язык',
+	'Нем.язык' => 'Немецкий язык'
+);
+
+
+// UTILS:
 function redirect($url='/') {
 	header('Refresh: 0; url=' . $url);
 }
@@ -37,10 +59,18 @@ function logout() {
 	session_destroy();
 }
 
-// CONST:
-$weekdays = array('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье');
-$months = array('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
-$months_genetive = array('Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря');
+function handle_lesson_name($string) {
+	global $_lesson_name_regex;
+	global $_lesson_name_replace;
 
+	if (preg_match($_lesson_name_regex, $string, $matches)) {
+		$string = $matches[1];
+	}
+
+	return $_lesson_name_replace[$string] ?? $string;
+}
+
+
+// CODE:
 session_start();
 ?>
