@@ -2,6 +2,9 @@
 @import 'src/styles/statusbar';
 @import 'src/styles/menubar';
 
+
+@import 'src/styles/menu';
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -10,15 +13,14 @@ main {
 	width: 1170px;
 	max-width: 100%;
 
-	@import 'src/styles/menu';
-
+	
 	.tasks {
 		position: relative;
 		top: 30px;
 		margin: 0 auto;
 		z-index: 10;
 
-		// width: 972px;  // TODO
+		width: 972px;  // TODO
 
 		background-color: $block-color;
 		box-shadow: $block-shadow;

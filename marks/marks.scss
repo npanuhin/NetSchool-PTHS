@@ -3,6 +3,8 @@
 @import '../src/styles/menubar';
 
 
+@import '../src/styles/menu';
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -10,8 +12,6 @@ main {
 	// transform: translateX(-50%);
 	width: 1170px;
 	max-width: 100%;
-
-	@import '../src/styles/menu';
 
 	.marks {
 		position: relative;

@@ -127,21 +127,16 @@ body {
   padding: 10.5px 17px;
 }
 
-main {
-  position: relative;
-  margin: 120px auto 100px auto;
-  width: 1170px;
-  max-width: 100%;
-}
-main .menu {
+.menu {
   position: absolute;
+  top: 120px;
   z-index: 5;
   left: 50%;
   transform: translateX(-50%);
   width: 970px;
   max-width: calc(100% - 200px);
 }
-main .menu ul {
+.menu ul {
   margin: 0 auto;
   width: 100%;
   display: grid;
@@ -151,7 +146,7 @@ main .menu ul {
   grid-column-gap: 100px;
 }
 @media (max-width: 1170px) {
-  main .menu ul {
+  .menu ul {
     width: 80%;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -159,13 +154,13 @@ main .menu ul {
   }
 }
 @media (max-width: 850px) {
-  main .menu ul {
+  .menu ul {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     grid-row-gap: 5px;
   }
 }
-main .menu ul li a {
+.menu ul li a {
   font-family: Manrope;
   font-style: normal;
   font-weight: bold;
@@ -176,10 +171,10 @@ main .menu ul li a {
   color: #fff;
   transition: 0.1s border-color ease-in-out;
 }
-main .menu ul li a:hover {
+.menu ul li a:hover {
   border-color: #fff;
 }
-main .menu::after {
+.menu::after {
   content: "";
   position: absolute;
   left: 0;
@@ -190,8 +185,15 @@ main .menu::after {
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
-main .menu.shown::after {
+.menu.shown::after {
   transform: scaleY(0);
+}
+
+main {
+  position: relative;
+  margin: 120px auto 100px auto;
+  width: 1170px;
+  max-width: 100%;
 }
 main .marks {
   position: relative;
