@@ -197,6 +197,8 @@ main .marks {
   position: relative;
   padding: 40px 32px 50px 32px;
   top: 30px;
+  width: 970px;
+  max-width: calc(100% - 200px);
   margin: 0 auto;
   z-index: 10;
   background-color: #FFF;

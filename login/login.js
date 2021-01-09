@@ -26,10 +26,9 @@ Event.add(window, "load", () => {
 				// console.log(req.responseText);
 				if (req.responseText == "success") {
 					window.location = "../";
+				
 				} else {
 					message.classList.remove("shown");
-
-					console.log(req.responseText);
 
 					r = JSON.parse(req.responseText);
 
@@ -44,7 +43,7 @@ Event.add(window, "load", () => {
 						password_input.value = "";
 
 					} else if (r[0] == "message") {
-						console.log(r);
+						// console.log(r);
 						message.getElementsByTagName("p")[0].innerHTML = r[1];
 						message.classList.add("small");
 						message.classList.add("shown");

@@ -85,9 +85,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		<div class="tasks <?php if (!$has_announcement || true) echo 'wide' ?>">
 			<h2>Задания</h2>
 			<ul>
-				<li>Английский на 04.12.2020</li>
-				<li>Физика на 2.10.2020</li>
-				<li>Староста: по русскому тоже было дз честно...</li>
+				<li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maxime sapiente eos ex fugit odit omnis blanditiis totam, pariatur voluptatem vero animi quam provident ullam sunt, architecto explicabo inventore, veritatis.</li>
+				<!-- <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates odio nihil optio aut alias voluptatum sequi libero magnam quia cupiditate. Velit alias illo, enim sed eos laboriosam quas perferendis natus?</li> -->
+				<!-- <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est natus unde illo aliquam nam. Officia libero nemo ducimus, rerum officiis quisquam, eaque aut delectus. Suscipit repudiandae iste, at. Ex, explicabo?</li> -->
 			</ul>
 		</div>
 

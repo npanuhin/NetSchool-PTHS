@@ -6,6 +6,7 @@ var
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
+	menu_closing_timout,
 
 	tasks_block = document.getElementsByClassName("tasks")[0],
 	
@@ -66,7 +67,7 @@ Event.add(window, "load", () => {
 			tasks_block.style.transform = "translateY(0px)";
 			timetable.style.transform = "translateY(0px)";
 
-			setTimeout(() => {
+			menu_closing_timout = setTimeout(() => {
 				main.style.minHeight = menu.clientHeight + "px";
 			}, 300);
 
@@ -76,6 +77,8 @@ Event.add(window, "load", () => {
 			tasks_block.style.transform = "translateY(" + menu.clientHeight + "px)";
 			timetable.style.transform = "translateY(" + menu.clientHeight + "px)";
 
+			clearTimeout(menu_closing_timout);
+			main.style.minHeight = menu.clientHeight + "px";
 			main.style.minHeight = main.clientHeight + menu.clientHeight + "px";
 		}
 	});

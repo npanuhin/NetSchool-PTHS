@@ -6,6 +6,7 @@ var
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
+	menu_closing_timout,
 	marks = document.getElementsByClassName("marks")[0];
 
 
@@ -21,7 +22,7 @@ Event.add(window, "load", () => {
 			menu.classList.remove("shown");
 			marks.style.transform = "translateY(0px)";
 
-			setTimeout(() => {
+			menu_closing_timout = setTimeout(() => {
 				main.style.minHeight = menu.clientHeight + "px";
 			}, 300);
 
@@ -30,8 +31,9 @@ Event.add(window, "load", () => {
 			menu.classList.add("shown");
 			marks.style.transform = "translateY(" + menu.clientHeight + "px)";
 
+			clearTimeout(menu_closing_timout);
+			main.style.minHeight = menu.clientHeight + "px";
 			main.style.minHeight = main.clientHeight + menu.clientHeight + "px";
-			
 		}
 	});
 
