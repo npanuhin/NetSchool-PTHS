@@ -32,7 +32,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		$has_announcements = (count($announcements) != 0);
 		?>
 
-		<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
+		<div class="tasks <?php if (!$has_announcements || true) echo 'wide' ?>">
 			<h2>Задания</h2>
 			<ul>
 				<li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maxime sapiente eos ex fugit odit omnis blanditiis totam, pariatur voluptatem vero animi quam provident ullam sunt, architecto explicabo inventore, veritatis.</li>

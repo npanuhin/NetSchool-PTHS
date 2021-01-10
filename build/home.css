@@ -200,18 +200,18 @@ main .tasks {
   top: 30px;
   margin: 0 auto;
   z-index: 10;
-  width: 972px;
   background-color: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   transition: 0.3s transform ease-in-out;
 }
 main .tasks.wide {
-  width: 970px;
-  max-width: calc(100% - 200px);
+  box-sizing: border-box;
+  padding: 20px;
+  width: calc(100% - 200px);
 }
 main .tasks h2 {
-  padding-top: 19px;
+  padding: 0 0 16px 0;
   text-align: center;
   font-family: Manrope;
   font-style: normal;
@@ -222,8 +222,7 @@ main .tasks h2 {
 }
 main .tasks ul {
   width: 78%;
-  padding: 16px 0 40px 0;
-  margin: 0 auto;
+  margin: 0 auto 17px auto;
   font-family: Manrope;
   font-style: normal;
   font-weight: 600;

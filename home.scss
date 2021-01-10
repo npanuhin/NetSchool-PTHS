@@ -20,7 +20,7 @@ main {
 		margin: 0 auto;
 		z-index: 10;
 
-		width: 972px;  // TODO
+		// width: 970px;  // TODO
 
 		background-color: $block-color;
 		box-shadow: $block-shadow;
@@ -29,12 +29,13 @@ main {
 		transition: 0.3s transform ease-in-out;
 
 		&.wide {
-			width: 970px;
-			max-width: calc(100% - 200px);
+			box-sizing: border-box;
+			padding: 20px;
+			width: calc(100% - 200px);
 		}
 
 		h2 {
-			padding-top: 19px;
+			padding: 0 0 16px 0;
 			text-align: center;
 
 			font-family: Manrope;
@@ -48,8 +49,7 @@ main {
 
 		ul {
 			width: 78%;
-			padding: 16px 0 40px 0;
-			margin: 0 auto;
+			margin: 0 auto 17px auto;
 
 			font-family: Manrope;
 			font-style: normal;

@@ -1,0 +1,126 @@
+@import '../src/styles/main';
+@import '../src/styles/statusbar';
+@import '../src/styles/menubar';
+
+
+@import '../src/styles/menu';
+
+main {
+	position: relative;
+	margin: 120px auto 100px auto;
+	// left: 50%;
+	// transform: translateX(-50%);
+	width: 1170px;
+	max-width: 100%;
+
+	.announcements {
+		position: relative;
+		// padding: 30px 32px 50px 32px;
+		top: 30px;
+		width: calc(100% - 100px);
+		margin: 0 auto;
+		z-index: 10;
+
+		transition: 0.3s transform ease-in-out;
+
+		// h2 {
+		// 	font-family: Manrope;
+		// 	font-style: normal;
+		// 	font-weight: 600;
+		// 	font-size: 36px;
+		// 	text-align: center;
+
+		// 	color: $text-color;
+		// }
+
+		.announcement {
+			position: relative;
+			padding: 35px 35px;
+
+			box-sizing: border-box;
+
+			clear: both;
+			overflow: hidden;
+
+			.author {
+				position: relative;
+				float: left;
+
+				.profile_photo {
+					width: 140px;
+					height: 140px;
+					margin: 0 auto;
+					background-color: #fff;
+					box-shadow: $block-shadow;
+					border-radius: 50%;
+
+					overflow: hidden;
+				}
+
+				.name {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 600;
+					font-size: 18px;
+					line-height: 32px;
+
+					// width: 90%;
+					width: 100%;
+					margin: 12px auto 0 auto;
+					text-align: center;
+
+					color: #fff;
+
+					text-shadow: $text-shadow;
+				}
+			}
+
+			.content {
+				position: relative;
+				float: right;
+
+				padding: 30px;
+
+				width: 73%;
+
+				background-color: $block-color;
+
+				box-shadow: $block-shadow;
+				border-radius: 30px;
+
+				h4, .date, article {
+					font-family: Manrope;
+					font-style: normal;
+					color: $text-color;
+				}
+
+				h4 {
+					font-weight: 600;
+					font-size: 24px;
+					margin-bottom: 15px;
+
+					&::before {
+						content: "";
+						float: right;
+						width: 200px;
+						height: 1em;
+					}
+				}
+
+				.date {
+					position: absolute;
+					top: 30px;
+					right: 40px;
+					font-weight: 500;
+					font-size: 24px;
+				}
+
+				article {
+					font-weight: 500;
+					font-size: 18px;
+					line-height: 32px;
+				}
+			}
+		}
+	}
+}
