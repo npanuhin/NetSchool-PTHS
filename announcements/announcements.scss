@@ -16,8 +16,9 @@ main {
 	.announcements {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
-		width: calc(100% - 100px);
 		margin: 0 auto;
+		width: calc(100% - 100px);
+		min-width: 900px;
 		z-index: 10;
 
 		transition: 0.3s transform ease-in-out;
@@ -55,7 +56,8 @@ main {
 					box-shadow: $block-shadow;
 					border-radius: 50%;
 
-					overflow: hidden;
+					background-size: cover;
+					background-position: center center;
 				}
 
 				.name {

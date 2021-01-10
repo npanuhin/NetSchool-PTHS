@@ -95,16 +95,11 @@ body {
 
 .menubar {
   position: absolute;
-  left: 14.6%;
+  left: calc(50vw - 570px);
 }
-@media (max-width: 1400px) {
+@media (max-width: 1140px) {
   .menubar {
-    left: calc(50vw - 500px);
-  }
-}
-@media (max-width: 1170px) {
-  .menubar {
-    left: 85px;
+    left: 10px;
   }
 }
 .menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {
@@ -197,8 +192,9 @@ main {
 }
 main .announcements {
   position: relative;
-  width: calc(100% - 100px);
   margin: 0 auto;
+  width: calc(100% - 100px);
+  min-width: 900px;
   z-index: 10;
   transition: 0.3s transform ease-in-out;
 }
@@ -221,7 +217,8 @@ main .announcements .announcement .author .profile_photo {
   background-color: #fff;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
-  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
 }
 main .announcements .announcement .author .name {
   font-family: Manrope;

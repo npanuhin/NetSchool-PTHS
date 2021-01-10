@@ -95,16 +95,11 @@ body {
 
 .menubar {
   position: absolute;
-  left: 14.6%;
+  left: calc(50vw - 570px);
 }
-@media (max-width: 1400px) {
+@media (max-width: 1140px) {
   .menubar {
-    left: calc(50vw - 500px);
-  }
-}
-@media (max-width: 1170px) {
-  .menubar {
-    left: 85px;
+    left: 10px;
   }
 }
 .menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {

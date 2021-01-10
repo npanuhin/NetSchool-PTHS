@@ -1,11 +1,8 @@
 .menubar {
 	position: absolute;
-	left: 14.6%;
-	@media (max-width: 1400px) {
-		left: calc(50vw - 500px);
-	}
-	@media (max-width: 1170px) {
-		left: 85px;
+	left: calc(50vw - 570px);
+	@media (max-width: 1140px) {
+		left: 10px;
 	}
 
 	.menu_icon_wrapper, .moon_icon_wrapper {

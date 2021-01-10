@@ -27,6 +27,10 @@ $_lesson_name_replace = array(
 	'Нем.язык' => 'Немецкий язык'
 );
 
+$profile_photos = array(
+	'Лось-Суницкая А. А.' => '/files/profile/Anna Anatolyevna.jpg',
+);
+
 
 // UTILS:
 function redirect($url='/') {

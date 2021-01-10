@@ -95,16 +95,11 @@ body {
 
 .menubar {
   position: absolute;
-  left: 14.6%;
+  left: calc(50vw - 570px);
 }
-@media (max-width: 1400px) {
+@media (max-width: 1140px) {
   .menubar {
-    left: calc(50vw - 500px);
-  }
-}
-@media (max-width: 1170px) {
-  .menubar {
-    left: 85px;
+    left: 10px;
   }
 }
 .menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {
@@ -439,7 +434,6 @@ main .timetable .week .days .day ul li .details {
 }
 main .timetable .week .days .day ul li .details h5 {
   text-align: center;
-  margin-bottom: 7px;
   font-weight: 600;
 }
 main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details {
@@ -484,14 +478,14 @@ main .timetable #timetable_previous, main .timetable #timetable_next {
   top: calc(36px + 50%);
   transform: translateY(-50%);
   height: calc(100% - 72px);
-  width: 39.9px;
+  width: 40px;
   -webkit-filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   cursor: pointer;
-  padding: 0 50px;
-  transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
-  transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
-  transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out;
+  padding: 0 45px;
+  transition: 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
+  transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
+  transition: 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out;
 }
 main .timetable #timetable_previous.hidden, main .timetable #timetable_next.hidden {
   opacity: 0;
@@ -500,16 +494,16 @@ main .timetable #timetable_previous path, main .timetable #timetable_next path {
   fill: #fff;
 }
 main .timetable #timetable_previous {
-  left: -133px;
+  left: -130px;
 }
 main .timetable #timetable_previous:hover {
-  padding-right: 55px;
-  transform: translateX(-5px) translateY(-50%);
+  padding-right: 52px;
+  transform: translateX(-6px) translateY(-50%);
 }
 main .timetable #timetable_next {
-  right: -133px;
+  right: -130px;
 }
 main .timetable #timetable_next:hover {
-  padding-left: 55px;
-  transform: translateX(5px) translateY(-50%);
+  padding-left: 52px;
+  transform: translateX(6px) translateY(-50%);
 }

@@ -37,35 +37,31 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				}
 
 				foreach ($announcements as $announcement) {
+					$author = trim($announcement['author']);
+					$title = nl2br(trim($announcement['title']));
+					$date = new DateTime(trim($announcement['date']));
+					$article = nl2br(trim($announcement['text']));
 					?>
 
 					<li class="announcement" announcement_id="<?php echo $announcement['id'] ?>">
 						<div class="author">
-							<div class="profile_photo">
-								<?php
-
-								// TODO
-
-								?>
-							</div>
+							<div class="profile_photo" <?php if ($author && array_key_exists($author, $profile_photos)) echo ' style="background-image: url(\'' . $profile_photos[$author] . '\')"' ?>></div>
 							<div class="name">
-								<?php echo $announcement['author'] ?>
+								<?php echo $author ?>
 							</div>
 						</div>
 						<div class="content">
-							<h4><?php echo nl2br($announcement['title']) ?></h4>
+							<h4><?php echo $title ?></h4>
 							
-							<div class="date">
+							<div class="date" title="<?php echo ltrim($date->format('d'), '0') . ' ' . $months_genetive[$date->format('m') - 1] ?>">
 								<?php
-
-								$date = new DateTime($announcement['date']);
 
 								echo $date->format('d.m.Y')
 
 								?>
 							</div>
 							<article>
-								<?php echo nl2br($announcement['text']) ?>
+								<?php echo $article ?>
 							</article>
 						</div>
 					</li>

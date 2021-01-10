@@ -5,14 +5,15 @@
 
 @import 'src/styles/menu';
 
+$main-width: 1170px;
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
-	width: 1170px;
+	width: $main-width;
 	max-width: 100%;
-
 	
 	.tasks {
 		position: relative;
@@ -284,7 +285,7 @@ main {
 
 								h5 {
 									text-align: center;
-									margin-bottom: 7px;
+									
 									font-weight: 600;
 								}
 							}
@@ -348,12 +349,12 @@ main {
 			top: calc(36px + 50%);
 			transform: translateY(-50%);
 			height: calc(100% - 72px);
-			width: 39.9px;
+			width: 40px;
 			filter: drop-shadow($arrows-shadow);
 			cursor: pointer;
-			padding: 0 50px;
+			padding: 0 45px;
 
-			transition: 0.3s all ease-in-out, 0.1s transform ease-in-out, 0s filter ease-in-out;
+			transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
 
 			&.hidden {
 				opacity: 0;
@@ -365,19 +366,19 @@ main {
 		}
 
 		#timetable_previous {
-			left: -133px;
+			left: -130px;
 			&:hover {
-				padding-right: 55px;
-				transform: translateX(-5px) translateY(-50%);
+				padding-right: 52px;
+				transform: translateX(-6px) translateY(-50%);
 			}
 
 		}
 
 		#timetable_next {
-			right: -133px;
+			right: -130px;
 			&:hover {
-				padding-left: 55px;
-				transform: translateX(5px) translateY(-50%);
+				padding-left: 52px;
+				transform: translateX(6px) translateY(-50%);
 			}
 		}
 	}

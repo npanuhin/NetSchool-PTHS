@@ -20,11 +20,11 @@ if (isset($_SESSION["user_id"])) {
 		<div class="container">
 			<div class="title">NetSchool PTHS</div>
 			<form id="login_form">
-				<input id="username" type="text" placeholder="Логин">
+				<input id="username" type="text" placeholder="Логин" title="Ваш логин NetSchool">
 				<br>
-				<input id="password" type="password" placeholder="Пароль">
+				<input id="password" type="password" placeholder="Пароль" title="Ваш пароль NetSchool">
 				<br>
-				<input type="submit" value="Войти">
+				<input type="submit" value="Войти" title="Войти в систему NetSchool PTHS">
 			</form>
 			<div class="message">
 				<p>Загрузка<span>.</span><span>.</span><span>.</span></p>
