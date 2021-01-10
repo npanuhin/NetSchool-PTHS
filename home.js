@@ -15,15 +15,16 @@ var
 	timetable_next = document.getElementById("timetable_next"),
 	
 	weeks = timetable.getElementsByClassName("week"),
-	cur_week = Array.prototype.slice.call(weeks).indexOf(
+	today_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
 	),
+	cur_week = today_week;
 	days = timetable.getElementsByClassName("day"),
 
-	today = timetable.getElementsByClassName("today")[0],
-	today_date = Array.prototype.slice.call(today.classList).find((value) => {
-		return value != "day" && value != "today"
-	}),
+	// today = timetable.getElementsByClassName("today")[0],
+	// today_date = Array.prototype.slice.call(today.classList).find((value) => {
+	// 	return value != "day" && value != "today"
+	// }),
 
 	goto_today_buttons = timetable.getElementsByClassName("goto_today");
 
@@ -39,6 +40,20 @@ function goto_day(date) {
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName(date)[0].parentNode.parentNode
 	);
+
+	for (let week of weeks) week.classList.remove("shown");
+	weeks[cur_week].classList.add("shown");
+
+	timetable_previous.classList.toggle("hidden", cur_week <= 0);
+	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+
+	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+}
+
+function goto_week(week) {
+	html.classList.add("loaded");
+
+	cur_week = week;
 
 	for (let week of weeks) week.classList.remove("shown");
 	weeks[cur_week].classList.add("shown");
@@ -135,7 +150,7 @@ Event.add(window, "load", () => {
 
 	for (let goto_today_button of goto_today_buttons) {
 		Event.add(goto_today_button, "click", () => {
-			goto_day(today_date);
+			goto_week(today_week);
 		});
 	}
 
