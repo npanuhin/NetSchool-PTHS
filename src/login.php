@@ -21,12 +21,14 @@ if (strlen($password) < 4) exit(json_encode(array('password', 'Пароль сл
 try {
     $db = dbConnect();
 } catch (Exception $e) {
+	print_r($e);
     exit(json_encode(array('message', 'Database connection failed')));
 }
 
 try {
     $data = $db->getAll('SELECT `id`, `password`, `first_name`, `last_name`, `last_update` FROM `users` WHERE `username` = ?s LIMIT ?i', $username, 2);
 } catch (Exception $e) {
+	print_r($e);
     exit(json_encode(array('message', 'Database request failed')));
 }
 
@@ -37,6 +39,7 @@ if (count($data) == 0) {
 	try {
 	    $data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
 	} catch (Exception $e) {
+		print_r($e);
 	    exit(json_encode(array('message', 'Database request failed')));
 	}
 

@@ -10,8 +10,14 @@ $container-shadow: 10px 10px 20px #205182;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 800px;
-	max-width: calc(100% - 40px);
-	height: 500px;
+	max-width: calc(100% - 50px);
+
+	box-sizing: border-box;
+	padding: 85px 0;
+
+	@media (max-width: 700px) {
+		padding: 30px 0;
+	}
 
 	background: $container-background;
 	border-radius: 30px;
@@ -24,14 +30,16 @@ $container-shadow: 10px 10px 20px #205182;
 		text-align: center;
 		width: 100%;
 
-		margin-top: 85px;
-
 		font-family: Manrope;
 		font-style: normal;
 		font-weight: 600;
 		font-size: 50px;
 		letter-spacing: -0.005em;
 		line-height: 60px;
+
+		@media (max-width: 700px) {
+			font-size: 30px;
+		}
 
 		color: $text-color;
 	}
@@ -47,7 +55,6 @@ $container-shadow: 10px 10px 20px #205182;
 			height: 35px;
 
 			margin-top: 35px;
-
 			padding: 12px 24px;
 
 			border: 1px solid $text-color;
@@ -57,10 +64,16 @@ $container-shadow: 10px 10px 20px #205182;
 			font-style: normal;
 			font-weight: normal;
 			font-size: 24px;
-
 			letter-spacing: -0.005em;
 
 			color: $text-color;
+
+			@media (max-width: 700px) {
+				margin-top: 20px;
+				width: 200px;
+				height: 15px;
+				font-size: 15px;
+			}
 
 			&.invalid {
 				color: $orange-color;
@@ -88,6 +101,15 @@ $container-shadow: 10px 10px 20px #205182;
 			box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.5);
 			border-radius: 30px;
 			color: #FFF;
+
+			@media (max-width: 700px) {
+				font-size: 15px;
+				line-height: 20px;
+				width: 180px;
+				max-width: calc(100% - 30px);
+				padding: 5px 0;
+				height: 35px;
+			}
 
 			cursor: pointer;
 
@@ -119,6 +141,10 @@ $container-shadow: 10px 10px 20px #205182;
 
 		transition: 0.5s opacity ease-in-out;
 
+		@media (max-width: 700px) {
+			background-color: rgba(0, 0, 0, 0.90);
+		}
+
 		&.shown {
 			visibility: visible;
 			opacity: 1;
@@ -131,6 +157,13 @@ $container-shadow: 10px 10px 20px #205182;
 		&.small {
 			font-size: 14px;
 			line-height: 55px;
+
+			p {
+				@media (max-width: 700px) {
+					font-size: 15px;
+					line-height: 25px;
+				}
+			}
 		}
 
 		p {
@@ -143,6 +176,11 @@ $container-shadow: 10px 10px 20px #205182;
 			font-size: 2em;
 
 			text-align: center;
+
+			@media (max-width: 700px) {
+				width: 95%;
+				font-size: 30px;
+			}
 
 			span {
 				color: #FFF;

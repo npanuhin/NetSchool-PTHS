@@ -197,7 +197,6 @@ main {
 }
 main .announcements {
   position: relative;
-  top: 30px;
   width: calc(100% - 100px);
   margin: 0 auto;
   z-index: 10;
@@ -213,6 +212,7 @@ main .announcements .announcement {
 main .announcements .announcement .author {
   position: relative;
   float: left;
+  width: 20%;
 }
 main .announcements .announcement .author .profile_photo {
   width: 140px;
@@ -238,8 +238,9 @@ main .announcements .announcement .author .name {
 main .announcements .announcement .content {
   position: relative;
   float: right;
+  box-sizing: border-box;
   padding: 30px;
-  width: 73%;
+  width: 76%;
   background-color: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
@@ -269,6 +270,6 @@ main .announcements .announcement .content .date {
 }
 main .announcements .announcement .content article {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 32px;
 }

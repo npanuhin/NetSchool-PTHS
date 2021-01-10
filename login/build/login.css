@@ -56,18 +56,23 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
-  max-width: calc(100% - 40px);
-  height: 500px;
+  max-width: calc(100% - 50px);
+  box-sizing: border-box;
+  padding: 85px 0;
   background: #fff;
   border-radius: 30px;
   box-shadow: 10px 10px 20px #205182;
   overflow: hidden;
 }
+@media (max-width: 700px) {
+  .container {
+    padding: 30px 0;
+  }
+}
 .container .title {
   position: relative;
   text-align: center;
   width: 100%;
-  margin-top: 85px;
   font-family: Manrope;
   font-style: normal;
   font-weight: 600;
@@ -75,6 +80,11 @@ body {
   letter-spacing: -0.005em;
   line-height: 60px;
   color: #1963A1;
+}
+@media (max-width: 700px) {
+  .container .title {
+    font-size: 30px;
+  }
 }
 .container #login_form {
   position: relative;
@@ -95,6 +105,14 @@ body {
   font-size: 24px;
   letter-spacing: -0.005em;
   color: #1963A1;
+}
+@media (max-width: 700px) {
+  .container #login_form input {
+    margin-top: 20px;
+    width: 200px;
+    height: 15px;
+    font-size: 15px;
+  }
 }
 .container #login_form input.invalid {
   color: #FF890C;
@@ -121,6 +139,16 @@ body {
   cursor: pointer;
   transition: 0.2s box-shadow ease-out;
 }
+@media (max-width: 700px) {
+  .container #login_form input[type=submit] {
+    font-size: 15px;
+    line-height: 20px;
+    width: 180px;
+    max-width: calc(100% - 30px);
+    padding: 5px 0;
+    height: 35px;
+  }
+}
 .container #login_form input[type=submit]:hover {
   box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
 }
@@ -142,6 +170,11 @@ body {
   letter-spacing: -0.005em;
   transition: 0.5s opacity ease-in-out;
 }
+@media (max-width: 700px) {
+  .container .message {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
 .container .message.shown {
   visibility: visible;
   opacity: 1;
@@ -154,6 +187,12 @@ body {
   font-size: 14px;
   line-height: 55px;
 }
+@media (max-width: 700px) {
+  .container .message.small p {
+    font-size: 15px;
+    line-height: 25px;
+  }
+}
 .container .message p {
   position: absolute;
   top: 50%;
@@ -163,6 +202,12 @@ body {
   color: #FFF;
   font-size: 2em;
   text-align: center;
+}
+@media (max-width: 700px) {
+  .container .message p {
+    width: 95%;
+    font-size: 30px;
+  }
 }
 .container .message p span {
   color: #FFF;

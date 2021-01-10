@@ -16,7 +16,6 @@ main {
 	.announcements {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
-		top: 30px;
 		width: calc(100% - 100px);
 		margin: 0 auto;
 		z-index: 10;
@@ -45,6 +44,8 @@ main {
 			.author {
 				position: relative;
 				float: left;
+
+				width: 20%;
 
 				.profile_photo {
 					width: 140px;
@@ -79,9 +80,11 @@ main {
 				position: relative;
 				float: right;
 
+				box-sizing: border-box;
+
 				padding: 30px;
 
-				width: 73%;
+				width: 76%;
 
 				background-color: $block-color;
 
@@ -117,7 +120,7 @@ main {
 
 				article {
 					font-weight: 500;
-					font-size: 18px;
+					font-size: 16px;
 					line-height: 32px;
 				}
 			}

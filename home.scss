@@ -48,7 +48,7 @@ main {
 		}
 
 		ul {
-			width: 78%;
+			width: 82%;
 			margin: 0 auto 17px auto;
 
 			font-family: Manrope;
@@ -60,6 +60,7 @@ main {
 			li {
 				color: $text-color;
 				list-style: disc;
+				padding-left: 7px;
 			}
 		}
 	}

@@ -53,7 +53,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							</div>
 						</div>
 						<div class="content">
-							<h4><?php echo $announcement['title'] ?></h4>
+							<h4><?php echo nl2br($announcement['title']) ?></h4>
 							
 							<div class="date">
 								<?php
@@ -65,7 +65,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 								?>
 							</div>
 							<article>
-								<?php echo $announcement['text'] ?>
+								<?php echo nl2br($announcement['text']) ?>
 							</article>
 						</div>
 					</li>

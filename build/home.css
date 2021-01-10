@@ -221,7 +221,7 @@ main .tasks h2 {
   color: #1963A1;
 }
 main .tasks ul {
-  width: 78%;
+  width: 82%;
   margin: 0 auto 17px auto;
   font-family: Manrope;
   font-style: normal;
@@ -232,6 +232,7 @@ main .tasks ul {
 main .tasks ul li {
   color: #1963A1;
   list-style: disc;
+  padding-left: 7px;
 }
 main .announcements {
   z-index: 10;
