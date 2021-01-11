@@ -160,8 +160,21 @@ Event.add(window, "load", () => {
 
 			if (details !== undefined) {
 				Event.add(item, "mousemove", (e) => {
-					details.style.top = e.pageY - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
-					details.style.left = e.pageX - item.getBoundingClientRect().left + 20 + "px";
+
+					details.style.top = Math.min(
+						
+						(window.pageYOffset || document.scrollTop || 0) - (document.clientTop || 0) + document.documentElement.clientHeight - details.offsetHeight - 20,
+						
+						e.pageY
+					) - (html.scrollTop + item.getBoundingClientRect().top) + 20 + "px";
+
+					details.style.left = Math.min(
+						
+						(window.pageXOffset || document.scrollLeft || 0) - (document.clientLeft || 0) + document.documentElement.clientWidth - details.offsetWidth - 20,
+						
+						e.pageX
+					) - item.getBoundingClientRect().left + 20 + "px";
+
 				});
 			}
 		}

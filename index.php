@@ -142,9 +142,33 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 														$name = trim($match[1][0]);
 													}
 													$cabinet = trim($match[2][0]);
+
+													$start_time = new DateTime($start_time);
+													$end_time = new DateTime($end_time);
+													$cur_time = new DateTime("now");
 													?>
 
-													<li<?php if ($type == 'vacation') echo ' class="vacation"' ?>>
+													<li
+														<?php
+														$classes = array();
+														if ($type == 'vacation') {
+															array_push($classes, 'vacation');
+														}
+
+														if (
+															$type == 'lesson' &&
+															$start_time->getTimestamp() <= $cur_time->getTimestamp() &&
+															$cur_time->getTimestamp() <= $end_time->getTimestamp()
+														) {
+															array_push($classes, 'cur_lesson');
+														}
+
+														if (!empty($classes)) {
+															echo ' class="' . implode(' ', $classes) . '"';
+														}
+														?>
+													>
+
 														<a><?php echo handle_lesson_name($name) ?></a>
 														<div class="details">
 															<h5<?php if (!is_null($start_time) || !is_null($end_time) || $cabinet) echo ' style="margin-bottom: 7px"' ?>>
@@ -155,31 +179,23 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															<?php
 
 															if (!is_null($start_time)) {
-																$start_time = new DateTime($start_time);
 																?>
-
 																Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
 																<br>
-
 																<?php
 															}
 
 															if (!is_null($end_time)) {
-																$end_time = new DateTime($end_time);
 																?>
-																
 																Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
 																<br>
-
 																<?php
 															}
 															
 															if ($cabinet) {
 																?>
-																
 																Кабинет: <?php echo $cabinet ?>
 																<br>
-
 																<?php
 															}
 															

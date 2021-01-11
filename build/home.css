@@ -402,6 +402,10 @@ main .timetable .week .days .day ul li a, main .timetable .week .days .day ul li
 main .timetable .week .days .day ul li.vacation a, main .timetable .week .days .day ul li.vacation .details h5 {
   color: #20822A;
 }
+main .timetable .week .days .day ul li.cur_lesson a, main .timetable .week .days .day ul li.cur_lesson .details h5 {
+  color: #FF890C;
+  font-weight: 600;
+}
 main .timetable .week .days .day ul li .no_lesson {
   width: 100%;
   height: 25px;

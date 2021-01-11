@@ -249,6 +249,13 @@ main {
 								}
 							}
 
+							&.cur_lesson {
+								a, .details h5 {
+									color: $orange-color;
+									font-weight: 600;
+								}
+							}
+
 							.no_lesson {
 								width: 100%;
 								height: 25px;
