@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		<?php
 		try {
-			$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `id`');
+			$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
 		} catch (Exception $e) {
 			exit(json_encode(array('message', 'Database request failed')));
 		}
@@ -36,8 +36,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			<h2>Задания</h2>
 			<ul>
 				<li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maxime sapiente eos ex fugit odit omnis blanditiis totam, pariatur voluptatem vero animi quam provident ullam sunt, architecto explicabo inventore, veritatis.</li>
-				<li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates odio nihil optio aut alias voluptatum sequi libero magnam quia cupiditate. Velit alias illo, enim sed eos laboriosam quas perferendis natus?</li>
-				<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est natus unde illo aliquam nam. Officia libero nemo ducimus, rerum officiis quisquam, eaque aut delectus. Suscipit repudiandae iste, at. Ex, explicabo?</li>
+				<!-- <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates odio nihil optio aut alias voluptatum sequi libero magnam quia cupiditate. Velit alias illo, enim sed eos laboriosam quas perferendis natus?</li>
+				<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est natus unde illo aliquam nam. Officia libero nemo ducimus, rerum officiis quisquam, eaque aut delectus. Suscipit repudiandae iste, at. Ex, explicabo?</li> -->
 			</ul>
 		</div>
 

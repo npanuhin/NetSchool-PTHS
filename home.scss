@@ -21,19 +21,15 @@ main {
 		margin: 0 auto;
 		z-index: 10;
 
-		// width: 970px;  // TODO
+		box-sizing: border-box;
+		padding: 20px;
+		width: calc(100% - 200px);
 
 		background-color: $block-color;
 		box-shadow: $block-shadow;
 		border-radius: 30px;
 
 		transition: 0.3s transform ease-in-out;
-
-		&.wide {
-			box-sizing: border-box;
-			padding: 20px;
-			width: calc(100% - 200px);
-		}
 
 		h2 {
 			padding: 0 0 16px 0;
