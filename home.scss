@@ -211,16 +211,43 @@ main {
 					}
 
 					.day_info {
+						position: relative;
+						
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
 						font-size: 15px;
 						line-height: 32px;
 
+						height: 32px;
+
 						width: 100%;
 						text-align: center;
 
 						color: $text-color;
+
+						img {
+							position: relative;
+							top: 11.7px;
+							left: -9px;
+							display: inline;
+							width: 70px;
+
+							&::before, &::after {
+								position: relative;
+								top: -11.7px;
+								left: 9px;
+							}
+							
+							&, &::before, &::after {
+								font-family: inherit;
+								font-style: inherit;
+								font-weight: inherit;
+								font-size: inherit;
+								line-height: inherit;
+								color: inherit;
+							}
+						}
 					}
 
 					ul {

@@ -96,17 +96,56 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						<?php
 						$day_period = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
 						$weekday_index = 0;
+
 						foreach ($day_period as $day) {
 							?>
 
 							<div class="day <?php echo $day->format('Y-m-d') ?> <?php if ($day == $today) echo 'today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
+								<?php
+
+								$lessons = [];
+								$vacations = [];
+								$has_any_lesson = false;
+								$has_any_cabinet = false;
+
+								foreach ($timetable[$day->format('Y-m-d')] as $item) {
+									if (!is_null($item)) {
+										$type = $item[0];
+										$name = $item[1];
+
+										if (!is_null($name) && ($type == 'lesson')) {
+											$has_any_lesson = true;
+
+											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+											if (trim($match[2][0])) {
+												$has_any_cabinet = true;
+												break;
+											}
+										}
+									}
+								}
+
+								$zoom_day = ($has_any_lesson && !$has_any_cabinet);
+
+								?>
+
 								<h4><?php echo $weekdays[$weekday_index] ?></h4>
 
-								<div class="day_info">
+								<div class="day_info"<?php if ($zoom_day) echo ' style="top: -11.5px"' ?>>
 									<?php
 
 									echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1];
+
+									if ($zoom_day) {
+										echo ', ';
+										?>
+
+										<img src="/files/icons/zoom_blue.svg" alt="zoom" title="Этот день ПРЕДПОЛОЖИТЕЛЬНО проходит дистанционно на платформе https://zoom.us">
+
+										<?php
+									}
 
 									?>
 								</div>
@@ -118,6 +157,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 									<ul>
 										<?php
+
+										$lesson_index = 0;
+
 										foreach ($timetable[$day->format('Y-m-d')] as $item) {
 
 											if (!is_null($item)) {
@@ -127,6 +169,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 												$end_time = $item[3];
 
 												if (is_null($name)) {
+													++$lesson_index;
 													?>
 
 													<li>
@@ -135,6 +178,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
+
+													++$lesson_index;
 
 													preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
@@ -150,9 +195,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 													<li
 														<?php
-														$classes = array();
+														$obj_classes = array();
 														if ($type == 'vacation') {
-															array_push($classes, 'vacation');
+															array_push($obj_classes, 'vacation');
 														}
 
 														if (
@@ -160,13 +205,15 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															$start_time->getTimestamp() <= $cur_time->getTimestamp() &&
 															$cur_time->getTimestamp() <= $end_time->getTimestamp()
 														) {
-															array_push($classes, 'cur_lesson');
+															array_push($obj_classes, 'cur_lesson');
 														}
 
-														if (!empty($classes)) {
-															echo ' class="' . implode(' ', $classes) . '"';
+														if (!empty($obj_classes)) {
+															echo ' class="' . implode(' ', $obj_classes) . '"';
 														}
 														?>
+
+														title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
 													>
 
 														<a><?php echo handle_lesson_name($name) ?></a>
@@ -207,6 +254,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 												}
 											} else {
 												?>
+
+												++$lesson_index;
 
 												<li>
 													<div class="no_lesson"></div>
