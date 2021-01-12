@@ -74,6 +74,19 @@ function handle_lesson_name($string) {
 	return $_lesson_name_replace[$string] ?? $string;
 }
 
+// function repace_links($text) {
+//     return preg_replace_callback(
+//      '%(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\\\\\/]*(?:[\w.,@?^=\%&:~+#-]*[\\\\\/]+)*)([\w@?^=\%&/~+#-\.]*)%ui',
+//      function ($matches) {
+
+//      },
+//      // '<a href="$0" target="_blank">$4</a>',
+//      $text
+//  );
+
+//  return $text;
+// }
+
 
 // CODE:
 session_start();

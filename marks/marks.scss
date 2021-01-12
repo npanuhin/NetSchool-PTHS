@@ -1,24 +1,19 @@
 @import '../src/styles/main';
-@import '../src/styles/statusbar';
-@import '../src/styles/menubar';
-
-
-@import '../src/styles/menu';
 
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
-	width: 1170px;
+	width: $main-width;
 	max-width: 100%;
 
 	.marks {
 		position: relative;
 		padding: 40px 32px 50px 32px;
 		top: 30px;
-		width: 970px;
-		max-width: calc(100% - 200px);
+		box-sizing: border-box;
+		width: calc(100% - 200px);
 		margin: 0 auto;
 		z-index: 10;
 

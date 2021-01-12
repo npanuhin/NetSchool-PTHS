@@ -23,6 +23,21 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 	<main>
 
+		<?php
+		include_once __DIR__ . '/../src/alerts.php';
+		?>
+
+		<div class="menu">
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a href="/timetable">Расписание</a></li>
+				<li><a>Задания</a></li>
+				<li><a href="/announcements">Объявления</a></li>
+				<li><a href="/marks">Оценки</a></li>
+				<li><a>Сообщения</a></li>
+			</ul>
+		</div>
+
 		<div class="announcements">
 			<!-- <h2>Объявления</h2> -->
 
@@ -31,19 +46,20 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<?php
 
 				try {
-					$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
+					$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date` DESC');
 				} catch (Exception $e) {
 					exit(json_encode(array('message', 'Database request failed')));
 				}
 
 				foreach ($announcements as $announcement) {
+					$announcement_id = $announcement['id'];
 					$author = trim($announcement['author']);
 					$title = nl2br(trim($announcement['title']));
 					$date = new DateTime(trim($announcement['date']));
 					$article = nl2br(trim($announcement['text']));
 					?>
 
-					<li class="announcement" announcement_id="<?php echo $announcement['id'] ?>">
+					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">
 						<div class="author">
 							<div class="profile_photo" <?php if ($author && array_key_exists($author, $profile_photos)) echo ' style="background-image: url(\'' . $profile_photos[$author] . '\')"' ?>></div>
 							<div class="name">

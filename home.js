@@ -74,6 +74,8 @@ Event.add(window, "load", () => {
 	onResize();
 
 	Event.add(menu_button, "click", () => {
+		let delta_height = menu.clientHeight;
+
 		html.classList.add("loaded");
 
 		if (menu.classList.contains("shown")) {
@@ -83,18 +85,18 @@ Event.add(window, "load", () => {
 			timetable.style.transform = "translateY(0px)";
 
 			menu_closing_timout = setTimeout(() => {
-				main.style.minHeight = menu.clientHeight + "px";
+				main.style.minHeight = delta_height + "px";
 			}, 300);
 
 		} else {
 			menu_button.classList.add("active");
 			menu.classList.add("shown");
-			tasks_block.style.transform = "translateY(" + menu.clientHeight + "px)";
-			timetable.style.transform = "translateY(" + menu.clientHeight + "px)";
+			tasks_block.style.transform = "translateY(" + delta_height + "px)";
+			timetable.style.transform = "translateY(" + delta_height + "px)";
 
 			clearTimeout(menu_closing_timout);
-			main.style.minHeight = menu.clientHeight + "px";
-			main.style.minHeight = main.clientHeight + menu.clientHeight + "px";
+			main.style.minHeight = delta_height + "px";
+			main.style.minHeight = main.clientHeight + delta_height + "px";
 		}
 	});
 

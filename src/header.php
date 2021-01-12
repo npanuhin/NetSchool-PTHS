@@ -22,36 +22,21 @@ $person = $data[0];
 	
 ?>
 
-<header>
-
-	<div class="menubar">
-		<div class="menu_icon_wrapper" title="Меню">
-			<?php include_once __DIR__ . '/../files/icons/menu.svg' ?>
-		</div>
-		<!-- <div class="moon_icon_wrapper" title="Night mode">
-			<?php // include_once __DIR__ . '/../files/icons/moon.svg' ?>
-		</div> -->
+<div class="menubar">
+	<div class="menu_icon_wrapper" title="Меню">
+		<?php include_once __DIR__ . '/../files/icons/menu.svg' ?>
 	</div>
+	<!-- <div class="moon_icon_wrapper" title="Night mode">
+		<?php // include_once __DIR__ . '/../files/icons/moon.svg' ?>
+	</div> -->
+</div>
 
-	<div class="statusbar">
-		<div class="name" title="Ваше имя"><?php echo $person['first_name'] . ' ' . $person['last_name']?></div>
-		<div class="last_update" title="Время последнего обновления">
-			<?php echo date('H', strtotime($person['last_update'])) ?>
-			<span>:</span>
-			<?php echo date('i', strtotime($person['last_update'])) ?>
-		</div>
-		<div class="exit_icon" title="Выйти"><?php include_once __DIR__ . '/../files/icons/sign-out.svg' ?></div>
+<div class="statusbar">
+	<div class="name" title="Ваше имя"><?php echo $person['first_name'] . ' ' . $person['last_name']?></div>
+	<div class="last_update" title="Время последнего обновления">
+		<?php echo date('H', strtotime($person['last_update'])) ?>
+		<span>:</span>
+		<?php echo date('i', strtotime($person['last_update'])) ?>
 	</div>
-
-	<div class="menu">
-		<ul>
-			<li><a href="/">Главная</a></li>
-			<li><a href="/timetable">Расписание</a></li>
-			<li><a>Задания</a></li>
-			<li><a href="/announcements">Объявления</a></li>
-			<li><a href="/marks">Оценки</a></li>
-			<li><a>Сообщения</a></li>
-		</ul>
-	</div>
-	
-</header>
+	<div class="exit_icon" title="Выйти"><?php include_once __DIR__ . '/../files/icons/sign-out.svg' ?></div>
+</div>

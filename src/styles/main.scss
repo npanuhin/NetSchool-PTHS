@@ -2,6 +2,8 @@
 // @media (max-width: 850px)
 
 
+$main-width: 1170px;
+
 // COLORS:
 // $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
 
@@ -97,4 +99,111 @@ html {
 body {
 	background: $page-color;
 	overflow: hidden;
+}
+
+@import 'src/styles/menubar';
+@import 'src/styles/statusbar';
+
+main {
+
+    .message_alert {
+        position: relative;
+        left: 100px;
+        box-sizing: border-box;
+        width: calc(100% - 200px);
+        padding: 12px 30px;
+        margin-bottom: 30px;
+
+        border-radius: 15px;
+        background-color: #55ff7d;
+        text-align: left;
+
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        // line-height: 65px;
+
+        box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+
+        color: #003ea8;
+
+        p {
+            color: #ff0;
+            display: inline-block;
+            margin-right: 7px;
+            font-weight: 600;
+        }
+    }
+
+    .menu {
+        position: absolute;
+        width: calc(100% - 200px);
+        left: 100px;
+
+        ul {
+            margin: 0 auto;
+            width: 100%;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-row-gap: 10px;
+            grid-column-gap: 100px;
+
+            @media (max-width: 1170px) {
+                width: 80%;
+                grid-template-rows: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: 95px;
+            }
+
+            @media (max-width: 850px) {
+                grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
+                grid-row-gap: 5px;
+            }
+
+            li {
+                a {
+                    font-family: Manrope;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 36px;
+                    line-height: 65px;
+                    cursor: pointer;
+
+                    border-bottom: 2.5px solid transparent;
+                    color: #fff;
+
+                    transition: 0.1s border-color ease-in-out;
+
+                    &:hover {
+                        border-color: #fff;
+                    }
+                }
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            background-color: $page-color;
+
+            transition: 0.3s transform ease-in-out;
+
+            transform-origin: bottom center;
+        }
+
+        &.shown {
+            &::after {
+                transform: scaleY(0);
+            }
+        }
+
+    }
 }

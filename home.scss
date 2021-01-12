@@ -1,11 +1,4 @@
 @import 'src/styles/main';
-@import 'src/styles/statusbar';
-@import 'src/styles/menubar';
-
-
-@import 'src/styles/menu';
-
-$main-width: 1170px;
 
 main {
 	position: relative;
@@ -17,7 +10,7 @@ main {
 	
 	.tasks {
 		position: relative;
-		top: 30px;
+		top: 45px;
 		margin: 0 auto;
 		z-index: 10;
 
@@ -226,12 +219,14 @@ main {
 
 						color: $text-color;
 
-						img {
+						.zoom-icon {
 							position: relative;
 							top: 11.7px;
 							left: -9px;
 							display: inline;
 							width: 70px;
+
+							margin-right: -15px;
 
 							&::before, &::after {
 								position: relative;

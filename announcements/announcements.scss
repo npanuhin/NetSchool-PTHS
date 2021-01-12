@@ -1,23 +1,18 @@
 @import '../src/styles/main';
-@import '../src/styles/statusbar';
-@import '../src/styles/menubar';
-
-
-@import '../src/styles/menu';
 
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
-	width: 1170px;
+	width: $main-width;
 	max-width: 100%;
 
 	.announcements {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
-		width: calc(100% - 100px);
+		width: calc(100% - 130px);
 		min-width: 900px;
 		z-index: 10;
 
@@ -81,16 +76,14 @@ main {
 			.content {
 				position: relative;
 				float: right;
+				padding: 30px;
+				width: 76%;
 
 				box-sizing: border-box;
 
-				padding: 30px;
-
-				width: 76%;
-
 				background-color: $block-color;
-
 				box-shadow: $block-shadow;
+
 				border-radius: 30px;
 
 				h4, .date, article {
@@ -124,6 +117,14 @@ main {
 					font-weight: 500;
 					font-size: 16px;
 					line-height: 32px;
+
+					a {
+						color: $orange-color;
+
+						&:hover {
+							text-decoration: underline;
+						}
+					}
 				}
 			}
 		}

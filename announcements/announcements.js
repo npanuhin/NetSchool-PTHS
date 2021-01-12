@@ -15,6 +15,8 @@ Event.add(window, "load", () => {
 	main.style.minHeight = menu.clientHeight + "px";
 
 	Event.add(menu_button, "click", () => {
+		let delta_height = menu.clientHeight;
+
 		html.classList.add("loaded");
 
 		if (menu.classList.contains("shown")) {
@@ -23,17 +25,17 @@ Event.add(window, "load", () => {
 			announcements.style.transform = "translateY(0px)";
 
 			menu_closing_timout = setTimeout(() => {
-				main.style.minHeight = menu.clientHeight + "px";
+				main.style.minHeight = delta_height + "px";
 			}, 300);
 
 		} else {
 			menu_button.classList.add("active");
 			menu.classList.add("shown");
-			announcements.style.transform = "translateY(" + menu.clientHeight + "px)";
+			announcements.style.transform = "translateY(" + delta_height + "px)";
 
 			clearTimeout(menu_closing_timout);
-			main.style.minHeight = menu.clientHeight + "px";
-			main.style.minHeight = main.clientHeight + menu.clientHeight + "px";
+			main.style.minHeight = delta_height + "px";
+			main.style.minHeight = main.clientHeight + delta_height + "px";
 		}
 	});
 

@@ -1,9 +1,4 @@
 @import '../src/styles/main';
-@import '../src/styles/statusbar';
-@import '../src/styles/menubar';
-
-
-@import '../src/styles/menu';
 
 main {
 	position: relative;
@@ -17,8 +12,8 @@ main {
 		position: relative;
 		padding: 40px 32px 50px 32px;
 		top: 30px;
-		width: 970px;
-		max-width: calc(100% - 200px);
+		box-sizing: border-box;
+		width: calc(100% - 200px);
 		margin: 0 auto;
 		z-index: 10;
 

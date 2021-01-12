@@ -30,7 +30,20 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			exit(json_encode(array('message', 'Database request failed')));
 		}
 		$has_announcements = (count($announcements) != 0);
+
+		include_once __DIR__ . '/src/alerts.php';
 		?>
+
+		<div class="menu">
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a href="/timetable">Расписание</a></li>
+				<li><a>Задания</a></li>
+				<li><a href="/announcements">Объявления</a></li>
+				<li><a href="/marks">Оценки</a></li>
+				<li><a>Сообщения</a></li>
+			</ul>
+		</div>
 
 		<div class="tasks <?php if (!$has_announcements || true) echo 'wide' ?>">
 			<h2>Задания</h2>
@@ -142,7 +155,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 										echo ', ';
 										?>
 
-										<img src="/files/icons/zoom_blue.svg" alt="zoom" title="Этот день ПРЕДПОЛОЖИТЕЛЬНО проходит дистанционно на платформе https://zoom.us">
+										<img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom" title="Этот день ПРЕДПОЛОЖИТЕЛЬНО проходит дистанционно на платформе https://zoom.us">
 
 										<?php
 									}
