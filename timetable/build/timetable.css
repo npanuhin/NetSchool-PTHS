@@ -127,7 +127,7 @@ main .message_alert {
   left: 100px;
   box-sizing: border-box;
   width: calc(100% - 200px);
-  padding: 12px 30px;
+  padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
   background-color: #55ff7d;
@@ -138,12 +138,28 @@ main .message_alert {
   font-size: 18px;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
   color: #003ea8;
+  transition: 0.6s opacity ease-in-out;
 }
 main .message_alert p {
   color: #ff0;
   display: inline-block;
-  margin-right: 7px;
   font-weight: 600;
+}
+main .message_alert .cross-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  width: 13px;
+  height: 13px;
+  padding: 15px;
+  cursor: pointer;
+}
+main .message_alert .cross-icon path {
+  fill: #1963A1;
+}
+main .message_alert.hidden {
+  opacity: 0;
 }
 main .menu {
   position: absolute;

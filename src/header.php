@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/src/event.js"></script>
+
 <?php
 
 require_once __DIR__ . '/../src/error.php';

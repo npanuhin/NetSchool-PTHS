@@ -23,8 +23,9 @@ $pro_tip_hover = $db->getOne('SELECT `pro_tip_hover` FROM `messages` WHERE `user
 if ($pro_tip_hover) {
 	?>
 
-	<div class="message_alert">
+	<div class="message_alert" id="message_alert_pro_tip_hover">
 		<?php echo nl2br($pro_tip_hover) ?>
+		<?php include __DIR__ . '/../files/icons/cross.svg' ?>
 	</div>
 
 	<?php

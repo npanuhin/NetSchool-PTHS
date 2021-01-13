@@ -23,7 +23,7 @@ Event.add(window, "load", () => {
 				"password": password
 			},
 			(req) => {
-				console.log(req.responseText);
+				// console.log(req.responseText);
 				if (req.responseText == "success") {
 					window.location = "../";
 				

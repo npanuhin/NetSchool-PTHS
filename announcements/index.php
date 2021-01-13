@@ -19,24 +19,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 </head>
 <body>
 
-	<?php require_once '../src/header.php' ?>
+	<?php require_once __DIR__ . '/../src/header.php' ?>
 
 	<main>
 
 		<?php
-		include_once __DIR__ . '/../src/alerts.php';
+		include_once __DIR__ . '/../src/message_alerts.php';
+		require_once __DIR__ . '/../src/menu.php';
 		?>
-
-		<div class="menu">
-			<ul>
-				<li><a href="/">Главная</a></li>
-				<li><a href="/timetable">Расписание</a></li>
-				<li><a>Задания</a></li>
-				<li><a href="/announcements">Объявления</a></li>
-				<li><a href="/marks">Оценки</a></li>
-				<li><a>Сообщения</a></li>
-			</ul>
-		</div>
 
 		<div class="announcements">
 			<!-- <h2>Объявления</h2> -->
@@ -91,9 +81,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 	</main>
 
-	<script type="text/javascript" src="/src/event.js"></script>
-	<script type="text/javascript" src="/src/ajax.js"></script>
-	<script type="text/javascript" src="build/announcements.min.js"></script>
+	<script type="text/javascript" src="/src/event.js" defer></script>
+	<script type="text/javascript" src="/src/ajax.js" defer></script>
+	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
+	<!-- <script type="text/javascript" src="build/announcements.min.js" defer></script> -->
 </body>
 
 </html>

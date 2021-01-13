@@ -3,8 +3,8 @@ require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
 	header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
-    redirect();
-    exit;
+	redirect();
+	exit;
 }
 
 header('Content-Type: application/json');
@@ -19,17 +19,17 @@ if (strlen($username) < 6) exit(json_encode(array('username', 'Логин сли
 if (strlen($password) < 4) exit(json_encode(array('password', 'Пароль слишком короткий')));
 
 try {
-    $db = dbConnect();
+	$db = dbConnect();
 } catch (Exception $e) {
-	print_r($e);
-    exit(json_encode(array('message', 'Database connection failed')));
+	// print_r($e);
+	exit(json_encode(array('message', 'Database connection failed')));
 }
 
 try {
-    $data = $db->getAll('SELECT `id`, `password`, `first_name`, `last_name`, `last_update` FROM `users` WHERE `username` = ?s LIMIT ?i', $username, 2);
+	$data = $db->getAll('SELECT `id`, `password`, `first_name`, `last_name`, `last_update` FROM `users` WHERE `username` = ?s LIMIT ?i', $username, 2);
 } catch (Exception $e) {
-	print_r($e);
-    exit(json_encode(array('message', 'Database request failed')));
+	// print_r($e);
+	exit(json_encode(array('message', 'Database request failed')));
 }
 
 if (count($data) > 1) exit(json_encode(array('message', 'Please, contact administrator (too many rows)')));
@@ -37,10 +37,10 @@ if (count($data) > 1) exit(json_encode(array('message', 'Please, contact adminis
 if (count($data) == 0) {
 
 	try {
-	    $data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
+		$data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
 	} catch (Exception $e) {
-		print_r($e);
-	    exit(json_encode(array('message', 'Database request failed')));
+		// print_r($e);
+		exit(json_encode(array('message', 'Database request failed')));
 	}
 
 	exit(json_encode(array('message', 'Указанный логин не был найден, но был добавлен в очередь на обработку.<br>Если вы указали верные данные, вы сможете войти в систему через несколько минут.<br>В противном случае, ваши данные будут автоматически удалены.')));

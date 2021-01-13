@@ -111,7 +111,7 @@ main {
         left: 100px;
         box-sizing: border-box;
         width: calc(100% - 200px);
-        padding: 12px 30px;
+        padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
         border-radius: 15px;
@@ -128,11 +128,31 @@ main {
 
         color: #003ea8;
 
+        transition: 0.6s opacity ease-in-out;
+
         p {
             color: #ff0;
             display: inline-block;
-            margin-right: 7px;
             font-weight: 600;
+        }
+
+        .cross-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5px;
+            width: 13px;
+            height: 13px;
+            padding: 15px;
+            cursor: pointer;
+
+            path {
+                fill: $text-color;
+            }
+        }
+
+        &.hidden {
+            opacity: 0;
         }
     }
 
