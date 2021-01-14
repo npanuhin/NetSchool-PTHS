@@ -16,7 +16,7 @@ $weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четв
 $months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 $months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-$_lesson_name_regex = '/^\s*(.+?)(?:[\\\\\/]?базовый)?\s*$/umi';
+$_lesson_name_regex = '/^\s*(.+?)(?:[\\\\\/]?базовый)?\s*$/imu';
 
 $_lesson_name_replace = [
 	'Информ.' => 'Информатика',
@@ -29,6 +29,12 @@ $_lesson_name_replace = [
 
 $profile_photos = [
 	'Лось-Суницкая А. А.' => '/files/profile/Anna Anatolyevna.jpg',
+];
+
+$_replace_class = [
+	'/[АаAa]/u' => '[АаAa]',
+	'/[Ббb]/u' => '[Ббb]',
+	'/[ВвB]/u' => '[ВвB]'
 ];
 
 
@@ -74,18 +80,19 @@ function handle_lesson_name($string) {
 	return $_lesson_name_replace[$string] ?? $string;
 }
 
-// function repace_links($text) {
-//     return preg_replace_callback(
-//      '%(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\\\\\/]*(?:[\w.,@?^=\%&:~+#-]*[\\\\\/]+)*)([\w@?^=\%&/~+#-\.]*)%ui',
-//      function ($matches) {
+function replace_school_class_regex($school_class) {
+	global $_replace_class;
 
-//      },
-//      // '<a href="$0" target="_blank">$4</a>',
-//      $text
-//  );
+	if (preg_match('/(\d+)(\w)\w*/iu', $school_class, $matches)) {
+		$class = $matches[2];
+		foreach ($_replace_class as $key => $value) {
+			$class = preg_replace($key, $value, $class);
+		}
+		$school_class = $matches[1] . $class;
+	}
 
-//  return $text;
-// }
+	return $school_class;
+}
 
 
 // CODE:

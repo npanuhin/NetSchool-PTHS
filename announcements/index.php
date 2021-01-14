@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					$title = nl2br(trim($announcement['title']));
 					$date = new DateTime(trim($announcement['date']));
 					$article = preg_replace(
-						'/(' . trim($person['class']) . ')(?![^<]*>|[^<>]*<\/)/im',
+						'/(' . replace_school_class_regex(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
 						'<span class="school_class">\1</span>',
 						nl2br(trim($announcement['text']))
 					);
