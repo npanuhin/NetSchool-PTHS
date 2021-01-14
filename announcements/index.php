@@ -46,7 +46,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					$author = trim($announcement['author']);
 					$title = nl2br(trim($announcement['title']));
 					$date = new DateTime(trim($announcement['date']));
-					$article = nl2br(trim($announcement['text']));
+					$article = preg_replace(
+						'/(' . trim($person['class']) . ')(?![^<]*>|[^<>]*<\/)/im',
+						'<span class="school_class">\1</span>',
+						nl2br(trim($announcement['text']))
+					);
 					?>
 
 					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">

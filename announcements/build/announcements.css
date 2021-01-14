@@ -311,3 +311,6 @@ main .announcements .announcement .content article a {
 main .announcements .announcement .content article a:hover {
   text-decoration: underline;
 }
+main .announcements .announcement .content article .school_class {
+  color: #FF890C;
+}
