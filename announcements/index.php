@@ -48,13 +48,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					$date = new DateTime(trim($announcement['date']));
 					$article = preg_replace(
 						'/(' . replace_school_class_regex(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
-						'<span class="school_class">\1</span>',
+						'<span class="school_class" title="Это ваш класс (тут нет никакой ссылки)">\1</span>',
 						nl2br(trim($announcement['text']))
 					);
 					?>
 
 					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">
-						<div class="author">
+						<div class="author" title="<?php echo $author ?>">
 							<div class="profile_photo" <?php if ($author && array_key_exists($author, $profile_photos)) echo ' style="background-image: url(\'' . $profile_photos[$author] . '\')"' ?>></div>
 							<div class="name">
 								<?php echo $author ?>

@@ -29,11 +29,53 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		?>
 
 		<div class="timetable">
-			<h3>Расписание</h3>
 
-			<table>
-				
-			</table>
+			<?php
+
+			$timetable = json_decode($person['timetable'], true);
+
+			$today = new DateTime('today');
+
+			?>
+
+			<div class="holidays">
+				<h3>Каникулы</h3>
+			</div>
+
+			<div class="bells" title="Звонки на сегодня (<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>)">
+				<h3>Звонки</h3>
+				<div class="details" title="<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>">на сегодня</div>
+
+				<ul>
+					<?php
+
+					foreach ($timetable[$today->format('Y-m-d')] as $item) {
+						if (!is_null($item)) {
+							$type = $item[0];
+							$name = $item[1];
+							$start_time = $item[2];
+							$end_time = $item[3];
+
+							if ($type == 'lesson') {
+								$start_time = new DateTime($start_time);
+								$end_time = new DateTime($end_time);
+								?>
+								<li>
+									<?php echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i') ?>
+								</li>
+								<?php
+							}
+						}
+					}
+
+					?>
+					</ul>
+			</div>
+
+			<div class="cources">
+				<h3>Спецкурсы</h3>
+			</div>
+
 		</div>
 
 	</main>

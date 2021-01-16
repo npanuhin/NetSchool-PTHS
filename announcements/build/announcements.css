@@ -312,5 +312,6 @@ main .announcements .announcement .content article a:hover {
   text-decoration: underline;
 }
 main .announcements .announcement .content article .school_class {
+  cursor: default;
   color: #FF890C;
 }

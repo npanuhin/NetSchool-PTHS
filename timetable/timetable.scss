@@ -9,29 +9,76 @@ main {
 	max-width: 100%;
 
 	.timetable {
-		position: relative;
-		padding: 40px 32px 50px 32px;
-		top: 30px;
-		box-sizing: border-box;
+
 		width: calc(100% - 200px);
 		margin: 0 auto;
-		z-index: 10;
-
-		background-color: $block-color;
-
-		box-shadow: $block-shadow;
-		border-radius: 30px;
 
 		transition: 0.3s transform ease-in-out;
 
-		h3 {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: 600;
-			font-size: 36px;
-			text-align: center;
+		.holidays, .bells, .cources {
+			position: relative;
+			padding: 30px 32px 40px 32px;
+			top: 30px;
+			box-sizing: border-box;
+			margin: 0 auto;
+			z-index: 10;
 
-			color: $text-color;
+			background-color: $block-color;
+
+			box-shadow: $block-shadow;
+			border-radius: 30px;
+
+			h3, .details {
+				font-family: Manrope;
+				font-style: normal;
+				text-align: center;
+
+				color: $text-color;
+			}
+
+			h3 {
+				font-weight: 600;
+				font-size: 36px;
+			}
+
+			.details {
+				font-weight: normal;
+				font-size: 18px;
+			}
+		}
+
+		.holidays {
+			float: left;
+			width: 57%;
+		}
+
+		.bells {
+			float: right;
+			width: 32%;
+
+			ul {
+				// width: 300px;
+				// min-width: 200px;
+				margin: 25px auto 0 auto;
+
+				li {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 18px;
+					text-align: center;
+
+					color: $text-color;
+				}
+			}
+		}
+
+		.holidays, .bells {
+			margin-bottom: 100px;
+		}
+
+		.cources {
+			clear: both;
 		}
 	}
 }
