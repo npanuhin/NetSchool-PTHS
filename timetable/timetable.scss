@@ -2,23 +2,29 @@
 
 main {
 	position: relative;
-	margin: 120px auto 100px auto;
+	margin: 120px auto 60px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: 1170px;
 	max-width: 100%;
 
 	.timetable {
-
-		width: calc(100% - 200px);
-		margin: 0 auto;
+		width: 100%;
 
 		transition: 0.3s transform ease-in-out;
+
+		.float_wrapper {
+			overflow: hidden;
+			padding: 30px 0 40px 0;
+			width: 100%;
+		}
 
 		.holidays, .bells, .cources {
 			position: relative;
 			padding: 30px 32px 40px 32px;
-			top: 30px;
+
+			width: calc(100% - 200px);
+
 			box-sizing: border-box;
 			margin: 0 auto;
 			z-index: 10;
@@ -49,12 +55,46 @@ main {
 
 		.holidays {
 			float: left;
-			width: 57%;
+			width: calc(57% - 114px);
+			margin-left: 100px;
+
+			h3 {
+				margin-bottom: 20px;
+			}
+
+			.holiday {
+
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 18px;
+
+				color: $text-color;
+
+				text-align: center;
+
+
+				h6 {
+					margin-top: 10px;
+
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 600;
+					font-size: 19px;
+					line-height: 27px;
+
+					color: $text-color;
+
+					text-align: center;
+				}
+
+			}
 		}
 
 		.bells {
 			float: right;
-			width: 32%;
+			width: calc(32% - 64px);
+			margin-right: 100px;
 
 			ul {
 				// width: 300px;
@@ -74,11 +114,20 @@ main {
 		}
 
 		.holidays, .bells {
-			margin-bottom: 100px;
+			&.wide {
+				width: calc(100% - 200px);
+				margin-left: 100px;
+			}
+
+			&.hidden {
+				display: none;
+			}
 		}
 
 		.cources {
-			clear: both;
+			float: center;
+			margin: 30px 0 0 100px;
 		}
+
 	}
 }

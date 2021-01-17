@@ -36,45 +36,97 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			$today = new DateTime('today');
 
+			$has_bells = false;
+
+			foreach ($timetable[$today->format('Y-m-d')] as $item) {
+				if (!is_null($item)) {
+					$has_bells = true;
+					break;
+				}
+			}
+
+
 			?>
 
-			<div class="holidays">
-				<h3>Каникулы</h3>
-			</div>
+			<div class="float_wrapper">
 
-			<div class="bells" title="Звонки на сегодня (<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>)">
-				<h3>Звонки</h3>
-				<div class="details" title="<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>">на сегодня</div>
+				<div class="holidays<?php if (!$has_bells) echo ' wide' ?> " title="Расписание каникул">
+					<h3>Каникулы</h3>
 
-				<ul>
 					<?php
 
-					foreach ($timetable[$today->format('Y-m-d')] as $item) {
-						if (!is_null($item)) {
-							$type = $item[0];
-							$name = $item[1];
-							$start_time = $item[2];
-							$end_time = $item[3];
+					$holidays = $db->getAll('SELECT ?n, ?n, ?n FROM `holidays`', 'name', 'start', 'end');
 
-							if ($type == 'lesson') {
-								$start_time = new DateTime($start_time);
-								$end_time = new DateTime($end_time);
-								?>
-								<li>
-									<?php echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i') ?>
-								</li>
-								<?php
-							}
-						}
+					foreach ($holidays as $holiday) {
+						$holiday_start = new DateTime($holiday['start']);
+						$holiday_end = new DateTime($holiday['end']);
+						?>
+
+						<div class="holiday" title="<?php echo $holiday['name'] ?> каникулы: с <?php echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] ?> по <?php echo ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
+
+							<h6><?php echo $holiday['name'] ?></h6>
+
+							<?php
+
+							echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1]
+								 . ' - ' .
+								 ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1];
+
+							?>
+						</div>
+						<?php
 					}
 
 					?>
-					</ul>
+				</div>
+
+				<?php
+
+				if ($has_bells) {
+					?>
+
+					<div class="bells" title="Звонки на сегодня (<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>)">
+						<h3>Звонки</h3>
+						<div class="details" title="<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>">на сегодня</div>
+
+						<ul>
+							<?php
+
+							foreach ($timetable[$today->format('Y-m-d')] as $item) {
+								if (!is_null($item)) {
+									$has_anything = true;
+
+									$type = $item[0];
+									$name = $item[1];
+									$start_time = $item[2];
+									$end_time = $item[3];
+
+									if ($type == 'lesson') {
+										$start_time = new DateTime($start_time);
+										$end_time = new DateTime($end_time);
+										?>
+										<li>
+											<?php echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i') ?>
+										</li>
+										<?php
+									}
+								}
+							}
+
+							?>
+							</ul>
+					</div>
+
+					<?php
+				}
+				?>
+
+
 			</div>
 
-			<div class="cources">
+			<!-- <div class="cources">
 				<h3>Спецкурсы</h3>
-			</div>
+			</div> -->
 
 		</div>
 

@@ -221,19 +221,23 @@ main .menu.shown::after {
 
 main {
   position: relative;
-  margin: 120px auto 100px auto;
+  margin: 120px auto 60px auto;
   width: 1170px;
   max-width: 100%;
 }
 main .timetable {
-  width: calc(100% - 200px);
-  margin: 0 auto;
+  width: 100%;
   transition: 0.3s transform ease-in-out;
+}
+main .timetable .float_wrapper {
+  overflow: hidden;
+  padding: 30px 0 40px 0;
+  width: 100%;
 }
 main .timetable .holidays, main .timetable .bells, main .timetable .cources {
   position: relative;
   padding: 30px 32px 40px 32px;
-  top: 30px;
+  width: calc(100% - 200px);
   box-sizing: border-box;
   margin: 0 auto;
   z-index: 10;
@@ -257,11 +261,34 @@ main .timetable .holidays .details, main .timetable .bells .details, main .timet
 }
 main .timetable .holidays {
   float: left;
-  width: 57%;
+  width: calc(57% - 114px);
+  margin-left: 100px;
+}
+main .timetable .holidays h3 {
+  margin-bottom: 20px;
+}
+main .timetable .holidays .holiday {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #1963A1;
+  text-align: center;
+}
+main .timetable .holidays .holiday h6 {
+  margin-top: 10px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 27px;
+  color: #1963A1;
+  text-align: center;
 }
 main .timetable .bells {
   float: right;
-  width: 32%;
+  width: calc(32% - 64px);
+  margin-right: 100px;
 }
 main .timetable .bells ul {
   margin: 25px auto 0 auto;
@@ -274,9 +301,14 @@ main .timetable .bells ul li {
   text-align: center;
   color: #1963A1;
 }
-main .timetable .holidays, main .timetable .bells {
-  margin-bottom: 100px;
+main .timetable .holidays.wide, main .timetable .bells.wide {
+  width: calc(100% - 200px);
+  margin-left: 100px;
+}
+main .timetable .holidays.hidden, main .timetable .bells.hidden {
+  display: none;
 }
 main .timetable .cources {
-  clear: both;
+  float: center;
+  margin: 30px 0 0 100px;
 }
