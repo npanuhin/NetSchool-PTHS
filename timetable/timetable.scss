@@ -19,7 +19,7 @@ main {
 			width: 100%;
 		}
 
-		.holidays, .bells, .cources {
+		.holidays, .bells, .cources .day {
 			position: relative;
 			padding: 30px 32px 40px 32px;
 
@@ -125,8 +125,73 @@ main {
 		}
 
 		.cources {
-			float: center;
+			position: relative;
+			width: calc(100% - 200px);
 			margin: 30px 0 0 100px;
+			padding-top: 75px;
+
+			display: grid;
+			grid-template-rows: auto auto auto;
+			grid-template-columns: 1fr 1fr;
+			grid-row-gap: 50px;
+			grid-column-gap: 60px;
+
+			h3 {
+				position: absolute;
+				top: 5px;
+				left: 10px;
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 36px;
+
+				color: #fff;
+
+				text-shadow: $text-shadow;
+
+				span {
+					margin-left: 10px;
+					font-family: inherit;
+					font-style: inherit;
+					font-weight: inherit;
+					font-size: 0.5em;
+					color: inherit;
+					text-shadow: inherit;
+				}
+			}
+
+			.day {
+				width: auto;
+				margin: 0;
+				padding-bottom: 25px;
+
+				height: auto;
+
+				h5 {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 600;
+					font-size: 24px;
+					line-height: 33px;
+
+					color: $text-color;
+					text-align: center;
+
+					margin-bottom: 20px;
+				}
+
+				ul li {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 14px;
+					line-height: 28px;
+
+					color: $text-color;
+
+					margin-bottom: 10px;
+				}
+			}
 		}
 
 	}

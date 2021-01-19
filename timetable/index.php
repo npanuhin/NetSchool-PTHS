@@ -32,9 +32,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<?php
 
-			$timetable = json_decode($person['timetable'], true);
+			$today = new DateTime('16.12.2020');
+			// $today = new DateTime('today');
+			$monday = new DateTime($today->format('Y-m-d') . ' monday this week');
+			$sunday = new DateTime($today->format('Y-m-d') . ' sunday this week');
+			$cur_week = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
 
-			$today = new DateTime('today');
+
+			$timetable = json_decode($person['timetable'], true);
 
 			$has_bells = false;
 
@@ -58,8 +63,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					$holidays = $db->getAll('SELECT ?n, ?n, ?n FROM `holidays`', 'name', 'start', 'end');
 
 					foreach ($holidays as $holiday) {
-						$holiday_start = new DateTime($holiday['start']);
-						$holiday_end = new DateTime($holiday['end']);
+						$holiday_start = new DateTime(trim($holiday['start']));
+						$holiday_end = new DateTime(trim($holiday['end']));
 						?>
 
 						<div class="holiday" title="<?php echo $holiday['name'] ?> каникулы: с <?php echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] ?> по <?php echo ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
@@ -92,20 +97,24 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						<ul>
 							<?php
 
+							$lesson_index = 0;
+
 							foreach ($timetable[$today->format('Y-m-d')] as $item) {
 								if (!is_null($item)) {
 									$has_anything = true;
 
-									$type = $item[0];
-									$name = $item[1];
-									$start_time = $item[2];
-									$end_time = $item[3];
+									$type = trim($item[0]);
+									$name = trim($item[1]);
+									$start_time = trim($item[2]);
+									$end_time = trim($item[3]);
 
 									if ($type == 'lesson') {
+										++$lesson_index;
 										$start_time = new DateTime($start_time);
 										$end_time = new DateTime($end_time);
 										?>
-										<li>
+										
+										<li title="<?php echo $lesson_index ?> урок: с <?php echo $start_time->format('H:i') . ' до ' . $end_time->format('H:i') ?>">
 											<?php echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i') ?>
 										</li>
 										<?php
@@ -124,9 +133,81 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			</div>
 
-			<!-- <div class="cources">
-				<h3>Спецкурсы</h3>
-			</div> -->
+			<?php
+
+			$has_cources = false;
+
+			foreach ($cur_week as $day) {
+				foreach ($timetable[$today->format('Y-m-d')] as $item) {
+					if (!is_null($item)) {
+						$type = $item[0];
+						$name = $item[1];
+
+						if ($type == 'event' && $name) {
+							$has_cources = true;
+							break;
+						}
+					}
+				}
+				if ($has_cources) break;
+			}
+
+			if ($has_cources) {
+				?>
+
+				<div class="cources">
+					<h3>Спецкурсы<span>на этой неделе</span></h3>
+
+					<?php
+					$weekday_index = 0;
+
+					foreach ($cur_week as $day) {
+						?>
+						<div class="day">
+							<h5><?php echo $weekdays[$weekday_index] ?></h5>
+
+							<ul>
+								<?php
+
+								foreach ($timetable[$day->format('Y-m-d')] as $item) {
+									if (!is_null($item)) {
+										$type = trim($item[0]);
+										$name = trim($item[1]);
+										$start_time = trim($item[2]);
+										$end_time = trim($item[3]);
+
+										if ($type == 'event') {
+											$start_time = new DateTime($start_time);
+											$end_time = new DateTime($end_time);
+											?>
+											<li>
+												<?php
+												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
+
+												echo $name;
+												?>
+											</li>
+											<?php
+										}
+									}
+								}
+
+								?>
+							</ul>
+						</div>
+						<?php
+						++$weekday_index;
+					}
+
+					?>
+					
+				</div>
+
+				<?php
+			}
+
+			?>
+			
 
 		</div>
 

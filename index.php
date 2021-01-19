@@ -71,8 +71,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			$cur_year = $today->format('Y');
 			if ($today->format('m') < 9) --$cur_year;
 
-			$year_begin = new DateTime($cur_year . '-09-01 Monday this week');
-			$year_end = new DateTime(($cur_year + 1) . '-05-31 Monday this week next week');
+			$year_begin = new DateTime($cur_year . '-09-01 monday this week');
+			$year_end = new DateTime(($cur_year + 1) . '-05-31 monday this week next week');
 
 			$week_period = new DatePeriod($year_begin, DateInterval::createFromDateString('1 week'), $year_end);
 			foreach ($week_period as $monday) {
