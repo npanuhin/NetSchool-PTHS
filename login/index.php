@@ -14,7 +14,7 @@ if (isset($_SESSION["user_id"])) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="build/login.min.css">
-		<title>NetSchool PTHS | Login</title>
+		<title>NetSchool PTHS | Вход</title>
 	</head>
 	<body>
 		<div class="container">

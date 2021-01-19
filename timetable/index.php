@@ -173,18 +173,26 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 									if (!is_null($item)) {
 										$type = trim($item[0]);
 										$name = trim($item[1]);
-										$start_time = trim($item[2]);
-										$end_time = trim($item[3]);
+										// $start_time = trim($item[2]);
+										// $end_time = trim($item[3]);
 
 										if ($type == 'event') {
-											$start_time = new DateTime($start_time);
-											$end_time = new DateTime($end_time);
+											// $start_time = new DateTime($start_time);
+											// $end_time = new DateTime($end_time);
+
+											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+											if (trim($match[1][0])) {
+												$name = trim($match[1][0]);
+											}
+											$cabinet = trim($match[2][0]);
+
 											?>
 											<li>
 												<?php
 												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
 
-												echo $name;
+												echo $name . ' <span>' . $cabinet . '</span>';
 												?>
 											</li>
 											<?php

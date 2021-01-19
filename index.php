@@ -1,5 +1,5 @@
 <?php
-require_once 'src/config.php';
+require_once __DIR__ . '/src/config.php';
 
 if (!isset($_SESSION['user_id']) || !verifySession()) {
 	logout();

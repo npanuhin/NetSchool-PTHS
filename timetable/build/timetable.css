@@ -364,3 +364,10 @@ main .timetable .cources .day ul li {
   color: #1963A1;
   margin-bottom: 10px;
 }
+main .timetable .cources .day ul li span {
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: #FF890C;
+}

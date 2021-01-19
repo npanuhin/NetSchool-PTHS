@@ -190,6 +190,14 @@ main {
 					color: $text-color;
 
 					margin-bottom: 10px;
+
+					span {
+						font-family: inherit;
+						font-style: inherit;
+						font-weight: inherit;
+						font-size: inherit;
+						color: $orange-color;
+					}
 				}
 			}
 		}

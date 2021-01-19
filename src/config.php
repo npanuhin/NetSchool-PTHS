@@ -4,7 +4,7 @@
 // error_reporting(0);
 
 // MODULES:
-require_once 'safemysql.class.php';
+require_once __DIR__ . '/safemysql.class.php';
 
 
 // CONFIG:
