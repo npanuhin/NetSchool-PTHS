@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ . '/config.php';
 
 if ( $_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST['file_upload_key']) ||
     json_decode(file_get_contents('config/config.json'), true)['file_upload_key'] != $_POST['password'] ) {

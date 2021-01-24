@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 </head>
 <body>
 
-	<?php require_once 'src/header.php' ?>
+	<?php require_once __DIR__ . '/src/header.php' ?>
 	
 	<main>
 
@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		if ($has_announcements) {
 			?>
 			<div class="announcements">
-				<?php // include_once "files/icons/cross.svg" ?>
+				<?php // include_once __DIR__ . "/files/icons/cross.svg" ?>
 				<div class="title"></div>
 			</div>
 			<?php
@@ -65,6 +65,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			$timetable = json_decode($person['timetable'], true);
 
 			$today = new DateTime('today');
+			$tomorrow = new DateTime('tomorrow');
+			
+			$cur_datetime = new DateTime('now');
+
 			// echo $today->format('Y');
 			$cur_monday = new DateTime('monday this week');
 			
@@ -77,9 +81,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			$week_period = new DatePeriod($year_begin, DateInterval::createFromDateString('1 week'), $year_end);
 			foreach ($week_period as $monday) {
 				$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
+				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week 15:00');
+				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week 14:59');
 				?>
 
-				<div class="week <?php echo $monday->format('Y-m-d') ?> <?php if ($monday == $cur_monday) echo 'shown'; ?>">
+				<div class="week <?php echo $monday->format('Y-m-d') ?> <?php if ($school_week_start <= $cur_datetime && $cur_datetime < $school_week_end) echo 'shown'; ?> <?php if ($monday == $cur_monday) echo 'cur_week'; ?>">
 
 					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
 						<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>

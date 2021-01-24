@@ -31,6 +31,12 @@ $profile_photos = [
 	'Лось-Суницкая А. А.' => '/files/profile/Anna Anatolyevna.jpg',
 ];
 
+$profile_colors = [
+	'#0074D9',
+	'#7FDBFF',
+	'#39CCCC'
+];
+
 $_replace_class = [
 	'/[АаAa]/u' => '[АаAa]',
 	'/[Ббb]/u' => '[Ббb]',
@@ -56,11 +62,11 @@ function dbConnect() {
 }
 
 function verifySession() {
-	if (isset($_SESSION['HTTP_USER_AGENT'])) {
-		if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) return false;
-	} else {
-		$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
-	}
+	// if (isset($_SESSION['HTTP_USER_AGENT'])) {
+	// 	if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) return false;
+	// } else {
+	// 	$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
+	// }
 	return true;
 }
 

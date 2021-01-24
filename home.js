@@ -8,9 +8,11 @@ var
 
 	weeks = timetable.getElementsByClassName("week"),
 	today_week = Array.prototype.slice.call(weeks).indexOf(
+		timetable.getElementsByClassName("cur_week")[0]
+	),
+	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
 	),
-	cur_week = today_week,
 	days = timetable.getElementsByClassName("day"),
 
 	// today = timetable.getElementsByClassName("today")[0],

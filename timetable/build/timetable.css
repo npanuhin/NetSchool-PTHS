@@ -245,19 +245,14 @@ main .timetable .holidays, main .timetable .bells, main .timetable .cources .day
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-main .timetable .holidays h3, main .timetable .holidays .details, main .timetable .bells h3, main .timetable .bells .details, main .timetable .cources .day h3, main .timetable .cources .day .details {
+main .timetable .holidays h3, main .timetable .bells h3, main .timetable .cources .day h3 {
   font-family: Manrope;
   font-style: normal;
-  text-align: center;
-  color: #1963A1;
-}
-main .timetable .holidays h3, main .timetable .bells h3, main .timetable .cources .day h3 {
   font-weight: 600;
   font-size: 36px;
-}
-main .timetable .holidays .details, main .timetable .bells .details, main .timetable .cources .day .details {
-  font-weight: normal;
-  font-size: 18px;
+  line-height: 43px;
+  text-align: center;
+  color: #1963A1;
 }
 main .timetable .holidays {
   float: left;
@@ -289,6 +284,14 @@ main .timetable .bells {
   float: right;
   width: calc(32% - 64px);
   margin-right: 100px;
+}
+main .timetable .bells .details {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  color: #1963A1;
 }
 main .timetable .bells ul {
   margin: 25px auto 0 auto;

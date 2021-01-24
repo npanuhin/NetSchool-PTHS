@@ -1,5 +1,5 @@
 <?php
-require_once '../src/config.php';
+require_once __DIR__ . '/../src/config.php';
 
 if (!isset($_SESSION['user_id']) || !verifySession()) {
 	logout();
@@ -32,8 +32,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<?php
 
-			$today = new DateTime('16.12.2020');
-			// $today = new DateTime('today');
+			// $today = new DateTime('16.12.2020');
+			$today = new DateTime('today');
 			$monday = new DateTime($today->format('Y-m-d') . ' monday this week');
 			$sunday = new DateTime($today->format('Y-m-d') . ' sunday this week');
 			$cur_week = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
@@ -155,7 +155,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			if ($has_cources) {
 				?>
 
-				<div class="cources">
+				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1] ?> по <?php echo ltrim($sunday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1] ?>">
 					<h3>Спецкурсы<span>на этой неделе</span></h3>
 
 					<?php
@@ -163,7 +163,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 					foreach ($cur_week as $day) {
 						?>
-						<div class="day">
+						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 							<h5><?php echo $weekdays[$weekday_index] ?></h5>
 
 							<ul>
@@ -188,7 +188,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 											$cabinet = trim($match[2][0]);
 
 											?>
-											<li>
+											<li title="<?php echo $name ?> (кабинет <?php echo $cabinet ?>)">
 												<?php
 												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
 
@@ -213,9 +213,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 				<?php
 			}
-
 			?>
-			
 
 		</div>
 

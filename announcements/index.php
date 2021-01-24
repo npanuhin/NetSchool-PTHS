@@ -1,5 +1,5 @@
 <?php
-require_once '../src/config.php';
+require_once __DIR__ . '/../src/config.php';
 
 if (!isset($_SESSION['user_id']) || !verifySession()) {
 	logout();
@@ -41,6 +41,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					exit(json_encode(array('message', 'Database request failed')));
 				}
 
+				function color_from_string($string) {
+					global $profile_colors;
+					return $profile_colors[hexdec(substr(sha1($string), 0, 10)) % count($profile_colors)];
+				}
+
 				foreach ($announcements as $announcement) {
 					$announcement_id = $announcement['id'];
 					$author = trim($announcement['author']);
@@ -55,7 +60,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">
 						<div class="author" title="<?php echo $author ?>">
-							<div class="profile_photo" <?php if ($author && array_key_exists($author, $profile_photos)) echo ' style="background-image: url(\'' . $profile_photos[$author] . '\')"' ?>></div>
+							<div class="profile_photo" style="<?php if ($author && array_key_exists($author, $profile_photos)) {echo 'background-image: url(\'' . $profile_photos[$author] . '\')';} else {echo 'background-color: ' . color_from_string($author);} ?>"></div>
 							<div class="name">
 								<?php echo $author ?>
 							</div>

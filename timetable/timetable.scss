@@ -34,22 +34,15 @@ main {
 			box-shadow: $block-shadow;
 			border-radius: 30px;
 
-			h3, .details {
+			h3 {
 				font-family: Manrope;
 				font-style: normal;
+				font-weight: 600;
+				font-size: 36px;
+				line-height: 43px;
 				text-align: center;
 
 				color: $text-color;
-			}
-
-			h3 {
-				font-weight: 600;
-				font-size: 36px;
-			}
-
-			.details {
-				font-weight: normal;
-				font-size: 18px;
 			}
 		}
 
@@ -95,6 +88,16 @@ main {
 			float: right;
 			width: calc(32% - 64px);
 			margin-right: 100px;
+
+			.details {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 18px;
+				text-align: center;
+
+				color: $text-color;
+			}
 
 			ul {
 				// width: 300px;
