@@ -38,6 +38,8 @@
   font-family: Arial, Helvetica, sans-serif;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  background: none;
+  border: none;
 }
 
 html {

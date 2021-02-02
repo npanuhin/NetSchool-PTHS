@@ -38,6 +38,8 @@
   font-family: Arial, Helvetica, sans-serif;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  background: none;
+  border: none;
 }
 
 html {
@@ -272,12 +274,12 @@ main .timetable {
   width: calc(100% - 200px);
   transition: 0.3s transform ease-in-out;
 }
-main .timetable .week {
+main .timetable > div {
   position: absolute;
   width: 100%;
   pointer-events: none;
 }
-main .timetable .week h3 {
+main .timetable > div h3 {
   font-family: Manrope;
   font-style: normal;
   font-weight: bold;
@@ -290,20 +292,20 @@ main .timetable .week h3 {
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
 }
-html.loaded main .timetable .week h3 {
+html.loaded main .timetable > div h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
-main .timetable .week.shown {
+main .timetable > div.shown {
   pointer-events: auto;
 }
-main .timetable .week.shown h3 {
+main .timetable > div.shown h3 {
   -webkit-animation: week_header_show 0.5s ease-in-out forwards;
   animation: week_header_show 0.5s ease-in-out forwards;
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
 }
-html.loaded main .timetable .week.shown h3 {
+html.loaded main .timetable > div.shown h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
@@ -347,7 +349,7 @@ html.loaded main .timetable .week.shown h3 {
     transform: translateY(0px);
   }
 }
-main .timetable .week .goto_today {
+main .timetable > div > button {
   position: absolute;
   opacity: 0;
   top: 20px;
@@ -362,11 +364,11 @@ main .timetable .week .goto_today {
   color: #fff;
   transition: 0.15s opacity 0.2s ease-in-out;
 }
-main .timetable .week.shown .goto_today {
+main .timetable > div.shown > button {
   transition: 0.2s opacity 0s ease-in-out;
   opacity: 1;
 }
-main .timetable .week .days {
+main .timetable > div > div {
   margin-top: 8px;
   display: grid;
   grid-template-rows: auto auto;
@@ -378,27 +380,27 @@ main .timetable .week .days {
   visibility: hidden;
 }
 @media (max-width: 1170px) {
-  main .timetable .week .days {
+  main .timetable > div > div {
     grid-template-rows: auto auto auto;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 50px;
   }
 }
 @media (max-width: 850px) {
-  main .timetable .week .days {
+  main .timetable > div > div {
     grid-template-rows: auto auto auto auto auto auto;
     grid-template-columns: 1fr;
     grid-row-gap: 40px;
   }
 }
-main .timetable .week .days .day {
+main .timetable > div > div > div {
   position: relative;
   padding: 30px 32px;
   background-color: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-main .timetable .week .days .day h4 {
+main .timetable > div > div > div h4 {
   text-align: center;
   font-family: Manrope;
   font-style: normal;
@@ -407,7 +409,7 @@ main .timetable .week .days .day h4 {
   line-height: 33px;
   color: #1963A1;
 }
-main .timetable .week .days .day .day_info {
+main .timetable > div > div > div .day_info {
   position: relative;
   font-family: Manrope;
   font-style: normal;
@@ -419,7 +421,7 @@ main .timetable .week .days .day .day_info {
   text-align: center;
   color: #1963A1;
 }
-main .timetable .week .days .day .day_info .zoom-icon {
+main .timetable > div > div > div .day_info .zoom-icon {
   position: relative;
   top: 11.7px;
   left: -9px;
@@ -427,12 +429,12 @@ main .timetable .week .days .day .day_info .zoom-icon {
   width: 70px;
   margin-right: -15px;
 }
-main .timetable .week .days .day .day_info .zoom-icon::before, main .timetable .week .days .day .day_info .zoom-icon::after {
+main .timetable > div > div > div .day_info .zoom-icon::before, main .timetable > div > div > div .day_info .zoom-icon::after {
   position: relative;
   top: -11.7px;
   left: 9px;
 }
-main .timetable .week .days .day .day_info .zoom-icon, main .timetable .week .days .day .day_info .zoom-icon::before, main .timetable .week .days .day .day_info .zoom-icon::after {
+main .timetable > div > div > div .day_info .zoom-icon, main .timetable > div > div > div .day_info .zoom-icon::before, main .timetable > div > div > div .day_info .zoom-icon::after {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -440,14 +442,14 @@ main .timetable .week .days .day .day_info .zoom-icon, main .timetable .week .da
   line-height: inherit;
   color: inherit;
 }
-main .timetable .week .days .day ul {
+main .timetable > div > div > div ul {
   margin-top: 20px;
 }
-main .timetable .week .days .day ul li {
+main .timetable > div > div > div ul li {
   position: relative;
   cursor: pointer;
 }
-main .timetable .week .days .day ul li a, main .timetable .week .days .day ul li .details, main .timetable .week .days .day ul li .details h5 {
+main .timetable > div > div > div ul li a, main .timetable > div > div > div ul li .details, main .timetable > div > div > div ul li .details h5 {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -455,18 +457,21 @@ main .timetable .week .days .day ul li a, main .timetable .week .days .day ul li
   line-height: 25px;
   color: #1963A1;
 }
-main .timetable .week .days .day ul li.vacation a, main .timetable .week .days .day ul li.vacation .details h5 {
+main .timetable > div > div > div ul li.vacation a, main .timetable > div > div > div ul li.vacation .details h5 {
   color: #20822A;
 }
-main .timetable .week .days .day ul li.cur_lesson a, main .timetable .week .days .day ul li.cur_lesson .details h5 {
+main .timetable > div > div > div ul li.cur_lesson a, main .timetable > div > div > div ul li.cur_lesson .details h5 {
   color: #FF890C;
   font-weight: 600;
 }
-main .timetable .week .days .day ul li .no_lesson {
+main .timetable > div > div > div ul li.no_lesson {
+  cursor: auto;
+}
+main .timetable > div > div > div ul li.no_lesson div {
   width: 100%;
   height: 25px;
 }
-main .timetable .week .days .day ul li .no_lesson::before {
+main .timetable > div > div > div ul li.no_lesson div::before {
   content: "";
   position: absolute;
   top: 5px;
@@ -476,7 +481,7 @@ main .timetable .week .days .day ul li .no_lesson::before {
   background-color: #C9DDF0;
   border-radius: 2px;
 }
-main .timetable .week .days .day ul li .details {
+main .timetable > div > div > div ul li .details {
   position: absolute;
   top: 0;
   left: 0;
@@ -492,16 +497,16 @@ main .timetable .week .days .day ul li .details {
   transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
   line-height: 23px;
 }
-main .timetable .week .days .day ul li .details h5 {
+main .timetable > div > div > div ul li .details h5 {
   text-align: center;
   font-weight: 600;
 }
-main .timetable .week .days .day ul li:hover .details, main .timetable .week .days .day ul li:active .details {
+main .timetable > div > div > div ul li:hover .details, main .timetable > div > div > div ul li:active .details {
   visibility: visible;
   opacity: 1;
   transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
-main .timetable .week .days .day .pending {
+main .timetable > div > div > div .pending {
   position: absolute;
   top: 0;
   left: 0;
@@ -510,7 +515,7 @@ main .timetable .week .days .day .pending {
   background-color: #aaa;
   border-radius: inherit;
 }
-main .timetable .week .days .day .pending p {
+main .timetable > div > div > div .pending p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -525,10 +530,10 @@ main .timetable .week .days .day .pending p {
   line-height: 30px;
   color: #fff;
 }
-main .timetable .week .days .day.today h4, main .timetable .week .days .day.today .day_info {
+main .timetable > div > div > div.today h4, main .timetable > div > div > div.today .day_info {
   color: #FF890C;
 }
-main .timetable .week.shown .days {
+main .timetable > div.shown > div {
   transition: 0.5s all ease-in-out, visibility 0.5s;
   opacity: 1;
   visibility: visible;
@@ -543,9 +548,7 @@ main .timetable #timetable_previous, main .timetable #timetable_next {
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   padding: 0 45px;
-  transition: 0.1s transform ease-in-out, 0s -webkit-filter ease-in-out;
-  transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
-  transition: 0.1s transform ease-in-out, 0s filter ease-in-out, 0s -webkit-filter ease-in-out;
+  transition: 0.15s transform ease-in-out;
 }
 main .timetable #timetable_previous.hidden, main .timetable #timetable_next.hidden {
   opacity: 0;

@@ -6,21 +6,21 @@ var
 	timetable_previous = document.getElementById("timetable_previous"),
 	timetable_next = document.getElementById("timetable_next"),
 
-	weeks = timetable.getElementsByClassName("week"),
+	weeks = document.querySelectorAll(".timetable > div"),
 	today_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("cur_week")[0]
 	),
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName("shown")[0]
 	),
-	days = timetable.getElementsByClassName("day"),
+	days = document.querySelectorAll(".timetable > div > div"),
 
 	// today = timetable.getElementsByClassName("today")[0],
 	// today_date = Array.prototype.slice.call(today.classList).find((value) => {
 	// 	return value != "day" && value != "today"
 	// }),
 
-	goto_today_buttons = timetable.getElementsByClassName("goto_today");
+	goto_today_buttons = timetable.getElementsByTagName("button");
 
 
 

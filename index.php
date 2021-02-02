@@ -85,7 +85,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week 14:59');
 				?>
 
-				<div class="week <?php echo $monday->format('Y-m-d') ?> <?php if ($school_week_start <= $cur_datetime && $cur_datetime < $school_week_end) echo 'shown'; ?> <?php if ($monday == $cur_monday) echo 'cur_week'; ?>">
+				<div class="<?php echo $monday->format('Y-m-d'); if ($school_week_start <= $cur_datetime && $cur_datetime < $school_week_end) echo ' shown'; if ($monday == $cur_monday) echo ' cur_week'; ?>">
 
 					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
 						<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
@@ -96,12 +96,12 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					<?php
 					if ( $today->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $today->getTimestamp()) {
 						?>
-						<div class="goto_today">Сегодня &#8594;</div>
+						<button>Сегодня &#8594;</button>
 						<?php
 					}
 					?>
 					
-					<div class="days">
+					<div>
 						<?php
 						$day_period = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
 						$weekday_index = 0;
@@ -109,7 +109,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						foreach ($day_period as $day) {
 							?>
 
-							<div class="day <?php echo $day->format('Y-m-d') ?> <?php if ($day == $today) echo 'today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<div class="<?php echo $day->format('Y-m-d'); if ($day == $today) echo ' today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 								<?php
 
@@ -181,8 +181,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													++$lesson_index;
 													?>
 
-													<li>
-														<div class="no_lesson"></div>
+													<li class="no_lesson">
+														<div></div>
 													</li>
 
 													<?php
@@ -217,9 +217,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															array_push($obj_classes, 'cur_lesson');
 														}
 
-														if (!empty($obj_classes)) {
-															echo ' class="' . implode(' ', $obj_classes) . '"';
-														}
+														if (!empty($obj_classes)) echo ' class="' . implode(' ', $obj_classes) . '"';
+
 														?>
 
 														title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
@@ -230,30 +229,12 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															<h5<?php if (!is_null($start_time) || !is_null($end_time) || $cabinet) echo ' style="margin-bottom: 7px"' ?>>
 																<?php echo handle_lesson_name($name) ?>
 															</h5>
-															<!-- Тип: <?php echo $type ?> -->
-															<!-- <br> -->
 															<?php
+															// echo 'Тип: ' . $type . '<br>';
 
-															if (!is_null($start_time)) {
-																?>
-																Начало: <?php echo $start_time->format('Y-m-d H:i') ?>
-																<br>
-																<?php
-															}
-
-															if (!is_null($end_time)) {
-																?>
-																Конец: <?php echo $end_time->format('Y-m-d H:i') ?>
-																<br>
-																<?php
-															}
-															
-															if ($cabinet) {
-																?>
-																Кабинет: <?php echo $cabinet ?>
-																<br>
-																<?php
-															}
+															if ($start_time) echo 'Начало: ' . $start_time->format('Y-m-d H:i') . '<br>';
+															if ($end_time) echo 'Конец: ' . $end_time->format('Y-m-d H:i') . '<br>';
+															if ($cabinet) echo 'Кабинет: ' . $cabinet . '<br>';
 															
 															?>
 														</div>
@@ -266,8 +247,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 												++$lesson_index;
 
-												<li>
-													<div class="no_lesson"></div>
+												<li class="no_lesson">
+													<div></div>
 												</li>
 
 												<?php

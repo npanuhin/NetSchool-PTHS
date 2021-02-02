@@ -68,7 +68,7 @@ main {
 
 		transition: 0.3s transform ease-in-out;
 
-		.week {
+		& > div {
 			position: absolute;
 			width: 100%;
 
@@ -130,7 +130,7 @@ main {
 				}
 			}
 
-			.goto_today {
+			& > button {
 				position: absolute;
 				opacity: 0;
 				top: 20px;
@@ -156,12 +156,12 @@ main {
 				transition: 0.15s opacity 0.2s ease-in-out;
 			}
 
-			&.shown .goto_today {
+			&.shown > button {
 				transition: 0.2s opacity 0s ease-in-out;
 				opacity: 1;
 			}
 
-			.days {
+			& > div {
 				margin-top: 8px;
 
 				display: grid;
@@ -186,7 +186,7 @@ main {
 				opacity: 0;
 				visibility: hidden;
 
-				.day {
+				& > div {
 					position: relative;
 					padding: 30px 32px;
 					background-color: #FFF;
@@ -274,19 +274,23 @@ main {
 								}
 							}
 
-							.no_lesson {
-								width: 100%;
-								height: 25px;
+							&.no_lesson {
+								cursor: auto;
 
-								&::before {
-									content: "";
-									position: absolute;
-									top: 5px;
-									left: 0;
+								div {
 									width: 100%;
-									height: 15px;
-									background-color: #C9DDF0;
-									border-radius: 2px;
+									height: 25px;
+
+									&::before {
+										content: "";
+										position: absolute;
+										top: 5px;
+										left: 0;
+										width: 100%;
+										height: 15px;
+										background-color: #C9DDF0;
+										border-radius: 2px;
+									}
 								}
 							}
 							
@@ -362,7 +366,7 @@ main {
 				}
 			}
 
-			&.shown .days {
+			&.shown > div {
 				transition: 0.5s all ease-in-out, visibility 0.5s;
 				opacity: 1;
 				visibility: visible;
@@ -379,7 +383,7 @@ main {
 			cursor: pointer;
 			padding: 0 45px;
 
-			transition: 0.1s transform ease-in-out, 0s filter ease-in-out;
+			transition: 0.15s transform ease-in-out;
 
 			&.hidden {
 				opacity: 0;
