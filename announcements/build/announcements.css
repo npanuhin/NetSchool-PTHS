@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Regular.eot");
@@ -14,6 +15,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Semibold.eot");
@@ -22,6 +24,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -56,26 +59,29 @@ body {
   position: absolute;
   left: calc(50vw - 570px);
 }
-@media (max-width: 1140px) {
-  .menubar {
-    left: 10px;
-  }
-}
-.menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {
+
+.menubar .menu_icon_wrapper,
+.menubar .moon_icon_wrapper {
   display: inline-block;
   cursor: pointer;
 }
-.menubar .menu-icon path, .menubar .moon-icon path {
+
+.menubar .menu-icon path,
+.menubar .moon-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .menubar .menu_icon_wrapper .menu-icon {
   padding: 8px 17px;
   width: 50px;
 }
-.menubar .menu_icon_wrapper:hover .menu-icon path, .menubar .menu_icon_wrapper.active .menu-icon path {
+
+.menubar .menu_icon_wrapper:hover .menu-icon path,
+.menubar .menu_icon_wrapper.active .menu-icon path {
   fill: #205182;
 }
+
 .menubar .moon-icon {
   width: 40px;
   padding: 10.5px 17px;
@@ -88,12 +94,10 @@ body {
   display: flex;
   align-items: center;
 }
-@media (max-width: 1200px) {
-  .statusbar {
-    right: 0;
-  }
-}
-.statusbar .name, .statusbar .last_update, .statusbar .last_update span {
+
+.statusbar .name,
+.statusbar .last_update,
+.statusbar .last_update span {
   color: #fff;
   font-family: Manrope;
   font-style: normal;
@@ -103,23 +107,22 @@ body {
   line-height: 65px;
   margin: 0 17px;
 }
+
 .statusbar .last_update span {
   margin: -5px;
 }
-@media (max-width: 850px) {
-  .statusbar .last_update {
-    display: none;
-  }
-}
+
 .statusbar .exit_icon {
   width: 50px;
   padding: 7px 17px;
   cursor: pointer;
 }
+
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .statusbar .exit_icon:hover .sign-out-icon path {
   fill: #205182;
 }
@@ -142,11 +145,13 @@ main .message_alert {
   color: #003ea8;
   transition: 0.6s opacity ease-in-out;
 }
+
 main .message_alert p {
   color: #ff0;
   display: inline-block;
   font-weight: 600;
 }
+
 main .message_alert .cross-icon {
   position: absolute;
   top: 50%;
@@ -157,17 +162,21 @@ main .message_alert .cross-icon {
   padding: 15px;
   cursor: pointer;
 }
+
 main .message_alert .cross-icon path {
   fill: #1963A1;
 }
+
 main .message_alert.hidden {
   opacity: 0;
 }
+
 main .menu {
   position: absolute;
   width: calc(100% - 200px);
   left: 100px;
 }
+
 main .menu ul {
   margin: 0 auto;
   width: 100%;
@@ -177,21 +186,7 @@ main .menu ul {
   grid-row-gap: 10px;
   grid-column-gap: 100px;
 }
-@media (max-width: 1170px) {
-  main .menu ul {
-    width: 80%;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 95px;
-  }
-}
-@media (max-width: 850px) {
-  main .menu ul {
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
-    grid-row-gap: 5px;
-  }
-}
+
 main .menu ul li a {
   font-family: Manrope;
   font-style: normal;
@@ -203,9 +198,11 @@ main .menu ul li a {
   color: #fff;
   transition: 0.1s border-color ease-in-out;
 }
+
 main .menu ul li a:hover {
   border-color: #fff;
 }
+
 main .menu::after {
   content: "";
   position: absolute;
@@ -217,6 +214,7 @@ main .menu::after {
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
+
 main .menu.shown::after {
   transform: scaleY(0);
 }
@@ -227,6 +225,7 @@ main {
   width: 1170px;
   max-width: 100%;
 }
+
 main .announcements {
   position: relative;
   margin: 0 auto;
@@ -235,6 +234,7 @@ main .announcements {
   z-index: 10;
   transition: 0.3s transform ease-in-out;
 }
+
 main .announcements .announcement {
   position: relative;
   padding: 35px 35px;
@@ -242,11 +242,13 @@ main .announcements .announcement {
   clear: both;
   overflow: hidden;
 }
+
 main .announcements .announcement .author {
   position: relative;
   float: left;
   width: 20%;
 }
+
 main .announcements .announcement .author .profile_photo {
   width: 140px;
   height: 140px;
@@ -257,6 +259,7 @@ main .announcements .announcement .author .profile_photo {
   background-size: cover;
   background-position: center center;
 }
+
 main .announcements .announcement .author .name {
   font-family: Manrope;
   font-style: normal;
@@ -269,6 +272,7 @@ main .announcements .announcement .author .name {
   color: #fff;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 }
+
 main .announcements .announcement .content {
   position: relative;
   float: right;
@@ -279,22 +283,28 @@ main .announcements .announcement .content {
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-main .announcements .announcement .content h4, main .announcements .announcement .content .date, main .announcements .announcement .content article {
+
+main .announcements .announcement .content h4,
+main .announcements .announcement .content .date,
+main .announcements .announcement .content article {
   font-family: Manrope;
   font-style: normal;
   color: #1963A1;
 }
+
 main .announcements .announcement .content h4 {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 15px;
 }
+
 main .announcements .announcement .content h4::before {
   content: "";
   float: right;
   width: 200px;
   height: 1em;
 }
+
 main .announcements .announcement .content .date {
   position: absolute;
   top: 30px;
@@ -302,18 +312,55 @@ main .announcements .announcement .content .date {
   font-weight: 500;
   font-size: 24px;
 }
+
 main .announcements .announcement .content article {
   font-weight: 500;
   font-size: 16px;
   line-height: 32px;
 }
+
 main .announcements .announcement .content article a {
   color: #FF890C;
 }
+
 main .announcements .announcement .content article a:hover {
   text-decoration: underline;
 }
+
 main .announcements .announcement .content article .school_class {
   cursor: default;
   color: #FF890C;
+}
+
+@media (max-width: 1200px) {
+  .statusbar {
+    right: 0;
+  }
+}
+
+@media (max-width: 1170px) {
+  main .menu ul {
+    width: 80%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 95px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .menubar {
+    left: 10px;
+  }
+}
+
+@media (max-width: 850px) {
+  .statusbar .last_update {
+    display: none;
+  }
+
+  main .menu ul {
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+  }
 }

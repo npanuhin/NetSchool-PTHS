@@ -30,6 +30,18 @@ main {
 			font-weight: 600;
 			font-size: 36px;
 			text-align: center;
+			margin-bottom: 10px;
+
+			color: $text-color;
+		}
+
+		& > p {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 18px;
+			text-align: center;
+			padding-top: 25px;
 
 			color: $text-color;
 		}

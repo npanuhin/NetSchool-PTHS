@@ -189,6 +189,7 @@ main {
 				& > div {
 					position: relative;
 					padding: 30px 32px;
+					min-height: 50px;
 					background-color: #FFF;
 					box-shadow: $block-shadow;
 					border-radius: 30px;

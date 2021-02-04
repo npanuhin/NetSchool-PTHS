@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Regular.eot");
@@ -14,6 +15,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Semibold.eot");
@@ -22,6 +24,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -56,26 +59,29 @@ body {
   position: absolute;
   left: calc(50vw - 570px);
 }
-@media (max-width: 1140px) {
-  .menubar {
-    left: 10px;
-  }
-}
-.menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {
+
+.menubar .menu_icon_wrapper,
+.menubar .moon_icon_wrapper {
   display: inline-block;
   cursor: pointer;
 }
-.menubar .menu-icon path, .menubar .moon-icon path {
+
+.menubar .menu-icon path,
+.menubar .moon-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .menubar .menu_icon_wrapper .menu-icon {
   padding: 8px 17px;
   width: 50px;
 }
-.menubar .menu_icon_wrapper:hover .menu-icon path, .menubar .menu_icon_wrapper.active .menu-icon path {
+
+.menubar .menu_icon_wrapper:hover .menu-icon path,
+.menubar .menu_icon_wrapper.active .menu-icon path {
   fill: #205182;
 }
+
 .menubar .moon-icon {
   width: 40px;
   padding: 10.5px 17px;
@@ -88,12 +94,10 @@ body {
   display: flex;
   align-items: center;
 }
-@media (max-width: 1200px) {
-  .statusbar {
-    right: 0;
-  }
-}
-.statusbar .name, .statusbar .last_update, .statusbar .last_update span {
+
+.statusbar .name,
+.statusbar .last_update,
+.statusbar .last_update span {
   color: #fff;
   font-family: Manrope;
   font-style: normal;
@@ -103,23 +107,22 @@ body {
   line-height: 65px;
   margin: 0 17px;
 }
+
 .statusbar .last_update span {
   margin: -5px;
 }
-@media (max-width: 850px) {
-  .statusbar .last_update {
-    display: none;
-  }
-}
+
 .statusbar .exit_icon {
   width: 50px;
   padding: 7px 17px;
   cursor: pointer;
 }
+
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .statusbar .exit_icon:hover .sign-out-icon path {
   fill: #205182;
 }
@@ -142,11 +145,13 @@ main .message_alert {
   color: #003ea8;
   transition: 0.6s opacity ease-in-out;
 }
+
 main .message_alert p {
   color: #ff0;
   display: inline-block;
   font-weight: 600;
 }
+
 main .message_alert .cross-icon {
   position: absolute;
   top: 50%;
@@ -157,17 +162,21 @@ main .message_alert .cross-icon {
   padding: 15px;
   cursor: pointer;
 }
+
 main .message_alert .cross-icon path {
   fill: #1963A1;
 }
+
 main .message_alert.hidden {
   opacity: 0;
 }
+
 main .menu {
   position: absolute;
   width: calc(100% - 200px);
   left: 100px;
 }
+
 main .menu ul {
   margin: 0 auto;
   width: 100%;
@@ -177,21 +186,7 @@ main .menu ul {
   grid-row-gap: 10px;
   grid-column-gap: 100px;
 }
-@media (max-width: 1170px) {
-  main .menu ul {
-    width: 80%;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 95px;
-  }
-}
-@media (max-width: 850px) {
-  main .menu ul {
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
-    grid-row-gap: 5px;
-  }
-}
+
 main .menu ul li a {
   font-family: Manrope;
   font-style: normal;
@@ -203,9 +198,11 @@ main .menu ul li a {
   color: #fff;
   transition: 0.1s border-color ease-in-out;
 }
+
 main .menu ul li a:hover {
   border-color: #fff;
 }
+
 main .menu::after {
   content: "";
   position: absolute;
@@ -217,6 +214,7 @@ main .menu::after {
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
+
 main .menu.shown::after {
   transform: scaleY(0);
 }
@@ -227,6 +225,7 @@ main {
   width: 1170px;
   max-width: 100%;
 }
+
 main .tasks {
   position: relative;
   top: 45px;
@@ -240,6 +239,7 @@ main .tasks {
   border-radius: 30px;
   transition: 0.3s transform ease-in-out;
 }
+
 main .tasks h2 {
   padding: 0 0 16px 0;
   text-align: center;
@@ -250,6 +250,7 @@ main .tasks h2 {
   line-height: 179.2%;
   color: #1963A1;
 }
+
 main .tasks ul {
   width: 82%;
   margin: 0 auto 17px auto;
@@ -259,14 +260,17 @@ main .tasks ul {
   font-size: 18px;
   line-height: 32px;
 }
+
 main .tasks ul li {
   color: #1963A1;
   list-style: disc;
   padding-left: 7px;
 }
+
 main .announcements {
   z-index: 10;
 }
+
 main .timetable {
   position: relative;
   z-index: 10;
@@ -274,11 +278,13 @@ main .timetable {
   width: calc(100% - 200px);
   transition: 0.3s transform ease-in-out;
 }
+
 main .timetable > div {
   position: absolute;
   width: 100%;
   pointer-events: none;
 }
+
 main .timetable > div h3 {
   font-family: Manrope;
   font-style: normal;
@@ -292,63 +298,76 @@ main .timetable > div h3 {
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
 }
+
 html.loaded main .timetable > div h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
+
 main .timetable > div.shown {
   pointer-events: auto;
 }
+
 main .timetable > div.shown h3 {
   -webkit-animation: week_header_show 0.5s ease-in-out forwards;
   animation: week_header_show 0.5s ease-in-out forwards;
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
 }
+
 html.loaded main .timetable > div.shown h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
+
 @-webkit-keyframes week_header_hide {
   0% {
     opacity: 1;
     transform: translateY(0px);
   }
+
   50%, 100% {
     opacity: 0;
     transform: translateY(10px);
   }
 }
+
 @keyframes week_header_hide {
   0% {
     opacity: 1;
     transform: translateY(0px);
   }
+
   50%, 100% {
     opacity: 0;
     transform: translateY(10px);
   }
 }
+
 @-webkit-keyframes week_header_show {
   0%, 55% {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0px);
   }
 }
+
 @keyframes week_header_show {
   0%, 55% {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0px);
   }
 }
+
 main .timetable > div > button {
   position: absolute;
   opacity: 0;
@@ -364,10 +383,12 @@ main .timetable > div > button {
   color: #fff;
   transition: 0.15s opacity 0.2s ease-in-out;
 }
+
 main .timetable > div.shown > button {
   transition: 0.2s opacity 0s ease-in-out;
   opacity: 1;
 }
+
 main .timetable > div > div {
   margin-top: 8px;
   display: grid;
@@ -379,27 +400,16 @@ main .timetable > div > div {
   opacity: 0;
   visibility: hidden;
 }
-@media (max-width: 1170px) {
-  main .timetable > div > div {
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 50px;
-  }
-}
-@media (max-width: 850px) {
-  main .timetable > div > div {
-    grid-template-rows: auto auto auto auto auto auto;
-    grid-template-columns: 1fr;
-    grid-row-gap: 40px;
-  }
-}
+
 main .timetable > div > div > div {
   position: relative;
   padding: 30px 32px;
+  min-height: 50px;
   background-color: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
+
 main .timetable > div > div > div h4 {
   text-align: center;
   font-family: Manrope;
@@ -409,6 +419,7 @@ main .timetable > div > div > div h4 {
   line-height: 33px;
   color: #1963A1;
 }
+
 main .timetable > div > div > div .day_info {
   position: relative;
   font-family: Manrope;
@@ -421,6 +432,7 @@ main .timetable > div > div > div .day_info {
   text-align: center;
   color: #1963A1;
 }
+
 main .timetable > div > div > div .day_info .zoom-icon {
   position: relative;
   top: 11.7px;
@@ -429,12 +441,17 @@ main .timetable > div > div > div .day_info .zoom-icon {
   width: 70px;
   margin-right: -15px;
 }
-main .timetable > div > div > div .day_info .zoom-icon::before, main .timetable > div > div > div .day_info .zoom-icon::after {
+
+main .timetable > div > div > div .day_info .zoom-icon::before,
+main .timetable > div > div > div .day_info .zoom-icon::after {
   position: relative;
   top: -11.7px;
   left: 9px;
 }
-main .timetable > div > div > div .day_info .zoom-icon, main .timetable > div > div > div .day_info .zoom-icon::before, main .timetable > div > div > div .day_info .zoom-icon::after {
+
+main .timetable > div > div > div .day_info .zoom-icon,
+main .timetable > div > div > div .day_info .zoom-icon::before,
+main .timetable > div > div > div .day_info .zoom-icon::after {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -442,14 +459,19 @@ main .timetable > div > div > div .day_info .zoom-icon, main .timetable > div > 
   line-height: inherit;
   color: inherit;
 }
+
 main .timetable > div > div > div ul {
   margin-top: 20px;
 }
+
 main .timetable > div > div > div ul li {
   position: relative;
   cursor: pointer;
 }
-main .timetable > div > div > div ul li a, main .timetable > div > div > div ul li .details, main .timetable > div > div > div ul li .details h5 {
+
+main .timetable > div > div > div ul li a,
+main .timetable > div > div > div ul li .details,
+main .timetable > div > div > div ul li .details h5 {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -457,20 +479,27 @@ main .timetable > div > div > div ul li a, main .timetable > div > div > div ul 
   line-height: 25px;
   color: #1963A1;
 }
-main .timetable > div > div > div ul li.vacation a, main .timetable > div > div > div ul li.vacation .details h5 {
+
+main .timetable > div > div > div ul li.vacation a,
+main .timetable > div > div > div ul li.vacation .details h5 {
   color: #20822A;
 }
-main .timetable > div > div > div ul li.cur_lesson a, main .timetable > div > div > div ul li.cur_lesson .details h5 {
+
+main .timetable > div > div > div ul li.cur_lesson a,
+main .timetable > div > div > div ul li.cur_lesson .details h5 {
   color: #FF890C;
   font-weight: 600;
 }
+
 main .timetable > div > div > div ul li.no_lesson {
   cursor: auto;
 }
+
 main .timetable > div > div > div ul li.no_lesson div {
   width: 100%;
   height: 25px;
 }
+
 main .timetable > div > div > div ul li.no_lesson div::before {
   content: "";
   position: absolute;
@@ -481,6 +510,7 @@ main .timetable > div > div > div ul li.no_lesson div::before {
   background-color: #C9DDF0;
   border-radius: 2px;
 }
+
 main .timetable > div > div > div ul li .details {
   position: absolute;
   top: 0;
@@ -497,15 +527,19 @@ main .timetable > div > div > div ul li .details {
   transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
   line-height: 23px;
 }
+
 main .timetable > div > div > div ul li .details h5 {
   text-align: center;
   font-weight: 600;
 }
-main .timetable > div > div > div ul li:hover .details, main .timetable > div > div > div ul li:active .details {
+
+main .timetable > div > div > div ul li:hover .details,
+main .timetable > div > div > div ul li:active .details {
   visibility: visible;
   opacity: 1;
   transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
+
 main .timetable > div > div > div .pending {
   position: absolute;
   top: 0;
@@ -515,6 +549,7 @@ main .timetable > div > div > div .pending {
   background-color: #aaa;
   border-radius: inherit;
 }
+
 main .timetable > div > div > div .pending p {
   position: absolute;
   top: 50%;
@@ -530,15 +565,20 @@ main .timetable > div > div > div .pending p {
   line-height: 30px;
   color: #fff;
 }
-main .timetable > div > div > div.today h4, main .timetable > div > div > div.today .day_info {
+
+main .timetable > div > div > div.today h4,
+main .timetable > div > div > div.today .day_info {
   color: #FF890C;
 }
+
 main .timetable > div.shown > div {
   transition: 0.5s all ease-in-out, visibility 0.5s;
   opacity: 1;
   visibility: visible;
 }
-main .timetable #timetable_previous, main .timetable #timetable_next {
+
+main .timetable #timetable_previous,
+main .timetable #timetable_next {
   position: absolute;
   top: calc(36px + 50%);
   transform: translateY(-50%);
@@ -550,23 +590,76 @@ main .timetable #timetable_previous, main .timetable #timetable_next {
   padding: 0 45px;
   transition: 0.15s transform ease-in-out;
 }
-main .timetable #timetable_previous.hidden, main .timetable #timetable_next.hidden {
+
+main .timetable #timetable_previous.hidden,
+main .timetable #timetable_next.hidden {
   opacity: 0;
 }
-main .timetable #timetable_previous path, main .timetable #timetable_next path {
+
+main .timetable #timetable_previous path,
+main .timetable #timetable_next path {
   fill: #fff;
 }
+
 main .timetable #timetable_previous {
   left: -130px;
 }
+
 main .timetable #timetable_previous:hover {
   padding-right: 52px;
   transform: translateX(-6px) translateY(-50%);
 }
+
 main .timetable #timetable_next {
   right: -130px;
 }
+
 main .timetable #timetable_next:hover {
   padding-left: 52px;
   transform: translateX(6px) translateY(-50%);
+}
+
+@media (max-width: 1200px) {
+  .statusbar {
+    right: 0;
+  }
+}
+
+@media (max-width: 1170px) {
+  main .menu ul {
+    width: 80%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 95px;
+  }
+
+  main .timetable > div > div {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .menubar {
+    left: 10px;
+  }
+}
+
+@media (max-width: 850px) {
+  .statusbar .last_update {
+    display: none;
+  }
+
+  main .menu ul {
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+  }
+
+  main .timetable > div > div {
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-columns: 1fr;
+    grid-row-gap: 40px;
+  }
 }

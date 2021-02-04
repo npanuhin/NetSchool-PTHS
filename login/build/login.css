@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Regular.eot");
@@ -14,6 +15,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Manrope";
   src: url("/files/fonts/Manrope/Manrope-Semibold.eot");
@@ -22,6 +24,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -56,26 +59,29 @@ body {
   position: absolute;
   left: calc(50vw - 570px);
 }
-@media (max-width: 1140px) {
-  .menubar {
-    left: 10px;
-  }
-}
-.menubar .menu_icon_wrapper, .menubar .moon_icon_wrapper {
+
+.menubar .menu_icon_wrapper,
+.menubar .moon_icon_wrapper {
   display: inline-block;
   cursor: pointer;
 }
-.menubar .menu-icon path, .menubar .moon-icon path {
+
+.menubar .menu-icon path,
+.menubar .moon-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .menubar .menu_icon_wrapper .menu-icon {
   padding: 8px 17px;
   width: 50px;
 }
-.menubar .menu_icon_wrapper:hover .menu-icon path, .menubar .menu_icon_wrapper.active .menu-icon path {
+
+.menubar .menu_icon_wrapper:hover .menu-icon path,
+.menubar .menu_icon_wrapper.active .menu-icon path {
   fill: #205182;
 }
+
 .menubar .moon-icon {
   width: 40px;
   padding: 10.5px 17px;
@@ -88,12 +94,10 @@ body {
   display: flex;
   align-items: center;
 }
-@media (max-width: 1200px) {
-  .statusbar {
-    right: 0;
-  }
-}
-.statusbar .name, .statusbar .last_update, .statusbar .last_update span {
+
+.statusbar .name,
+.statusbar .last_update,
+.statusbar .last_update span {
   color: #fff;
   font-family: Manrope;
   font-style: normal;
@@ -103,23 +107,22 @@ body {
   line-height: 65px;
   margin: 0 17px;
 }
+
 .statusbar .last_update span {
   margin: -5px;
 }
-@media (max-width: 850px) {
-  .statusbar .last_update {
-    display: none;
-  }
-}
+
 .statusbar .exit_icon {
   width: 50px;
   padding: 7px 17px;
   cursor: pointer;
 }
+
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
   transition: 0.08s fill ease-in-out;
 }
+
 .statusbar .exit_icon:hover .sign-out-icon path {
   fill: #205182;
 }
@@ -142,11 +145,13 @@ main .message_alert {
   color: #003ea8;
   transition: 0.6s opacity ease-in-out;
 }
+
 main .message_alert p {
   color: #ff0;
   display: inline-block;
   font-weight: 600;
 }
+
 main .message_alert .cross-icon {
   position: absolute;
   top: 50%;
@@ -157,17 +162,21 @@ main .message_alert .cross-icon {
   padding: 15px;
   cursor: pointer;
 }
+
 main .message_alert .cross-icon path {
   fill: #1963A1;
 }
+
 main .message_alert.hidden {
   opacity: 0;
 }
+
 main .menu {
   position: absolute;
   width: calc(100% - 200px);
   left: 100px;
 }
+
 main .menu ul {
   margin: 0 auto;
   width: 100%;
@@ -177,21 +186,7 @@ main .menu ul {
   grid-row-gap: 10px;
   grid-column-gap: 100px;
 }
-@media (max-width: 1170px) {
-  main .menu ul {
-    width: 80%;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 95px;
-  }
-}
-@media (max-width: 850px) {
-  main .menu ul {
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
-    grid-row-gap: 5px;
-  }
-}
+
 main .menu ul li a {
   font-family: Manrope;
   font-style: normal;
@@ -203,9 +198,11 @@ main .menu ul li a {
   color: #fff;
   transition: 0.1s border-color ease-in-out;
 }
+
 main .menu ul li a:hover {
   border-color: #fff;
 }
+
 main .menu::after {
   content: "";
   position: absolute;
@@ -217,6 +214,7 @@ main .menu::after {
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
+
 main .menu.shown::after {
   transform: scaleY(0);
 }
@@ -235,11 +233,7 @@ main .menu.shown::after {
   box-shadow: 10px 10px 20px #205182;
   overflow: hidden;
 }
-@media (max-width: 700px) {
-  .container {
-    padding: 30px 0;
-  }
-}
+
 .container .title {
   position: relative;
   text-align: center;
@@ -252,15 +246,12 @@ main .menu.shown::after {
   line-height: 60px;
   color: #1963A1;
 }
-@media (max-width: 700px) {
-  .container .title {
-    font-size: 30px;
-  }
-}
+
 .container #login_form {
   position: relative;
   text-align: center;
 }
+
 .container #login_form input {
   position: relative;
   width: 377px;
@@ -277,18 +268,12 @@ main .menu.shown::after {
   letter-spacing: -0.005em;
   color: #1963A1;
 }
-@media (max-width: 700px) {
-  .container #login_form input {
-    margin-top: 20px;
-    width: 200px;
-    height: 15px;
-    font-size: 15px;
-  }
-}
+
 .container #login_form input.invalid {
   color: #FF890C;
   border: 1px solid #FF890C;
 }
+
 .container #login_form input[type=submit] {
   text-align: center;
   padding: 9px 0;
@@ -310,19 +295,11 @@ main .menu.shown::after {
   cursor: pointer;
   transition: 0.2s box-shadow ease-out;
 }
-@media (max-width: 700px) {
-  .container #login_form input[type=submit] {
-    font-size: 15px;
-    line-height: 20px;
-    width: 180px;
-    max-width: calc(100% - 30px);
-    padding: 5px 0;
-    height: 35px;
-  }
-}
+
 .container #login_form input[type=submit]:hover {
   box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
 }
+
 .container .message {
   position: absolute;
   top: 0;
@@ -341,29 +318,24 @@ main .menu.shown::after {
   letter-spacing: -0.005em;
   transition: 0.5s opacity ease-in-out;
 }
-@media (max-width: 700px) {
-  .container .message {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-}
+
 .container .message.shown {
   visibility: visible;
   opacity: 1;
 }
-.container .message.shown p span:nth-child(1), .container .message.shown p span:nth-child(2), .container .message.shown p span:nth-child(3) {
+
+.container .message.shown p span:nth-child(1),
+.container .message.shown p span:nth-child(2),
+.container .message.shown p span:nth-child(3) {
   -webkit-animation-play-state: running;
   animation-play-state: running;
 }
+
 .container .message.small {
   font-size: 14px;
   line-height: 55px;
 }
-@media (max-width: 700px) {
-  .container .message.small p {
-    font-size: 15px;
-    line-height: 25px;
-  }
-}
+
 .container .message p {
   position: absolute;
   top: 50%;
@@ -374,79 +346,162 @@ main .menu.shown::after {
   font-size: 2em;
   text-align: center;
 }
-@media (max-width: 700px) {
-  .container .message p {
-    width: 95%;
-    font-size: 30px;
-  }
-}
+
 .container .message p span {
   color: #FFF;
   opacity: 0;
 }
+
 .container .message p span:nth-child(1) {
   -webkit-animation: loading_dots1 2s ease-in-out 0s infinite;
   animation: loading_dots1 2s ease-in-out 0s infinite;
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
+
 .container .message p span:nth-child(2) {
   -webkit-animation: loading_dots2 2s ease-in-out 0s infinite;
   animation: loading_dots2 2s ease-in-out 0s infinite;
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
+
 .container .message p span:nth-child(3) {
   -webkit-animation: loading_dots3 2s ease-in-out 0s infinite;
   animation: loading_dots3 2s ease-in-out 0s infinite;
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
+
 @-webkit-keyframes loading_dots1 {
   0%, 20% {
     opacity: 0;
   }
+
   35%, 85% {
     opacity: 1;
   }
 }
+
 @keyframes loading_dots1 {
   0%, 20% {
     opacity: 0;
   }
+
   35%, 85% {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes loading_dots2 {
   0%, 40% {
     opacity: 0;
   }
+
   55%, 85% {
     opacity: 1;
   }
 }
+
 @keyframes loading_dots2 {
   0%, 40% {
     opacity: 0;
   }
+
   55%, 85% {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes loading_dots3 {
   0%, 60% {
     opacity: 0;
   }
+
   75%, 85% {
     opacity: 1;
   }
 }
+
 @keyframes loading_dots3 {
   0%, 60% {
     opacity: 0;
   }
+
   75%, 85% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .statusbar {
+    right: 0;
+  }
+}
+
+@media (max-width: 1170px) {
+  main .menu ul {
+    width: 80%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 95px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .menubar {
+    left: 10px;
+  }
+}
+
+@media (max-width: 850px) {
+  .statusbar .last_update {
+    display: none;
+  }
+
+  main .menu ul {
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 30px 0;
+  }
+
+  .container .title {
+    font-size: 30px;
+  }
+
+  .container #login_form input {
+    margin-top: 20px;
+    width: 200px;
+    height: 15px;
+    font-size: 15px;
+  }
+
+  .container #login_form input[type=submit] {
+    font-size: 15px;
+    line-height: 20px;
+    width: 180px;
+    max-width: calc(100% - 30px);
+    padding: 5px 0;
+    height: 35px;
+  }
+
+  .container .message {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .container .message.small p {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .container .message p {
+    width: 95%;
+    font-size: 30px;
   }
 }
