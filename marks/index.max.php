@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="build/marks.min.css">
+	<?php include_once __DIR__ . '/../src/favicon.php' ?>
 	<title>NetSchool PTHS | Оценки</title>
 </head>
 <body>

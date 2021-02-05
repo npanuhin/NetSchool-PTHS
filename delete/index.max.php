@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<?php include_once __DIR__ . '/../src/favicon.php' ?>
 	<title>NetSchool PTHS | Удалить аккаунт</title>
 </head>
 <body>
