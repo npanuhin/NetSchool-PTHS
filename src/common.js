@@ -1,5 +1,6 @@
 var
 	html = document.getElementsByTagName("html")[0],
+	body = document.getElementsByTagName("body")[0],
 	main = document.getElementsByTagName("main")[0],
 
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
@@ -53,6 +54,7 @@ Event.add(window, "load", () => {
 
 	Event.add(logout_button, "click", () => {
 		html.classList.add("loaded");
+		body.style.cursor = "wait";
 		
 		ajax(
 			"POST",
@@ -62,11 +64,13 @@ Event.add(window, "load", () => {
 				if (req.responseText == "success") {
 					window.location = "/login/";
 				} else {
+					body.style.cursor = "";
 					alert("Error");
 					alert(req.responseText);
 				}
 			},
 			(req) => {
+				body.style.cursor = "";
 				alert("Error");
 				alert(req.responseText);
 			}
@@ -77,6 +81,7 @@ Event.add(window, "load", () => {
 		if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
 			Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
 				html.classList.add("loaded");
+				body.style.cursor = "wait";
 				
 				let message_alert_name = message_alert.id.slice(14);
 
@@ -87,6 +92,8 @@ Event.add(window, "load", () => {
 						"name": message_alert_name
 					},
 					(req) => {
+						body.style.cursor = "";
+
 						if (req.responseText == "success") {
 							message_alert.classList.add("hidden");
 							setTimeout(() => {
@@ -98,6 +105,7 @@ Event.add(window, "load", () => {
 						}
 					},
 					(req) => {
+						body.style.cursor = "";
 						alert("Error");
 						alert(req.responseText);
 					}
