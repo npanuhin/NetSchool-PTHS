@@ -1,7 +1,23 @@
 <?php
-require_once __DIR__ . '/../src/config.php'; if (!isset($_SESSION['user_id']) || !verifySession()) { logout(); redirect('/login/'); exit; } ?> <!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="build/marks.min.css"> <?php include_once __DIR__ . '/../src/favicon.php' ?> <title>NetSchool PTHS | Оценки</title></head><body> <?php require_once __DIR__ . '/../src/header.php' ?> <main> <?php
+require_once __DIR__ . '/../src/config.php'; if (!isset($_SESSION['user_id']) || !verifySession()) { logout(); redirect('/login/'); exit; } $default_mark_rate = 10; ?> <!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="build/marks.min.css"> <?php include_once __DIR__ . '/../src/favicon.php' ?> <title>NetSchool PTHS | Оценки</title></head><body> <?php require_once __DIR__ . '/../src/header.php' ?> <main> <?php
  include_once __DIR__ . '/../src/message_alerts.php'; require_once __DIR__ . '/../src/menu.php'; ?> <div class="marks"><h3>Оценки</h3> <?php
- $diary = $person['diary']; if (is_null($diary)) { ?> <p>Оценки не загружены</p> <?php
- } else { print_r($diary); ?> <table> <?php
- ?> </table> <?php
+ $diary = json_decode($person['diary'], true); if (is_null($diary)) { ?> <p>Оценки не загружены</p> <?php
+ } else { $all_days = []; $all_average_marks = []; $table = []; foreach ($diary as $day => $items) { foreach ($items as $item) { $lesson = $item[0]; $mark_rate = $item[3]; $mark = $item[4]; if (!array_key_exists($lesson, $table)) $table[$lesson] = []; if (!array_key_exists($day, $table[$lesson])) $table[$lesson][$day] = []; $table[$lesson][$day][] = [$mark, $mark_rate]; if (!in_array($day, $all_days)) $all_days[] = $day; } } sort($all_days); $all_lessons = array_keys($table); sort($all_lessons); ?> <div><ul><li></li><li></li> <?php
+ foreach ($all_lessons as $lesson) { ?> <li><?php echo short_lesson_name($lesson) ?></li> <?php
+ } ?> </ul><table><tr> <?php
+ $cur_month = null; $width = 0; foreach ($all_days as $day) { $datetime = new DateTime($day); if (is_null($cur_month)) $cur_month = $datetime->format('m'); if ($datetime->format('m') != $cur_month) { ?> <td colspan="<?php echo $width ?>"><span> <?php echo $months[(int)($cur_month - 1)] ?> </span></td> <?php
+ $cur_month = $datetime->format('m'); $width = 0; } ++$width; } if ($width != 0) { ?> <td colspan="<?php echo $width ?>"><span> <?php echo $months[(int)($cur_month - 1)] ?> </span></td> <?php
+ } ?> </tr><tr> <?php
+ foreach ($all_days as $day) { $datetime = new DateTime($day); ?> <td> <?php echo $datetime->format('d') ?> <br> <?php echo $weekdays_short[$datetime->format('w')] ?> </td> <?php
+ } ?> </tr> <?php
+ foreach ($all_lessons as $lesson) { $days = $table[$lesson]; ?> <tr> <?php
+ $filled_days = []; $average_mark = 0; $rate_summ = 0; foreach ($days as $day => $marks) { foreach ($marks as $mark_data) { $mark = $mark_data[0]; $mark_rate = $mark_data[1]; if (!is_null($mark)) { if (is_null($mark_rate)) $mark_rate = $default_mark_rate; $average_mark += $mark * $mark_rate; $rate_summ += $mark_rate; if (!in_array($day, $filled_days)) $filled_days[] = $day; } } } $all_average_marks[$lesson] = $average_mark / $rate_summ; foreach ($all_days as $day) { ?> <td <?php if (in_array($day, $filled_days)) echo ' class="filled"' ?>> <?php
+ if (in_array($day, $filled_days)) { ?> <div> <?php
+ if (array_key_exists($day, $days)) { $marks = $days[$day]; foreach ($marks as $mark_data) { $mark = $mark_data[0]; $mark_rate = $mark_data[1]; if (!is_null($mark)) { if (is_null($mark_rate)) $mark_rate = $default_mark_rate; ?> <span <?php if ($mark > $all_average_marks[$lesson]) echo ' class="high"' ?>> <?php echo $mark ?> </span> <?php
+ } } } ?> </div> <?php
+ } ?> </td> <?php
+ } ?> </tr> <?php
+ } ?> </table><ul><li></li><li></li> <?php
+ foreach ($all_average_marks as $lesson => $average_mark) { ?> <li> <?php echo round($average_mark, 2, PHP_ROUND_HALF_DOWN) ?> </li> <?php
+ } ?> </ul></div> <?php
  } ?> </div></main><script type="text/javascript" src="/src/event.js" defer="defer"></script><script type="text/javascript" src="/src/ajax.js" defer="defer"></script><script type="text/javascript" src="/src/build/common.min.js" defer="defer"></script></body></html>

@@ -13,6 +13,7 @@ $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
 // CONST:
 $weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+$weekdays_short = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 $months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 $months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
@@ -25,6 +26,10 @@ $_lesson_name_replace = [
 	'Рус.язык' => 'Русский язык',
 	'Англ.язык' => 'Английский язык',
 	'Нем.язык' => 'Немецкий язык'
+];
+
+$_short_lesson_name = [
+	'Экспериментальная физика' => 'Эксп. физика'
 ];
 
 $profile_photos = [
@@ -79,11 +84,15 @@ function handle_lesson_name($string) {
 	global $_lesson_name_regex;
 	global $_lesson_name_replace;
 
-	if (preg_match($_lesson_name_regex, $string, $matches)) {
-		$string = $matches[1];
-	}
+	if (preg_match($_lesson_name_regex, $string, $matches)) $string = $matches[1];
 
 	return $_lesson_name_replace[$string] ?? $string;
+}
+
+function short_lesson_name($lesson_name) {
+	global $_short_lesson_name;
+
+	return array_key_exists($lesson_name, $_short_lesson_name) ? $_short_lesson_name[$lesson_name] : $lesson_name;
 }
 
 function replace_school_class_regex($school_class) {

@@ -6,14 +6,14 @@ Options  -Indexes
 ServerSignature Off
 AddDefaultCharset UTF-8
 
-#=======================| Redirect |=======================
+#==========================| Redirect |==========================
 
 RewriteEngine on 
 Rewritecond %{HTTP_HOST} !^netschool.npanuhin\.me
 Rewritecond %{HTTP_HOST} !^netschool\.loc
 RewriteRule ^(.*)$ https://netschool.npanuhin.me/$1 [R=301,L]
 
-#======================| File types |======================
+#=========================| File types |=========================
 
 AddHandler application/x-httpd-php .html
 AddHandler cgi-script .pl .py .jsp .asp .htm .shtml .sh .cgi
@@ -29,7 +29,7 @@ AddType video/mp4 .mp4
 AddType video/webm .webm
 AddType application/x-shockwave-flash swf
 
-#=========================| PHP |==========================
+#============================| PHP |=============================
 
 php_value upload_max_filesize 30M
 php_value post_max_size 50M
@@ -39,7 +39,7 @@ php_value max_file_uploads 30
 php_value session.gc_maxlifetime 3153600000
 php_value session.cookie_lifetime 3153600000
 
-#============| HTTP status codes |=============
+#=====================| HTTP status codes |======================
 
 # ------------4XX------------------
 
