@@ -274,12 +274,16 @@ main .marks > div > ul li {
   line-height: 28px;
   color: #1963A1;
   white-space: nowrap;
-  padding: 6px 10px;
+  padding: 6px 12px;
   height: 28px;
 }
 
 main .marks > div > ul li:nth-child(2) {
   height: 58px;
+}
+
+main .marks > div > ul:first-child {
+  position: relative;
 }
 
 main .marks > div > ul:first-child li {
@@ -312,8 +316,7 @@ main .marks > div table tr {
   height: 30px;
 }
 
-main .marks > div table tr th,
-main .marks > div table tr td span {
+main .marks > div table tr th {
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -344,6 +347,7 @@ main .marks > div table tr:nth-child(1) td span {
   white-space: nowrap;
   background: #FFF;
   color: #1963A1;
+  padding: 0 8px;
 }
 
 main .marks > div table tr:nth-child(1) td::before {
@@ -388,9 +392,10 @@ main .marks > div table tr td span.high {
 }
 
 main .marks > div table tr td div {
+  font-size: 0;
   position: relative;
   height: 100%;
-  padding: 0 5px;
+  padding: 0 0px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -401,9 +406,26 @@ main .marks > div table tr td div span {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  padding: 7px 10px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1963A1;
+  white-space: nowrap;
+  cursor: default;
 }
 
-main .marks > div table tr td.filled div::after {
+main .marks > div table tr td div span:first-child {
+  padding-left: 17px;
+}
+
+main .marks > div table tr td div span:last-child {
+  padding-right: 17px;
+}
+
+main .marks > div table tr td.filled div::before {
   content: "";
   position: absolute;
   top: 0;
@@ -417,6 +439,45 @@ main .marks > div table tr td.filled div::after {
 main .marks > div ul li:nth-child(2n+3),
 main .marks > div table tr:nth-child(2n+3) {
   background: #C9DDF0;
+}
+
+main .marks .details,
+main .marks .details h5 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 25px;
+  color: #1963A1;
+}
+
+main .marks .details {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  background-color: #fff;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  color: #1963A1;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+  line-height: 23px;
+}
+
+main .marks .details h5 {
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+main .marks .details.shown {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
 @media (max-width: 1200px) {

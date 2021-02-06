@@ -32,6 +32,24 @@ $_short_lesson_name = [
 	'Экспериментальная физика' => 'Эксп. физика'
 ];
 
+$_task_types = [
+	'А' => 'Практическая работа',
+	'В' => 'Срезовая работа',
+	'Д' => 'Домашняя работа',
+	'К' => 'Контрольная работа',
+	'С' => 'Самостоятельная работа',
+	'Л' => 'Лабораторная работа',
+	'П' => 'Проект',
+	'Н' => 'Диктант',
+	'Р' => 'Реферат',
+	'О' => 'Ответ на уроке',
+	'Ч' => 'Сочинение',
+	'И' => 'Изложение',
+	'З' => 'Зачёт',
+	'Т' => 'Тестирование',
+	'ДЗ' => 'Домашнее задание'
+];
+
 $profile_photos = [
 	'Лось-Суницкая А. А.' => '/files/profile/Anna Anatolyevna.jpg',
 ];
@@ -91,9 +109,14 @@ function handle_lesson_name($string) {
 
 function short_lesson_name($lesson_name) {
 	global $_short_lesson_name;
-
 	return array_key_exists($lesson_name, $_short_lesson_name) ? $_short_lesson_name[$lesson_name] : $lesson_name;
 }
+
+function handle_task_type($task_type) {
+	global $_task_types;
+	return array_key_exists($task_type, $_task_types) ? $_task_types[$task_type] : $task_type;
+}
+
 
 function replace_school_class_regex($school_class) {
 	global $_replace_class;

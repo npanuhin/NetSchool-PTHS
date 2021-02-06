@@ -64,7 +64,7 @@ main {
 
 				white-space: nowrap;
 
-				padding: 6px 10px;
+				padding: 6px 12px;
 				height: 28px;
 
 				&:nth-child(2) {
@@ -73,10 +73,16 @@ main {
 			}
 
 			& > ul:first-child {
+				position: relative;
+
 				li {
 					padding-right: 20px;
 					border-bottom-left-radius: 8px;
 					border-top-left-radius: 8px;
+				}
+
+				&.shadow {
+					// TODO
 				}
 			}
 			& > ul:last-child {
@@ -88,6 +94,10 @@ main {
 					padding-left: 15px;
 					border-bottom-right-radius: 8px;
 					border-top-right-radius: 8px;
+				}
+
+				&.shadow {
+					// TODO
 				}
 			}
 
@@ -103,7 +113,7 @@ main {
 				tr {
 					height: 30px;
 
-					th, td span {
+					th {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: 500;
@@ -138,6 +148,8 @@ main {
 
 								background: $block-color;
 								color: $text-color;
+
+								padding: 0 8px;
 							}
 							
 							&::before {
@@ -188,11 +200,12 @@ main {
 						}
 
 						div {
+							font-size: 0;
 							position: relative;
 							// width: 62%;
 							height: 100%;
 
-							padding: 0 5px;
+							padding: 0 0px;
 
 							left: 50%;
 							transform: translateX(-50%);
@@ -203,10 +216,30 @@ main {
 								position: relative;
 								top: 50%;
 								transform: translateY(-50%);
+								padding: 7px 10px;
+
+								font-family: Manrope;
+								font-style: normal;
+								font-weight: 500;
+								font-size: 20px;
+								line-height: 28px;
+
+								color: $text-color;
+
+								white-space: nowrap;
+								cursor: default;
+
+								&:first-child {
+									padding-left: 17px;
+								}
+
+								&:last-child {
+									padding-right: 17px;
+								}
 							}
 						}
 
-						&.filled div::after {
+						&.filled div::before {
 							content: "";
 							position: absolute;
 							top: 0;
@@ -222,6 +255,47 @@ main {
 
 			ul li:nth-child(2n + 3), table tr:nth-child(2n + 3) {
 				background: #C9DDF0;
+			}
+		}
+
+		.details, .details h5 {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 15px;
+			line-height: 25px;
+			color: $text-color;
+		}
+
+		.details {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: 15px 20px;
+			border-radius: 20px;
+			white-space: nowrap;
+			background-color: #fff;
+			box-shadow: $block-shadow;
+			color: $text-color;
+
+			visibility: hidden;
+			opacity: 0;
+			transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+
+			line-height: 23px;
+
+			h5 {
+				text-align: center;
+				width: 100%;
+				
+				font-weight: 600;
+			}
+
+			&.shown {
+				visibility: visible;
+				opacity: 1;
+				transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 			}
 		}
 	}

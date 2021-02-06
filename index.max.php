@@ -227,17 +227,22 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															<h5<?php if (!is_null($start_time) || !is_null($end_time) || $cabinet) echo ' style="margin-bottom: 7px"' ?>>
 																<?php echo handle_lesson_name($name) ?>
 															</h5>
-															<?php
-															// echo 'Тип: ' . $type . '<br>';
 
-															if ($start_time) echo 'Начало: ' . $start_time->format('Y-m-d H:i') . '<br>';
-															if ($end_time) echo 'Конец: ' . $end_time->format('Y-m-d H:i') . '<br>';
-															if ($cabinet) echo 'Кабинет: ' . $cabinet . '<br>';
-															
+															<?php
+
+															$details = [];
+
+															// if ($start_time) $details[] = 'Тип: ' . $type;
+															if ($start_time) $details[] = 'Начало: ' . $start_time->format('Y-m-d H:i');
+															if ($end_time) $details[] = 'Конец: ' . $end_time->format('Y-m-d H:i');
+															if ($cabinet) $details[] = 'Кабинет: ' . $cabinet;
+
+															echo implode('<br>', $details);
+
 															?>
 														</div>
 													</li>
-													
+
 													<?php
 												}
 											} else {
