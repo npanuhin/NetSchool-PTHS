@@ -48,14 +48,14 @@ $default_mark_rate = 10;
 				$all_days = [];
 				$all_average_marks = [];
 				$table = [];
-				foreach ($diary as $day => $items) {
-					foreach ($items as $item) {
-						$lesson = $item[0];
-						$task_type = $item[1];
-						$task = $item[2];
-						$mark_rate = $item[3];
-						$mark = $item[4];
-						$task_expired = $item[5];
+				foreach ($diary as $day => $tasks) {
+					foreach ($tasks as $task_data) {
+						$lesson = $task_data[0];
+						$task_type = $task_data[1];
+						$task = $task_data[2];
+						$mark_rate = $task_data[3];
+						$mark = $task_data[4];
+						$task_expired = $task_data[5];
 
 						if (!array_key_exists($lesson, $table)) $table[$lesson] = [];
 						if (!array_key_exists($day, $table[$lesson])) $table[$lesson][$day] = [];
@@ -185,9 +185,13 @@ $default_mark_rate = 10;
 											<div>
 												<?php
 												if (array_key_exists($day, $days)) {
-													$marks = $days[$day];
+													$tasks = $days[$day];
 
-													foreach ($marks as $task_data) {
+													$task_index = 0;
+
+													for ($task_index = 0; $task_index < count($tasks); ++$task_index) {
+														$task_data = $tasks[$task_index];
+
 														$mark = $task_data[0];
 														$mark_rate = $task_data[1];
 														$task = $task_data[2];
@@ -212,8 +216,11 @@ $default_mark_rate = 10;
 																if ($task) echo ' data-name="' . $task . '"';
 																if ($task_type) echo ' data-tasktype="' . handle_task_type($task_type) . '"';
 																if ($mark_rate) echo ' data-mark_rate="' . $mark_rate . '"';
+																if ($task_expired) echo ' data-task_expired';
 
 																?>
+
+																id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
 															>
 																<?php echo $mark ?>
 															</span>

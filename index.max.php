@@ -34,23 +34,80 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		include_once __DIR__ . '/src/message_alerts.php';
 		require_once __DIR__ . '/src/menu.php';
-		?>
 
-		<div class="tasks <?php if (!$has_announcements || true) echo 'wide' ?>">
-			<h2>Задания</h2>
-			<ul>
-				<li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maxime sapiente eos ex fugit odit omnis blanditiis totam, pariatur voluptatem vero animi quam provident ullam sunt, architecto explicabo inventore, veritatis.</li>
-				<!-- <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates odio nihil optio aut alias voluptatum sequi libero magnam quia cupiditate. Velit alias illo, enim sed eos laboriosam quas perferendis natus?</li>
-				<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est natus unde illo aliquam nam. Officia libero nemo ducimus, rerum officiis quisquam, eaque aut delectus. Suscipit repudiandae iste, at. Ex, explicabo?</li> -->
-			</ul>
-		</div>
+		$diary = json_decode($person['diary'], true);
 
-		<?php
-		if ($has_announcements) {
+		// Global datetime:
+		$today = new DateTime('today');
+		$tomorrow = new DateTime('tomorrow');
+		$cur_datetime = new DateTime('now');
+
+		if (!is_null($diary)) {
+			?>
+
+			<div class="tasks <?php if (true || !$has_announcements) echo 'wide' ?>">
+				<h2>Задания</h2>
+				<ul>
+					<?php
+
+					foreach ($diary as $day => $tasks) {
+
+						$lessons_task_index = [];
+						foreach ($tasks as $task_data) {
+							$lesson = $task_data[0];
+							$task_type = $task_data[1];
+							$task = $task_data[2];
+							$mark_rate = $task_data[3];
+							$mark = $task_data[4];
+							$task_expired = $task_data[5];
+
+							if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
+
+							$task_index = $lessons_task_index[$lesson]++;
+
+							if ($task_expired) {
+								?>
+								<li class="expired" title="Задание просрочено">
+									<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+								</li>
+								<?php
+							}
+						}
+					}
+
+					$tasks = $diary[$tomorrow->format('Y-m-d')];
+
+					$lessons_task_index = [];
+					foreach ($tasks as $task_data) {
+						$lesson = $task_data[0];
+						$task_type = $task_data[1];
+						$task = $task_data[2];
+						$mark_rate = $task_data[3];
+						$mark = $task_data[4];
+						$task_expired = $task_data[5];
+
+						if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
+
+						$task_index = $lessons_task_index[$lesson]++;
+
+						?>
+						<li>
+							<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+						</li>
+						<?php
+					}
+
+					?>
+				</ul>
+			</div>
+
+			<?php
+		}
+
+		if (false && $has_announcements) {
 			?>
 			<div class="announcements">
 				<?php // include_once __DIR__ . "/files/icons/cross.svg" ?>
-				<div class="title"></div>
 			</div>
 			<?php
 		}
@@ -64,11 +121,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<?php
 			$timetable = json_decode($person['timetable'], true);
-
-			$today = new DateTime('today');
-			$tomorrow = new DateTime('tomorrow');
-			
-			$cur_datetime = new DateTime('now');
 
 			// echo $today->format('Y');
 			$cur_monday = new DateTime('monday this week');

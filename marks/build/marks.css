@@ -235,7 +235,7 @@ main .marks {
   margin: 0 auto;
   z-index: 10;
   background: #FFF;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   transition: 0.3s transform ease-in-out;
 }
@@ -391,7 +391,6 @@ main .marks > div table tr td div {
   font-size: 0;
   position: relative;
   height: 100%;
-  padding: 0 0px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -434,10 +433,11 @@ main .marks > div table tr td div span.expired {
 main .marks > div table tr td.filled div::before {
   content: "";
   position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  width: calc(100% - 1px);
-  height: calc(100% - 1px);
   border: 1px solid #1963A1;
   border-radius: 2px;
 }
@@ -445,6 +445,11 @@ main .marks > div table tr td.filled div::before {
 main .marks > div table tr td.expired div::before {
   border-color: #f00;
   background-color: rgba(255, 0, 0, 0.1);
+}
+
+main .marks > div table tr td.selected div::before {
+  border-width: 2px;
+  border-color: #FF890C;
 }
 
 main .marks > div ul li:nth-child(2n+3),
@@ -471,7 +476,7 @@ main .marks .details {
   border-radius: 20px;
   white-space: nowrap;
   background-color: #fff;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   color: #1963A1;
   visibility: hidden;
   opacity: 0;
@@ -489,6 +494,14 @@ main .marks .details.shown {
   visibility: visible;
   opacity: 1;
   transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+}
+
+main .marks .details.expired {
+  box-shadow: 5px 5px 10px 5px rgba(255, 0, 0, 0.1);
+}
+
+main .marks .details.expired h5 {
+  color: #f00;
 }
 
 @media (max-width: 1200px) {

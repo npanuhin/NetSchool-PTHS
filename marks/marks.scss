@@ -1,5 +1,7 @@
 @import '../src/styles/main';
 
+$block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+$block-red-shadow: 5px 5px 10px 5px rgba(255, 0, 0, 0.1);
 $mark-expired-color: rgba(255, 0, 0, 0.1);
 
 main {
@@ -203,7 +205,7 @@ main {
 							// width: 62%;
 							height: 100%;
 
-							padding: 0 0px;
+							// padding: 0 0px;
 
 							left: 50%;
 							transform: translateX(-50%);
@@ -251,10 +253,11 @@ main {
 						&.filled div::before {
 							content: "";
 							position: absolute;
+							box-sizing: border-box;
+							width: 100%;
+							height: 100%;
 							top: 0;
 							left: 0;
-							width: calc(100% - 1px);
-							height: calc(100% - 1px);
 							border: 1px solid $text-color;
 							border-radius: 2px;
 						}
@@ -262,6 +265,12 @@ main {
 						&.expired div::before {
 							border-color: #f00;
 							background-color: $mark-expired-color;
+						}
+
+						&.selected div::before {
+							border-width: 2px;
+							border-color: $orange-color;
+							// background-color: rgba(255, 137, 12, 0.1);
 						}
 					}
 				}
@@ -306,10 +315,26 @@ main {
 				font-weight: 600;
 			}
 
+			// h6 {
+			// 	text-align: center;
+			// 	width: 100%;
+			// 	font-size: 12px;
+				
+			// 	font-weight: 600;
+			// }
+
 			&.shown {
 				visibility: visible;
 				opacity: 1;
 				transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+			}
+
+			&.expired {
+				box-shadow: $block-red-shadow;
+
+				h5 {
+					color: #f00;
+				}
 			}
 		}
 	}
