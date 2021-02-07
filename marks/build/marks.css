@@ -387,7 +387,7 @@ main .marks > div table tr td {
   padding: 0 6px;
 }
 
-main .marks > div table tr td div {
+main .marks > div table tr td > div {
   font-size: 0;
   position: relative;
   height: 100%;
@@ -396,7 +396,7 @@ main .marks > div table tr td div {
   text-align: center;
 }
 
-main .marks > div table tr td div span {
+main .marks > div table tr td > div span {
   display: inline-block;
   position: relative;
   top: 50%;
@@ -411,26 +411,26 @@ main .marks > div table tr td div span {
   line-height: 28px;
   color: #1963A1;
   white-space: nowrap;
-  cursor: default;
+  cursor: pointer;
 }
 
-main .marks > div table tr td div span:first-child {
+main .marks > div table tr td > div span:first-child {
   padding-left: 17px;
 }
 
-main .marks > div table tr td div span:last-child {
+main .marks > div table tr td > div span:last-child {
   padding-right: 17px;
 }
 
-main .marks > div table tr td div span.high {
+main .marks > div table tr td > div span.high {
   color: #FF890C;
 }
 
-main .marks > div table tr td div span.expired {
+main .marks > div table tr td > div span.expired {
   color: #f00;
 }
 
-main .marks > div table tr td.filled div::before {
+main .marks > div table tr td.filled > div::before {
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -442,12 +442,12 @@ main .marks > div table tr td.filled div::before {
   border-radius: 2px;
 }
 
-main .marks > div table tr td.expired div::before {
+main .marks > div table tr td.expired > div::before {
   border-color: #f00;
   background-color: rgba(255, 0, 0, 0.1);
 }
 
-main .marks > div table tr td.selected div::before {
+main .marks > div table tr td.selected > div::before {
   border-width: 2px;
   border-color: #FF890C;
 }
@@ -458,7 +458,8 @@ main .marks > div table tr:nth-child(2n+3) {
 }
 
 main .marks .details,
-main .marks .details h5 {
+main .marks .details h5,
+main .marks .details p {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -474,7 +475,8 @@ main .marks .details {
   left: 0;
   padding: 15px 20px;
   border-radius: 20px;
-  white-space: nowrap;
+  max-width: 100vw;
+  max-height: 100vw;
   background-color: #fff;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   color: #1963A1;
@@ -488,6 +490,15 @@ main .marks .details h5 {
   text-align: center;
   width: 100%;
   font-weight: 600;
+}
+
+main .marks .details p {
+  width: 100%;
+  text-align: center;
+}
+
+main .marks .details p a {
+  color: #FF890C;
 }
 
 main .marks .details.shown {

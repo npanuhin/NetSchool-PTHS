@@ -66,6 +66,13 @@ $_replace_class = [
 	'/[ВвB]/u' => '[ВвB]'
 ];
 
+$disabled_task_data_keys = [
+	'Дата урока',
+	'Срок сдачи',
+	'Домашнее задание',
+	'Тема задания'
+];
+
 
 // UTILS:
 function redirect($url='/') {

@@ -50,17 +50,19 @@ $default_mark_rate = 10;
 				$table = [];
 				foreach ($diary as $day => $tasks) {
 					foreach ($tasks as $task_data) {
-						$lesson = $task_data[0];
-						$task_type = $task_data[1];
-						$task = $task_data[2];
+						$lesson = trim($task_data[0]);
+						$task_type = trim($task_data[1]);
+						$task = trim($task_data[2]);
 						$mark_rate = $task_data[3];
 						$mark = $task_data[4];
 						$task_expired = $task_data[5];
+						$lesson_ext = trim($task_data[6][0]);
+						$task_data_ext = $task_data[6][1];
 
 						if (!array_key_exists($lesson, $table)) $table[$lesson] = [];
 						if (!array_key_exists($day, $table[$lesson])) $table[$lesson][$day] = [];
 
-						$table[$lesson][$day][] = [$mark, $mark_rate, $task, $task_type, $task_expired];
+						$table[$lesson][$day][] = [$mark, $mark_rate, $task, $task_type, $task_expired, $lesson_ext, $task_data_ext];
 
 						if (!in_array($day, $all_days)) $all_days[] = $day;
 					}
@@ -197,6 +199,8 @@ $default_mark_rate = 10;
 														$task = $task_data[2];
 														$task_type = $task_data[3];
 														$task_expired = $task_data[4];
+														$task_lesson_ext = $task_data[5];
+														$task_data_ext = $task_data[6];
 
 														if (!is_null($mark) || $task_expired) {
 															if (is_null($mark)) $mark = $default_mark;
@@ -214,9 +218,21 @@ $default_mark_rate = 10;
 																if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
 
 																if ($task) echo ' data-name="' . $task . '"';
+																// if ($task_lesson_ext) echo ' data-task="' . $task_lesson_ext . '"';
 																if ($task_type) echo ' data-tasktype="' . handle_task_type($task_type) . '"';
 																if ($mark_rate) echo ' data-mark_rate="' . $mark_rate . '"';
 																if ($task_expired) echo ' data-task_expired';
+
+																$ext_data_index = 0;
+																foreach ($task_data_ext as $key => $value) {
+																	if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
+																		echo ' data-extdata_key' . $ext_data_index . '="' . nl2br($key) . '"';
+																		echo ' data-extdata_value' . $ext_data_index . '="' . nl2br($value) . '"';
+																		++$ext_data_index;
+																	}
+																}
+
+
 
 																?>
 
