@@ -430,6 +430,10 @@ main .marks > div table tr td > div span.expired {
   color: #f00;
 }
 
+main .marks > div table tr td > div span div {
+  display: none;
+}
+
 main .marks > div table tr td.filled > div::before {
   content: "";
   position: absolute;

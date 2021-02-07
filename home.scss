@@ -275,7 +275,7 @@ main {
 							position: relative;
 							cursor: pointer;
 
-							a, .details, .details h5 {
+							a, & > div, & > div h5 {
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: normal;
@@ -285,13 +285,13 @@ main {
 							}
 
 							&.vacation {
-								a, .details h5 {
+								a, & > div h5 {
 									color: $vacation-color;
 								}
 							}
 
 							&.cur_lesson {
-								a, .details h5 {
+								a, & > div h5 {
 									color: $orange-color;
 									font-weight: 600;
 								}
@@ -299,25 +299,21 @@ main {
 
 							&.no_lesson {
 								cursor: auto;
+								height: 25px;
 
-								div {
+								&::before {
+									content: "";
+									position: absolute;
+									top: 5px;
+									left: 0;
 									width: 100%;
-									height: 25px;
-
-									&::before {
-										content: "";
-										position: absolute;
-										top: 5px;
-										left: 0;
-										width: 100%;
-										height: 15px;
-										background-color: #C9DDF0;
-										border-radius: 2px;
-									}
+									height: 15px;
+									background-color: #C9DDF0;
+									border-radius: 2px;
 								}
 							}
 							
-							.details {
+							& > div {
 								position: absolute;
 								top: 0;
 								left: 0;
@@ -343,7 +339,7 @@ main {
 							}
 
 							&:hover, &:active {
-								.details {
+								& > div {
 									visibility: visible;
 									opacity: 1;
 									transition: 0.1s opacity ease-in-out, 0s visibility 0s;

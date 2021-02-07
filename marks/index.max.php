@@ -226,19 +226,47 @@ $default_mark_rate = 10;
 																$ext_data_index = 0;
 																foreach ($task_data_ext as $key => $value) {
 																	if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
-																		echo ' data-extdata_key' . $ext_data_index . '="' . nl2br($key) . '"';
-																		echo ' data-extdata_value' . $ext_data_index . '="' . nl2br($value) . '"';
+																		// echo ' data-extdata_key' . $ext_data_index . '="' . $key . '"';
+																		// echo ' data-extdata_value' . $ext_data_index . '="' . $value . '"';
 																		++$ext_data_index;
 																	}
 																}
-
-
 
 																?>
 
 																id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
 															>
+
 																<?php echo $mark ?>
+
+																<div>
+																	<?php
+
+																	if ($task) {
+																		?>
+
+																		<h5><?php echo $task ?></h5>
+
+																		<?php
+																	}
+
+																	$task_data = [];
+
+																	if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
+																	if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
+
+																	$ext_task_data = '';
+																	foreach ($task_data_ext as $key => $value) {
+																		if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
+																			$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
+																		}
+																	}
+
+																	if ($ext_task_data) $task_data[] = $ext_task_data;
+
+																	echo implode('<br>', $task_data);
+																	?>
+																</div>
 															</span>
 															
 															<?php

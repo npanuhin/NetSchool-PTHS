@@ -231,9 +231,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													++$lesson_index;
 													?>
 
-													<li class="no_lesson">
-														<div></div>
-													</li>
+													<li class="no_lesson"></li>
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
@@ -275,7 +273,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													>
 
 														<a><?php echo handle_lesson_name($name) ?></a>
-														<div class="details">
+														<div>
 															<h5<?php if (!is_null($start_time) || !is_null($end_time) || $cabinet) echo ' style="margin-bottom: 7px"' ?>>
 																<?php echo handle_lesson_name($name) ?>
 															</h5>
@@ -298,13 +296,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													<?php
 												}
 											} else {
+												++$lesson_index;
 												?>
 
-												++$lesson_index;
-
-												<li class="no_lesson">
-													<div></div>
-												</li>
+												<li class="no_lesson"></li>
 
 												<?php
 											}

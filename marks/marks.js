@@ -23,39 +23,10 @@ var
 function show_details(task_element) {
 	if (details_lock) return;
 
-	let
-		name = task_element.dataset.name,
-		task = task_element.dataset.task,
-		tasktype = task_element.dataset.tasktype,
-		mark_rate = task_element.dataset.mark_rate,
-		task_expired = task_element.dataset.task_expired,
-		details = [];
-
 	// task_element.append(details_block);
 
-	details_block.innerHTML = "";
-
-	if (name) details_block.innerHTML += "<h5>" + name + "</h5>";
-	// if (task_expired !== undefined) details_block.innerHTML += "<h6>Задание просрочено</h6>";
-
-	// if (task) details.push(task);
-	if (tasktype) details.push("Тип: " + tasktype);
-	if (mark_rate) details.push("Вес: " + mark_rate);
-
-	details_block.innerHTML += details.join('<br>');
-
-	for (let i = 0; ; ++i) {
-		let key = task_element.getAttribute('data-extdata_key' + i),
-			value = task_element.getAttribute('data-extdata_value' + i);
-
-		if (!key || !value) break;
-
-		if (i == 0) details_block.innerHTML += "<br>";
-
-		details_block.innerHTML += key + ":<br><p>" + value + "</p>";
-	}
-
-	details_block.classList.toggle("expired", task_expired !== undefined)
+	details_block.innerHTML = task_element.getElementsByTagName("div")[0].innerHTML;
+	details_block.classList.toggle("expired", task_element.classList.contains("expired"));
 	details_block.classList.add("shown");
 
 	details_lock = false;

@@ -101,7 +101,7 @@ Event.add(window, "load", () => {
 
 	for (let day of days) {
 		for (let item of day.getElementsByTagName("li")) {
-			let details = item.getElementsByClassName("details")[0];
+			let details = item.getElementsByTagName("div")[0];
 
 			if (details !== undefined) {
 				Event.add(item, "mousemove", (e) => {

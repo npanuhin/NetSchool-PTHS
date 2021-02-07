@@ -247,6 +247,10 @@ main {
 								&.expired {
 									color: #f00;
 								}
+
+								div {
+									display: none;
+								}
 							}
 						}
 

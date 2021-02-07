@@ -491,8 +491,8 @@ main .timetable > div > div > div ul li {
 }
 
 main .timetable > div > div > div ul li a,
-main .timetable > div > div > div ul li .details,
-main .timetable > div > div > div ul li .details h5 {
+main .timetable > div > div > div ul li > div,
+main .timetable > div > div > div ul li > div h5 {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -502,26 +502,22 @@ main .timetable > div > div > div ul li .details h5 {
 }
 
 main .timetable > div > div > div ul li.vacation a,
-main .timetable > div > div > div ul li.vacation .details h5 {
+main .timetable > div > div > div ul li.vacation > div h5 {
   color: #20822A;
 }
 
 main .timetable > div > div > div ul li.cur_lesson a,
-main .timetable > div > div > div ul li.cur_lesson .details h5 {
+main .timetable > div > div > div ul li.cur_lesson > div h5 {
   color: #FF890C;
   font-weight: 600;
 }
 
 main .timetable > div > div > div ul li.no_lesson {
   cursor: auto;
-}
-
-main .timetable > div > div > div ul li.no_lesson div {
-  width: 100%;
   height: 25px;
 }
 
-main .timetable > div > div > div ul li.no_lesson div::before {
+main .timetable > div > div > div ul li.no_lesson::before {
   content: "";
   position: absolute;
   top: 5px;
@@ -532,7 +528,7 @@ main .timetable > div > div > div ul li.no_lesson div::before {
   border-radius: 2px;
 }
 
-main .timetable > div > div > div ul li .details {
+main .timetable > div > div > div ul li > div {
   position: absolute;
   top: 0;
   left: 0;
@@ -549,13 +545,13 @@ main .timetable > div > div > div ul li .details {
   line-height: 23px;
 }
 
-main .timetable > div > div > div ul li .details h5 {
+main .timetable > div > div > div ul li > div h5 {
   text-align: center;
   font-weight: 600;
 }
 
-main .timetable > div > div > div ul li:hover .details,
-main .timetable > div > div > div ul li:active .details {
+main .timetable > div > div > div ul li:hover > div,
+main .timetable > div > div > div ul li:active > div {
   visibility: visible;
   opacity: 1;
   transition: 0.1s opacity ease-in-out, 0s visibility 0s;
