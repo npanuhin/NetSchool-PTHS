@@ -1,5 +1,7 @@
 @import '../src/styles/main';
 
+$mark-expired-color: rgba(255, 0, 0, 0.1);
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -195,10 +197,6 @@ main {
 
 						padding: 0 6px;
 
-						span.high {
-							color: $orange-color;
-						}
-
 						div {
 							font-size: 0;
 							position: relative;
@@ -216,7 +214,10 @@ main {
 								position: relative;
 								top: 50%;
 								transform: translateY(-50%);
-								padding: 7px 10px;
+								padding: 6px 10px;
+								height: 100%;
+								// height: 100%;
+								box-sizing: border-box;
 
 								font-family: Manrope;
 								font-style: normal;
@@ -236,6 +237,14 @@ main {
 								&:last-child {
 									padding-right: 17px;
 								}
+
+								&.high {
+									color: $orange-color;
+								}
+
+								&.expired {
+									color: #f00;
+								}
 							}
 						}
 
@@ -248,6 +257,11 @@ main {
 							height: calc(100% - 1px);
 							border: 1px solid $text-color;
 							border-radius: 2px;
+						}
+
+						&.expired div::before {
+							border-color: #f00;
+							background-color: $mark-expired-color;
 						}
 					}
 				}

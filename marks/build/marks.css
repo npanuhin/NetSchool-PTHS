@@ -387,10 +387,6 @@ main .marks > div table tr td {
   padding: 0 6px;
 }
 
-main .marks > div table tr td span.high {
-  color: #FF890C;
-}
-
 main .marks > div table tr td div {
   font-size: 0;
   position: relative;
@@ -406,7 +402,9 @@ main .marks > div table tr td div span {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  padding: 7px 10px;
+  padding: 6px 10px;
+  height: 100%;
+  box-sizing: border-box;
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -425,6 +423,14 @@ main .marks > div table tr td div span:last-child {
   padding-right: 17px;
 }
 
+main .marks > div table tr td div span.high {
+  color: #FF890C;
+}
+
+main .marks > div table tr td div span.expired {
+  color: #f00;
+}
+
 main .marks > div table tr td.filled div::before {
   content: "";
   position: absolute;
@@ -434,6 +440,11 @@ main .marks > div table tr td.filled div::before {
   height: calc(100% - 1px);
   border: 1px solid #1963A1;
   border-radius: 2px;
+}
+
+main .marks > div table tr td.expired div::before {
+  border-color: #f00;
+  background-color: rgba(255, 0, 0, 0.1);
 }
 
 main .marks > div ul li:nth-child(2n+3),

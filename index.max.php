@@ -202,9 +202,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 													<li
 														<?php
-														$obj_classes = array();
+														$classes = array();
 														if ($type == 'vacation') {
-															array_push($obj_classes, 'vacation');
+															$classes[] = 'vacation';
 														}
 
 														if (
@@ -212,10 +212,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															$start_time->getTimestamp() <= $cur_time->getTimestamp() &&
 															$cur_time->getTimestamp() <= $end_time->getTimestamp()
 														) {
-															array_push($obj_classes, 'cur_lesson');
+															$classes[] = 'cur_lesson';
 														}
 
-														if (!empty($obj_classes)) echo ' class="' . implode(' ', $obj_classes) . '"';
+														if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
 
 														?>
 

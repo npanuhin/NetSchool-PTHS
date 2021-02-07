@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	exit;
 }
 
+$default_mark = 1;
 $default_mark_rate = 10;
 ?>
 
@@ -54,18 +55,19 @@ $default_mark_rate = 10;
 						$task = $item[2];
 						$mark_rate = $item[3];
 						$mark = $item[4];
+						$task_expired = $item[5];
 
 						if (!array_key_exists($lesson, $table)) $table[$lesson] = [];
 						if (!array_key_exists($day, $table[$lesson])) $table[$lesson][$day] = [];
 
-						$table[$lesson][$day][] = [$mark, $mark_rate, $task, $task_type];
+						$table[$lesson][$day][] = [$mark, $mark_rate, $task, $task_type, $task_expired];
 
 						if (!in_array($day, $all_days)) $all_days[] = $day;
 					}
 				}
+				$all_lessons = array_keys($table);
 
 				sort($all_days);
-				$all_lessons = array_keys($table);
 				sort($all_lessons);
 				?>
 
@@ -145,21 +147,23 @@ $default_mark_rate = 10;
 							<tr>
 
 								<?php
-								$filled_days = [];
+								$filled_days_expired = [];
 								$average_mark = 0;
 								$rate_summ = 0;
 								foreach ($days as $day => $marks) {
 									foreach ($marks as $mark_data) {
 										$mark = $mark_data[0];
 										$mark_rate = $mark_data[1];
+										$task_expired = $mark_data[4];
 
-										if (!is_null($mark)) {
+										if (!is_null($mark) || $task_expired) {
+											if (is_null($mark)) $mark = $default_mark;
 											if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 											
 											$average_mark += $mark * $mark_rate;
 											$rate_summ += $mark_rate;
 
-											if (!in_array($day, $filled_days)) $filled_days[] = $day;
+											$filled_days_expired[$day] = ($filled_days_expired[$day] | $task_expired);
 										}
 									}
 								}
@@ -167,35 +171,44 @@ $default_mark_rate = 10;
 
 								$empty_width = 0;
 								foreach ($all_days as $day) {
-									if (in_array($day, $filled_days)) {
+									if (array_key_exists($day, $filled_days_expired)) {
+
 										if ($empty_width) {
 											?>
 											<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
 											<?php
 										}
+
 										?>
 
-										<td class="filled">
+										<td class="filled<?php if ($filled_days_expired[$day]) echo ' expired' ?>">
 											<div>
 												<?php
 												if (array_key_exists($day, $days)) {
 													$marks = $days[$day];
 
-													foreach ($marks as $mark_data) {
-														$mark = $mark_data[0];
-														$mark_rate = $mark_data[1];
-														$task = $mark_data[2];
-														$task_type = $mark_data[3];
+													foreach ($marks as $task_data) {
+														$mark = $task_data[0];
+														$mark_rate = $task_data[1];
+														$task = $task_data[2];
+														$task_type = $task_data[3];
+														$task_expired = $task_data[4];
 
-
-														if (!is_null($mark)) {
+														if (!is_null($mark) || $task_expired) {
+															if (is_null($mark)) $mark = $default_mark;
 															if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 															?>
 															
 															<span
 																<?php
 
-																if ($mark > $all_average_marks[$lesson]) echo ' class="high"';
+																$classes = [];
+
+																if ($mark > $all_average_marks[$lesson]) $classes[] = 'high';
+																if ($task_expired) $classes[] = 'expired';
+
+																if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
+
 																if ($task) echo ' data-name="' . $task . '"';
 																if ($task_type) echo ' data-tasktype="' . handle_task_type($task_type) . '"';
 																if ($mark_rate) echo ' data-mark_rate="' . $mark_rate . '"';
