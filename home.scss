@@ -410,7 +410,6 @@ main {
 		#timetable_previous, #timetable_next {
 			position: absolute;
 			top: calc(36px + 50%);
-			transform: translateY(-50%);
 			height: calc(100% - 72px);
 			width: 40px;
 			filter: drop-shadow($arrows-shadow);
@@ -426,22 +425,27 @@ main {
 			path {
 				fill: #fff;
 			}
+
+			&:hover {
+				padding-right: 52px;
+			}
 		}
 
 		#timetable_previous {
 			left: -130px;
+			transform: translateY(-50%);
+			
 			&:hover {
-				padding-right: 52px;
 				transform: translateX(-6px) translateY(-50%);
 			}
-
 		}
 
 		#timetable_next {
 			right: -130px;
+			transform: scale(-1, 1) translateY(-50%);
+
 			&:hover {
-				padding-left: 52px;
-				transform: translateX(6px) translateY(-50%);
+				transform: scale(-1, 1) translateX(-6px) translateY(-50%);
 			}
 		}
 	}

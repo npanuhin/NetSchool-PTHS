@@ -610,7 +610,6 @@ main .timetable #timetable_previous,
 main .timetable #timetable_next {
   position: absolute;
   top: calc(36px + 50%);
-  transform: translateY(-50%);
   height: calc(100% - 72px);
   width: 40px;
   -webkit-filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
@@ -630,22 +629,27 @@ main .timetable #timetable_next path {
   fill: #fff;
 }
 
+main .timetable #timetable_previous:hover,
+main .timetable #timetable_next:hover {
+  padding-right: 52px;
+}
+
 main .timetable #timetable_previous {
   left: -130px;
+  transform: translateY(-50%);
 }
 
 main .timetable #timetable_previous:hover {
-  padding-right: 52px;
   transform: translateX(-6px) translateY(-50%);
 }
 
 main .timetable #timetable_next {
   right: -130px;
+  transform: scale(-1, 1) translateY(-50%);
 }
 
 main .timetable #timetable_next:hover {
-  padding-left: 52px;
-  transform: translateX(6px) translateY(-50%);
+  transform: scale(-1, 1) translateX(-6px) translateY(-50%);
 }
 
 @media (max-width: 1200px) {

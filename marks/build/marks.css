@@ -461,6 +461,50 @@ main .marks > div table tr:nth-child(2n+3) {
   background: #C9DDF0;
 }
 
+main .marks #scroll_left,
+main .marks #scroll_right {
+  position: relative;
+}
+
+main .marks #scroll_left svg,
+main .marks #scroll_right svg {
+  position: absolute;
+  top: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 19px 15px 19px 30px;
+  cursor: pointer;
+  transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out;
+}
+
+main .marks #scroll_left svg path,
+main .marks #scroll_right svg path {
+  fill: #1963A1;
+}
+
+main .marks #scroll_left svg:hover,
+main .marks #scroll_right svg:hover {
+  padding-right: 20px;
+}
+
+main .marks #scroll_left svg {
+  right: 0;
+  transform: scale(0.9, 1) translateY(-50%);
+}
+
+main .marks #scroll_left svg:hover {
+  transform: scale(0.9, 1) translateY(-50%);
+}
+
+main .marks #scroll_right svg {
+  left: 0;
+  transform: scale(-0.9, 1) translateY(-50%);
+}
+
+main .marks #scroll_right svg:hover {
+  transform: scale(-0.9, 1) translateY(-50%);
+}
+
 main .marks .details,
 main .marks .details h5,
 main .marks .details p {
