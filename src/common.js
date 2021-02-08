@@ -16,6 +16,7 @@ var
 
 	message_alerts = document.getElementsByClassName("message_alert");
 
+
 Event.add(window, "load", () => {
 
 	main.style.minHeight = menu.clientHeight + "px";
@@ -79,17 +80,16 @@ Event.add(window, "load", () => {
 
 	for (let message_alert of message_alerts) {
 		if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
+
 			Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
 				html.classList.add("loaded");
 				body.style.cursor = "wait";
 				
-				let message_alert_name = message_alert.id.slice(14);
-
 				ajax(
 					"POST",
 					"/src/message_alert_close.php",
 					{
-						"name": message_alert_name
+						"name": message_alert.id.slice(14)
 					},
 					(req) => {
 						body.style.cursor = "";

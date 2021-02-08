@@ -46,14 +46,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			foreach ($timetable[$today->format('Y-m-d')] as $item) {
 				if (!is_null($item)) {
-					$type == trim($item[0]);
+					$type = trim($item[0]);
 					if ($type == 'lesson') {
 						$has_bells = true;
 						break;
 					}
 				}
 			}
-
 
 			?>
 
