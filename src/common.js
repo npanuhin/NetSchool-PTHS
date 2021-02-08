@@ -21,7 +21,7 @@ Event.add(window, "load", () => {
 
 	main.style.minHeight = menu.clientHeight + "px";
 
-	Event.add(menu_button, "click", () => {
+	Event.add(menu_button, "mousedown", () => {
 		let delta_height = menu.clientHeight;
 
 		html.classList.add("loaded");

@@ -65,7 +65,7 @@ Event.add(window, "load", () => {
 	Event.add(window, "resize", onResize);
 	onResize();
 
-	Event.add(timetable_previous, "click", () => {
+	Event.add(timetable_previous, "mousedown", () => {
 		html.classList.add("loaded");
 
 		if (!timetable_previous.classList.contains("hidden")) {
@@ -79,7 +79,7 @@ Event.add(window, "load", () => {
 		}
 	});
 
-	Event.add(timetable_next, "click", () => {
+	Event.add(timetable_next, "mousedown", () => {
 		html.classList.add("loaded");
 
 		if (!timetable_next.classList.contains("hidden")) {
@@ -94,7 +94,7 @@ Event.add(window, "load", () => {
 	});
 
 	for (let goto_today_button of goto_today_buttons) {
-		Event.add(goto_today_button, "click", () => {
+		Event.add(goto_today_button, "mousedown", () => {
 			goto_week(today_week);
 		});
 	}

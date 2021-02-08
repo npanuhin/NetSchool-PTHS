@@ -28,16 +28,18 @@ var
 // 	}
 // }
 
-function show_details(task_element) {
+function show_details(pageX, pageY, task_element) {
 	if (details_lock) return;
+
+	locate_details(pageX, pageY);
+
+	// details_block.style.display = "";
 
 	// task_element.append(details_block);
 
 	details_block.innerHTML = task_element.getElementsByTagName("div")[0].innerHTML;
 	details_block.classList.toggle("expired", task_element.classList.contains("expired"));
 	details_block.classList.add("shown");
-
-	details_lock = false;
 }
 
 function locate_details(pageX, pageY) {
@@ -62,6 +64,10 @@ function hide_details() {
 	if (details_lock) return;
 
 	details_block.classList.remove("shown");
+
+	// setTimeout(() => {
+	// 	if (!details_block.classList.contains("shown")) details_block.style.display = "none";
+	// }, 200);
 }
 
 function toggle_details_lock(event) {
@@ -69,8 +75,7 @@ function toggle_details_lock(event) {
 	for (let item of spans) {
 		if (item == event.target) {
 			details_lock = false;
-			show_details(item);
-			locate_details(event.pageX, event.pageY);
+			show_details(event.pageX, event.pageY, item);
 
 			details_lock = true;
 			empty_click = false;
@@ -172,8 +177,8 @@ Event.add(window, "load", () => {
 
 	for (let item of spans) {
 		
-		Event.add(item, "mouseenter", () => {
-			show_details(item);
+		Event.add(item, "mouseenter", (e) => {
+			show_details(e.pageX, e.pageY, item);
 		});
 
 		Event.add(item, "mouseleave", () => {
@@ -184,15 +189,15 @@ Event.add(window, "load", () => {
 			locate_details(e.pageX, e.pageY);
 		});
 
-		// Event.add(item, "click", () => {toggle_details_lock(item)});
+		// Event.add(item, "mousedown", () => {toggle_details_lock(item)});
 	}
-	Event.add(window, "click", toggle_details_lock);
+	Event.add(window, "mousedown", toggle_details_lock);
 
-	Event.add(scroll_left_button, "click", () => {
+	Event.add(scroll_left_button, "mousedown", () => {
 		scroll_table_by(table.offsetWidth * -0.8);
 	});
 
-	Event.add(scroll_right_button, "click", () => {
+	Event.add(scroll_right_button, "mousedown", () => {
 		scroll_table_by(table.offsetWidth * 0.8);
 	});
 
