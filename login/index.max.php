@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/config.php';
 
-if (isset($_SESSION["user_id"])) {
+if (isset($_SESSION['user_id'])) {
 	redirect();
 	exit();
 }

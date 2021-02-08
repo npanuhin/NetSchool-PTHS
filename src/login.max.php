@@ -55,9 +55,6 @@ if (is_null($person['last_update'])) {
 if ($person['password'] != $password) exit(json_encode(array('password', 'Неверный пароль')));
 
 $_SESSION['user_id'] = $person['id'];
-$_SESSION['username'] = $username;
-$_SESSION['first_name'] = $person['first_name'];
-$_SESSION['last_name'] = $person['last_name'];
 
 echo 'success';
 ?>

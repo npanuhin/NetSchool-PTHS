@@ -11,7 +11,7 @@ try {
 }
 
 try {
-	$data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION["user_id"], 2);
+	$data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION['user_id'], 2);
 } catch (Exception $e) {
 	exit(json_encode(array('message', 'Database request failed')));
 }

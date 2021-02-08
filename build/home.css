@@ -267,25 +267,37 @@ main .tasks ul li {
   padding-left: 7px;
 }
 
-main .tasks ul li.expired a {
-  position: relative;
-  color: #ff5050;
+main .tasks ul li span {
+  color: #1963A1;
 }
 
-main .tasks ul li.expired a::before {
+main .tasks ul li span a {
+  position: relative;
+  color: #FF890C;
+}
+
+main .tasks ul li span a::before {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
-  height: 1.75px;
-  background: #ff5050;
+  height: 1.7px;
+  background: #FF890C;
   opacity: 0;
   transition: 0.07s opacity ease-in-out;
 }
 
-main .tasks ul li.expired a:hover::before {
+main .tasks ul li span a:hover::before {
   opacity: 1;
+}
+
+main .tasks ul li.expired span a {
+  color: #ff5050;
+}
+
+main .tasks ul li.expired span a::before {
+  background: #ff5050;
 }
 
 main .announcements {
