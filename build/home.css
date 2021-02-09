@@ -129,13 +129,14 @@ body {
 
 main .message_alert {
   position: relative;
-  left: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
-  width: calc(100% - 200px);
+  width: 970px;
   padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
-  background-color: #55ff7d;
+  background: #55ff7d;
   text-align: left;
   font-family: Manrope;
   font-style: normal;
@@ -173,8 +174,9 @@ main .message_alert.hidden {
 
 main .menu {
   position: absolute;
-  width: calc(100% - 200px);
-  left: 100px;
+  width: 970px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .menu ul {
@@ -210,7 +212,7 @@ main .menu::after {
   bottom: 0;
   height: 100%;
   width: 100%;
-  background-color: #1963A1;
+  background: #1963A1;
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
@@ -234,7 +236,7 @@ main .tasks {
   box-sizing: border-box;
   padding: 20px;
   width: calc(100% - 200px);
-  background-color: #FFF;
+  background: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   transition: 0.3s transform ease-in-out;
@@ -438,7 +440,7 @@ main .timetable > div > div > div {
   position: relative;
   padding: 30px 32px;
   min-height: 50px;
-  background-color: #FFF;
+  background: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
@@ -536,7 +538,7 @@ main .timetable > div > div > div ul li.no_lesson::before {
   left: 0;
   width: 100%;
   height: 15px;
-  background-color: #C9DDF0;
+  background: #C9DDF0;
   border-radius: 2px;
 }
 
@@ -548,7 +550,7 @@ main .timetable > div > div > div ul li > div {
   border-radius: 20px;
   z-index: 100;
   white-space: nowrap;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   color: #1963A1;
   visibility: hidden;
@@ -575,7 +577,7 @@ main .timetable > div > div > div .pending {
   left: 0;
   width: 100.01%;
   height: 100.01%;
-  background-color: #aaa;
+  background: #aaa;
   border-radius: inherit;
 }
 

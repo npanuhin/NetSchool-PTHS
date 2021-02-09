@@ -47,7 +47,7 @@ main {
 					width: 140px;
 					height: 140px;
 					margin: 0 auto;
-					background-color: #fff;
+					background: #fff;
 					box-shadow: $block-shadow;
 					border-radius: 50%;
 
@@ -81,7 +81,7 @@ main {
 
 				box-sizing: border-box;
 
-				background-color: $block-color;
+				background: $block-color;
 				box-shadow: $block-shadow;
 
 				border-radius: 30px;

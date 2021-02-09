@@ -129,13 +129,14 @@ body {
 
 main .message_alert {
   position: relative;
-  left: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
-  width: calc(100% - 200px);
+  width: 970px;
   padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
-  background-color: #55ff7d;
+  background: #55ff7d;
   text-align: left;
   font-family: Manrope;
   font-style: normal;
@@ -173,8 +174,9 @@ main .message_alert.hidden {
 
 main .menu {
   position: absolute;
-  width: calc(100% - 200px);
-  left: 100px;
+  width: 970px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .menu ul {
@@ -210,7 +212,7 @@ main .menu::after {
   bottom: 0;
   height: 100%;
   width: 100%;
-  background-color: #1963A1;
+  background: #1963A1;
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
@@ -253,7 +255,7 @@ main .announcements .announcement .author .profile_photo {
   width: 140px;
   height: 140px;
   margin: 0 auto;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   background-size: cover;
@@ -279,7 +281,7 @@ main .announcements .announcement .content {
   padding: 30px;
   width: 76%;
   box-sizing: border-box;
-  background-color: #FFF;
+  background: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }

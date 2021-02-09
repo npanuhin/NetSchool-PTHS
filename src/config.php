@@ -73,6 +73,21 @@ $disabled_task_data_keys = [
 	'Тема задания'
 ];
 
+$TODAY = new DateTime('today');
+$TOMORROW = new DateTime('tomorrow');
+$NOW = new DateTime('now');
+$MONDAY = new DateTime('monday this week');
+$SUNDAY = new DateTime('sunday this week');
+
+$SCHOOL_YEAR = $TODAY->format('Y');
+if ($TODAY->format('m') < 9) --$SCHOOL_YEAR;
+
+$SCHOOL_YEAR_BEGIN = new DateTime($SCHOOL_YEAR . '-09-01');
+$SCHOOL_YEAR_END = new DateTime(($SCHOOL_YEAR + 1) . '-05-31');
+
+$TRUE_SCHOOL_YEAR_BEGIN = new DateTime($SCHOOL_YEAR_BEGIN->format('Y-m-d') . ' monday this week');
+$TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monday next week');
+
 
 // UTILS:
 function redirect($url='/') {
@@ -124,7 +139,6 @@ function handle_task_type($task_type) {
 	return array_key_exists($task_type, $_task_types) ? $_task_types[$task_type] : $task_type;
 }
 
-
 function replace_school_class_regex($school_class) {
 	global $_replace_class;
 
@@ -137,6 +151,23 @@ function replace_school_class_regex($school_class) {
 	}
 
 	return $school_class;
+}
+
+function set_diary_period($db, $period_start, $period_end) {
+	try {
+		$data = $db->query('UPDATE `users` SET `diary_period_start` = ?s, `diary_period_end` = ?s WHERE `id` = ?i', $period_start, $period_end, $_SESSION['user_id']);
+
+	} catch (Exception $e) {
+		// print_r($e);
+		exit(json_encode(array('message', 'Database request failed')));
+	}
+}
+
+function class_to_diary_period($class) {
+	global $TRUE_SCHOOL_YEAR_BEGIN;
+	global $TRUE_SCHOOL_YEAR_END;
+
+	return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
 }
 
 

@@ -129,7 +129,7 @@ $container-shadow: 10px 10px 20px #205182;
 		height: 100%;
 		visibility: hidden;
 		opacity: 0;
-		background-color: rgba(0, 0, 0, 0.85);
+		background: rgba(0, 0, 0, 0.85);
 
 		font-family: Manrope;
 		font-style: normal;
@@ -142,7 +142,7 @@ $container-shadow: 10px 10px 20px #205182;
 		transition: 0.5s opacity ease-in-out;
 
 		@media (max-width: 700px) {
-			background-color: rgba(0, 0, 0, 0.90);
+			background: rgba(0, 0, 0, 0.90);
 		}
 
 		&.shown {

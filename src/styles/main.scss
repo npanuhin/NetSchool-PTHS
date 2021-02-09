@@ -111,14 +111,16 @@ main {
 
     .message_alert {
         position: relative;
-        left: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+
         box-sizing: border-box;
-        width: calc(100% - 200px);
+        width: $main-width - 200px;
         padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
         border-radius: 15px;
-        background-color: #55ff7d;
+        background: #55ff7d;
         text-align: left;
 
         font-family: Manrope;
@@ -161,8 +163,9 @@ main {
 
     .menu {
         position: absolute;
-        width: calc(100% - 200px);
-        left: 100px;
+        width: $main-width - 200px;
+        left: 50%;
+        transform: translateX(-50%);
 
         ul {
             margin: 0 auto;
@@ -215,7 +218,7 @@ main {
             bottom: 0;
             height: 100%;
             width: 100%;
-            background-color: $page-color;
+            background: $page-color;
 
             transition: 0.3s transform ease-in-out;
 

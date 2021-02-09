@@ -5,7 +5,7 @@
 			width: 100vw;
 			height: 100vh;
 			z-index: 1000;
-			background-color: rgba(0, 0, 0, 0.7);
+			background: rgba(0, 0, 0, 0.7);
 			visibility: hidden;
 		}
 		#error .message {

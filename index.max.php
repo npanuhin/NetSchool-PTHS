@@ -37,11 +37,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 		$diary = json_decode($person['diary'], true);
 
-		// Global datetime:
-		$today = new DateTime('today');
-		$tomorrow = new DateTime('tomorrow');
-		$cur_datetime = new DateTime('now');
-
 		if (!is_null($diary)) {
 			?>
 
@@ -75,7 +70,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						}
 					}
 
-					$tasks = $diary[$tomorrow->format('Y-m-d')];
+					$tasks = $diary[$TOMORROW->format('Y-m-d')];
 
 					$lessons_task_index = [];
 					foreach ($tasks as $task_data) {
@@ -122,23 +117,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			<?php
 			$timetable = json_decode($person['timetable'], true);
 
-			// echo $today->format('Y');
-			$cur_monday = new DateTime('monday this week');
-			
-			$cur_year = $today->format('Y');
-			if ($today->format('m') < 9) --$cur_year;
-
-			$year_begin = new DateTime($cur_year . '-09-01 monday this week');
-			$year_end = new DateTime(($cur_year + 1) . '-05-31 monday this week next week');
-
-			$week_period = new DatePeriod($year_begin, DateInterval::createFromDateString('1 week'), $year_end);
+			$week_period = new DatePeriod($TRUE_SCHOOL_YEAR_BEGIN, DateInterval::createFromDateString('1 week'), $TRUE_SCHOOL_YEAR_END);
 			foreach ($week_period as $monday) {
 				$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
 				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week 15:00');
 				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week 14:59');
 				?>
 
-				<div class="<?php echo $monday->format('Y-m-d'); if ($school_week_start <= $cur_datetime && $cur_datetime < $school_week_end) echo ' shown'; if ($monday == $cur_monday) echo ' cur_week'; ?>">
+				<div class="<?php echo $monday->format('Y-m-d'); if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown'; if ($monday == $MONDAY) echo ' cur_week'; ?>">
 
 					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
 						<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
@@ -147,7 +133,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					</h3>
 
 					<?php
-					if ( $today->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $today->getTimestamp()) {
+					if ($TODAY->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $TODAY->getTimestamp()) {
 						?>
 						<button>Сегодня &#8594;</button>
 						<?php
@@ -162,7 +148,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						foreach ($day_period as $day) {
 							?>
 
-							<div class="<?php echo $day->format('Y-m-d'); if ($day == $today) echo ' today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 								<?php
 
@@ -231,7 +217,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													++$lesson_index;
 													?>
 
-													<li class="no_lesson"></li>
+													<li class="no_lesson" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
@@ -299,7 +285,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 												++$lesson_index;
 												?>
 
-												<li class="no_lesson"></li>
+												<li class="no_lesson" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 												<?php
 											}
@@ -340,7 +326,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	</main>
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
-	<script type="text/javascript" src="/src/ajax.js" defer></script>
+	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/home.min.js" defer></script>
 </body>

@@ -33,18 +33,17 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<?php
 
-			// $today = new DateTime('16.12.2020');
-			$today = new DateTime('today');
-			$monday = new DateTime($today->format('Y-m-d') . ' monday this week');
-			$sunday = new DateTime($today->format('Y-m-d') . ' sunday this week');
-			$cur_week = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
+			// $TODAY = new DateTime('16.12.2020');
+			// $MONDAY = new DateTime($TODAY->format('Y-m-d') . ' MONDAY this week');
+			// $SUNDAY = new DateTime($TODAY->format('Y-m-d') . ' SUNDAY this week');
+			$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
 
 
 			$timetable = json_decode($person['timetable'], true);
 
 			$has_bells = false;
 
-			foreach ($timetable[$today->format('Y-m-d')] as $item) {
+			foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
 				if (!is_null($item)) {
 					$type = trim($item[0]);
 					if ($type == 'lesson') {
@@ -93,16 +92,16 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				if ($has_bells) {
 					?>
 
-					<div class="bells" title="Звонки на сегодня (<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>)">
+					<div class="bells" title="Звонки на сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>)">
 						<h3>Звонки</h3>
-						<div class="details" title="<?php echo ltrim($today->format('d'), '0') . ' ' . $months_genetive[$today->format('m') - 1] ?>">на сегодня</div>
+						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">на сегодня</div>
 
 						<ul>
 							<?php
 
 							$lesson_index = 0;
 
-							foreach ($timetable[$today->format('Y-m-d')] as $item) {
+							foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
 								if (!is_null($item)) {
 									$type = trim($item[0]);
 									$name = trim($item[1]);
@@ -139,7 +138,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			$has_cources = false;
 
 			foreach ($cur_week as $day) {
-				foreach ($timetable[$today->format('Y-m-d')] as $item) {
+				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
 					if (!is_null($item)) {
 						$type = $item[0];
 						$name = $item[1];
@@ -156,7 +155,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			if ($has_cources) {
 				?>
 
-				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1] ?> по <?php echo ltrim($sunday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1] ?>">
+				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($MONDAY->format('d'), '0') . ' ' . $months_genetive[$MONDAY->format('m') - 1] ?> по <?php echo ltrim($SUNDAY->format('d'), '0') . ' ' . $months_genetive[$SUNDAY->format('m') - 1] ?>">
 					<h3>Спецкурсы<span>на этой неделе</span></h3>
 
 					<?php
@@ -221,7 +220,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	</main>
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
-	<script type="text/javascript" src="/src/ajax.js" defer></script>
+	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<!-- <script type="text/javascript" src="build/timetable.min.js" defer></script> -->
 </body>

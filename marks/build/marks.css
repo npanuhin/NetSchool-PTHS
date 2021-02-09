@@ -129,13 +129,14 @@ body {
 
 main .message_alert {
   position: relative;
-  left: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
-  width: calc(100% - 200px);
+  width: 970px;
   padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
-  background-color: #55ff7d;
+  background: #55ff7d;
   text-align: left;
   font-family: Manrope;
   font-style: normal;
@@ -173,8 +174,9 @@ main .message_alert.hidden {
 
 main .menu {
   position: absolute;
-  width: calc(100% - 200px);
-  left: 100px;
+  width: 970px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .menu ul {
@@ -210,7 +212,7 @@ main .menu::after {
   bottom: 0;
   height: 100%;
   width: 100%;
-  background-color: #1963A1;
+  background: #1963A1;
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
@@ -222,7 +224,7 @@ main .menu.shown::after {
 main {
   position: relative;
   margin: 120px auto 100px auto;
-  width: 1170px;
+  width: 1300px;
   max-width: 95%;
 }
 
@@ -234,6 +236,7 @@ main .marks {
   width: 100%;
   margin: 0 auto;
   z-index: 10;
+  text-align: center;
   background: #FFF;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -260,10 +263,47 @@ main .marks > p {
   color: #1963A1;
 }
 
+main .marks .period_start_label,
+main .marks .period_end_label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  color: #1963A1;
+}
+
+main .marks .period_end_label {
+  margin-left: 30px;
+}
+
+main .marks #period_start,
+main .marks #period_end {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #1963A1;
+  margin: 5px 0 22px 5px;
+  padding: 7px 10px;
+  border: 2px solid #1963A1;
+  border-radius: 7px;
+}
+
+main .marks #period_start:focus,
+main .marks #period_end:focus {
+  border: 2px solid #FF890C;
+}
+
 main .marks > div {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: auto auto auto;
+}
+
+main .marks > div > ul {
+  position: relative;
+  top: -7px;
+  padding-top: 7px;
 }
 
 main .marks > div > ul li {
@@ -273,6 +313,7 @@ main .marks > div > ul li {
   font-size: 20px;
   line-height: 28px;
   color: #1963A1;
+  background: #FFF;
   white-space: nowrap;
   padding: 6px 12px;
   height: 28px;
@@ -284,6 +325,8 @@ main .marks > div > ul li:nth-child(2) {
 
 main .marks > div > ul:first-child {
   position: relative;
+  z-index: 10;
+  transition: 0.1s box-shadow ease-in-out;
 }
 
 main .marks > div > ul:first-child li {
@@ -292,10 +335,16 @@ main .marks > div > ul:first-child li {
   border-top-left-radius: 8px;
 }
 
+main .marks > div > ul:first-child.shadow {
+  box-shadow: 13px 0px 9px -14px #1963A1;
+}
+
 main .marks > div > ul:last-child {
   position: relative;
   left: -1px;
   width: calc(100% + 1px);
+  z-index: 10;
+  transition: 0.1s box-shadow ease-in-out;
 }
 
 main .marks > div > ul:last-child li {
@@ -304,19 +353,45 @@ main .marks > div > ul:last-child li {
   border-top-right-radius: 8px;
 }
 
-main .marks > div table {
+main .marks > div > ul:last-child.shadow {
+  box-shadow: -13px 0px 9px -14px #1963A1;
+}
+
+main .marks > div > div {
   position: relative;
-  display: block;
+  z-index: 5;
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+main .marks > div > div .period_hidden_left,
+main .marks > div > div .period_hidden_right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+main .marks > div > div .period_hidden_left {
+  box-shadow: inset -6px 0 2px -5px rgba(0, 0, 0, 0.25);
+}
+
+main .marks > div > div .period_hidden_right {
+  box-shadow: inset 6px 0 2px -5px rgba(0, 0, 0, 0.25);
+}
+
+main .marks > div > div table {
+  position: relative;
   border-spacing: 0;
 }
 
-main .marks > div table tr {
+main .marks > div > div table tr {
   height: 30px;
 }
 
-main .marks > div table tr th {
+main .marks > div > div table tr th {
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -327,17 +402,17 @@ main .marks > div table tr th {
   padding: 0px 10px;
 }
 
-main .marks > div table tr:nth-child(1) {
+main .marks > div > div table tr:nth-child(1) {
   height: 40px;
 }
 
-main .marks > div table tr:nth-child(1) td {
+main .marks > div > div table tr:nth-child(1) td {
   position: relative;
   padding: 4px 30px;
   overflow: hidden;
 }
 
-main .marks > div table tr:nth-child(1) td span {
+main .marks > div > div table tr:nth-child(1) td span {
   position: relative;
   font-family: Manrope;
   font-style: normal;
@@ -350,7 +425,7 @@ main .marks > div table tr:nth-child(1) td span {
   padding: 0 8px;
 }
 
-main .marks > div table tr:nth-child(1) td::before {
+main .marks > div > div table tr:nth-child(1) td::before {
   content: "";
   position: absolute;
   width: calc(100% - 20px);
@@ -363,11 +438,11 @@ main .marks > div table tr:nth-child(1) td::before {
   border-radius: 20px;
 }
 
-main .marks > div table tr:nth-child(2) {
+main .marks > div > div table tr:nth-child(2) {
   height: 70px;
 }
 
-main .marks > div table tr:nth-child(2) td {
+main .marks > div > div table tr:nth-child(2) td {
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -378,7 +453,7 @@ main .marks > div table tr:nth-child(2) td {
   padding: 4px 20px;
 }
 
-main .marks > div table tr td {
+main .marks > div > div table tr td {
   position: relative;
   white-space: nowrap;
   text-align: center;
@@ -387,7 +462,7 @@ main .marks > div table tr td {
   padding: 0 6px;
 }
 
-main .marks > div table tr td > div {
+main .marks > div > div table tr td > div {
   font-size: 0;
   position: relative;
   height: 100%;
@@ -396,7 +471,7 @@ main .marks > div table tr td > div {
   text-align: center;
 }
 
-main .marks > div table tr td > div span {
+main .marks > div > div table tr td > div span {
   display: inline-block;
   position: relative;
   top: 50%;
@@ -414,27 +489,27 @@ main .marks > div table tr td > div span {
   cursor: pointer;
 }
 
-main .marks > div table tr td > div span:first-child {
+main .marks > div > div table tr td > div span:first-child {
   padding-left: 17px;
 }
 
-main .marks > div table tr td > div span:last-child {
+main .marks > div > div table tr td > div span:last-child {
   padding-right: 17px;
 }
 
-main .marks > div table tr td > div span.high {
+main .marks > div > div table tr td > div span.high {
   color: #FF890C;
 }
 
-main .marks > div table tr td > div span.expired {
+main .marks > div > div table tr td > div span.expired {
   color: #f00;
 }
 
-main .marks > div table tr td > div span div {
+main .marks > div > div table tr td > div span div {
   display: none;
 }
 
-main .marks > div table tr td.filled > div::before {
+main .marks > div > div table tr td.filled > div::before {
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -446,12 +521,12 @@ main .marks > div table tr td.filled > div::before {
   border-radius: 2px;
 }
 
-main .marks > div table tr td.expired > div::before {
+main .marks > div > div table tr td.expired > div::before {
   border-color: #f00;
-  background-color: rgba(255, 0, 0, 0.1);
+  background: rgba(255, 0, 0, 0.1);
 }
 
-main .marks > div table tr td.selected > div::before {
+main .marks > div > div table tr td.selected > div::before {
   border-width: 2px;
   border-color: #FF890C;
 }
@@ -474,7 +549,8 @@ main .marks #scroll_right svg {
   box-sizing: border-box;
   padding: 19px 15px 19px 30px;
   cursor: pointer;
-  transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out;
+  transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+  opacity: 1;
 }
 
 main .marks #scroll_left svg path,
@@ -487,6 +563,11 @@ main .marks #scroll_right svg:hover {
   padding-right: 20px;
 }
 
+main .marks #scroll_left.hidden svg,
+main .marks #scroll_right.hidden svg {
+  opacity: 0;
+}
+
 main .marks #scroll_left svg {
   right: 0;
   transform: scale(0.9, 1) translateY(-50%);
@@ -494,6 +575,10 @@ main .marks #scroll_left svg {
 
 main .marks #scroll_left svg:hover {
   transform: scale(0.9, 1) translateY(-50%);
+}
+
+main .marks #scroll_right {
+  background: #FFF;
 }
 
 main .marks #scroll_right svg {
@@ -521,11 +606,12 @@ main .marks .details {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 50;
   padding: 15px 20px;
   border-radius: 20px;
   max-width: 100vw;
   max-height: 100vw;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   color: #1963A1;
   visibility: hidden;

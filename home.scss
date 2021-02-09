@@ -21,7 +21,7 @@ main {
 		padding: 20px;
 		width: calc(100% - 200px);
 
-		background-color: $block-color;
+		background: $block-color;
 		box-shadow: $block-shadow;
 		border-radius: 30px;
 
@@ -227,7 +227,7 @@ main {
 					position: relative;
 					padding: 30px 32px;
 					min-height: 50px;
-					background-color: #FFF;
+					background: #FFF;
 					box-shadow: $block-shadow;
 					border-radius: 30px;
 
@@ -323,7 +323,7 @@ main {
 									left: 0;
 									width: 100%;
 									height: 15px;
-									background-color: #C9DDF0;
+									background: #C9DDF0;
 									border-radius: 2px;
 								}
 							}
@@ -336,7 +336,7 @@ main {
 								border-radius: 20px;
 								z-index: 100;
 								white-space: nowrap;
-								background-color: #fff;
+								background: #fff;
 								box-shadow: $block-shadow;
 								color: $text-color;
 
@@ -369,7 +369,7 @@ main {
 						left: 0;
 						width: 100.01%;
 						height: 100.01%;
-						background-color: #aaa;
+						background: #aaa;
 						border-radius: inherit;
 
 						p {

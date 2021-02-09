@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
 		</div>
 
 		<script type="text/javascript" src="/src/event.js" defer></script>
-		<script type="text/javascript" src="/src/ajax.js" defer></script>
+		<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 		<script type="text/javascript" src="build/login.min.js" defer></script>
 	</body>
 </html>

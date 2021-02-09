@@ -129,13 +129,14 @@ body {
 
 main .message_alert {
   position: relative;
-  left: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
-  width: calc(100% - 200px);
+  width: 970px;
   padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
-  background-color: #55ff7d;
+  background: #55ff7d;
   text-align: left;
   font-family: Manrope;
   font-style: normal;
@@ -173,8 +174,9 @@ main .message_alert.hidden {
 
 main .menu {
   position: absolute;
-  width: calc(100% - 200px);
-  left: 100px;
+  width: 970px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .menu ul {
@@ -210,7 +212,7 @@ main .menu::after {
   bottom: 0;
   height: 100%;
   width: 100%;
-  background-color: #1963A1;
+  background: #1963A1;
   transition: 0.3s transform ease-in-out;
   transform-origin: bottom center;
 }
@@ -308,7 +310,7 @@ main .menu.shown::after {
   height: 100%;
   visibility: hidden;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.85);
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -492,7 +494,7 @@ main .menu.shown::after {
   }
 
   .container .message {
-    background-color: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.9);
   }
 
   .container .message.small p {
