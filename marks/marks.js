@@ -56,18 +56,14 @@ function locate_details(pageX, pageY) {
 	if (details_lock) return;
 
 	details_block.style.top = Math.min(
-		
-		(window.pageYOffset || document.scrollTop || 0) - (document.clientTop || 0) + document.documentElement.clientHeight - details_block.offsetHeight - 20,
-		
-		pageY
-	) - html.scrollTop + 20 + "px";
+		document.documentElement.clientHeight - details_block.offsetHeight,
+		pageY - html.scrollTop + 20
+	) + "px";
 
 	details_block.style.left = Math.min(
-		
-		(window.pageXOffset || document.scrollLeft || 0) - (document.clientLeft || 0) + document.documentElement.clientWidth - details_block.offsetWidth - 20,
-		
-		pageX
-	) + 20 + "px";
+		document.documentElement.clientWidth - details_block.offsetWidth,
+		pageX - html.scrollLeft + 20
+	) + "px";
 }
 
 function hide_details() {
@@ -227,10 +223,32 @@ function apply_period(safe=false) {
 			}
 		}
 
-		if (average_mark && rate_summ) {
-			right_column_li[tr_index].innerHTML = Math.round((average_mark / rate_summ - 0.001) * 100) / 100;
+		if (rate_summ && average_mark) {
+			average_mark = Math.round((average_mark / rate_summ - 0.001) * 100) / 100;
+			right_column_li[tr_index].innerHTML = average_mark;
 		} else {
 			right_column_li[tr_index].innerHTML = "-";
+		}
+
+		for (let day of line.getElementsByTagName("td")) {
+			if (!day.classList.contains("filled")) continue;
+
+			let date;
+
+			for (let obj_class of day.classList) {
+				date = new Date(obj_class);
+				if (date instanceof Date && !isNaN(date)) break;
+			}
+
+			if (period_start <= date && date <= period_end) {
+				for (let task of day.getElementsByTagName("span")) {
+					task.classList.toggle("high", task.dataset.mark && task.dataset.mark > average_mark);
+				}
+			} else {
+				for (let task of day.getElementsByTagName("span")) {
+					task.classList.remove("high");
+				}
+			}
 		}
 	}
 
@@ -322,5 +340,6 @@ Event.add(window, "load", () => {
 	setTimeout(() => {
 		table_unlocked = true;
 		Event.add(scroll_table, "scroll", on_table_scroll);
+		setTimeout(apply_period);
 	}, 150);
 });

@@ -133,6 +133,7 @@ main .message_alert {
   transform: translateX(-50%);
   box-sizing: border-box;
   width: 970px;
+  max-width: calc(100% - 200px);
   padding: 12px 50px 12px 30px;
   margin-bottom: 30px;
   border-radius: 15px;
@@ -543,7 +544,7 @@ main .timetable > div > div > div ul li.no_lesson::before {
 }
 
 main .timetable > div > div > div ul li > div {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 15px 20px;

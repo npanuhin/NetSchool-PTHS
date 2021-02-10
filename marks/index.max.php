@@ -249,7 +249,7 @@ $default_mark_rate = 10;
 
 																	$classes = [];
 
-																	if ($mark > $all_average_marks[$lesson]) $classes[] = 'high';
+																	// if ($mark > $all_average_marks[$lesson]) $classes[] = 'high';
 																	if ($task_expired) $classes[] = 'expired';
 
 																	if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
@@ -341,7 +341,8 @@ $default_mark_rate = 10;
 						foreach ($all_average_marks as $lesson => $average_mark) {
 							?>
 							<li>
-								<?php echo round($average_mark, 2, PHP_ROUND_HALF_DOWN) ?>
+								-
+								<?php // echo round($average_mark, 2, PHP_ROUND_HALF_DOWN) ?>
 							</li>
 							<?php
 						}

@@ -116,6 +116,7 @@ main {
 
         box-sizing: border-box;
         width: $main-width - 200px;
+        max-width: calc(100% - 200px);
         padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
