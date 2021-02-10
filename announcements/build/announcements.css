@@ -176,6 +176,7 @@ main .message_alert.hidden {
 main .menu {
   position: absolute;
   width: 970px;
+  max-width: calc(100% - 200px);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -226,24 +227,28 @@ main {
   position: relative;
   margin: 120px auto 100px auto;
   width: 1170px;
-  max-width: 100%;
+  max-width: 95%;
+}
+
+main .message_alert {
+  min-width: calc(630px - 5%);
 }
 
 main .announcements {
   position: relative;
   margin: 0 auto;
   width: calc(100% - 130px);
-  min-width: 900px;
   z-index: 10;
   transition: 0.3s transform ease-in-out;
 }
 
 main .announcements .announcement {
   position: relative;
-  padding: 35px 35px;
+  padding: 35px;
   box-sizing: border-box;
   clear: both;
   overflow: hidden;
+  min-width: calc(700px - 5%);
 }
 
 main .announcements .announcement .author {
@@ -348,9 +353,26 @@ main .announcements .announcement .content article .school_class {
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 95px;
   }
+
+  main .announcements {
+    width: 100%;
+  }
+
+  main .announcements .announcement {
+    margin: 0 auto;
+    width: calc(100% - 200px);
+  }
+
+  main .announcements .announcement .author {
+    display: none;
+  }
+
+  main .announcements .announcement .content {
+    width: 100%;
+  }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1160px) {
   .menubar {
     left: 10px;
   }
@@ -365,5 +387,23 @@ main .announcements .announcement .content article .school_class {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     grid-row-gap: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  main .message_alert {
+    width: calc(100% - 200px);
+    max-width: none;
+  }
+
+  main .message_alert {
+    width: calc(100% - 70px);
+    min-width: 0;
+  }
+
+  main .announcements .announcement {
+    left: 0;
+    width: 100%;
+    min-width: 0;
   }
 }

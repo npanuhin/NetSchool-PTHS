@@ -117,6 +117,12 @@ main {
         box-sizing: border-box;
         width: $main-width - 200px;
         max-width: calc(100% - 200px);
+
+        @media (max-width: 700px) {
+            width: calc(100% - 200px);
+            max-width: none;
+        }
+
         padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
@@ -165,6 +171,7 @@ main {
     .menu {
         position: absolute;
         width: $main-width - 200px;
+        max-width: calc(100% - 200px);
         left: 50%;
         transform: translateX(-50%);
 
@@ -178,7 +185,7 @@ main {
             grid-row-gap: 10px;
             grid-column-gap: 100px;
 
-            @media (max-width: 1170px) {
+            @media (max-width: $main-width) {
                 width: 80%;
                 grid-template-rows: 1fr 1fr 1fr;
                 grid-template-columns: 1fr 1fr;

@@ -176,6 +176,7 @@ main .message_alert.hidden {
 main .menu {
   position: absolute;
   width: 970px;
+  max-width: calc(100% - 200px);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -328,6 +329,7 @@ main .marks > div > ul:first-child {
   position: relative;
   z-index: 10;
   transition: 0.1s box-shadow ease-in-out;
+  box-shadow: 14px 0px 1px -14px #1963A1;
 }
 
 main .marks > div > ul:first-child li {
@@ -346,6 +348,7 @@ main .marks > div > ul:last-child {
   width: calc(100% + 1px);
   z-index: 10;
   transition: 0.1s box-shadow ease-in-out;
+  box-shadow: -14px 0px 1px -14px #1963A1;
 }
 
 main .marks > div > ul:last-child li {
@@ -665,7 +668,7 @@ main .marks .details.expired h5 {
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1160px) {
   .menubar {
     left: 10px;
   }
@@ -680,5 +683,12 @@ main .marks .details.expired h5 {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     grid-row-gap: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  main .message_alert {
+    width: calc(100% - 200px);
+    max-width: none;
   }
 }

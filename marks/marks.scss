@@ -125,6 +125,7 @@ main {
 					border-top-left-radius: 8px;
 				}
 
+				box-shadow: 14px 0px 1px -14px $text-color;
 				&.shadow {
 					box-shadow: 13px 0px 9px -14px $text-color;
 				}
@@ -144,6 +145,7 @@ main {
 					border-top-right-radius: 8px;
 				}
 
+				box-shadow: -14px 0px 1px -14px $text-color;
 				&.shadow {
 					box-shadow: -13px 0px 9px -14px $text-color;
 				}

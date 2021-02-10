@@ -207,7 +207,7 @@ main {
 				grid-row-gap: 70px;
 				grid-column-gap: 60px;
 
-				@media (max-width: 1170px) {
+				@media (max-width: $main-width) {
 					grid-template-rows: auto auto auto;
 					grid-template-columns: 1fr 1fr;
 					grid-column-gap: 50px;

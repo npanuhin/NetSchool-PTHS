@@ -3,11 +3,13 @@ var
 	body = document.getElementsByTagName("body")[0],
 	main = document.getElementsByTagName("main")[0],
 
+	main_bottom_margin = 100,
+
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
-	menu_closing_timout,
+	menu_adjustment_timout,
 
 	tasks_block = (document.getElementsByClassName("tasks") ? document.getElementsByClassName("tasks")[0] : undefined),
 	marks_block = (document.getElementsByClassName("marks") ? document.getElementsByClassName("marks")[0] : undefined);
@@ -16,41 +18,41 @@ var
 
 	message_alerts = document.getElementsByClassName("message_alert");
 
+function adjust_menu(argument) {
+	
+}
 
 Event.add(window, "load", () => {
 
 	main.style.minHeight = menu.clientHeight + "px";
 
 	Event.add(menu_button, "mousedown", () => {
-		let delta_height = menu.clientHeight;
-
 		html.classList.add("loaded");
 
-		if (menu.classList.contains("shown")) {
-			menu_button.classList.remove("active");
-			menu.classList.remove("shown");
-			if (tasks_block !== undefined) tasks_block.style.transform = "translateY(0px)";
-			if (marks_block !== undefined) marks_block.style.transform = "translateY(0px)";
-			if (timetable_block !== undefined) timetable_block.style.transform = "translateY(0px)";
-			if (announcements_block !== undefined) announcements_block.style.transform = "translateY(0px)";
+		let delta_height = menu.clientHeight;
 
-			menu_closing_timout = setTimeout(() => {
-				main.style.minHeight = delta_height + "px";
+		clearTimeout(menu_adjustment_timout);
+
+		if (menu.classList.contains("shown")) {
+
+			menu_adjustment_timout = setTimeout(() => {
+				// main.style.minHeight = delta_height + "px";
+				main.style.marginBottom = main_bottom_margin + "px";
 			}, 300);
 
 		} else {
-			menu_button.classList.add("active");
-			menu.classList.add("shown");
 
-			if (tasks_block !== undefined) tasks_block.style.transform = "translateY(" + delta_height + "px)";
-			if (marks_block !== undefined) marks_block.style.transform = "translateY(" + delta_height + "px)";
-			if (timetable_block !== undefined) timetable_block.style.transform = "translateY(" + delta_height + "px)";
-			if (announcements_block !== undefined) announcements_block.style.transform = "translateY(" + delta_height + "px)";
-
-			clearTimeout(menu_closing_timout);
-			main.style.minHeight = delta_height + "px";
-			main.style.minHeight = main.clientHeight + delta_height + "px";
+			// main.style.minHeight = main.clientHeight + delta_height + "px";
+			main.style.marginBottom = main_bottom_margin + delta_height + "px";
 		}
+
+		if (tasks_block !== undefined) tasks_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
+		if (marks_block !== undefined) marks_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
+		if (timetable_block !== undefined) timetable_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
+		if (announcements_block !== undefined) announcements_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
+
+		menu.classList.toggle("shown");
+		menu_button.classList.toggle("active", menu.classList.contains("shown"));
 	});
 
 	Event.add(logout_button, "click", () => {

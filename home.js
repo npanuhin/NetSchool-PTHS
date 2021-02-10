@@ -63,7 +63,7 @@ function goto_week(week) {
 Event.add(window, "load", () => {
 
 	Event.add(window, "resize", onResize);
-	onResize();
+	setTimeout(onResize());
 
 	Event.add(timetable_previous, "mousedown", () => {
 		html.classList.add("loaded");

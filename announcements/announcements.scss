@@ -6,16 +6,28 @@ main {
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: $main-width;
-	max-width: 100%;
+	max-width: 95%;
+
+	.message_alert {
+		min-width: calc(630px - 5%);
+		@media (max-width: 700px) {
+			width: calc(100% - 70px);
+			min-width: 0;
+		}
+	}
 
 	.announcements {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
 		width: calc(100% - 130px);
-		min-width: 900px;
-		z-index: 10;
+		// max-width: 100%;
 
+		@media (max-width: $main-width) {
+			width: 100%;
+		}
+
+		z-index: 10;
 		transition: 0.3s transform ease-in-out;
 
 		// h2 {
@@ -30,13 +42,26 @@ main {
 
 		.announcement {
 			position: relative;
-			padding: 35px 35px;
+			padding: 35px;
 
 			box-sizing: border-box;
 
 			clear: both;
 			overflow: hidden;
 
+			min-width: calc(700px - 5%);
+			@media (max-width: $main-width) {
+				margin: 0 auto;
+				width: calc(100% - 200px);
+				// padding-left: 0;
+				// padding-right: 0;
+			}
+			@media (max-width: 700px) {
+				left: 0;
+				width: 100%;
+				min-width: 0;
+			}
+			
 			.author {
 				position: relative;
 				float: left;
@@ -71,6 +96,10 @@ main {
 
 					text-shadow: $text-shadow;
 				}
+
+				@media (max-width: $main-width) {
+					display: none;
+				}
 			}
 
 			.content {
@@ -78,6 +107,10 @@ main {
 				float: right;
 				padding: 30px;
 				width: 76%;
+
+				@media (max-width: $main-width) {
+					width: 100%;
+				}
 
 				box-sizing: border-box;
 
