@@ -256,11 +256,9 @@ function apply_period(safe=false) {
 		}
 	}
 
-	// console.log(left_border, right_border, scroll_table.scrollWidth);
-
 	period_hidden_left.style.width = left_border + "px";
+	period_hidden_right.style.width = scroll_table.scrollWidth - right_border - 1 + "px";
 	period_hidden_right.style.left = right_border + "px";
-	period_hidden_right.style.width = scroll_table.scrollWidth - right_border + "px";
 
 	if (safe) {
 		ajax(

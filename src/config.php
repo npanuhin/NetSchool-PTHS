@@ -18,6 +18,7 @@ $months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май
 $months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
 $_lesson_name_regex = '/^\s*(.+?)(?:[\\\\\/]?базовый)?\s*$/imu';
+$_class_regex = '/(\d+)(\w)\w*/iu';
 
 $_lesson_name_replace = [
 	'Информ.' => 'Информатика',
@@ -143,13 +144,14 @@ function handle_task_type($task_type) {
 
 function replace_school_class_regex($school_class) {
 	global $_replace_class;
+	global $_class_regex;
 
-	if (preg_match('/(\d+)(\w)\w*/iu', $school_class, $matches)) {
+	if (preg_match($_class_regex, $school_class, $matches)) {
 		$class = $matches[2];
 		foreach ($_replace_class as $key => $value) {
 			$class = preg_replace($key, $value, $class);
 		}
-		$school_class = $matches[1] . $class;
+		if ($matches[1] && $class) $school_class = $matches[1] . $class;
 	}
 
 	return $school_class;
@@ -168,8 +170,21 @@ function set_diary_period($db, $period_start, $period_end) {
 function class_to_diary_period($class) {
 	global $TRUE_SCHOOL_YEAR_BEGIN;
 	global $TRUE_SCHOOL_YEAR_END;
+	global $_class_regex;
+	global $SCHOOL_YEAR;
 
-	return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
+	if (preg_match($_class_regex, $class, $matches)) {
+		$class_num = $matches[1];
+		if ($class_num) {
+			// TODO
+		}
+	}
+
+	// return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
+	return array(
+		new DateTime(($SCHOOL_YEAR + 1) . '-01-01'), 
+		$TRUE_SCHOOL_YEAR_END
+	);
 }
 
 
