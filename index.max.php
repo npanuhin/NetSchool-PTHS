@@ -70,7 +70,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						}
 					}
 
-					$tasks = $diary[$TOMORROW->format('Y-m-d')];
+					$tasks = $diary[(new DateTime($SCHOOL_DAY->format('Y-m-d') . ' tomorrow'))->format('Y-m-d')];
 
 					$lessons_task_index = [];
 					foreach ($tasks as $task_data) {
@@ -120,8 +120,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			$week_period = new DatePeriod($TRUE_SCHOOL_YEAR_BEGIN, DateInterval::createFromDateString('1 week'), $TRUE_SCHOOL_YEAR_END);
 			foreach ($week_period as $monday) {
 				$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
-				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week 15:00');
-				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week 14:59');
+				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week ' . $SCHOOL_DAY_BORDER->format('H:i'));
+				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week ' . $SCHOOL_DAY_BORDER->format('H:i'));
 				?>
 
 				<div class="<?php echo $monday->format('Y-m-d'); if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown'; if ($monday == $MONDAY) echo ' cur_week'; ?>">
@@ -233,7 +233,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 													$start_time = new DateTime($start_time);
 													$end_time = new DateTime($end_time);
-													$cur_time = new DateTime("now");
 													?>
 
 													<li
@@ -243,11 +242,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 															$classes[] = 'vacation';
 														}
 
-														if (
-															$type == 'lesson' &&
-															$start_time->getTimestamp() <= $cur_time->getTimestamp() &&
-															$cur_time->getTimestamp() <= $end_time->getTimestamp()
-														) {
+														if ($type == 'lesson' && $start_time <= $NOW && $NOW <= $end_time) {
 															$classes[] = 'cur_lesson';
 														}
 
@@ -321,6 +316,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<title>Следующая неделя</title>
 				<path d="M1.48438 31.5346L31.5833 1.43668C33.498 -0.478897 36.6023 -0.478897 38.516 1.43668C40.4299 3.35056 40.4299 6.45469 38.516 8.36841L11.8831 35.0005L38.5152 61.6317C40.4291 63.5463 40.4291 66.6501 38.5152 68.564C36.6013 70.4787 33.4972 70.4787 31.5826 68.564L1.4836 38.4656C0.526657 37.5082 0.0487289 36.2547 0.0487289 35.0007C0.0487289 33.746 0.527588 32.4916 1.48438 31.5346Z"/>
 			</svg>
+
+			<div class="details"></div>
 		</div>
 		
 	</main>

@@ -433,7 +433,7 @@ main .timetable > div > div {
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 70px;
   grid-column-gap: 60px;
-  transition: 0.5s all ease-in-out, visibility 0.5s;
+  transition: 0.5s opacity ease-in-out, visibility 0.5s;
   opacity: 0;
   visibility: hidden;
 }
@@ -506,15 +506,17 @@ main .timetable > div > div > div ul li {
   cursor: pointer;
 }
 
-main .timetable > div > div > div ul li a,
-main .timetable > div > div > div ul li > div,
-main .timetable > div > div > div ul li > div h5 {
+main .timetable > div > div > div ul li a {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 25px;
   color: #1963A1;
+}
+
+main .timetable > div > div > div ul li > div {
+  display: none;
 }
 
 main .timetable > div > div > div ul li.vacation a,
@@ -542,35 +544,6 @@ main .timetable > div > div > div ul li.no_lesson::before {
   height: 15px;
   background: #C9DDF0;
   border-radius: 2px;
-}
-
-main .timetable > div > div > div ul li > div {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 15px 20px;
-  border-radius: 20px;
-  z-index: 100;
-  white-space: nowrap;
-  background: #fff;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
-  color: #1963A1;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
-  line-height: 23px;
-}
-
-main .timetable > div > div > div ul li > div h5 {
-  text-align: center;
-  font-weight: 600;
-}
-
-main .timetable > div > div > div ul li:hover > div,
-main .timetable > div > div > div ul li:active > div {
-  visibility: visible;
-  opacity: 1;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
 main .timetable > div > div > div .pending {
@@ -605,7 +578,6 @@ main .timetable > div > div > div.today .day_info {
 }
 
 main .timetable > div.shown > div {
-  transition: 0.5s all ease-in-out, visibility 0.5s;
   opacity: 1;
   visibility: visible;
 }
@@ -654,6 +626,57 @@ main .timetable #timetable_next {
 
 main .timetable #timetable_next:hover {
   transform: scale(-1, 1) translateX(-6px) translateY(-50%);
+}
+
+.details,
+.details h5,
+.details p {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 25px;
+  color: #1963A1;
+}
+
+.details {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 15px 20px;
+  border-radius: 20px;
+  max-width: 100vw;
+  max-height: 100vw;
+  background: #fff;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  color: #1963A1;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+  line-height: 23px;
+}
+
+.details h5 {
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.details p {
+  width: 100%;
+  text-align: center;
+}
+
+.details p a {
+  color: #FF890C;
+}
+
+.details.shown {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
 @media (max-width: 1200px) {

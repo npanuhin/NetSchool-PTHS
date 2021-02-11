@@ -1,7 +1,10 @@
 var
 	marks = document.getElementsByClassName("marks")[0],
-	table = marks.getElementsByTagName("table")[0],
+	table = marks.getElementsByTagName("table")[0];
 
+if (table !== undefined) {
+
+let
 	scroll_table = document.querySelector(".marks > div > div"),
 
 	spans = table.querySelectorAll("tr:not(:nth-child(1)):not(:nth-child(2)) td span"),
@@ -13,8 +16,6 @@ var
 	right_column = document.querySelector(".marks > div > ul:last-child"),
 	right_column_li = right_column.getElementsByTagName("li"),
 
-	details_block = marks.getElementsByClassName("details")[0],
-
 	scroll_left_button = document.getElementById("scroll_left"),
 	scroll_right_button = document.getElementById("scroll_right"),
 
@@ -25,6 +26,8 @@ var
 	period_hidden_right = marks.getElementsByClassName("period_hidden_right")[0],
 
 	table_unlocked = false,
+
+	details_block = document.getElementsByClassName("details")[0],
 	details_lock = false;
 
 
@@ -38,17 +41,17 @@ var
 
 // =======================================================================
 
-function show_details(pageX, pageY, task_element) {
+function show_details(pageX, pageY, element) {
 	if (details_lock) return;
 
 	locate_details(pageX, pageY);
 
 	// details_block.style.display = "";
 
-	// task_element.append(details_block);
+	// element.append(details_block);
 
-	details_block.innerHTML = task_element.getElementsByTagName("div")[0].innerHTML;
-	details_block.classList.toggle("expired", task_element.classList.contains("expired"));
+	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
+	details_block.classList.toggle("expired", element.classList.contains("expired"));
 	details_block.classList.add("shown");
 }
 
@@ -78,13 +81,14 @@ function hide_details() {
 
 function toggle_details_lock(event) {
 	let empty_click = true;
-	for (let item of spans) {
-		if (item == event.target) {
+	for (let span of spans) {
+		if (span.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX, event.pageY, item);
+			show_details(event.pageX, event.pageY, span);
 
 			details_lock = true;
 			empty_click = false;
+			break;
 		}
 	}
 
@@ -304,6 +308,7 @@ Event.add(window, "load", () => {
 		setTimeout(initial_table_scroll);
 	}
 
+	body.append(details_block);
 	for (let item of spans) {
 		Event.add(item, "mouseenter", (e) => {
 			show_details(e.pageX, e.pageY, item);
@@ -314,9 +319,6 @@ Event.add(window, "load", () => {
 		Event.add(item, "mousemove", (e) => {
 			locate_details(e.pageX, e.pageY);
 		});
-		// Event.add(item, "mousedown", () => {
-		// 	toggle_details_lock(item);
-		// });
 	}
 	Event.add(window, "mousedown", toggle_details_lock);
 
@@ -343,3 +345,5 @@ Event.add(window, "load", () => {
 		setTimeout(apply_period);
 	}, 150);
 });
+
+}

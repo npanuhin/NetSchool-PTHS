@@ -33,7 +33,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			<!-- <h2>Объявления</h2> -->
 
 			<ul>
-
 				<?php
 
 				try {

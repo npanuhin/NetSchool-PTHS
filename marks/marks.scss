@@ -407,74 +407,74 @@ main {
 				}
 			}
 		}
+	}
+}
 
-		.details, .details h5, .details p {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 15px;
-			line-height: 25px;
-			color: $text-color;
+.details, .details h5, .details p {
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 25px;
+	color: $text-color;
+}
+
+.details {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	padding: 15px 20px;
+	border-radius: 20px;
+	// white-space: nowrap;
+	max-width: 100vw;
+	max-height: 100vw;
+	background: #fff;
+	box-shadow: $details-shadow;
+	color: $text-color;
+
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+
+	line-height: 23px;
+
+	h5 {
+		text-align: center;
+		width: 100%;
+		
+		font-weight: 600;
+	}
+
+	// h6 {
+	// 	text-align: center;
+	// 	width: 100%;
+	// 	font-size: 12px;
+		
+	// 	font-weight: 600;
+	// }
+
+	p {
+		width: 100%;
+		text-align: center;
+
+		a {
+			color: $orange-color;
 		}
+	}
 
-		.details {
-			display: block;
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 50;
-			padding: 15px 20px;
-			border-radius: 20px;
-			// white-space: nowrap;
-			max-width: 100vw;
-			max-height: 100vw;
-			background: #fff;
-			box-shadow: $details-shadow;
-			color: $text-color;
+	&.shown {
+		visibility: visible;
+		opacity: 1;
+		transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+	}
 
-			visibility: hidden;
-			opacity: 0;
-			transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	&.expired {
+		box-shadow: $details-expired-shadow;
 
-			line-height: 23px;
-
-			h5 {
-				text-align: center;
-				width: 100%;
-				
-				font-weight: 600;
-			}
-
-			// h6 {
-			// 	text-align: center;
-			// 	width: 100%;
-			// 	font-size: 12px;
-				
-			// 	font-weight: 600;
-			// }
-
-			p {
-				width: 100%;
-				text-align: center;
-
-				a {
-					color: $orange-color;
-				}
-			}
-
-			&.shown {
-				visibility: visible;
-				opacity: 1;
-				transition: 0.1s opacity ease-in-out, 0s visibility 0s;
-			}
-
-			&.expired {
-				box-shadow: $details-expired-shadow;
-
-				h5 {
-					color: #f00;
-				}
-			}
+		h5 {
+			color: #f00;
 		}
 	}
 }

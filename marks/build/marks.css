@@ -594,9 +594,9 @@ main .marks #scroll_right svg:hover {
   transform: scale(-0.9, 1) translateY(-50%);
 }
 
-main .marks .details,
-main .marks .details h5,
-main .marks .details p {
+.details,
+.details h5,
+.details p {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -605,7 +605,7 @@ main .marks .details p {
   color: #1963A1;
 }
 
-main .marks .details {
+.details {
   display: block;
   position: fixed;
   top: 0;
@@ -624,32 +624,32 @@ main .marks .details {
   line-height: 23px;
 }
 
-main .marks .details h5 {
+.details h5 {
   text-align: center;
   width: 100%;
   font-weight: 600;
 }
 
-main .marks .details p {
+.details p {
   width: 100%;
   text-align: center;
 }
 
-main .marks .details p a {
+.details p a {
   color: #FF890C;
 }
 
-main .marks .details.shown {
+.details.shown {
   visibility: visible;
   opacity: 1;
   transition: 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
-main .marks .details.expired {
+.details.expired {
   box-shadow: 5px 5px 10px 5px rgba(255, 0, 0, 0.1);
 }
 
-main .marks .details.expired h5 {
+.details.expired h5 {
   color: #f00;
 }
 

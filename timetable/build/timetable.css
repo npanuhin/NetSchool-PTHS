@@ -427,6 +427,19 @@ main .timetable .cources .day ul li span {
   }
 }
 
+@media (max-width: 1000px) {
+  main .timetable .holidays,
+  main .timetable .bells {
+    float: none;
+    width: calc(100% - 200px);
+    margin: 0 auto;
+  }
+
+  main .timetable .holidays:not(.wide) {
+    margin-bottom: 50px;
+  }
+}
+
 @media (max-width: 850px) {
   .statusbar .last_update {
     display: none;

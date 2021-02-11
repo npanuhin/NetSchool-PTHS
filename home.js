@@ -15,18 +15,24 @@ var
 	),
 	days = document.querySelectorAll(".timetable > div > div"),
 
+	lessons = document.querySelectorAll(".timetable > div > div ul li"),
+
 	// today = timetable.getElementsByClassName("today")[0],
 	// today_date = Array.prototype.slice.call(today.classList).find((value) => {
 	// 	return value != "day" && value != "today"
 	// }),
 
-	goto_today_buttons = timetable.getElementsByTagName("button");
+	goto_today_buttons = timetable.getElementsByTagName("button"),
 
+	details_block = document.getElementsByClassName("details")[0],
+	details_lock = false;
 
 
 function onResize() {
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 }
+
+// ===========================================================================================================
 
 function goto_day(date) {
 	html.classList.add("loaded");
@@ -58,7 +64,65 @@ function goto_week(week) {
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 }
 
+// ===========================================================================================================
 
+function show_details(pageX, pageY, element) {
+	if (details_lock) return;
+
+	locate_details(pageX, pageY);
+
+	// details_block.style.display = "";
+
+	// element.append(details_block);
+
+	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
+	details_block.classList.add("shown");
+}
+
+function locate_details(pageX, pageY) {
+	if (details_lock) return;
+
+	details_block.style.top = Math.min(
+		document.documentElement.clientHeight - details_block.offsetHeight,
+		pageY - html.scrollTop + 20
+	) + "px";
+
+	details_block.style.left = Math.min(
+		document.documentElement.clientWidth - details_block.offsetWidth,
+		pageX - html.scrollLeft + 20
+	) + "px";
+}
+
+function hide_details() {
+	if (details_lock) return;
+
+	details_block.classList.remove("shown");
+
+	// setTimeout(() => {
+	// 	if (!details_block.classList.contains("shown")) details_block.style.display = "none";
+	// }, 200);
+}
+
+function toggle_details_lock(event) {
+	let empty_click = true;
+	for (let lesson of lessons) {
+		if (lesson.contains(event.target)) {
+			details_lock = false;
+			show_details(event.pageX, event.pageY, lesson);
+
+			details_lock = true;
+			empty_click = false;
+			break;
+		}
+	}
+
+	if (empty_click && !details_block.contains(event.target)) {
+		details_lock = false;
+		hide_details();
+	}
+}
+
+// ===========================================================================================================
 
 Event.add(window, "load", () => {
 
@@ -99,25 +163,22 @@ Event.add(window, "load", () => {
 		});
 	}
 
-	for (let day of days) {
-		for (let item of day.getElementsByTagName("li")) {
-			let details = item.getElementsByTagName("div")[0];
+	body.append(details_block);
+	for (let lesson of lessons) {
+		let details = lesson.getElementsByTagName("div")[0];
 
-			if (details !== undefined) {
-				Event.add(item, "mousemove", (e) => {
+		if (details !== undefined) {
 
-					details.style.top = Math.min(
-						document.documentElement.clientHeight - details.offsetHeight,
-						e.pageY - html.scrollTop + 20
-					) + "px";
-
-					details.style.left = Math.min(
-						document.documentElement.clientWidth - details.offsetWidth,
-						e.pageX - html.scrollLeft + 20
-					) + "px";
-
-				});
-			}
+			Event.add(lesson, "mouseenter", (e) => {
+				show_details(e.pageX, e.pageY, lesson);
+			});
+			Event.add(lesson, "mouseleave", () => {
+				hide_details();
+			});
+			Event.add(lesson, "mousemove", (e) => {
+				locate_details(e.pageX, e.pageY);
+			});
 		}
 	}
+	Event.add(window, "mousedown", toggle_details_lock);
 });

@@ -350,9 +350,7 @@ $default_mark_rate = 10;
 					</ul>
 				</div>
 
-				<div class="details">
-					
-				</div>
+				<div class="details"></div>
 
 				<?php
 			}
@@ -364,7 +362,7 @@ $default_mark_rate = 10;
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
-	<script type="text/javascript" src="marks.js" defer></script>
+	<script type="text/javascript" src="build/marks.min.js" defer></script>
 </body>
 
 </html>

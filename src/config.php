@@ -88,6 +88,8 @@ $SCHOOL_YEAR_END = new DateTime(($SCHOOL_YEAR + 1) . '-05-31');
 $TRUE_SCHOOL_YEAR_BEGIN = new DateTime($SCHOOL_YEAR_BEGIN->format('Y-m-d') . ' monday this week');
 $TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monday next week');
 
+$SCHOOL_DAY_BORDER = new DateTime('15:00');
+$SCHOOL_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
 
 // UTILS:
 function redirect($url='/') {

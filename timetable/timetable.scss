@@ -127,6 +127,18 @@ main {
 			}
 		}
 
+		@media (max-width: 1000px) {
+			.holidays, .bells {
+				float: none;
+				width: calc(100% - 200px);
+				margin: 0 auto;
+			}
+
+			.holidays:not(.wide) {
+				margin-bottom: 50px;
+			}
+		}
+
 		.cources {
 			position: relative;
 			width: calc(100% - 200px);
