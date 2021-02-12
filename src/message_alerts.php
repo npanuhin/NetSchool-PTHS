@@ -2,16 +2,21 @@
 
 // Insert if not exists
 $db->query('
-		INSERT INTO `messages` (`user_id`)
+		INSERT INTO `messages` (`user_id`, `pro_tip_hover`, `official_warning`)
 		SELECT * FROM (
 			SELECT
-			?i AS `user_id`
+			?i AS `user_id`,
+			?s AS `pro_tip_hover`,
+			?s AS `official_warning`
 		) AS tmp
 		WHERE NOT EXISTS (
 		    SELECT 1 FROM `messages` WHERE `user_id` = ?i
 		) LIMIT 1;
 	',
-	$_SESSION['user_id'], $_SESSION['user_id']
+	$_SESSION['user_id'],
+	'<p>ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию.',
+	'<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>.',
+	$_SESSION['user_id']
 );
 
 $messages = $db->getRow('SELECT * FROM `messages` WHERE `user_id` = ?i', $_SESSION['user_id']);

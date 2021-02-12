@@ -70,7 +70,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						}
 					}
 
-					$day = (new DateTime($SCHOOL_DAY->format('Y-m-d') . ' tomorrow'))->format('Y-m-d');
+					$day = (new DateTime($SCHOOL_DAY->format('Y-m-d')))->format('Y-m-d');
 					$lessons_task_index = [];
 					foreach ($diary[$day] as $task_data) {
 						$lesson = $task_data[0];
