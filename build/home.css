@@ -148,10 +148,11 @@ main .message_alert {
   transition: 0.6s opacity ease-in-out;
 }
 
+main .message_alert span,
 main .message_alert p {
-  color: #ff0;
-  display: inline-block;
+  color: #50f;
   font-weight: 600;
+  display: inline;
 }
 
 main .message_alert .cross-icon {
@@ -258,6 +259,13 @@ main .tasks h2 {
 main .tasks ul {
   width: 82%;
   margin: 0 auto 17px auto;
+}
+
+main .tasks ul li,
+main .tasks ul li div,
+main .tasks ul li span,
+main .tasks ul li a,
+main .tasks ul li span a {
   font-family: Manrope;
   font-style: normal;
   font-weight: 600;
@@ -296,12 +304,29 @@ main .tasks ul li span a:hover::before {
   opacity: 1;
 }
 
+main .tasks ul li.expired div {
+  background: #f53;
+}
+
 main .tasks ul li.expired span a {
   color: #ff5050;
 }
 
 main .tasks ul li.expired span a::before {
   background: #ff5050;
+}
+
+main .tasks ul li div {
+  position: relative;
+  top: -1.2px;
+  display: inline-block;
+  padding: 5px 11px;
+  margin-left: 6px;
+  border-radius: 15px;
+  line-height: 15px;
+  font-size: 13px;
+  color: #fff;
+  background: #0fb;
 }
 
 main .announcements {

@@ -172,8 +172,8 @@ Event.add(window, "load", () => {
 			Event.add(lesson, "mouseenter", (e) => {
 				show_details(e.pageX, e.pageY, lesson);
 			});
-			Event.add(lesson, "mouseleave", () => {
-				hide_details();
+			Event.add(lesson, "mouseleave", (e) => {
+				if (!details_block.contains(e.relatedTarget)) hide_details();
 			});
 			Event.add(lesson, "mousemove", (e) => {
 				locate_details(e.pageX, e.pageY);
@@ -181,4 +181,5 @@ Event.add(window, "load", () => {
 		}
 	}
 	Event.add(window, "mousedown", toggle_details_lock);
+	Event.add(details_block, "mouseleave", hide_details);
 });

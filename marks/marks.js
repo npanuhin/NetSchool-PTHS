@@ -311,14 +311,15 @@ Event.add(window, "load", () => {
 		Event.add(item, "mouseenter", (e) => {
 			show_details(e.pageX, e.pageY, item);
 		});
-		Event.add(item, "mouseleave", () => {
-			hide_details();
+		Event.add(item, "mouseleave", (e) => {
+			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
 		Event.add(item, "mousemove", (e) => {
 			locate_details(e.pageX, e.pageY);
 		});
 	}
 	Event.add(window, "mousedown", toggle_details_lock);
+	Event.add(details_block, "mouseleave", hide_details);
 
 
 	Event.add(scroll_left_button, "mousedown", () => {

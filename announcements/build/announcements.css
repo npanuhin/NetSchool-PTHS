@@ -148,10 +148,11 @@ main .message_alert {
   transition: 0.6s opacity ease-in-out;
 }
 
+main .message_alert span,
 main .message_alert p {
-  color: #ff0;
-  display: inline-block;
+  color: #50f;
   font-weight: 600;
+  display: inline;
 }
 
 main .message_alert .cross-icon {

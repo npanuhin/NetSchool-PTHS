@@ -176,7 +176,7 @@ function class_to_diary_period($class) {
 	if (preg_match($_class_regex, $class, $matches)) {
 		$class_num = $matches[1];
 		if ($class_num) {
-			// TODO
+			// echo $class_num;
 		}
 	}
 
@@ -185,6 +185,22 @@ function class_to_diary_period($class) {
 		new DateTime(($SCHOOL_YEAR + 1) . '-01-01'), 
 		$TRUE_SCHOOL_YEAR_END
 	);
+}
+
+function day_word_case($num) {
+	if ($num == '1') return 'день';
+	if ($num == '2') return 'дня'; 		
+	if ($num == '3') return 'дня'; 
+	if ($num == '4') return 'дня';  
+	if (substr($num, -2) == '11') return 'дней';
+	if (substr($num, -2) == '12') return 'дней'; 
+	if (substr($num, -2) == '13') return 'дней';
+	if (substr($num, -2) == '14') return 'дней'; 
+	if (substr($num, -2) == '01') return 'день';	
+	if (substr($num, -1) == '2') return 'дня';
+	if (substr($num, -1) == '3') return 'дня';	
+	if (substr($num, -1) == '4') return 'дня';				    
+    return 'дней'; 
 }
 
 

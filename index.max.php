@@ -56,6 +56,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							$mark = $task_data[4];
 							$task_expired = $task_data[5];
 
+							$date = new DateTime($day);
+
 							if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
 
 							$task_index = $lessons_task_index[$lesson]++;
@@ -64,6 +66,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 								?>
 								<li class="expired" title="Задание просрочено">
 									<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+									<div><?php echo $date->format('d') . ' ' . $months_genetive[$date->format('m') - 1] . ', ' . date_diff($date, $TODAY)->format('%a') . ' ' . day_word_case(date_diff($date, $TODAY)->format('%a')) . ' назад' ?>
+									</div>
 								</li>
 								<?php
 							}
@@ -87,6 +91,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						?>
 						<li>
 							<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+							<div>Завтра</div>
 						</li>
 						<?php
 					}

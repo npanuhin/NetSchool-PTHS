@@ -44,11 +44,13 @@ main {
 			width: 82%;
 			margin: 0 auto 17px auto;
 
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: 600;
-			font-size: 18px;
-			line-height: 32px;
+			li, li div, li span, li a, li span a {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 32px;
+			}
 
 			li {
 				color: $text-color;
@@ -81,12 +83,34 @@ main {
 					}
 				}
 
-				&.expired span a {
-					color: $expired-color;
+				&.expired {
 
-					&::before {
-						background: $expired-color;
+					div {
+						background: #f53;
 					}
+
+					span a {
+						color: $expired-color;
+
+						&::before {
+							background: $expired-color;
+						}
+					}
+				}
+
+				div {
+					position: relative;
+					top: -1.2px;
+					display: inline-block;
+					padding: 5px 11px;
+					margin-left: 6px;
+					border-radius: 15px;
+					
+					line-height: 15px;
+					font-size: 13px;
+					color: #fff;
+					// background: $light-orange-color;
+					background: #0fb;
 				}
 			}
 		}

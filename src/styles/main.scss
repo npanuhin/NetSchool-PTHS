@@ -15,6 +15,7 @@ $arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 $page-color: #1963A1;
 
 $orange-color: #FF890C;
+$light-orange-color: #ffa94d;
 $orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
 
 $text-color: $page-color;
@@ -142,10 +143,11 @@ main {
 
         transition: 0.6s opacity ease-in-out;
 
-        p {
-            color: #ff0;
-            display: inline-block;
+        span, p {
+            color: #50f;
+            // color: $light-orange-color;
             font-weight: 600;
+            display: inline;
         }
 
         .cross-icon {

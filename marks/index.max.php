@@ -81,14 +81,14 @@ $default_mark_rate = 10;
 					if (is_null($period_start)) $period_start = class_to_diary_period($person['class'])[0];
 					if (is_null($period_end)) $period_end = class_to_diary_period($person['class'])[1];
 
-					if (!($period_start instanceof DateTime) || is_null($period_start)) $period_start = new DateTime($period_start);
-					if (!($period_end instanceof DateTime) || is_null($period_end)) $period_end = new DateTime($period_end);
+					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
+					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 					set_diary_period($db, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
 				}
 
-				if (!($period_start instanceof DateTime) || is_null($period_start)) $period_start = new DateTime($period_start);
-				if (!($period_end instanceof DateTime) || is_null($period_end)) $period_end = new DateTime($period_end);
+				if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
+				if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 				?>
 
