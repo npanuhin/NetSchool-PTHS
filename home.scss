@@ -23,9 +23,13 @@ main {
 
 		background: $block-color;
 		box-shadow: $block-shadow;
+		html.dark & {
+			background: $block-color-dark;
+			box-shadow: $block-shadow-dark;
+		}
 		border-radius: 30px;
 
-		transition: 0.3s transform ease-in-out;
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		h2 {
 			padding: 0 0 16px 0;
@@ -38,6 +42,9 @@ main {
 			line-height: 179.2%;
 
 			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 		}
 
 		ul {
@@ -54,16 +61,25 @@ main {
 
 			li {
 				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
 				list-style: disc;
 				padding-left: 7px;
 
 				span {
 					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
 				}
 
 				span a {
 					position: relative;
 					color: $orange-color;
+					html.dark & {
+						color: $orange-color-dark;
+					}
 
 					&::before {
 						content: "";
@@ -73,9 +89,12 @@ main {
 						width: 100%;
 						height: 1.7px;
 						background: $orange-color;
+						html.dark & {
+							background: $orange-color-dark;
+						}
 						
 						opacity: 0;
-						transition: 0.07s opacity ease-in-out;
+						transition: $dark_mode_transition, 0.07s opacity ease-in-out;
 					}
 
 					&:hover::before {
@@ -127,7 +146,7 @@ main {
 		margin: 116px auto 0 auto;
 		width: calc(100% - 200px);
 
-		transition: 0.3s transform ease-in-out;
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		& > div {
 			position: absolute;
@@ -147,6 +166,10 @@ main {
 				line-height: 65px;
 				color: #FFF;
 				text-shadow: $text-shadow;
+				html.dark & {
+					color: $text-color-dark;
+					text-shadow: $text-shadow-dark;
+				}
 
 				animation: week_header_hide 0.5s ease-in-out forwards;
 				animation-duration: 0s;
@@ -213,12 +236,15 @@ main {
 				// border-bottom: 1px dashed #fff;
 
 				color: #fff;
+				html.dark & {
+					color: $text-color-dark;
+				}
 
-				transition: 0.15s opacity 0.2s ease-in-out;
+				transition: $dark_mode_transition, 0.15s opacity 0.2s ease-in-out;
 			}
 
 			&.shown > button {
-				transition: 0.2s opacity 0s ease-in-out;
+				transition: $dark_mode_transition, 0.2s opacity 0s ease-in-out;
 				opacity: 1;
 			}
 
@@ -244,7 +270,7 @@ main {
 					grid-row-gap: 40px;
 				}
 
-				transition: 0.5s opacity ease-in-out, visibility 0.5s;
+				transition: $dark_mode_transition, 0.5s opacity ease-in-out, visibility 0.5s;
 				opacity: 0;
 				visibility: hidden;
 
@@ -253,8 +279,12 @@ main {
 					position: relative;
 					padding: 30px 32px;
 					min-height: 50px;
-					background: #FFF;
+					background: $block-color;
 					box-shadow: $block-shadow;
+					html.dark & {
+						background: $block-color-dark;
+						box-shadow: $block-shadow-dark;
+					}
 					border-radius: 30px;
 
 					h4 {
@@ -265,6 +295,9 @@ main {
 						font-size: 21px;
 						line-height: 33px;
 						color: $text-color;
+						html.dark & {
+							color: $text-color-dark;
+						}
 					}
 
 					.day_info {
@@ -282,6 +315,9 @@ main {
 						text-align: center;
 
 						color: $text-color;
+						html.dark & {
+							color: $text-color-dark;
+						}
 
 						.zoom-icon {
 							position: relative;
@@ -323,6 +359,9 @@ main {
 								font-size: 15px;
 								line-height: 25px;
 								color: $text-color;
+								html.dark & {
+									color: $text-color-dark;
+								}
 							}
 
 							& > div {
@@ -338,6 +377,9 @@ main {
 							&.cur_lesson {
 								a, & > div h5 {
 									color: $orange-color;
+									html.dark & {
+										color: $orange-color-dark;
+									}
 									font-weight: 600;
 								}
 							}
@@ -354,6 +396,10 @@ main {
 									width: 100%;
 									height: 15px;
 									background: #C9DDF0;
+									html.dark & {
+										background: #5c6670;
+									}
+									transition: $dark-mode-transition;
 									border-radius: 2px;
 								}
 							}
@@ -386,12 +432,18 @@ main {
 							line-height: 30px;
 
 							color: #fff;
+							html.dark & {
+								color: $text-color-dark;
+							}
 						}
 					}
 
 					&.today {
 						h4, .day_info {
 							color: $orange-color;
+							html.dark & {
+								color: $orange-color-dark;
+							}
 						}
 					}
 				}
@@ -409,10 +461,13 @@ main {
 			height: calc(100% - 72px);
 			width: 40px;
 			filter: drop-shadow($arrows-shadow);
+			html.dark & {
+				filter: drop-shadow($arrows-shadow-dark);
+			}
 			cursor: pointer;
 			padding: 0 45px;
 
-			transition: 0.15s transform ease-in-out;
+			transition: $dark_mode_transition, 0.15s transform ease-in-out;
 
 			&.hidden {
 				opacity: 0;
@@ -420,6 +475,9 @@ main {
 
 			path {
 				fill: #fff;
+				html.dark & {
+					fill: $text-color-dark;
+				}
 			}
 
 			&:hover {
@@ -454,6 +512,9 @@ main {
 	font-size: 15px;
 	line-height: 25px;
 	color: $text-color;
+	html.dark & {
+		color: $text-color-dark;
+	}
 }
 
 .details {
@@ -470,10 +531,15 @@ main {
 	background: #fff;
 	box-shadow: $block-shadow;
 	color: $text-color;
+	html.dark & {
+		background: #353f4c;
+		box-shadow: $block-shadow-dark;
+		color: $text-color-dark;
+	}
 
 	visibility: hidden;
 	opacity: 0;
-	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 
 	line-height: 23px;
 
@@ -484,34 +550,21 @@ main {
 		font-weight: 600;
 	}
 
-	// h6 {
-	// 	text-align: center;
-	// 	width: 100%;
-	// 	font-size: 12px;
-		
-	// 	font-weight: 600;
-	// }
-
 	p {
 		width: 100%;
 		text-align: center;
 
 		a {
 			color: $orange-color;
+			html.dark & {
+				color: $orange-color-dark;
+			}
 		}
 	}
 
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
 	}
-
-	// &.expired {
-	// 	box-shadow: $details-expired-shadow;
-
-	// 	h5 {
-	// 		color: #f00;
-	// 	}
-	// }
 }

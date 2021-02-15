@@ -50,9 +50,18 @@ html {
   overflow: auto;
 }
 
+html,
+html * {
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
+}
+
+html.dark body {
+  background: #06090F;
 }
 
 .menubar {
@@ -69,7 +78,12 @@ body {
 .menubar .menu-icon path,
 .menubar .moon-icon path {
   fill: #307FBD;
-  transition: 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+}
+
+html.dark .menubar .menu-icon path,
+html.dark .menubar .moon-icon path {
+  fill: #307FBD;
 }
 
 .menubar .menu_icon_wrapper .menu-icon {
@@ -82,9 +96,26 @@ body {
   fill: #205182;
 }
 
-.menubar .moon-icon {
+html.dark .menubar .menu_icon_wrapper:hover .menu-icon path,
+html.dark .menubar .menu_icon_wrapper.active .menu-icon path {
+  fill: #205182;
+}
+
+.menubar .moon_icon_wrapper .moon-icon {
   width: 40px;
   padding: 10.5px 17px;
+}
+
+.menubar .moon_icon_wrapper:hover .moon-icon path,
+.menubar .moon_icon_wrapper.active .moon-icon path,
+html.dark .menubar .moon_icon_wrapper .moon-icon path {
+  fill: #205182;
+}
+
+html.dark .menubar .moon_icon_wrapper:hover .moon-icon path,
+html.dark .menubar .moon_icon_wrapper.active .moon-icon path,
+html.dark html.dark .menubar .moon_icon_wrapper .moon-icon path {
+  fill: #205182;
 }
 
 .statusbar {
@@ -108,6 +139,12 @@ body {
   margin: 0 17px;
 }
 
+html.dark .statusbar .name,
+html.dark .statusbar .last_update,
+html.dark .statusbar .last_update span {
+  color: #C9D1D9;
+}
+
 .statusbar .last_update span {
   margin: -5px;
 }
@@ -120,10 +157,18 @@ body {
 
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
-  transition: 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+}
+
+html.dark .statusbar .exit_icon .sign-out-icon path {
+  fill: #307FBD;
 }
 
 .statusbar .exit_icon:hover .sign-out-icon path {
+  fill: #205182;
+}
+
+html.dark .statusbar .exit_icon:hover .sign-out-icon path {
   fill: #205182;
 }
 
@@ -145,7 +190,15 @@ main .message_alert {
   font-size: 18px;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
   color: #003ea8;
-  transition: 0.6s opacity ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.6s opacity ease-in-out;
+}
+
+html.dark main .message_alert {
+  background: #28313d;
+}
+
+html.dark main .message_alert {
+  color: #C9D1D9;
 }
 
 main .message_alert span,
@@ -168,6 +221,10 @@ main .message_alert .cross-icon {
 
 main .message_alert .cross-icon path {
   fill: #1963A1;
+}
+
+html.dark main .message_alert .cross-icon path {
+  fill: #8394a3;
 }
 
 main .message_alert.hidden {
@@ -201,11 +258,19 @@ main .menu ul li a {
   cursor: pointer;
   border-bottom: 2.5px solid transparent;
   color: #fff;
-  transition: 0.1s border-color ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s border-color ease-in-out;
+}
+
+html.dark main .menu ul li a {
+  color: #C9D1D9;
 }
 
 main .menu ul li a:hover {
   border-color: #fff;
+}
+
+html.dark main .menu ul li a:hover {
+  border-color: #C9D1D9;
 }
 
 main .menu::after {
@@ -216,8 +281,12 @@ main .menu::after {
   height: 100%;
   width: 100%;
   background: #1963A1;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
   transform-origin: bottom center;
+}
+
+html.dark main .menu::after {
+  background: #06090F;
 }
 
 main .menu.shown::after {
@@ -242,7 +311,12 @@ main .tasks {
   background: #FFF;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
+}
+
+html.dark main .tasks {
+  background: #28313d;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 }
 
 main .tasks h2 {
@@ -254,6 +328,10 @@ main .tasks h2 {
   font-size: 36px;
   line-height: 179.2%;
   color: #1963A1;
+}
+
+html.dark main .tasks h2 {
+  color: #C9D1D9;
 }
 
 main .tasks ul {
@@ -279,12 +357,24 @@ main .tasks ul li {
   padding-left: 7px;
 }
 
+html.dark main .tasks ul li {
+  color: #C9D1D9;
+}
+
 main .tasks ul li span {
   color: #1963A1;
 }
 
+html.dark main .tasks ul li span {
+  color: #C9D1D9;
+}
+
 main .tasks ul li span a {
   position: relative;
+  color: #FF890C;
+}
+
+html.dark main .tasks ul li span a {
   color: #FF890C;
 }
 
@@ -297,7 +387,11 @@ main .tasks ul li span a::before {
   height: 1.7px;
   background: #FF890C;
   opacity: 0;
-  transition: 0.07s opacity ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.07s opacity ease-in-out;
+}
+
+html.dark main .tasks ul li span a::before {
+  background: #FF890C;
 }
 
 main .tasks ul li span a:hover::before {
@@ -338,7 +432,7 @@ main .timetable {
   z-index: 10;
   margin: 116px auto 0 auto;
   width: calc(100% - 200px);
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
 }
 
 main .timetable > div {
@@ -359,6 +453,11 @@ main .timetable > div h3 {
   animation: week_header_hide 0.5s ease-in-out forwards;
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
+}
+
+html.dark main .timetable > div h3 {
+  color: #C9D1D9;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 html.loaded main .timetable > div h3 {
@@ -443,11 +542,15 @@ main .timetable > div > button {
   line-height: 27px;
   cursor: pointer;
   color: #fff;
-  transition: 0.15s opacity 0.2s ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.15s opacity 0.2s ease-in-out;
+}
+
+html.dark main .timetable > div > button {
+  color: #C9D1D9;
 }
 
 main .timetable > div.shown > button {
-  transition: 0.2s opacity 0s ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.2s opacity 0s ease-in-out;
   opacity: 1;
 }
 
@@ -458,7 +561,7 @@ main .timetable > div > div {
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 70px;
   grid-column-gap: 60px;
-  transition: 0.5s opacity ease-in-out, visibility 0.5s;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.5s opacity ease-in-out, visibility 0.5s;
   opacity: 0;
   visibility: hidden;
 }
@@ -472,6 +575,11 @@ main .timetable > div > div > div {
   border-radius: 30px;
 }
 
+html.dark main .timetable > div > div > div {
+  background: #28313d;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+}
+
 main .timetable > div > div > div h4 {
   text-align: center;
   font-family: Manrope;
@@ -480,6 +588,10 @@ main .timetable > div > div > div h4 {
   font-size: 21px;
   line-height: 33px;
   color: #1963A1;
+}
+
+html.dark main .timetable > div > div > div h4 {
+  color: #C9D1D9;
 }
 
 main .timetable > div > div > div .day_info {
@@ -493,6 +605,10 @@ main .timetable > div > div > div .day_info {
   width: 100%;
   text-align: center;
   color: #1963A1;
+}
+
+html.dark main .timetable > div > div > div .day_info {
+  color: #C9D1D9;
 }
 
 main .timetable > div > div > div .day_info .zoom-icon {
@@ -540,6 +656,10 @@ main .timetable > div > div > div ul li a {
   color: #1963A1;
 }
 
+html.dark main .timetable > div > div > div ul li a {
+  color: #C9D1D9;
+}
+
 main .timetable > div > div > div ul li > div {
   display: none;
 }
@@ -555,6 +675,11 @@ main .timetable > div > div > div ul li.cur_lesson > div h5 {
   font-weight: 600;
 }
 
+html.dark main .timetable > div > div > div ul li.cur_lesson a,
+html.dark main .timetable > div > div > div ul li.cur_lesson > div h5 {
+  color: #FF890C;
+}
+
 main .timetable > div > div > div ul li.no_lesson {
   cursor: auto;
   height: 25px;
@@ -568,7 +693,12 @@ main .timetable > div > div > div ul li.no_lesson::before {
   width: 100%;
   height: 15px;
   background: #C9DDF0;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out;
   border-radius: 2px;
+}
+
+html.dark main .timetable > div > div > div ul li.no_lesson::before {
+  background: #5c6670;
 }
 
 main .timetable > div > div > div .pending {
@@ -597,8 +727,17 @@ main .timetable > div > div > div .pending p {
   color: #fff;
 }
 
+html.dark main .timetable > div > div > div .pending p {
+  color: #C9D1D9;
+}
+
 main .timetable > div > div > div.today h4,
 main .timetable > div > div > div.today .day_info {
+  color: #FF890C;
+}
+
+html.dark main .timetable > div > div > div.today h4,
+html.dark main .timetable > div > div > div.today .day_info {
   color: #FF890C;
 }
 
@@ -617,7 +756,13 @@ main .timetable #timetable_next {
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   padding: 0 45px;
-  transition: 0.15s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.15s transform ease-in-out;
+}
+
+html.dark main .timetable #timetable_previous,
+html.dark main .timetable #timetable_next {
+  -webkit-filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
 }
 
 main .timetable #timetable_previous.hidden,
@@ -628,6 +773,11 @@ main .timetable #timetable_next.hidden {
 main .timetable #timetable_previous path,
 main .timetable #timetable_next path {
   fill: #fff;
+}
+
+html.dark main .timetable #timetable_previous path,
+html.dark main .timetable #timetable_next path {
+  fill: #C9D1D9;
 }
 
 main .timetable #timetable_previous:hover,
@@ -664,6 +814,12 @@ main .timetable #timetable_next:hover {
   color: #1963A1;
 }
 
+html.dark .details,
+html.dark .details h5,
+html.dark .details p {
+  color: #C9D1D9;
+}
+
 .details {
   display: block;
   position: fixed;
@@ -679,8 +835,14 @@ main .timetable #timetable_next:hover {
   color: #1963A1;
   visibility: hidden;
   opacity: 0;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s opacity ease-in-out, 0s visibility 0.2s;
   line-height: 23px;
+}
+
+html.dark .details {
+  background: #353f4c;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  color: #C9D1D9;
 }
 
 .details h5 {
@@ -698,10 +860,14 @@ main .timetable #timetable_next:hover {
   color: #FF890C;
 }
 
+html.dark .details p a {
+  color: #FF890C;
+}
+
 .details.shown {
   visibility: visible;
   opacity: 1;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
 @media (max-width: 1200px) {

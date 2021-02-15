@@ -28,9 +28,9 @@ $person = $data[0];
 	<div class="menu_icon_wrapper" title="Меню">
 		<?php include_once __DIR__ . '/../files/icons/menu.svg' ?>
 	</div>
-	<!-- <div class="moon_icon_wrapper" title="Night mode">
-		<?php // include_once __DIR__ . '/../files/icons/moon.svg' ?>
-	</div> -->
+	<div class="moon_icon_wrapper" title="Night mode">
+		<?php include_once __DIR__ . '/../files/icons/moon.svg' ?>
+	</div>
 </div>
 
 <div class="statusbar">

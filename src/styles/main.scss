@@ -8,19 +8,35 @@ $main-width: 1170px;
 // $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
 
 $block-color: #FFF;
+$block-color-dark: #28313d;
+
 $block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+$block-shadow-dark: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+
 $text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+$text-shadow-dark: 10px 10px 10px rgba(0, 0, 0, 0.25);
+
 $arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+$arrows-shadow-dark: 10px 10px 20px rgba(0, 0, 0, 0.25);
 
 $page-color: #1963A1;
+$page-color-dark: #06090F;
 
 $orange-color: #FF890C;
+$orange-color-dark: #FF890C;
+
 $light-orange-color: #ffa94d;
+
 $orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
 
 $text-color: $page-color;
+$text-color-dark: #C9D1D9;
+
 $buttons-color: #307FBD;
-$buttons-hover-color: #205182;
+$buttons-color-dark: #307FBD;
+
+$buttons-active-color: #205182;
+$buttons-active-color-dark: #205182;
 
 $vacation-color: #20822A;
 
@@ -100,8 +116,21 @@ html {
 	overflow: auto;
 }
 
+$dark-mode-transition: 0.5s color ease-in-out,
+                       0.5s background-color ease-in-out,
+                       0.5s border-color ease-in-out,
+                       0.5s fill ease-in-out;
+
+html, html * {
+    transition: $dark-mode-transition;
+}
+
 body {
 	background: $page-color;
+    html.dark & {
+        background: #06090F;
+    }
+
 	overflow: hidden;
 }
 
@@ -129,6 +158,10 @@ main {
 
         border-radius: 15px;
         background: #55ff7d;
+        html.dark & {
+            background: $block-color-dark;
+        }
+
         text-align: left;
 
         font-family: Manrope;
@@ -140,8 +173,11 @@ main {
         box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
 
         color: #003ea8;
+        html.dark & {
+            color: $text-color-dark;
+        }
 
-        transition: 0.6s opacity ease-in-out;
+        transition: $dark-mode-transition, 0.6s opacity ease-in-out;
 
         span, p {
             color: #50f;
@@ -162,6 +198,9 @@ main {
 
             path {
                 fill: $text-color;
+                html.dark & {
+                    fill: #8394a3;
+                }
             }
         }
 
@@ -211,11 +250,17 @@ main {
 
                     border-bottom: 2.5px solid transparent;
                     color: #fff;
+                    html.dark & {
+                        color: $text-color-dark;
+                    }
 
-                    transition: 0.1s border-color ease-in-out;
+                    transition: $dark_mode_transition, 0.1s border-color ease-in-out;
 
                     &:hover {
                         border-color: #fff;
+                        html.dark & {
+                            border-color: $text-color-dark;
+                        }
                     }
                 }
             }
@@ -229,8 +274,11 @@ main {
             height: 100%;
             width: 100%;
             background: $page-color;
+            html.dark & {
+                background: $page-color-dark;
+            }
 
-            transition: 0.3s transform ease-in-out;
+            transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
             transform-origin: bottom center;
         }

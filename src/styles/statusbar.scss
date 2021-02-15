@@ -13,6 +13,9 @@
 
 	.name, .last_update, .last_update span {
 		color: #fff;
+		html.dark & {
+			color: $text-color-dark;
+		}
 
 		font-family: Manrope;
 		font-style: normal;
@@ -49,13 +52,19 @@
 		padding: 7px 17px;
 		cursor: pointer;
 
-		.sign-out-icon path{
+		.sign-out-icon path {
 			fill: $buttons-color;
-			transition: 0.08s fill ease-in-out;
+			html.dark & {
+				fill: $buttons-color-dark;
+			}
+			transition: $dark-mode-transition, 0.08s fill ease-in-out;
 		}
 
-		&:hover .sign-out-icon path{
-			fill: $buttons-hover-color;
+		&:hover .sign-out-icon path {
+			fill: $buttons-active-color;
+			html.dark & {
+				fill: $buttons-active-color-dark;
+			}
 		}
 	}
 }

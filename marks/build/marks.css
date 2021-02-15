@@ -50,9 +50,18 @@ html {
   overflow: auto;
 }
 
+html,
+html * {
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
+}
+
+html.dark body {
+  background: #06090F;
 }
 
 .menubar {
@@ -69,7 +78,12 @@ body {
 .menubar .menu-icon path,
 .menubar .moon-icon path {
   fill: #307FBD;
-  transition: 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+}
+
+html.dark .menubar .menu-icon path,
+html.dark .menubar .moon-icon path {
+  fill: #307FBD;
 }
 
 .menubar .menu_icon_wrapper .menu-icon {
@@ -82,9 +96,26 @@ body {
   fill: #205182;
 }
 
-.menubar .moon-icon {
+html.dark .menubar .menu_icon_wrapper:hover .menu-icon path,
+html.dark .menubar .menu_icon_wrapper.active .menu-icon path {
+  fill: #205182;
+}
+
+.menubar .moon_icon_wrapper .moon-icon {
   width: 40px;
   padding: 10.5px 17px;
+}
+
+.menubar .moon_icon_wrapper:hover .moon-icon path,
+.menubar .moon_icon_wrapper.active .moon-icon path,
+html.dark .menubar .moon_icon_wrapper .moon-icon path {
+  fill: #205182;
+}
+
+html.dark .menubar .moon_icon_wrapper:hover .moon-icon path,
+html.dark .menubar .moon_icon_wrapper.active .moon-icon path,
+html.dark html.dark .menubar .moon_icon_wrapper .moon-icon path {
+  fill: #205182;
 }
 
 .statusbar {
@@ -108,6 +139,12 @@ body {
   margin: 0 17px;
 }
 
+html.dark .statusbar .name,
+html.dark .statusbar .last_update,
+html.dark .statusbar .last_update span {
+  color: #C9D1D9;
+}
+
 .statusbar .last_update span {
   margin: -5px;
 }
@@ -120,10 +157,18 @@ body {
 
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
-  transition: 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+}
+
+html.dark .statusbar .exit_icon .sign-out-icon path {
+  fill: #307FBD;
 }
 
 .statusbar .exit_icon:hover .sign-out-icon path {
+  fill: #205182;
+}
+
+html.dark .statusbar .exit_icon:hover .sign-out-icon path {
   fill: #205182;
 }
 
@@ -145,7 +190,15 @@ main .message_alert {
   font-size: 18px;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
   color: #003ea8;
-  transition: 0.6s opacity ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.6s opacity ease-in-out;
+}
+
+html.dark main .message_alert {
+  background: #28313d;
+}
+
+html.dark main .message_alert {
+  color: #C9D1D9;
 }
 
 main .message_alert span,
@@ -168,6 +221,10 @@ main .message_alert .cross-icon {
 
 main .message_alert .cross-icon path {
   fill: #1963A1;
+}
+
+html.dark main .message_alert .cross-icon path {
+  fill: #8394a3;
 }
 
 main .message_alert.hidden {
@@ -201,11 +258,19 @@ main .menu ul li a {
   cursor: pointer;
   border-bottom: 2.5px solid transparent;
   color: #fff;
-  transition: 0.1s border-color ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s border-color ease-in-out;
+}
+
+html.dark main .menu ul li a {
+  color: #C9D1D9;
 }
 
 main .menu ul li a:hover {
   border-color: #fff;
+}
+
+html.dark main .menu ul li a:hover {
+  border-color: #C9D1D9;
 }
 
 main .menu::after {
@@ -216,8 +281,12 @@ main .menu::after {
   height: 100%;
   width: 100%;
   background: #1963A1;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
   transform-origin: bottom center;
+}
+
+html.dark main .menu::after {
+  background: #06090F;
 }
 
 main .menu.shown::after {

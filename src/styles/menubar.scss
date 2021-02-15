@@ -12,7 +12,11 @@
 
 	.menu-icon path, .moon-icon path{
 		fill: $buttons-color;
-		transition: 0.08s fill ease-in-out;
+		html.dark & {
+			fill: $buttons-color-dark;
+		}
+
+		transition: $dark_mode_transition, 0.08s fill ease-in-out;
 	}
 
 	.menu_icon_wrapper {
@@ -25,13 +29,28 @@
 
 		&:hover, &.active {
 			.menu-icon path {
-				fill: $buttons-hover-color;
+				fill: $buttons-active-color;
+				html.dark & {
+					fill: $buttons-active-color-dark;
+				}
 			}
 		}
 	}
 
-	.moon-icon {
-		width: 40px;
-		padding: 10.5px 17px;
+	.moon_icon_wrapper {
+
+		.moon-icon {
+			width: 40px;
+			padding: 10.5px 17px;
+		}
+
+		&:hover, &.active, html.dark & {
+			.moon-icon path {
+				fill: $buttons-active-color;
+				html.dark & {
+					fill: $buttons-active-color-dark;
+				}
+			}
+		}
 	}
 }

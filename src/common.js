@@ -6,6 +6,7 @@ var
 	main_bottom_margin = 100,
 
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
+	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
@@ -18,9 +19,6 @@ var
 
 	message_alerts = document.getElementsByClassName("message_alert");
 
-function adjust_menu(argument) {
-	
-}
 
 Event.add(window, "load", () => {
 
@@ -115,4 +113,8 @@ Event.add(window, "load", () => {
 			});
 		}
 	}
+
+	Event.add(dark_mode_button, "mousedown", () => {
+		html.classList.toggle('dark');
+	});
 });
