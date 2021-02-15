@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 
 <!DOCTYPE html>
-<html lang="run">
+<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">

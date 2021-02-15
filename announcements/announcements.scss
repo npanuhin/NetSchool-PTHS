@@ -28,7 +28,7 @@ main {
 		}
 
 		z-index: 10;
-		transition: 0.3s transform ease-in-out;
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		// h2 {
 		// 	font-family: Manrope;
@@ -72,8 +72,12 @@ main {
 					width: 140px;
 					height: 140px;
 					margin: 0 auto;
-					background: #fff;
+					background-color: $block-color;
 					box-shadow: $block-shadow;
+					html.dark & {
+						background-color: $block-color-dark;
+						box-shadow: $block-shadow-dark;
+					}
 					border-radius: 50%;
 
 					background-size: cover;
@@ -95,6 +99,9 @@ main {
 					color: #fff;
 
 					text-shadow: $text-shadow;
+					html.dark & {
+						text-shadow: $text-shadow-dark;
+					}
 				}
 
 				@media (max-width: $main-width) {
@@ -116,6 +123,10 @@ main {
 
 				background: $block-color;
 				box-shadow: $block-shadow;
+				html.dark & {
+					background: $block-color-dark;
+					box-shadow: $block-shadow-dark;
+				}
 
 				border-radius: 30px;
 
@@ -123,6 +134,9 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
 				}
 
 				h4 {
@@ -153,6 +167,9 @@ main {
 
 					a {
 						color: $orange-color;
+						html.dark & {
+							color: $orange-color-dark;
+						}
 
 						&:hover {
 							text-decoration: underline;
@@ -162,6 +179,9 @@ main {
 					.school_class {
 						cursor: default;
 						color: $orange-color;
+						html.dark & {
+							color: $orange-color-dark;
+						}
 					}
 				}
 			}

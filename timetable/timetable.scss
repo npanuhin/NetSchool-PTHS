@@ -11,7 +11,7 @@ main {
 	.timetable {
 		width: 100%;
 
-		transition: 0.3s transform ease-in-out;
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		.float_wrapper {
 			overflow: hidden;
@@ -30,8 +30,12 @@ main {
 			z-index: 10;
 
 			background: $block-color;
-
 			box-shadow: $block-shadow;
+			html.dark & {
+				background: $block-color-dark;
+				box-shadow: $block-shadow-dark;
+			}
+
 			border-radius: 30px;
 
 			h3 {
@@ -43,6 +47,9 @@ main {
 				text-align: center;
 
 				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
 			}
 		}
 
@@ -61,11 +68,12 @@ main {
 				font-style: normal;
 				font-weight: normal;
 				font-size: 18px;
-
-				color: $text-color;
-
 				text-align: center;
 
+				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
 
 				h6 {
 					margin-top: 10px;
@@ -75,12 +83,13 @@ main {
 					font-weight: 600;
 					font-size: 19px;
 					line-height: 27px;
+					text-align: center;
 
 					color: $text-color;
-
-					text-align: center;
+					html.dark & {
+						color: $text-color-dark;
+					}
 				}
-
 			}
 		}
 
@@ -97,6 +106,9 @@ main {
 				text-align: center;
 
 				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
 			}
 
 			ul {
@@ -112,6 +124,9 @@ main {
 					text-align: center;
 
 					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
 				}
 			}
 		}
@@ -161,8 +176,11 @@ main {
 				font-size: 36px;
 
 				color: #fff;
-
 				text-shadow: $text-shadow;
+				html.dark & {
+					color: $text-color-dark;
+					text-shadow: $text-shadow-dark;
+				}
 
 				span {
 					margin-left: 10px;
@@ -188,9 +206,12 @@ main {
 					font-weight: 600;
 					font-size: 24px;
 					line-height: 33px;
+					text-align: center;
 
 					color: $text-color;
-					text-align: center;
+					html.dark & {
+						color: $text-color-dark;
+					}
 
 					margin-bottom: 20px;
 				}
@@ -203,6 +224,9 @@ main {
 					line-height: 28px;
 
 					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
 
 					margin-bottom: 10px;
 
@@ -212,6 +236,9 @@ main {
 						font-weight: inherit;
 						font-size: inherit;
 						color: $orange-color;
+						html.dark & {
+							color: $orange-color-dark;
+						}
 					}
 				}
 			}

@@ -12,7 +12,7 @@ $default_mark_rate = 10;
 ?>
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">

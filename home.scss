@@ -371,6 +371,9 @@ main {
 							&.vacation {
 								a, & > div h5 {
 									color: $vacation-color;
+									html.dark & {
+										color: $vacation-color-dark;
+									}
 								}
 							}
 
@@ -533,7 +536,7 @@ main {
 	color: $text-color;
 	html.dark & {
 		background: #353f4c;
-		box-shadow: $block-shadow-dark;
+		box-shadow: $block-shadow; // Not block-shado-dark
 		color: $text-color-dark;
 	}
 

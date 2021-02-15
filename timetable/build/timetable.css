@@ -302,7 +302,7 @@ main {
 
 main .timetable {
   width: 100%;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
 }
 
 main .timetable .float_wrapper {
@@ -325,6 +325,13 @@ main .timetable .cources .day {
   border-radius: 30px;
 }
 
+html.dark main .timetable .holidays,
+html.dark main .timetable .bells,
+html.dark main .timetable .cources .day {
+  background: #28313d;
+  box-shadow: none;
+}
+
 main .timetable .holidays h3,
 main .timetable .bells h3,
 main .timetable .cources .day h3 {
@@ -335,6 +342,12 @@ main .timetable .cources .day h3 {
   line-height: 43px;
   text-align: center;
   color: #1963A1;
+}
+
+html.dark main .timetable .holidays h3,
+html.dark main .timetable .bells h3,
+html.dark main .timetable .cources .day h3 {
+  color: #C9D1D9;
 }
 
 main .timetable .holidays {
@@ -352,8 +365,12 @@ main .timetable .holidays .holiday {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  color: #1963A1;
   text-align: center;
+  color: #1963A1;
+}
+
+html.dark main .timetable .holidays .holiday {
+  color: #C9D1D9;
 }
 
 main .timetable .holidays .holiday h6 {
@@ -363,8 +380,12 @@ main .timetable .holidays .holiday h6 {
   font-weight: 600;
   font-size: 19px;
   line-height: 27px;
-  color: #1963A1;
   text-align: center;
+  color: #1963A1;
+}
+
+html.dark main .timetable .holidays .holiday h6 {
+  color: #C9D1D9;
 }
 
 main .timetable .bells {
@@ -382,6 +403,10 @@ main .timetable .bells .details {
   color: #1963A1;
 }
 
+html.dark main .timetable .bells .details {
+  color: #C9D1D9;
+}
+
 main .timetable .bells ul {
   margin: 25px auto 0 auto;
 }
@@ -393,6 +418,10 @@ main .timetable .bells ul li {
   font-size: 18px;
   text-align: center;
   color: #1963A1;
+}
+
+html.dark main .timetable .bells ul li {
+  color: #C9D1D9;
 }
 
 main .timetable .holidays.wide,
@@ -430,6 +459,11 @@ main .timetable .cources h3 {
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
+html.dark main .timetable .cources h3 {
+  color: #C9D1D9;
+  text-shadow: none;
+}
+
 main .timetable .cources h3 span {
   margin-left: 10px;
   font-family: inherit;
@@ -453,9 +487,13 @@ main .timetable .cources .day h5 {
   font-weight: 600;
   font-size: 24px;
   line-height: 33px;
-  color: #1963A1;
   text-align: center;
+  color: #1963A1;
   margin-bottom: 20px;
+}
+
+html.dark main .timetable .cources .day h5 {
+  color: #C9D1D9;
 }
 
 main .timetable .cources .day ul li {
@@ -468,11 +506,19 @@ main .timetable .cources .day ul li {
   margin-bottom: 10px;
 }
 
+html.dark main .timetable .cources .day ul li {
+  color: #C9D1D9;
+}
+
 main .timetable .cources .day ul li span {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
   font-size: inherit;
+  color: #FF890C;
+}
+
+html.dark main .timetable .cources .day ul li span {
   color: #FF890C;
 }
 

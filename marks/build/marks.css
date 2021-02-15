@@ -310,9 +310,14 @@ main .marks {
   z-index: 10;
   text-align: center;
   background: #FFF;
-  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
-  transition: 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
+}
+
+html.dark main .marks {
+  background: #28313d;
+  box-shadow: none;
 }
 
 main .marks h3 {
@@ -325,6 +330,10 @@ main .marks h3 {
   color: #1963A1;
 }
 
+html.dark main .marks h3 {
+  color: #C9D1D9;
+}
+
 main .marks > p {
   font-family: Manrope;
   font-style: normal;
@@ -335,6 +344,10 @@ main .marks > p {
   color: #1963A1;
 }
 
+html.dark main .marks > p {
+  color: #C9D1D9;
+}
+
 main .marks .period_start_label,
 main .marks .period_end_label {
   font-family: Manrope;
@@ -342,6 +355,11 @@ main .marks .period_end_label {
   font-weight: normal;
   font-size: 21px;
   color: #1963A1;
+}
+
+html.dark main .marks .period_start_label,
+html.dark main .marks .period_end_label {
+  color: #C9D1D9;
 }
 
 main .marks .period_end_label {
@@ -361,9 +379,24 @@ main .marks #period_end {
   border-radius: 7px;
 }
 
+html.dark main .marks #period_start,
+html.dark main .marks #period_end {
+  color: #C9D1D9;
+}
+
+html.dark main .marks #period_start,
+html.dark main .marks #period_end {
+  border-color: #C9D1D9;
+}
+
 main .marks #period_start:focus,
 main .marks #period_end:focus {
   border: 2px solid #FF890C;
+}
+
+html.dark main .marks #period_start:focus,
+html.dark main .marks #period_end:focus {
+  border-color: #FF890C;
 }
 
 main .marks > div {
@@ -391,6 +424,11 @@ main .marks > div > ul li {
   height: 28px;
 }
 
+html.dark main .marks > div > ul li {
+  color: #C9D1D9;
+  background: #28313d;
+}
+
 main .marks > div > ul li:nth-child(2) {
   height: 58px;
 }
@@ -398,7 +436,7 @@ main .marks > div > ul li:nth-child(2) {
 main .marks > div > ul:first-child {
   position: relative;
   z-index: 10;
-  transition: 0.1s box-shadow ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s box-shadow ease-in-out;
   box-shadow: 14px 0px 1px -14px #1963A1;
 }
 
@@ -412,12 +450,20 @@ main .marks > div > ul:first-child.shadow {
   box-shadow: 13px 0px 9px -14px #1963A1;
 }
 
+html.dark main .marks > div > ul:first-child {
+  box-shadow: 14px 0px 1px -14px #C9D1D9;
+}
+
+html.dark main .marks > div > ul:first-child.shadow {
+  box-shadow: 13px 0px 9px -14px #C9D1D9;
+}
+
 main .marks > div > ul:last-child {
   position: relative;
   left: -1px;
   width: calc(100% + 1px);
   z-index: 10;
-  transition: 0.1s box-shadow ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s box-shadow ease-in-out;
   box-shadow: -14px 0px 1px -14px #1963A1;
 }
 
@@ -429,6 +475,14 @@ main .marks > div > ul:last-child li {
 
 main .marks > div > ul:last-child.shadow {
   box-shadow: -13px 0px 9px -14px #1963A1;
+}
+
+html.dark main .marks > div > ul:last-child {
+  box-shadow: -14px 0px 1px -14px #C9D1D9;
+}
+
+html.dark main .marks > div > ul:last-child.shadow {
+  box-shadow: -13px 0px 9px -14px #C9D1D9;
 }
 
 main .marks > div > div {
@@ -448,12 +502,25 @@ main .marks > div > div .period_hidden_right {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
+html.dark main .marks > div > div .period_hidden_left,
+html.dark main .marks > div > div .period_hidden_right {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 main .marks > div > div .period_hidden_left {
   box-shadow: inset -6px 0 2px -5px rgba(0, 0, 0, 0.25);
 }
 
+html.dark main .marks > div > div .period_hidden_left {
+  box-shadow: none;
+}
+
 main .marks > div > div .period_hidden_right {
   box-shadow: inset 6px 0 2px -5px rgba(0, 0, 0, 0.25);
+}
+
+html.dark main .marks > div > div .period_hidden_right {
+  box-shadow: none;
 }
 
 main .marks > div > div table {
@@ -463,17 +530,6 @@ main .marks > div > div table {
 
 main .marks > div > div table tr {
   height: 30px;
-}
-
-main .marks > div > div table tr th {
-  font-family: Manrope;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
-  color: #1963A1;
-  white-space: nowrap;
-  padding: 0px 10px;
 }
 
 main .marks > div > div table tr:nth-child(1) {
@@ -499,6 +555,11 @@ main .marks > div > div table tr:nth-child(1) td span {
   padding: 0 8px;
 }
 
+html.dark main .marks > div > div table tr:nth-child(1) td span {
+  background: #28313d;
+  color: #C9D1D9;
+}
+
 main .marks > div > div table tr:nth-child(1) td::before {
   content: "";
   position: absolute;
@@ -510,6 +571,10 @@ main .marks > div > div table tr:nth-child(1) td::before {
   border-left: 1px solid #1963A1;
   border-right: 1px solid #1963A1;
   border-radius: 20px;
+}
+
+html.dark main .marks > div > div table tr:nth-child(1) td::before {
+  border-color: #C9D1D9;
 }
 
 main .marks > div > div table tr:nth-child(2) {
@@ -525,6 +590,10 @@ main .marks > div > div table tr:nth-child(2) td {
   color: #1963A1;
   white-space: nowrap;
   padding: 4px 20px;
+}
+
+html.dark main .marks > div > div table tr:nth-child(2) td {
+  color: #C9D1D9;
 }
 
 main .marks > div > div table tr td {
@@ -563,6 +632,10 @@ main .marks > div > div table tr td > div span {
   cursor: pointer;
 }
 
+html.dark main .marks > div > div table tr td > div span {
+  color: #C9D1D9;
+}
+
 main .marks > div > div table tr td > div span:first-child {
   padding-left: 17px;
 }
@@ -572,6 +645,10 @@ main .marks > div > div table tr td > div span:last-child {
 }
 
 main .marks > div > div table tr td > div span.high {
+  color: #FF890C;
+}
+
+html.dark main .marks > div > div table tr td > div span.high {
   color: #FF890C;
 }
 
@@ -595,9 +672,18 @@ main .marks > div > div table tr td.filled > div::before {
   border-radius: 2px;
 }
 
+html.dark main .marks > div > div table tr td.filled > div::before {
+  border-color: #C9D1D9;
+}
+
 main .marks > div > div table tr td.expired > div::before {
   border-color: #f00;
   background: rgba(255, 0, 0, 0.1);
+}
+
+html.dark main .marks > div > div table tr td.expired > div::before {
+  border-color: #f00;
+  background: rgba(255, 0, 0, 0.25);
 }
 
 main .marks > div > div table tr td.selected > div::before {
@@ -605,9 +691,18 @@ main .marks > div > div table tr td.selected > div::before {
   border-color: #FF890C;
 }
 
+html.dark main .marks > div > div table tr td.selected > div::before {
+  border-color: #FF890C;
+}
+
 main .marks > div ul li:nth-child(2n+3),
 main .marks > div table tr:nth-child(2n+3) {
   background: #C9DDF0;
+}
+
+html.dark main .marks > div ul li:nth-child(2n+3),
+html.dark main .marks > div table tr:nth-child(2n+3) {
+  background: #161B22;
 }
 
 main .marks #scroll_left,
@@ -623,13 +718,18 @@ main .marks #scroll_right svg {
   box-sizing: border-box;
   padding: 19px 15px 19px 30px;
   cursor: pointer;
-  transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
   opacity: 1;
 }
 
 main .marks #scroll_left svg path,
 main .marks #scroll_right svg path {
   fill: #1963A1;
+}
+
+html.dark main .marks #scroll_left svg path,
+html.dark main .marks #scroll_right svg path {
+  fill: #C9D1D9;
 }
 
 main .marks #scroll_left svg:hover,
@@ -655,6 +755,10 @@ main .marks #scroll_right {
   background: #FFF;
 }
 
+html.dark main .marks #scroll_right {
+  background: #28313d;
+}
+
 main .marks #scroll_right svg {
   left: 0;
   transform: scale(-0.9, 1) translateY(-50%);
@@ -675,6 +779,12 @@ main .marks #scroll_right svg:hover {
   color: #1963A1;
 }
 
+html.dark .details,
+html.dark .details h5,
+html.dark .details p {
+  color: #C9D1D9;
+}
+
 .details {
   display: block;
   position: fixed;
@@ -685,13 +795,18 @@ main .marks #scroll_right svg:hover {
   border-radius: 20px;
   max-width: 100vw;
   max-height: 100vw;
-  background: #fff;
+  background: #FFF;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
   color: #1963A1;
   visibility: hidden;
   opacity: 0;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s opacity ease-in-out, 0s visibility 0.2s;
   line-height: 23px;
+}
+
+html.dark .details {
+  background: #28313d;
+  color: #C9D1D9;
 }
 
 .details h5 {
@@ -709,10 +824,14 @@ main .marks #scroll_right svg:hover {
   color: #FF890C;
 }
 
+html.dark .details p a {
+  color: #FF890C;
+}
+
 .details.shown {
   visibility: visible;
   opacity: 1;
-  transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s opacity ease-in-out, 0s visibility 0s;
 }
 
 .details.expired {
@@ -720,6 +839,10 @@ main .marks #scroll_right svg:hover {
 }
 
 .details.expired h5 {
+  color: #f00;
+}
+
+html.dark .details.expired h5 {
   color: #f00;
 }
 

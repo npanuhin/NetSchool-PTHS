@@ -115,6 +115,33 @@ Event.add(window, "load", () => {
 	}
 
 	Event.add(dark_mode_button, "mousedown", () => {
-		html.classList.toggle('dark');
+		html.classList.add("loaded");
+		body.style.cursor = "wait";
+
+		ajax(
+			"POST",
+			"/src/toggle_dark_mode.php",
+			{},
+			(req) => {
+				body.style.cursor = "";
+
+				if (req.responseText == "1") {
+					html.classList.add("dark");
+
+				} else if (req.responseText == "0"){
+					html.classList.remove("dark");
+
+				} else {
+					alert("Error");
+					alert(req.responseText);
+				}
+			},
+			(req) => {
+				body.style.cursor = "";
+				alert("Error");
+				alert(req.responseText);
+			}
+		);
+
 	});
 });

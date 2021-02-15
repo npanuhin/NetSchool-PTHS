@@ -316,7 +316,7 @@ main .tasks {
 
 html.dark main .tasks {
   background: #28313d;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
 }
 
 main .tasks h2 {
@@ -457,7 +457,7 @@ main .timetable > div h3 {
 
 html.dark main .timetable > div h3 {
   color: #C9D1D9;
-  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  text-shadow: none;
 }
 
 html.loaded main .timetable > div h3 {
@@ -577,7 +577,7 @@ main .timetable > div > div > div {
 
 html.dark main .timetable > div > div > div {
   background: #28313d;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
 }
 
 main .timetable > div > div > div h4 {
@@ -667,6 +667,11 @@ main .timetable > div > div > div ul li > div {
 main .timetable > div > div > div ul li.vacation a,
 main .timetable > div > div > div ul li.vacation > div h5 {
   color: #20822A;
+}
+
+html.dark main .timetable > div > div > div ul li.vacation a,
+html.dark main .timetable > div > div > div ul li.vacation > div h5 {
+  color: #00c814;
 }
 
 main .timetable > div > div > div ul li.cur_lesson a,
@@ -761,8 +766,8 @@ main .timetable #timetable_next {
 
 html.dark main .timetable #timetable_previous,
 html.dark main .timetable #timetable_next {
-  -webkit-filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
-  filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
+  -webkit-filter: drop-shadow(none);
+  filter: drop-shadow(none);
 }
 
 main .timetable #timetable_previous.hidden,

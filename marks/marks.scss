@@ -2,7 +2,9 @@
 
 $details-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
 $details-expired-shadow: 5px 5px 10px 5px rgba(255, 0, 0, 0.1);
+
 $mark-expired-color: rgba(255, 0, 0, 0.1);
+$mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 
 main {
 	position: relative;
@@ -24,10 +26,14 @@ main {
 		text-align: center;
 
 		background: $block-color;
-		box-shadow: $details-shadow;
+		box-shadow: $block-shadow;
+		html.dark & {
+			background: $block-color-dark;
+			box-shadow: $block-shadow-dark;
+		}
 		border-radius: 30px;
 
-		transition: 0.3s transform ease-in-out;
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		h3 {
 			font-family: Manrope;
@@ -38,6 +44,9 @@ main {
 			margin-bottom: 25px;
 
 			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 		}
 
 		& > p {
@@ -49,6 +58,9 @@ main {
 			padding-top: 15px;
 
 			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 		}
 
 		.period_start_label, .period_end_label {
@@ -57,6 +69,9 @@ main {
 			font-weight: normal;
 			font-size: 21px;
 			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 		}
 
 		.period_end_label {
@@ -69,15 +84,24 @@ main {
 			font-weight: normal;
 			font-size: 18px;
 			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 
 			margin: 5px 0 22px 5px;
 
 			padding: 7px 10px;
 			border: 2px solid $text-color;
+			html.dark & {
+				border-color: $text-color-dark;
+			}
 			border-radius: 7px;
 
 			&:focus {
 				border: 2px solid $orange-color;
+				html.dark & {
+					border-color: $orange-color-dark;
+				}
 			}
 		}
 
@@ -103,6 +127,11 @@ main {
 				color: $text-color;
 				background: $block-color;
 
+				html.dark & {
+					color: $text-color-dark;
+					background: $block-color-dark;
+				}
+
 				white-space: nowrap;
 
 				padding: 6px 12px;
@@ -117,7 +146,7 @@ main {
 				position: relative;
 
 				z-index: 10;
-				transition: 0.1s box-shadow ease-in-out;
+				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
 
 				li {
 					padding-right: 20px;
@@ -129,6 +158,13 @@ main {
 				&.shadow {
 					box-shadow: 13px 0px 9px -14px $text-color;
 				}
+
+				html.dark & {
+					box-shadow: 14px 0px 1px -14px $text-color-dark;
+					&.shadow {
+						box-shadow: 13px 0px 9px -14px $text-color-dark;
+					}
+				}
 			}
 			& > ul:last-child {
 				position: relative;
@@ -136,7 +172,7 @@ main {
 				width: calc(100% + 1px);
 
 				z-index: 10;
-				transition: 0.1s box-shadow ease-in-out;
+				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
 
 
 				li {
@@ -148,6 +184,13 @@ main {
 				box-shadow: -14px 0px 1px -14px $text-color;
 				&.shadow {
 					box-shadow: -13px 0px 9px -14px $text-color;
+				}
+
+				html.dark & {
+					box-shadow: -14px 0px 1px -14px $text-color-dark;
+					&.shadow {
+						box-shadow: -13px 0px 9px -14px $text-color-dark;
+					}
 				}
 			}
 
@@ -166,13 +209,22 @@ main {
 					width: 0px;
 					height: 100%;
 					background-color: rgba(0, 0, 0, 0.25);
+					html.dark & {
+						background-color: rgba(0, 0, 0, 0.5);
+					}
 				}
 				.period_hidden_left {
 					box-shadow: inset -6px 0 2px -5px rgba(0, 0, 0, 0.25);
+					html.dark & {
+						box-shadow: none;
+					}
 				}
 
 				.period_hidden_right {
 					box-shadow: inset 6px 0 2px -5px rgba(0, 0, 0, 0.25);
+					html.dark & {
+						box-shadow: none;
+					}
 				}
 
 				table {
@@ -187,19 +239,22 @@ main {
 					tr {
 						height: 30px;
 
-						th {
-							font-family: Manrope;
-							font-style: normal;
-							font-weight: 500;
-							font-size: 20px;
-							line-height: 28px;
+						// th {
+						// 	font-family: Manrope;
+						// 	font-style: normal;
+						// 	font-weight: 500;
+						// 	font-size: 20px;
+						// 	line-height: 28px;
 
-							color: $text-color;
+						// 	color: $text-color;
+						// 	html.dark & {
+						// 		color: $text-color-dark;
+						// 	}
 
-							white-space: nowrap;
+						// 	white-space: nowrap;
 
-							padding: 0px 10px;
-						}
+						// 	padding: 0px 10px;
+						// }
 
 						&:nth-child(1) {
 							height: 40px;
@@ -223,6 +278,11 @@ main {
 									background: $block-color;
 									color: $text-color;
 
+									html.dark & {
+										background: $block-color-dark;
+										color: $text-color-dark;
+									}
+
 									padding: 0 8px;
 								}
 								
@@ -236,6 +296,9 @@ main {
 									border-top: 1px solid $text-color;
 									border-left: 1px solid $text-color;
 									border-right: 1px solid $text-color;
+									html.dark & {
+										border-color: $text-color-dark;
+									}
 									border-radius: 20px;
 								}
 							}
@@ -253,6 +316,9 @@ main {
 								line-height: 28px;
 
 								color: $text-color;
+								html.dark & {
+									color: $text-color-dark;
+								}
 
 								white-space: nowrap;
 
@@ -298,6 +364,9 @@ main {
 									line-height: 28px;
 
 									color: $text-color;
+									html.dark & {
+										color: $text-color-dark;
+									}
 
 									white-space: nowrap;
 									cursor: pointer;
@@ -312,6 +381,12 @@ main {
 
 									&.high {
 										color: $orange-color;
+									}
+
+									html.dark & {
+										&.high {
+											color: $orange-color-dark;
+										}
 									}
 
 									&.expired {
@@ -333,17 +408,27 @@ main {
 								top: 0;
 								left: 0;
 								border: 1px solid $text-color;
+								html.dark & {
+									border-color: $text-color-dark;
+								}
 								border-radius: 2px;
 							}
 
 							&.expired > div::before {
 								border-color: #f00;
 								background: $mark-expired-color;
+								html.dark & {
+									border-color: #f00;
+									background: $mark-expired-color-dark;
+								}
 							}
 
 							&.selected > div::before {
 								border-width: 2px;
 								border-color: $orange-color;
+								html.dark & {
+									border-color: $orange-color-dark;
+								}
 								// background: rgba(255, 137, 12, 0.1);
 							}
 						}
@@ -353,6 +438,9 @@ main {
 
 			ul li:nth-child(2n + 3), table tr:nth-child(2n + 3) {
 				background: #C9DDF0;
+				html.dark & {
+					background: #161B22;
+				}
 			}
 		}
 
@@ -367,11 +455,14 @@ main {
 				padding: 19px 15px 19px 30px;
 
 				cursor: pointer;
-				transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+				transition: $dark_mode_transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
 				opacity: 1;
 
 				path {
 					fill: $text-color;
+					html.dark & {
+						fill: $text-color-dark;
+					}
 				}
 
 				&:hover {
@@ -397,6 +488,9 @@ main {
 
 		#scroll_right {
 			background: $block-color;
+			html.dark & {
+				background: $block-color-dark;
+			}
 
 			svg {
 				left: 0;
@@ -417,6 +511,9 @@ main {
 	font-size: 15px;
 	line-height: 25px;
 	color: $text-color;
+	html.dark & {
+		color: $text-color-dark;
+	}
 }
 
 .details {
@@ -430,13 +527,18 @@ main {
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
-	background: #fff;
+	background: $block-color;
 	box-shadow: $details-shadow;
 	color: $text-color;
 
+	html.dark & {
+		background: $block-color-dark;
+		color: $text-color-dark;
+	}
+
 	visibility: hidden;
 	opacity: 0;
-	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 
 	line-height: 23px;
 
@@ -461,13 +563,16 @@ main {
 
 		a {
 			color: $orange-color;
+			html.dark & {
+				color: $orange-color-dark;
+			}
 		}
 	}
 
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
 	}
 
 	&.expired {
@@ -475,6 +580,9 @@ main {
 
 		h5 {
 			color: #f00;
+			html.dark & {
+				color: #f00;
+			}
 		}
 	}
 }
