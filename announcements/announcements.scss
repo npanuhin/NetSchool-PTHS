@@ -100,6 +100,7 @@ main {
 
 					text-shadow: $text-shadow;
 					html.dark & {
+						color: $text-color-dark;
 						text-shadow: $text-shadow-dark;
 					}
 				}

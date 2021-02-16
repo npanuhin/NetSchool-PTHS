@@ -1,7 +1,7 @@
 @import '../src/styles/main';
 
-$details-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
-$details-expired-shadow: 5px 5px 10px 5px rgba(255, 0, 0, 0.1);
+$details-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
+$details-expired-shadow: 2px 1px 15px rgba(255, 0, 0, 0.3);
 
 $mark-expired-color: rgba(255, 0, 0, 0.1);
 $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
@@ -9,11 +9,8 @@ $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: 1300px;
 	max-width: 95%;
-
 
 	.marks {
 		position: relative;
@@ -162,7 +159,7 @@ main {
 				html.dark & {
 					box-shadow: 14px 0px 1px -14px $text-color-dark;
 					&.shadow {
-						box-shadow: 13px 0px 9px -14px $text-color-dark;
+						box-shadow: 13px 0px 7px -14px $text-color-dark;
 					}
 				}
 			}
@@ -189,7 +186,7 @@ main {
 				html.dark & {
 					box-shadow: -14px 0px 1px -14px $text-color-dark;
 					&.shadow {
-						box-shadow: -13px 0px 9px -14px $text-color-dark;
+						box-shadow: -13px 0px 7px -14px $text-color-dark;
 					}
 				}
 			}
@@ -533,12 +530,16 @@ main {
 
 	html.dark & {
 		background: $block-color-dark;
+		box-shadow: $block-shadow;
 		color: $text-color-dark;
 	}
 
 	visibility: hidden;
 	opacity: 0;
-	transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark & {
+		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	}
 
 	line-height: 23px;
 
@@ -572,7 +573,10 @@ main {
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
+		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark & {
+			transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		}
 	}
 
 	&.expired {

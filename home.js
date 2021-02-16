@@ -76,6 +76,8 @@ function show_details(pageX, pageY, element) {
 	// element.append(details_block);
 
 	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
+	details_block.classList.toggle("cur_lesson", element.classList.contains("cur_lesson"));
+	details_block.classList.toggle("vacation", element.classList.contains("vacation"));
 	details_block.classList.add("shown");
 }
 
@@ -132,29 +134,29 @@ Event.add(window, "load", () => {
 	Event.add(timetable_previous, "mousedown", () => {
 		html.classList.add("loaded");
 
-		if (!timetable_previous.classList.contains("hidden")) {
-			for (let week of weeks) week.classList.remove("shown");
-			weeks[--cur_week].classList.add("shown");
+		cur_week = Math.max(cur_week - 1, 0);
 
-			timetable_previous.classList.toggle("hidden", cur_week <= 0);
-			timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+		for (let week of weeks) week.classList.remove("shown");
+		weeks[cur_week].classList.add("shown");
 
-			timetable.style.height = weeks[cur_week].offsetHeight + "px";
-		}
+		timetable_previous.classList.toggle("hidden", cur_week <= 0);
+		timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+
+		timetable.style.height = weeks[cur_week].offsetHeight + "px";
 	});
 
 	Event.add(timetable_next, "mousedown", () => {
 		html.classList.add("loaded");
 
-		if (!timetable_next.classList.contains("hidden")) {
-			for (let week of weeks) week.classList.remove("shown");
-			weeks[++cur_week].classList.add("shown");
+		cur_week = Math.min(cur_week + 1, weeks.length - 1);
 
-			timetable_previous.classList.toggle("hidden", cur_week <= 0);
-			timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+		for (let week of weeks) week.classList.remove("shown");
+		weeks[cur_week].classList.add("shown");
 
-			timetable.style.height = weeks[cur_week].offsetHeight + "px";
-		}
+		timetable_previous.classList.toggle("hidden", cur_week <= 0);
+		timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+
+		timetable.style.height = weeks[cur_week].offsetHeight + "px";
 	});
 
 	for (let goto_today_button of goto_today_buttons) {
@@ -163,7 +165,7 @@ Event.add(window, "load", () => {
 		});
 	}
 
-	body.append(details_block);
+	// body.append(details_block);
 	for (let lesson of lessons) {
 		let details = lesson.getElementsByTagName("div")[0];
 

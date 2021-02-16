@@ -170,10 +170,10 @@ $default_mark_rate = 10;
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
 									?>
-									<td title="<?php echo $weekdays[$datetime->format('w')] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
+									<td title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
 										<?php echo $datetime->format('d') ?>
 										<br>
-										<?php echo $weekdays_short[$datetime->format('w')] ?>
+										<?php echo $weekdays_short[$datetime->format('w') - 1] ?>
 									</td>
 									<?php
 								}

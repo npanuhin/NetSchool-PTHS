@@ -51,8 +51,10 @@ html {
 }
 
 html,
-html * {
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out;
+html *,
+html.dark,
+html.dark * {
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out;
 }
 
 body {
@@ -78,7 +80,7 @@ html.dark body {
 .menubar .menu-icon path,
 .menubar .moon-icon path {
   fill: #307FBD;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
 }
 
 html.dark .menubar .menu-icon path,
@@ -157,7 +159,7 @@ html.dark .statusbar .last_update span {
 
 .statusbar .exit_icon .sign-out-icon path {
   fill: #307FBD;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.08s fill ease-in-out;
 }
 
 html.dark .statusbar .exit_icon .sign-out-icon path {
@@ -190,7 +192,7 @@ main .message_alert {
   font-size: 18px;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
   color: #003ea8;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.6s opacity ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.6s opacity ease-in-out;
 }
 
 html.dark main .message_alert {
@@ -232,11 +234,16 @@ main .message_alert.hidden {
 }
 
 main .menu {
-  position: absolute;
   width: 970px;
   max-width: calc(100% - 200px);
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto;
+  max-height: 0px;
+  overflow: hidden;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.3s max-height ease-in-out;
+}
+
+main .menu.shown {
+  max-height: 140px;
 }
 
 main .menu ul {
@@ -258,11 +265,13 @@ main .menu ul li a {
   cursor: pointer;
   border-bottom: 2.5px solid transparent;
   color: #fff;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.1s border-color ease-in-out;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.1s border-color ease-in-out;
 }
 
 html.dark main .menu ul li a {
   color: #C9D1D9;
+  text-shadow: none;
 }
 
 main .menu ul li a:hover {
@@ -271,26 +280,6 @@ main .menu ul li a:hover {
 
 html.dark main .menu ul li a:hover {
   border-color: #C9D1D9;
-}
-
-main .menu::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  background: #1963A1;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
-  transform-origin: bottom center;
-}
-
-html.dark main .menu::after {
-  background: #06090F;
-}
-
-main .menu.shown::after {
-  transform: scaleY(0);
 }
 
 main {
@@ -302,7 +291,7 @@ main {
 
 main .timetable {
   width: 100%;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
 }
 
 main .timetable .float_wrapper {
@@ -529,6 +518,10 @@ html.dark main .timetable .cources .day ul li span {
 }
 
 @media (max-width: 1170px) {
+  main .menu.shown {
+    max-height: 215px;
+  }
+
   main .menu ul {
     width: 80%;
     grid-template-rows: 1fr 1fr 1fr;
@@ -559,6 +552,10 @@ html.dark main .timetable .cources .day ul li span {
 @media (max-width: 850px) {
   .statusbar .last_update {
     display: none;
+  }
+
+  main .menu.shown {
+    max-height: 415px;
   }
 
   main .menu ul {

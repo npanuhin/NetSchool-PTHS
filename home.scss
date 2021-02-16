@@ -2,6 +2,8 @@
 
 $expired-color: rgb(255, 80, 80);
 
+$arrows-color-dark: #696979;
+
 
 main {
 	position: relative;
@@ -59,20 +61,16 @@ main {
 				line-height: 32px;
 			}
 
-			li {
+			li, li span, li a {
 				color: $text-color;
 				html.dark & {
 					color: $text-color-dark;
 				}
+			}
+
+			li {
 				list-style: disc;
 				padding-left: 7px;
-
-				span {
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-				}
 
 				span a {
 					position: relative;
@@ -81,24 +79,28 @@ main {
 						color: $orange-color-dark;
 					}
 
-					&::before {
-						content: "";
-						position: absolute;
-						left: 0;
-						bottom: -1px;
-						width: 100%;
-						height: 1.7px;
-						background: $orange-color;
-						html.dark & {
-							background: $orange-color-dark;
-						}
+					// &::before {
+					// 	content: "";
+					// 	position: absolute;
+					// 	left: 0;
+					// 	bottom: -1px;
+					// 	width: 100%;
+					// 	height: 1.7px;
+					// 	background: $orange-color;
+					// 	html.dark & {
+					// 		background: $orange-color-dark;
+					// 	}
 						
-						opacity: 0;
-						transition: $dark_mode_transition, 0.07s opacity ease-in-out;
-					}
+					// 	opacity: 0;
+					// 	transition: $dark_mode_transition, 0.07s opacity ease-in-out;
+					// }
 
 					&:hover::before {
 						opacity: 1;
+					}
+
+					&:hover {
+						text-decoration: underline;
 					}
 				}
 
@@ -110,9 +112,15 @@ main {
 
 					span a {
 						color: $expired-color;
+						html.dark & {
+							color: $expired-color;
+						}
 
 						&::before {
 							background: $expired-color;
+							html.dark & {
+								background: $expired-color;
+							}
 						}
 					}
 				}
@@ -369,7 +377,7 @@ main {
 							}
 
 							&.vacation {
-								a, & > div h5 {
+								a {
 									color: $vacation-color;
 									html.dark & {
 										color: $vacation-color-dark;
@@ -378,7 +386,7 @@ main {
 							}
 
 							&.cur_lesson {
-								a, & > div h5 {
+								a {
 									color: $orange-color;
 									html.dark & {
 										color: $orange-color-dark;
@@ -470,16 +478,18 @@ main {
 			cursor: pointer;
 			padding: 0 45px;
 
-			transition: $dark_mode_transition, 0.15s transform ease-in-out;
+			transition: $dark_mode_transition, 0.15s transform ease-in-out, 0.2s opacity ease-in-out;
 
 			&.hidden {
 				opacity: 0;
+				cursor: auto;
+				pointer-events: none;
 			}
 
 			path {
 				fill: #fff;
 				html.dark & {
-					fill: $text-color-dark;
+					fill: $arrows-color-dark;
 				}
 			}
 
@@ -543,6 +553,9 @@ main {
 	visibility: hidden;
 	opacity: 0;
 	transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark & {
+		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	}
 
 	line-height: 23px;
 
@@ -569,5 +582,26 @@ main {
 		visibility: visible;
 		opacity: 1;
 		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark & {
+			transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
+		}
+	}
+
+	&.vacation {
+		h5 {
+			color: $vacation-color;
+			html.dark & {
+				color: $vacation-color-dark;
+			}
+		}
+	}
+
+	&.cur_lesson {
+		h5 {
+			color: $orange-color;
+			html.dark & {
+				color: $orange-color-dark;
+			}
+		}
 	}
 }

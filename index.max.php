@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<ul>
 					<?php
 
-					foreach ($diary as $day => $tasks) {
+					foreach ($diary as $date => $tasks) {
 
 						$lessons_task_index = [];
 						foreach ($tasks as $task_data) {
@@ -56,7 +56,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							$mark = $task_data[4];
 							$task_expired = $task_data[5];
 
-							$date = new DateTime($day);
+							$day = new DateTime($date);
 
 							if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
 
@@ -65,8 +65,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							if ($task_expired) {
 								?>
 								<li class="expired" title="Задание просрочено">
-									<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
-									<div><?php echo $date->format('d') . ' ' . $months_genetive[$date->format('m') - 1] . ', ' . date_diff($date, $TODAY)->format('%a') . ' ' . day_word_case(date_diff($date, $TODAY)->format('%a')) . ' назад' ?>
+									<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+									<div><?php echo $day->format('d') . ' ' . $months_genetive[$day->format('m') - 1] . ', ' . format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>
 									</div>
 								</li>
 								<?php
@@ -74,9 +74,9 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						}
 					}
 
-					$day = (new DateTime($SCHOOL_DAY->format('Y-m-d')))->format('Y-m-d');
+					$day = new DateTime($SCHOOL_DAY->format('Y-m-d'));
 					$lessons_task_index = [];
-					foreach ($diary[$day] as $task_data) {
+					foreach ($diary[$day->format('Y-m-d')] as $task_data) {
 						$lesson = $task_data[0];
 						$task_type = $task_data[1];
 						$task = $task_data[2];
@@ -90,8 +90,8 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 						?>
 						<li>
-							<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
-							<div>Завтра</div>
+							<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
 						</li>
 						<?php
 					}
@@ -147,12 +147,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					<div>
 						<?php
 						$day_period = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
-						$weekday_index = 0;
 
 						foreach ($day_period as $day) {
 							?>
 
-							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 								<?php
 
@@ -185,7 +184,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 									?>
 
-									<h4><?php echo $weekdays[$weekday_index] ?></h4>
+									<h4><?php echo $weekdays[$day->format('w') - 1] ?></h4>
 
 									<div class="day_info"<?php if ($zoom_day) echo ' style="top: -11.5px"' ?>>
 										<?php
@@ -221,7 +220,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 													++$lesson_index;
 													?>
 
-													<li class="no_lesson" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+													<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
@@ -254,7 +253,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 														?>
 
-														title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
+														title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
 													>
 
 														<a><?php echo handle_lesson_name($name) ?></a>
@@ -284,7 +283,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 												++$lesson_index;
 												?>
 
-												<li class="no_lesson" title="<?php echo $weekdays[$weekday_index] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+												<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 												<?php
 											}
@@ -306,7 +305,6 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 							</div>
 
 							<?php
-							++$weekday_index;
 						}
 						?>
 					</div>
@@ -320,11 +318,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				<title>Следующая неделя</title>
 				<path d="M1.48438 31.5346L31.5833 1.43668C33.498 -0.478897 36.6023 -0.478897 38.516 1.43668C40.4299 3.35056 40.4299 6.45469 38.516 8.36841L11.8831 35.0005L38.5152 61.6317C40.4291 63.5463 40.4291 66.6501 38.5152 68.564C36.6013 70.4787 33.4972 70.4787 31.5826 68.564L1.4836 38.4656C0.526657 37.5082 0.0487289 36.2547 0.0487289 35.0007C0.0487289 33.746 0.527588 32.4916 1.48438 31.5346Z"/>
 			</svg>
-
-			<div class="details"></div>
 		</div>
 		
 	</main>
+
+	<div class="details"></div> <!-- For timetable -->
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>

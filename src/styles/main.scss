@@ -120,9 +120,11 @@ html {
 $dark-mode-transition: 0.5s color ease-in-out,
                        0.5s background-color ease-in-out,
                        0.5s border-color ease-in-out,
+                       0.5s box-shadow ease-in-out,
+                       0.5s text-shadow ease-in-out,
                        0.5s fill ease-in-out;
 
-html, html * {
+html, html *, html.dark, html.dark * {
     transition: $dark-mode-transition;
 }
 
@@ -211,11 +213,25 @@ main {
     }
 
     .menu {
-        position: absolute;
         width: $main-width - 200px;
         max-width: calc(100% - 200px);
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0 auto;
+        
+        max-height: 0px;
+        overflow: hidden;
+
+        transition: $dark_mode_transition, 0.3s max-height ease-in-out;
+        &.shown {
+            max-height: 140px;
+
+            @media (max-width: $main-width) {
+                max-height: 215px;
+            }
+
+            @media (max-width: 850px) {
+                max-height: 415px;
+            }
+        }
 
         ul {
             margin: 0 auto;
@@ -251,8 +267,10 @@ main {
 
                     border-bottom: 2.5px solid transparent;
                     color: #fff;
+                    text-shadow: $text-shadow;
                     html.dark & {
                         color: $text-color-dark;
+                        text-shadow: $text-shadow-dark;
                     }
 
                     transition: $dark_mode_transition, 0.1s border-color ease-in-out;
@@ -266,29 +284,5 @@ main {
                 }
             }
         }
-
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 100%;
-            width: 100%;
-            background: $page-color;
-            html.dark & {
-                background: $page-color-dark;
-            }
-
-            transition: $dark_mode_transition, 0.3s transform ease-in-out;
-
-            transform-origin: bottom center;
-        }
-
-        &.shown {
-            &::after {
-                transform: scaleY(0);
-            }
-        }
-
     }
 }

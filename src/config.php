@@ -187,20 +187,32 @@ function class_to_diary_period($class) {
 	);
 }
 
-function day_word_case($num) {
-	if ($num == '1') return 'день';
-	if ($num == '2') return 'дня'; 		
-	if ($num == '3') return 'дня'; 
-	if ($num == '4') return 'дня';  
-	if (substr($num, -2) == '11') return 'дней';
-	if (substr($num, -2) == '12') return 'дней'; 
-	if (substr($num, -2) == '13') return 'дней';
-	if (substr($num, -2) == '14') return 'дней'; 
-	if (substr($num, -2) == '01') return 'день';	
-	if (substr($num, -1) == '2') return 'дня';
-	if (substr($num, -1) == '3') return 'дня';	
-	if (substr($num, -1) == '4') return 'дня';				    
+function day_word_case($count) {
+	if ($count == '1') return 'день';
+	if ($count == '2') return 'дня'; 		
+	if ($count == '3') return 'дня'; 
+	if ($count == '4') return 'дня';  
+	if (substr($count, -2) == '11') return 'дней';
+	if (substr($count, -2) == '12') return 'дней'; 
+	if (substr($count, -2) == '13') return 'дней';
+	if (substr($count, -2) == '14') return 'дней'; 
+	if (substr($count, -2) == '01') return 'день';	
+	if (substr($count, -1) == '2') return 'дня';
+	if (substr($count, -1) == '3') return 'дня';	
+	if (substr($count, -1) == '4') return 'дня';				    
     return 'дней'; 
+}
+
+function format_days_delta($num, $upper=false) {
+	if ($num == -2) return $upper ? 'Позавчера': 'позавчера';
+	if ($num == -1) return $upper ? 'Вчера' : 'вчера';
+	if ($num == 0) return $upper ? 'Сегодня' : 'сегодня';
+	if ($num == 1) return $upper ? 'Завтра' : 'завтра';
+	if ($num == 1) return $upper ? 'Послезавтра' : 'послезавтра';
+
+	if ($num < 0) return -$num . ' ' . day_word_case($num) . ' назад';
+	
+	return ($upper ? 'Через ' : 'через ') . $num . ' ' . day_word_case($num);
 }
 
 

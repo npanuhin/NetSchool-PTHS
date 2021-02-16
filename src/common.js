@@ -10,12 +10,6 @@ var
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 
 	menu = document.getElementsByClassName("menu")[0],
-	menu_adjustment_timout,
-
-	tasks_block = (document.getElementsByClassName("tasks") ? document.getElementsByClassName("tasks")[0] : undefined),
-	marks_block = (document.getElementsByClassName("marks") ? document.getElementsByClassName("marks")[0] : undefined);
-	timetable_block = (document.getElementsByClassName("timetable") ? document.getElementsByClassName("timetable")[0] : undefined),
-	announcements_block = (document.getElementsByClassName("announcements") ? document.getElementsByClassName("announcements")[0] : undefined),
 
 	message_alerts = document.getElementsByClassName("message_alert");
 
@@ -26,28 +20,6 @@ Event.add(window, "load", () => {
 
 	Event.add(menu_button, "mousedown", () => {
 		html.classList.add("loaded");
-
-		let delta_height = menu.clientHeight;
-
-		clearTimeout(menu_adjustment_timout);
-
-		if (menu.classList.contains("shown")) {
-
-			menu_adjustment_timout = setTimeout(() => {
-				// main.style.minHeight = delta_height + "px";
-				main.style.marginBottom = main_bottom_margin + "px";
-			}, 300);
-
-		} else {
-
-			// main.style.minHeight = main.clientHeight + delta_height + "px";
-			main.style.marginBottom = main_bottom_margin + delta_height + "px";
-		}
-
-		if (tasks_block !== undefined) tasks_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
-		if (marks_block !== undefined) marks_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
-		if (timetable_block !== undefined) timetable_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
-		if (announcements_block !== undefined) announcements_block.style.transform = "translateY(" + (menu.classList.contains("shown") ? 0 : delta_height) + "px)";
 
 		menu.classList.toggle("shown");
 		menu_button.classList.toggle("active", menu.classList.contains("shown"));
