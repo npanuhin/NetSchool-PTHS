@@ -78,8 +78,8 @@ $default_mark_rate = 10;
 
 				if (is_null($period_start) || is_null($period_end)) {
 
-					if (is_null($period_start)) $period_start = class_to_diary_period($person['class'])[0];
-					if (is_null($period_end)) $period_end = class_to_diary_period($person['class'])[1];
+					if (is_null($period_start)) $period_start = class_to_diary_period($db, $person['class'])[0];
+					if (is_null($period_end)) $period_end = class_to_diary_period($db, $person['class'])[1];
 
 					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
 					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
@@ -94,12 +94,12 @@ $default_mark_rate = 10;
 
 				<label class="period_start_label">
 					с
-					<input min="<?php echo class_to_diary_period($person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($person['class'])[1]->format('Y-m-d') ?>" id="period_start" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($person['class'])[0]->format('Y-m-d') ?>">
+					<input min="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>" id="period_start" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>">
 				</label>
 
 				<label class="period_end_label">
 					по
-					<input min="<?php echo class_to_diary_period($person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($person['class'])[1]->format('Y-m-d') ?>" id="period_end" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($person['class'])[1]->format('Y-m-d') ?>">
+					<input min="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>" id="period_end" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>">
 				</label>
 
 

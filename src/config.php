@@ -92,6 +92,7 @@ $TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monda
 $SCHOOL_DAY_BORDER = new DateTime('15:00');
 $SCHOOL_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
 
+
 // UTILS:
 function redirect($url='/') {
 	header('Refresh: 0; url=' . $url);
@@ -124,8 +125,7 @@ function logout() {
 }
 
 function handle_lesson_name($string) {
-	global $_lesson_name_regex;
-	global $_lesson_name_replace;
+	global $_lesson_name_regex, $_lesson_name_replace;
 
 	if (preg_match($_lesson_name_regex, $string, $matches)) $string = $matches[1];
 
@@ -143,8 +143,7 @@ function handle_task_type($task_type) {
 }
 
 function replace_school_class_regex($school_class) {
-	global $_replace_class;
-	global $_class_regex;
+	global $_replace_class, $_class_regex;
 
 	if (preg_match($_class_regex, $school_class, $matches)) {
 		$class = $matches[2];
@@ -167,24 +166,60 @@ function set_diary_period($db, $period_start, $period_end) {
 	}
 }
 
-function class_to_diary_period($class) {
-	global $TRUE_SCHOOL_YEAR_BEGIN;
-	global $TRUE_SCHOOL_YEAR_END;
-	global $_class_regex;
-	global $SCHOOL_YEAR;
+function class_to_diary_period($db, $class) {
+	global $TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END, $_class_regex, $SCHOOL_YEAR, $NOW;
 
 	if (preg_match($_class_regex, $class, $matches)) {
 		$class_num = $matches[1];
-		if ($class_num) {
-			// echo $class_num;
+
+		// Autumn, Winter, Spring
+		$holidays = $db->getAll("SELECT `start`, `end` FROM `holidays` LIMIT 3");
+
+		if ($class_num == 8 || $class_num == 9) {
+
+			if ($NOW <= new DateTime($holidays[0]['end'])) {
+				return array(
+					$TRUE_SCHOOL_YEAR_START, 
+					new DateTime($holidays[0]['start'])
+				);
+
+			} else if ($NOW <= new DateTime($holidays[1]['end'])) {
+				return array(
+					new DateTime($holidays[0]['end'] . ' tomorrow'), 
+					new DateTime($holidays[1]['start'])
+				);
+
+			} else if ($NOW <= new DateTime($holidays[2]['end'])) {
+				return array(
+					new DateTime($holidays[1]['end'] . ' tomorrow'), 
+					new DateTime($holidays[2]['start'])
+				);
+
+			} else {
+				return array(
+					new DateTime($holidays[2]['end'] . ' tomorrow'), 
+					$TRUE_SCHOOL_YEAR_END
+				);
+			}
+
+		} else if ($class_num == 10 || $class_num == 11) {
+
+			if ($NOW <= new DateTime($holidays[1]['end'])) {
+				return array(
+					$TRUE_SCHOOL_YEAR_START,
+					new DateTime($holidays[1]['start'])
+				);
+
+			} else {
+				return array(
+					new DateTime($holidays[1]['end'] . ' tomorrow'), 
+					$TRUE_SCHOOL_YEAR_END
+				);
+			}
 		}
 	}
 
-	// return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
-	return array(
-		new DateTime(($SCHOOL_YEAR + 1) . '-01-01'), 
-		$TRUE_SCHOOL_YEAR_END
-	);
+	return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
 }
 
 function day_word_case($count) {
