@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 
 <!DOCTYPE html>
-<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru">
 
 <head>
 	<meta charset="utf-8">
@@ -32,7 +32,10 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			echo 'Ваш аккаунт успешно удалён';
 
+			telegram_log("User deleted\nUser ID: {$_SESSION['user_id']}");
+
 		} catch (Exception $e) {
+			telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 			echo 'Database connection failed';
 		}
 

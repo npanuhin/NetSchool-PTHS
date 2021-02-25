@@ -306,7 +306,7 @@ Event.add(window, "load", () => {
 		setTimeout(initial_table_scroll);
 	}
 
-	body.append(details_block);
+	// body.append(details_block);
 	for (let item of spans) {
 		Event.add(item, "mouseenter", (e) => {
 			show_details(e.pageX, e.pageY, item);

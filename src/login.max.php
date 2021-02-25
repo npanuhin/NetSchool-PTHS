@@ -22,6 +22,7 @@ try {
 	$db = dbConnect();
 } catch (Exception $e) {
 	// print_r($e);
+	telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'Database connection failed')));
 }
 
@@ -29,6 +30,7 @@ try {
 	$data = $db->getAll('SELECT `id`, `password`, `first_name`, `last_name`, `last_update` FROM `users` WHERE `username` = ?s LIMIT ?i', $username, 2);
 } catch (Exception $e) {
 	// print_r($e);
+	telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'Database request failed')));
 }
 
@@ -40,6 +42,7 @@ if (count($data) == 0) {
 		$data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
 	} catch (Exception $e) {
 		// print_r($e);
+		telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 		exit(json_encode(array('message', 'Database request failed')));
 	}
 

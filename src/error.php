@@ -36,7 +36,7 @@
 	<div class="message"></div>
 
 	<script type="text/javascript">
-		function error(message) {
+		function ui_error(message) {
 			document.getElementById("error").getElementsByClassName("message")[0].innerHTML = message;
 			document.getElementsByTagName("html")[0].classList.add("error");
 		}
@@ -45,9 +45,9 @@
 
 <?php
 
-function error($message) {
+function ui_error($message) {
 	?>
-	<script type="text/javascript">error("<?php echo addslashes($message) ?>")</script>
+	<script type="text/javascript">ui_error("<?php echo addslashes($message) ?>")</script>
 	<?php
 	exit;
 }

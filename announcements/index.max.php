@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">
@@ -38,6 +38,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				try {
 					$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date` DESC');
 				} catch (Exception $e) {
+					telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 					exit(json_encode(array('message', 'Database request failed')));
 				}
 
@@ -60,10 +61,21 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">
 						<div class="author" title="<?php echo $author ?>">
-							<div class="profile_photo" style="<?php if ($author && array_key_exists($author, $profile_photos)) {echo 'background-image: url(\'' . $profile_photos[$author] . '\')';} else {echo 'background: ' . color_from_string($author);} ?>"></div>
+
+							<div class="profile_photo" style="<?php
+
+								if ($author && isset($profile_photos[$author])) {
+									echo 'background-image: url(\'' . $profile_photos[$author] . '\')';
+								} else {
+									echo 'background: ' . color_from_string($author);
+								}
+
+							?>"></div>
+
 							<div class="name">
 								<?php echo $author ?>
 							</div>
+
 						</div>
 						<div class="content">
 							<h4><?php echo $title ?></h4>
@@ -75,15 +87,16 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 								?>
 							</div>
+
 							<article>
 								<?php echo $article ?>
 							</article>
+
 						</div>
 					</li>
 
 					<?php
 				}
-
 				?>
 			</ul>
 		</div>

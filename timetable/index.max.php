@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">
@@ -30,19 +30,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		?>
 
 		<div class="timetable">
-
 			<?php
 
-			// $TODAY = new DateTime('16.12.2020');
-			// $MONDAY = new DateTime($TODAY->format('Y-m-d') . ' MONDAY this week');
-			// $SUNDAY = new DateTime($TODAY->format('Y-m-d') . ' SUNDAY this week');
 			$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
-
 
 			$timetable = json_decode($person['timetable'], true);
 
 			$has_bells = false;
-
 			foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
 				if (!is_null($item)) {
 					$type = trim($item[0]);
@@ -57,7 +51,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 			<div class="float_wrapper">
 
-				<div class="holidays<?php if (!$has_bells) echo ' wide' ?> " title="Расписание каникул">
+				<div class="holidays<?php if (!$has_bells) echo ' wide' ?>" title="Расписание каникул">
 					<h3>Каникулы</h3>
 
 					<?php
@@ -130,13 +124,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				}
 				?>
 
-
 			</div>
 
 			<?php
 
 			$has_cources = false;
-
 			foreach ($cur_week as $day) {
 				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
 					if (!is_null($item)) {
@@ -208,13 +200,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 					}
 
 					?>
-					
 				</div>
 
 				<?php
 			}
 			?>
-
 		</div>
 
 	</main>

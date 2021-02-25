@@ -3,15 +3,24 @@
 // ini_set('display_startup_errors', 0);
 // error_reporting(0);
 
-// MODULES:
+
+
+// ========================================== MODULES ==========================================
+
 require_once __DIR__ . '/safemysql.class.php';
 
 
-// CONFIG:
+
+// ========================================== CONFIGS ==========================================
+
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
+define(TELEGRAM_TOKEN, $config['telegram_token']);
+define(TELEGRAM_CHATID, $config['telegram_chatid']);
 
-// CONST:
+
+// =========================================== CONST ===========================================
+
 $weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 $weekdays_short = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 $months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -93,7 +102,9 @@ $SCHOOL_DAY_BORDER = new DateTime('15:00');
 $SCHOOL_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
 
 
-// UTILS:
+
+// =========================================== UTILS ===========================================
+
 function redirect($url='/') {
 	header('Refresh: 0; url=' . $url);
 }
@@ -134,12 +145,12 @@ function handle_lesson_name($string) {
 
 function short_lesson_name($lesson_name) {
 	global $_short_lesson_name;
-	return array_key_exists($lesson_name, $_short_lesson_name) ? $_short_lesson_name[$lesson_name] : $lesson_name;
+	return isset($_short_lesson_name[$lesson_name]) ? $_short_lesson_name[$lesson_name] : $lesson_name;
 }
 
 function handle_task_type($task_type) {
 	global $_task_types;
-	return array_key_exists($task_type, $_task_types) ? $_task_types[$task_type] : $task_type;
+	return isset($_task_types[$task_type]) ? $_task_types[$task_type] : $task_type;
 }
 
 function replace_school_class_regex($school_class) {
@@ -162,6 +173,7 @@ function set_diary_period($db, $period_start, $period_end) {
 
 	} catch (Exception $e) {
 		// print_r($e);
+		telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 		exit(json_encode(array('message', 'Database request failed')));
 	}
 }
@@ -179,25 +191,25 @@ function class_to_diary_period($db, $class) {
 
 			if ($NOW <= new DateTime($holidays[0]['end'])) {
 				return array(
-					$TRUE_SCHOOL_YEAR_START, 
+					$TRUE_SCHOOL_YEAR_BEGIN, 
 					new DateTime($holidays[0]['start'])
 				);
 
 			} else if ($NOW <= new DateTime($holidays[1]['end'])) {
 				return array(
-					new DateTime($holidays[0]['end'] . ' tomorrow'), 
+					new DateTime($holidays[0]['end'] . ' tomorrow'),
 					new DateTime($holidays[1]['start'])
 				);
 
 			} else if ($NOW <= new DateTime($holidays[2]['end'])) {
 				return array(
-					new DateTime($holidays[1]['end'] . ' tomorrow'), 
+					new DateTime($holidays[1]['end'] . ' tomorrow'),
 					new DateTime($holidays[2]['start'])
 				);
 
 			} else {
 				return array(
-					new DateTime($holidays[2]['end'] . ' tomorrow'), 
+					new DateTime($holidays[2]['end'] . ' tomorrow'),
 					$TRUE_SCHOOL_YEAR_END
 				);
 			}
@@ -206,13 +218,13 @@ function class_to_diary_period($db, $class) {
 
 			if ($NOW <= new DateTime($holidays[1]['end'])) {
 				return array(
-					$TRUE_SCHOOL_YEAR_START,
+					$TRUE_SCHOOL_YEAR_BEGIN,
 					new DateTime($holidays[1]['start'])
 				);
 
 			} else {
 				return array(
-					new DateTime($holidays[1]['end'] . ' tomorrow'), 
+					new DateTime($holidays[1]['end'] . ' tomorrow'),
 					$TRUE_SCHOOL_YEAR_END
 				);
 			}
@@ -224,18 +236,18 @@ function class_to_diary_period($db, $class) {
 
 function day_word_case($count) {
 	if ($count == '1') return 'день';
-	if ($count == '2') return 'дня'; 		
-	if ($count == '3') return 'дня'; 
-	if ($count == '4') return 'дня';  
+	if ($count == '2') return 'дня';
+	if ($count == '3') return 'дня';
+	if ($count == '4') return 'дня';
 	if (substr($count, -2) == '11') return 'дней';
-	if (substr($count, -2) == '12') return 'дней'; 
+	if (substr($count, -2) == '12') return 'дней';
 	if (substr($count, -2) == '13') return 'дней';
-	if (substr($count, -2) == '14') return 'дней'; 
-	if (substr($count, -2) == '01') return 'день';	
+	if (substr($count, -2) == '14') return 'дней';
+	if (substr($count, -2) == '01') return 'день';
 	if (substr($count, -1) == '2') return 'дня';
-	if (substr($count, -1) == '3') return 'дня';	
-	if (substr($count, -1) == '4') return 'дня';				    
-    return 'дней'; 
+	if (substr($count, -1) == '3') return 'дня';
+	if (substr($count, -1) == '4') return 'дня';
+	return 'дней';
 }
 
 function format_days_delta($num, $upper=false) {
@@ -250,6 +262,98 @@ function format_days_delta($num, $upper=false) {
 	return ($upper ? 'Через ' : 'через ') . $num . ' ' . day_word_case($num);
 }
 
+function send_telegram_message($text, $token, $chat_id) {
+	$ch = curl_init();
+	curl_setopt_array(
+		$ch,
+		array(
+			CURLOPT_URL => 'https://api.telegram.org/bot' . $token . '/sendMessage',
+			CURLOPT_POST => TRUE,
+			CURLOPT_RETURNTRANSFER => TRUE,
+			CURLOPT_TIMEOUT => 10,
+			CURLOPT_POSTFIELDS => array(
+				'chat_id' => $chat_id,
+				'text' => $text,
+				'parse_mode' => 'Markdown'
+			),
+		)
+	);
+	curl_exec($ch);
+}
+
+function telegram_log($message, $token=null, $chat_id=null, $force=true) {
+
+	if (!$message) {
+		if ($force) trigger_error('Telegram log empty message', E_USER_WARNING);
+		return;
+	}
+	$message = "=== NetSchool PTHS website ===\n$message";
+
+	if (is_null($token)) {
+		if (!defined('TELEGRAM_TOKEN')) {
+			trigger_error('Telegram token not defined', E_USER_ERROR);
+			return;
+		}
+		$token = TELEGRAM_TOKEN;
+	}
+
+	if (is_null($chat_id)) {
+		if (!defined('TELEGRAM_CHATID')) {
+			trigger_error('Telegram chat ID not defined', E_USER_ERROR);
+			return;
+		}
+		$chat_id = TELEGRAM_CHATID;
+	}
+
+	send_telegram_message($message, $token, $chat_id);
+}
+
+function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {
+
+	if (!(error_reporting() & $errno)) {
+		// Этот код ошибки не включён в error_reporting,
+		// так что пусть обрабатываются стандартным обработчиком ошибок PHP
+		return false;
+	}
+
+	// может потребоваться экранирование $errstr:
+	$errstr = htmlspecialchars($errstr);
+
+	switch ($errno) {
+		case E_USER_ERROR:
+			telegram_log(
+				"User Exception: [$errno] $errstr\n" .
+				"On line $errline in file $errfile"
+			);
+	        exit(1);
+
+	    case E_USER_WARNING:
+	   		telegram_log(
+				"User Warning: [$errno] $errstr\n" .
+				"On line $errline in file $errfile"
+			);
+	        break;
+
+	    case E_USER_NOTICE:
+	    	telegram_log(
+				"User Notice: [$errno] $errstr\n" .
+				"On line $errline in file $errfile"
+			);
+	        break;
+
+	    default:
+	    	telegram_log(
+				"Unknown error type: [$errno] $errstr\n" .
+				"On line $errline in file $errfile"
+			);
+	        break;
+	}
+
+	/* Не запускаем внутренний обработчик ошибок PHP */
+	return true;
+}
+
+set_error_handler('telegram_log_error_handler');
 
 // CODE:
 session_start();

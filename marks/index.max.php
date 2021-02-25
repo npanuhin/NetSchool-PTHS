@@ -12,7 +12,7 @@ $default_mark_rate = 10;
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">
@@ -52,18 +52,19 @@ $default_mark_rate = 10;
 				foreach ($diary as $day => $tasks) {
 					foreach ($tasks as $task_data) {
 						$lesson = handle_lesson_name(trim($task_data[0]));
-						$task_type = trim($task_data[1]);
-						$task = trim($task_data[2]);
-						$mark_rate = $task_data[3];
-						$mark = $task_data[4];
-						$task_expired = $task_data[5];
-						$lesson_ext = trim($task_data[6][0]);
-						$task_data_ext = $task_data[6][1];
 
-						if (!array_key_exists($lesson, $table)) $table[$lesson] = [];
-						if (!array_key_exists($day, $table[$lesson])) $table[$lesson][$day] = [];
+						if (!isset($table[$lesson])) $table[$lesson] = [];
+						if (!isset($table[$lesson][$day])) $table[$lesson][$day] = [];
 
-						$table[$lesson][$day][] = [$mark, $mark_rate, $task, $task_type, $task_expired, $lesson_ext, $task_data_ext];
+						$table[$lesson][$day][] = [
+							$task_data[4],          // mark
+							$task_data[3],          // mark_rate
+							trim($task_data[2]),    // task
+							trim($task_data[1]),    // task_type
+							$task_data[5],          // task_expired
+							trim($task_data[6][0]), // lesson_ext
+							$task_data[6][1]        // task_data_ext
+						];
 
 						if (!in_array($day, $all_days)) $all_days[] = $day;
 					}
@@ -85,21 +86,22 @@ $default_mark_rate = 10;
 					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 					set_diary_period($db, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
+				
+				} else {
+					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
+					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 				}
-
-				if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
-				if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 				?>
 
 				<label class="period_start_label">
 					с
-					<input min="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>" id="period_start" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>">
+					<input min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" id="period_start" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>">
 				</label>
 
 				<label class="period_end_label">
 					по
-					<input min="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>" max="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>" id="period_end" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>">
+					<input min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" id="period_end" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>">
 				</label>
 
 
@@ -204,22 +206,21 @@ $default_mark_rate = 10;
 												$rate_summ += $mark_rate;
 											}
 
-											$days_expired_key[$day] |= $task_expired;
+											$days_expired_key[$day] = isset($days_expired_key[$day]) ? $days_expired_key[$day] | $task_expired : $task_expired;
 										}
 									}
 									$all_average_marks[$lesson] = $average_mark / $rate_summ;
 
-									$empty_width = 0;
+									$empty_space = 0;
 									foreach ($all_days as $day) {
-										if ($days[$day]) {
+										if (isset($days[$day]) && $days[$day]) {
 
-											if ($empty_width) {
+											if ($empty_space) {
 												?>
-												<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
+												<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
 												<?php
 											}
-											$empty_width = 0;
-
+											$empty_space = 0;
 											?>
 
 											<td class="<?php echo $day ?> filled<?php if ($days_expired_key[$day]) echo ' expired' ?>">
@@ -241,6 +242,7 @@ $default_mark_rate = 10;
 														$task_data_ext = $task_data[6];
 
 														if (!is_null($mark) || $task_expired) {
+															
 															if (is_null($mark)) $mark = $default_mark;
 															if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 															?>
@@ -342,13 +344,13 @@ $default_mark_rate = 10;
 											<?php
 
 										} else {
-											++$empty_width;
+											++$empty_space;
 										}
 									}
 
-									if ($empty_width) {
+									if ($empty_space) {
 										?>
-										<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
+										<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
 										<?php
 									}
 									?>
@@ -386,14 +388,14 @@ $default_mark_rate = 10;
 					</ul>
 				</div>
 
-				<div class="details"></div>
-
 				<?php
 			}
 			?>
 		</div>
 
 	</main>
+
+	<div class="details"></div> <!-- For marks -->
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>

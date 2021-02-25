@@ -1,6 +1,5 @@
-/sftp-config.json
-
 # Configs
+/sftp-config.json
 /src/config/*
 
 # Doc

@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if ($_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">
@@ -25,12 +25,14 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 	<main>
 
 		<?php
-		try {
-			$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
-		} catch (Exception $e) {
-			exit(json_encode(array('message', 'Database request failed')));
-		}
-		$has_announcements = (count($announcements) != 0);
+		// try {
+		// 	$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
+		// } catch (Exception $e) {
+		// 	telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
+		// 	exit(json_encode(array('message', 'Database request failed')));
+		// }
+		// $has_announcements = (count($announcements) != 0);
+		$has_announcements = false;
 
 		include_once __DIR__ . '/src/message_alerts.php';
 		require_once __DIR__ . '/src/menu.php';
@@ -40,7 +42,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 		if (!is_null($diary)) {
 			?>
 
-			<div class="tasks <?php if (true || !$has_announcements) echo 'wide' ?>">
+			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
 				<h2>Задания</h2>
 				<ul>
 					<?php
@@ -58,16 +60,22 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 							$day = new DateTime($date);
 
-							if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
+							if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
 
 							$task_index = $lessons_task_index[$lesson]++;
 
 							if ($task_expired) {
 								?>
 								<li class="expired" title="Задание просрочено">
-									<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+									<?php echo $lesson . ': ' ?>
+
+									<span>
+										<a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a>
+									</span>
+
 									<div><?php echo $day->format('d') . ' ' . $months_genetive[$day->format('m') - 1] . ', ' . format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>
 									</div>
+								
 								</li>
 								<?php
 							}
@@ -84,13 +92,18 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 						$mark = $task_data[4];
 						$task_expired = $task_data[5];
 
-						if (!array_key_exists($lesson, $lessons_task_index)) $lessons_task_index[$lesson] = 0;
+						if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
 
 						$task_index = $lessons_task_index[$lesson]++;
 
 						?>
 						<li>
-							<?php echo $lesson . ': ' ?><span><a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a></span>
+							<?php echo $lesson . ': ' ?>
+							
+							<span>
+								<a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a>
+							</span>
+
 							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
 						</li>
 						<?php
@@ -103,7 +116,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 			<?php
 		}
 
-		if (false && $has_announcements) {
+		if ($has_announcements) {
 			?>
 			<div class="announcements">
 				<?php // include_once __DIR__ . "/files/icons/cross.svg" ?>
@@ -128,7 +141,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 				$school_week_end = new DateTime($monday->format('Y-m-d') . ' Saturday this week ' . $SCHOOL_DAY_BORDER->format('H:i'));
 				?>
 
-				<div class="<?php echo $monday->format('Y-m-d'); if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown'; if ($monday == $MONDAY) echo ' cur_week'; ?>">
+				<div class="<?php
+					echo $monday->format('Y-m-d');
+					if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown';
+					if ($monday == $MONDAY) echo ' cur_week';
+				?>">
 
 					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
 						<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
@@ -155,7 +172,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 								<?php
 
-								if (array_key_exists($day->format('Y-m-d'), $timetable) && !is_null($timetable[$day->format('Y-m-d')])) {
+								if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
 
 									$lessons = [];
 									$vacations = [];
@@ -172,7 +189,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 												preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-												if (trim($match[2][0])) {
+												if (isset($match[2][0]) && trim($match[2][0])) {
 													$has_any_cabinet = true;
 													break;
 												}
@@ -229,10 +246,11 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 													preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-													if (trim($match[1][0])) {
+													if (isset($match[1][0]) && trim($match[1][0])) {
 														$name = trim($match[1][0]);
 													}
-													$cabinet = trim($match[2][0]);
+
+													$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
 
 													$start_time = new DateTime($start_time);
 													$end_time = new DateTime($end_time);

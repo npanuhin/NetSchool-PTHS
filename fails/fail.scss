@@ -1,8 +1,9 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
 }
-html{
+
+html {
 	position: absolute;
 	right: 0;
 	font-family: 'Raleway', sans-serif;
@@ -11,40 +12,50 @@ html{
 	width: 100%;
 	text-align: center;
 }
-body{
+
+body {
 	top: 50%;
 	position: absolute;
 	width: 100%;
 	transform: translateY(-50%);
 }
-h1,h2,h3{
+
+h1, h2, h3 {
 	font-weight: bold;
 	padding: 2vw;
 }
-h1{
+
+h1 {
 	font-size: 10vw;
 }
-h2{
+
+h2 {
 	font-size: 5vw;
 }
-h3{
+
+h3 {
 	font-size: 4vw;
 }
-p{
+
+p {
 	font-size: 1.5vw;
 	padding: 3vw;
 }
-@media (max-width: 750px){
-	h1{
+
+@media (max-width: 750px) {
+	h1 {
 		font-size: 12vw;
 	}
-	h2{
+
+	h2 {
 		font-size: 6vw;
 	}
-	h3{
+
+	h3 {
 		font-size: 5vw;
 	}
-	p{
+
+	p {
 		font-size: 3vw;
 	}
 }

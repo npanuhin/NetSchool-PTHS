@@ -15,6 +15,7 @@ try {
 	$db = dbConnect();
 } catch (Exception $e) {
 	// print_r($e);
+	telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'Database connection failed')));
 }
 
@@ -23,6 +24,7 @@ try {
 
 } catch (Exception $e) {
 	// print_r($e);
+	telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'Database request failed')));
 }
 

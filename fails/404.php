@@ -16,5 +16,5 @@ exit;
 		<h3>Фаил не найден</h3>
 		<p>Запрашиваемая Вами страница не найдена. Скорее всего допущена ошибка в запросе. Попробуйте изменить адрес.</p>
 	</body>
-	<link rel="stylesheet" type="text/css" href="/fails/fail.css">
+	<link rel="stylesheet" type="text/css" href="/fails/build/fail.min.css">
 </html>
