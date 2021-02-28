@@ -5,5 +5,5 @@
 # Doc
 /doc/*
 
-# .htaccess
-.htaccess
+# Keep .htaccess
+!.htaccess
