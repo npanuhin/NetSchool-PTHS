@@ -96,19 +96,19 @@ $default_mark_rate = 10;
 
 				<label class="period_start_label">
 					с
-					<input min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" id="period_start" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>">
+					<input class="period_start" min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" type="date" value="<?php echo $period_start->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[0]->format('Y-m-d') ?>">
 				</label>
 
 				<label class="period_end_label">
 					по
-					<input min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" id="period_end" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>">
+					<input class="period_end" min="<?php echo $TRUE_SCHOOL_YEAR_BEGIN->format('Y-m-d') ?>" max="<?php echo $TRUE_SCHOOL_YEAR_END->format('Y-m-d') ?>" type="date" value="<?php echo $period_end->format('Y-m-d') ?>" data-default="<?php echo class_to_diary_period($db, $person['class'])[1]->format('Y-m-d') ?>">
 				</label>
 
 
 				<div>
-					<ul>
+					<ul class="left_column">
 						<li></li>
-						<li id="scroll_left">
+						<li class="scroll_left">
 							<svg viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
 								<title>Листать назад</title>
 								<path d="M1.43565 31.2376L31.5346 1.1396C33 -0.297211 34.4999 -0.297251 35.5 0.702789C36.5 1.70283 36.5 3.20279 35 4.70292L5 34.7036L35 64.7029C36.5 66.2028 36.5 67.7025 35.5 68.7028C34.4999 69.7031 33 69.7028 31.5338 68.2669L1.43487 38.1685C0.47793 37.2111 0 35.9577 0 34.7036C0 33.4489 0.47886 32.1945 1.43565 31.2376Z"/>
@@ -124,7 +124,7 @@ $default_mark_rate = 10;
 						?>
 					</ul>
 
-					<div>
+					<div class="scrollbox">
 					
 						<table>
 							<tr>
@@ -366,9 +366,9 @@ $default_mark_rate = 10;
 
 					</div>
 
-					<ul>
+					<ul class="right_column">
 						<li></li>
-						<li id="scroll_right">
+						<li class="scroll_right">
 							<svg viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
 								<title>Листать вперёд</title>
 								<path d="M1.43565 31.2376L31.5346 1.1396C33 -0.297211 34.4999 -0.297251 35.5 0.702789C36.5 1.70283 36.5 3.20279 35 4.70292L5 34.7036L35 64.7029C36.5 66.2028 36.5 67.7025 35.5 68.7028C34.4999 69.7031 33 69.7028 31.5338 68.2669L1.43487 38.1685C0.47793 37.2111 0 35.9577 0 34.7036C0 33.4489 0.47886 32.1945 1.43565 31.2376Z"/>

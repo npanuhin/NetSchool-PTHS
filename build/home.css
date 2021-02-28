@@ -425,6 +425,10 @@ main .timetable > div {
   pointer-events: none;
 }
 
+main .timetable > div.shown {
+  pointer-events: auto;
+}
+
 main .timetable > div h3 {
   font-family: Manrope;
   font-style: normal;
@@ -447,10 +451,6 @@ html.dark main .timetable > div h3 {
 html.loaded main .timetable > div h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
-}
-
-main .timetable > div.shown {
-  pointer-events: auto;
 }
 
 main .timetable > div.shown h3 {

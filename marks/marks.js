@@ -16,11 +16,11 @@ let
 	right_column = document.querySelector(".marks > div > ul:last-child"),
 	right_column_li = right_column.getElementsByTagName("li"),
 
-	scroll_left_button = document.getElementById("scroll_left"),
-	scroll_right_button = document.getElementById("scroll_right"),
+	scroll_left_button = marks.getElementsByClassName("scroll_left")[0],
+	scroll_right_button = marks.getElementsByClassName("scroll_right")[0],
 
-	period_start_input = document.getElementById("period_start"),
-	period_end_input = document.getElementById("period_end"),
+	period_start_input = marks.getElementsByClassName("period_start")[0],
+	period_end_input = marks.getElementsByClassName("period_end")[0],
 
 	period_hidden_left = marks.getElementsByClassName("period_hidden_left")[0],
 	period_hidden_right = marks.getElementsByClassName("period_hidden_right")[0],
@@ -41,13 +41,13 @@ let
 
 // =======================================================================
 
+
 function show_details(pageX, pageY, element) {
 	if (details_lock) return;
 
 	locate_details(pageX, pageY);
 
 	// details_block.style.display = "";
-
 	// element.append(details_block);
 
 	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
@@ -100,6 +100,7 @@ function toggle_details_lock(event) {
 
 // =======================================================================
 
+
 function onhashchange() {
 	let url_hash = decodeURIComponent(window.location.hash);
 
@@ -140,7 +141,6 @@ function onhashchange() {
 	}
 }
 
-
 // =======================================================================
 
 
@@ -167,6 +167,7 @@ function scroll_table_to(target) {
 function scroll_table_by(distance) {scroll_table_to(Math.min(scroll_table.scrollWidth - scroll_table.offsetWidth, Math.max(0, scroll_table.scrollLeft + distance)))}
 
 // =======================================================================
+
 
 function on_table_scroll() {
 	scroll_left_button.classList.toggle("hidden", scroll_table.scrollLeft <= 2);
@@ -199,7 +200,6 @@ function apply_period(safe=false) {
 	period_start = new Date(period_start);
 	period_end = new Date(period_end);
 
-	// console.log(period_start, period_end);
 	for (let tr_index = 2; tr_index < table.getElementsByTagName("tr").length; ++tr_index) {
 		let line = table.getElementsByTagName("tr")[tr_index],
 			average_mark = 0, rate_summ = 0;

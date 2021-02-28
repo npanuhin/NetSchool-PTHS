@@ -75,7 +75,7 @@ main {
 			margin-left: 30px;
 		}
 
-		#period_start, #period_end {
+		.period_start, .period_end {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
@@ -94,6 +94,8 @@ main {
 			}
 			border-radius: 7px;
 
+			transition: $dark_mode_transition, 0.2s border-color ease-in-out;
+
 			&:focus {
 				border: 2px solid $orange-color;
 				html.dark & {
@@ -108,38 +110,95 @@ main {
 			grid-template-rows: 1fr;
 			grid-template-columns: auto auto auto;
 
-			& > ul {
+			.left_column, .right_column {
 				position: relative;
 				top: -7px;
 				padding-top: 7px;
-			}
 
-			& > ul li {
-				font-family: Manrope;
-				font-style: normal;
-				font-weight: 500;
-				font-size: 20px;
-				line-height: 28px;
+			    li {
+			    	padding: 6px 12px;
+					height: 28px;
 
-				color: $text-color;
-				background: $block-color;
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 500;
+					font-size: 20px;
+					line-height: 28px;
 
-				html.dark & {
-					color: $text-color-dark;
-					background: $block-color-dark;
+					white-space: nowrap;
+
+					color: $text-color;
+					background: $block-color;
+					html.dark & {
+						color: $text-color-dark;
+						background: $block-color-dark;
+					}
+
+					&:nth-child(2) {
+						height: 58px;
+					}
 				}
 
-				white-space: nowrap;
+				.scroll_left, .scroll_right {
+					position: relative;
 
-				padding: 6px 12px;
-				height: 28px;
+					svg {
+						position: absolute;
+						top: 50%;
+						height: 100%;
+						box-sizing: border-box;
+						padding: 19px 15px 19px 30px;
 
-				&:nth-child(2) {
-					height: 58px;
+						cursor: pointer;
+						transition: $dark_mode_transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+						opacity: 1;
+
+						path {
+							fill: $text-color;
+							html.dark & {
+								fill: $text-color-dark;
+							}
+						}
+
+						&:hover {
+							padding-right: 20px;
+						}
+					}
+
+					&.hidden svg {
+						opacity: 0;
+					}
+				}
+
+				.scroll_left {
+					svg {
+						right: 0;
+						transform: scale(0.9, 1) translateY(-50%);
+					
+						&:hover {
+							transform: scale(0.9, 1) translateY(-50%);
+						}
+					}
+				}
+
+				.scroll_right {
+					// background: $block-color;
+					// html.dark & {
+					// 	background: $block-color-dark;
+					// }
+
+					svg {
+						left: 0;
+						transform: scale(-0.9, 1) translateY(-50%);
+
+						&:hover {
+							transform: scale(-0.9, 1) translateY(-50%);
+						}
+					}
 				}
 			}
 
-			& > ul:first-child {
+			.left_column {
 				position: relative;
 
 				z-index: 10;
@@ -163,7 +222,7 @@ main {
 					}
 				}
 			}
-			& > ul:last-child {
+			.right_column {
 				position: relative;
 				left: -1px;
 				width: calc(100% + 1px);
@@ -191,7 +250,7 @@ main {
 				}
 			}
 
-			& > div {
+			.scrollbox {
 				position: relative;
 
 				z-index: 5;
@@ -433,68 +492,12 @@ main {
 				}
 			}
 
-			ul li:nth-child(2n + 3), table tr:nth-child(2n + 3) {
+			.left_column li:nth-child(2n + 3),
+			.right_column li:nth-child(2n + 3),
+			table tr:nth-child(2n + 3) {
 				background: #C9DDF0;
 				html.dark & {
 					background: #161B22;
-				}
-			}
-		}
-
-		#scroll_left, #scroll_right {
-			position: relative;
-
-			svg {
-				position: absolute;
-				top: 50%;
-				height: 100%;
-				box-sizing: border-box;
-				padding: 19px 15px 19px 30px;
-
-				cursor: pointer;
-				transition: $dark_mode_transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
-				opacity: 1;
-
-				path {
-					fill: $text-color;
-					html.dark & {
-						fill: $text-color-dark;
-					}
-				}
-
-				&:hover {
-					padding-right: 20px;
-				}
-			}
-
-			&.hidden svg {
-				opacity: 0;
-			}
-		}
-
-		#scroll_left {
-			svg {
-				right: 0;
-				transform: scale(0.9, 1) translateY(-50%);
-			
-				&:hover {
-					transform: scale(0.9, 1) translateY(-50%);
-				}
-			}
-		}
-
-		#scroll_right {
-			background: $block-color;
-			html.dark & {
-				background: $block-color-dark;
-			}
-
-			svg {
-				left: 0;
-				transform: scale(-0.9, 1) translateY(-50%);
-
-				&:hover {
-					transform: scale(-0.9, 1) translateY(-50%);
 				}
 			}
 		}
