@@ -1,7 +1,15 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/session.php';
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_SESSION['user_id']) || !$_SESSION['user_id'] || !isset($_POST['name']) || !$_POST['name']) {
+if (!$AUTHORIZED) {
+	logout();
+	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+	redirect();
+	exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST['name']) || !$_POST['name']) {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
 	redirect();
 	exit;
@@ -12,19 +20,11 @@ header('Content-Type: application/json');
 $name = trim($_POST['name']);
 
 try {
-	$db = dbConnect();
-} catch (Exception $e) {
-	// print_r($e);
-	telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
-	exit(json_encode(array('message', 'Database connection failed')));
-}
-
-try {
-	$db->query('UPDATE `messages` SET ?n = NULL WHERE `user_id` = ?i', $name, $_SESSION['user_id']);
+	$db->query('UPDATE `messages` SET ?n = NULL WHERE `user_id` = ?i', $name, $person['id']);
 
 } catch (Exception $e) {
 	// print_r($e);
-	telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
+	telegram_log("Database request failed\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'Database request failed')));
 }
 

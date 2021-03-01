@@ -3,6 +3,10 @@
 // ini_set('display_startup_errors', 0);
 // error_reporting(0);
 
+// session_start();
+
+$db = null;
+$UI_ERROR = null;
 
 
 // ========================================== MODULES ==========================================
@@ -121,18 +125,22 @@ function dbConnect() {
 	));
 }
 
-function verifySession() {
-	// if (isset($_SESSION['HTTP_USER_AGENT'])) {
-	// 	if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) return false;
-	// } else {
-	// 	$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
-	// }
-	return true;
+function logout() { // Before sending data (sending headers)
+	// Unset cookies
+	if (isset($_SERVER['HTTP_COOKIE'])) {
+		$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+		foreach ($cookies as $cookie) {
+			$parts = explode('=', $cookie);
+			$name = trim($parts[0]);
+			setcookie($name, '', time() - 1000);
+			setcookie($name, '', time() - 1000, '/');
+		}
+	}
+	// session_destroy();
 }
 
-function logout() {
-	$_SESSION = [];
-	session_destroy();
+function person_hash($person) {
+	return md5($person['id'] . $person['username'] . $person['password']);
 }
 
 function handle_lesson_name($string) {
@@ -167,13 +175,13 @@ function replace_school_class_regex($school_class) {
 	return $school_class;
 }
 
-function set_diary_period($db, $period_start, $period_end) {
+function set_diary_period($db, $person, $period_start, $period_end) {
 	try {
-		$data = $db->query('UPDATE `users` SET `diary_period_start` = ?s, `diary_period_end` = ?s WHERE `id` = ?i', $period_start, $period_end, $_SESSION['user_id']);
+		$data = $db->query('UPDATE `users` SET `diary_period_start` = ?s, `diary_period_end` = ?s WHERE `id` = ?i', $period_start, $period_end, $person['id']);
 
 	} catch (Exception $e) {
 		// print_r($e);
-		telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
+		telegram_log("Database request failed\nUser ID: {$person['id']}\n\n" . $e->getMessage());
 		exit(json_encode(array('message', 'Database request failed')));
 	}
 }
@@ -284,14 +292,14 @@ function send_telegram_message($text, $token, $chat_id) {
 function telegram_log($message, $token=null, $chat_id=null, $force=true) {
 
 	if (!$message) {
-		if ($force) trigger_error('Telegram log empty message', E_USER_WARNING);
+		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Log empty message"';
 		return;
 	}
 	$message = "=== NetSchool PTHS website ===\n$message";
 
 	if (is_null($token)) {
 		if (!defined('TELEGRAM_TOKEN')) {
-			trigger_error('Telegram token not defined', E_USER_ERROR);
+			$UI_ERROR = 'Please contact administrator with the following message: "Log token not defined"';
 			return;
 		}
 		$token = TELEGRAM_TOKEN;
@@ -299,7 +307,7 @@ function telegram_log($message, $token=null, $chat_id=null, $force=true) {
 
 	if (is_null($chat_id)) {
 		if (!defined('TELEGRAM_CHATID')) {
-			trigger_error('Telegram chat ID not defined', E_USER_ERROR);
+			$UI_ERROR = 'Please contact administrator with the following message: "Log chat ID not defined"';
 			return;
 		}
 		$chat_id = TELEGRAM_CHATID;
@@ -325,28 +333,28 @@ function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {
 				"User Exception: [$errno] $errstr\n" .
 				"On line $errline in file $errfile"
 			);
-	        exit(1);
+			exit(1);
 
-	    case E_USER_WARNING:
-	   		telegram_log(
+		case E_USER_WARNING:
+			telegram_log(
 				"User Warning: [$errno] $errstr\n" .
 				"On line $errline in file $errfile"
 			);
-	        break;
+			break;
 
-	    case E_USER_NOTICE:
-	    	telegram_log(
+		case E_USER_NOTICE:
+			telegram_log(
 				"User Notice: [$errno] $errstr\n" .
 				"On line $errline in file $errfile"
 			);
-	        break;
+			break;
 
-	    default:
-	    	telegram_log(
+		default:
+			telegram_log(
 				"Unknown error type: [$errno] $errstr\n" .
 				"On line $errline in file $errfile"
 			);
-	        break;
+			break;
 	}
 
 	/* Не запускаем внутренний обработчик ошибок PHP */
@@ -354,7 +362,4 @@ function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {
 }
 
 set_error_handler('telegram_log_error_handler');
-
-// CODE:
-session_start();
 ?>

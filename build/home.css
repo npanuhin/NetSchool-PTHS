@@ -291,8 +291,7 @@ main {
 
 main .tasks {
   position: relative;
-  top: 45px;
-  margin: 0 auto;
+  margin: 45px auto 25px auto;
   z-index: 10;
   box-sizing: border-box;
   padding: 20px;
@@ -414,7 +413,7 @@ main .announcements {
 main .timetable {
   position: relative;
   z-index: 10;
-  margin: 116px auto 0 auto;
+  margin: 45px auto 0 auto;
   width: calc(100% - 200px);
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
 }

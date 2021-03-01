@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 
-if (!isset($_SESSION['user_id']) || !verifySession()) {
+if (!$AUTHORIZED) {
 	logout();
 	redirect('/login/');
 	exit;
@@ -9,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_COOKIE['dark']) && $_COOKIE['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">

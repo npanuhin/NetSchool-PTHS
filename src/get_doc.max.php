@@ -1,9 +1,16 @@
 <?php
-session_start();
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/session.php';
+
+if (!$AUTHORIZED) {
+	logout();
+	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+	redirect();
+	exit;
+}
 
 if (
 	$_SERVER['REQUEST_METHOD'] != 'GET'  || !isset($_GET)         ||
-	!isset($_SESSION['user_id'])         || !$_SESSION['user_id'] ||
 	!isset($_GET['file'])                || !trim($_GET['file'])  ||
 	!file_exists('../doc/' . trim($_GET['file']))
 ) {

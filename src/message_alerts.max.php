@@ -13,13 +13,13 @@ $db->query('
 		    SELECT 1 FROM `messages` WHERE `user_id` = ?i
 		) LIMIT 1;
 	',
-	$_SESSION['user_id'],
+	$person['id'],
 	'<p>ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию.',
 	'<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>.',
-	$_SESSION['user_id']
+	$person['id']
 );
 
-$messages = $db->getRow('SELECT * FROM `messages` WHERE `user_id` = ?i', $_SESSION['user_id']);
+$messages = $db->getRow('SELECT * FROM `messages` WHERE `user_id` = ?i', $person['id']);
 
 foreach ($messages as $key => $message) {
 	if ($key != 'user_id' && $message) {

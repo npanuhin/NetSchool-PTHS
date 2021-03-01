@@ -1,10 +1,28 @@
 <?php
 require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 
-if (!isset($_SESSION['user_id']) || !verifySession()) {
+if (!$AUTHORIZED) {
 	logout();
 	redirect('/login/');
 	exit;
+}
+
+$remove_success = false;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confirm'])) {
+
+	try {
+		$db->query('DELETE FROM `users` WHERE `id` = ?i', $person['id']);
+		$db->query('DELETE FROM `messages` WHERE `user_id` = ?i', $person['id']);
+		logout();
+
+		$remove_success = true;
+
+	} catch (Exception $e) {
+		telegram_log("Database connection failed\n\n" . $e->getMessage());
+		echo 'Database connection failed';
+	}
 }
 ?>
 
@@ -24,19 +42,13 @@ if (!isset($_SESSION['user_id']) || !verifySession()) {
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confirm'])) {
 
-		try {
-			$db = dbConnect();
-			$db->query('DELETE FROM `users` WHERE `id` = ?i', $_SESSION['user_id']);
-			$db->query('DELETE FROM `messages` WHERE `user_id` = ?i', $_SESSION['user_id']);
-			logout();
-
+		if ($remove_success) {
 			echo 'Ваш аккаунт успешно удалён';
+			telegram_log("User deleted\nUsername: {$person['username']}");
 
-			telegram_log("User deleted\nUser ID: {$_SESSION['user_id']}");
-
-		} catch (Exception $e) {
-			telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
-			echo 'Database connection failed';
+		} else {
+			echo 'Ошибка при удалении аккаунта';
+			telegram_log("User deletion error\nUsername: {$person['username']}");
 		}
 
 	} else {

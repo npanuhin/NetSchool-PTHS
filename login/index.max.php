@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 
-if (isset($_SESSION['user_id'])) {
+if ($AUTHORIZED) {
 	redirect();
-	exit();
+	exit;
 }
 
 ?>

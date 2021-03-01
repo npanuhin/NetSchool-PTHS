@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 
-if (!isset($_SESSION['user_id']) || !verifySession()) {
+if (!$AUTHORIZED) {
 	logout();
 	redirect('/login/');
 	exit;
@@ -12,7 +13,7 @@ $default_mark_rate = 10;
 ?>
 
 <!DOCTYPE html>
-<html lang="ru"<?php if (isset($_SESSION['dark']) && $_SESSION['dark']) echo ' class="dark"'?>>
+<html lang="ru"<?php if (isset($_COOKIE['dark']) && $_COOKIE['dark']) echo ' class="dark"'?>>
 
 <head>
 	<meta charset="utf-8">
@@ -85,7 +86,7 @@ $default_mark_rate = 10;
 					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
 					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
-					set_diary_period($db, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
+					set_diary_period($db, $person, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
 				
 				} else {
 					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);

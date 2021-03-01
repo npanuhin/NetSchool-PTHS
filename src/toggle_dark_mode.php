@@ -1,7 +1,15 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/session.php';
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_SESSION['user_id']) || !$_SESSION['user_id']) {
+if (!$AUTHORIZED) {
+	logout();
+	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+	redirect();
+	exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
 	redirect();
 	exit;
@@ -9,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_SESSION['
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['dark']) || !$_SESSION['dark']) {
-	$_SESSION['dark'] = true;
+if (!isset($_COOKIE['dark']) || $_COOKIE['dark'] == '0') {
+	setcookie('dark', '1', time() + 60 * 60 * 24 * 365 * 100, '/');
 	echo '1';
+
 } else {
-	$_SESSION['dark'] = false;
+	setcookie('dark', '0', time() + 60 * 60 * 24 * 365 * 100, '/');
 	echo '0';
 }
 ?>

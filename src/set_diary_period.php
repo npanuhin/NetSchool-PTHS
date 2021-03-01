@@ -1,9 +1,16 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/session.php';
+
+if (!$AUTHORIZED) {
+	logout();
+	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+	redirect();
+	exit;
+}
 
 if (
 	$_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)                ||
-	!isset($_SESSION['user_id'])         || !$_SESSION['user_id']         ||
 	!isset($_POST['period_start'])       || !trim($_POST['period_start']) ||
 	!isset($_POST['period_end'])         || !trim($_POST['period_end'])
 ) {
@@ -19,7 +26,7 @@ try {
 	$period_end = new DateTime(trim($_POST['period_end']));
 
 	if (is_null($period_start) || is_null($period_end)) {
-		telegram_log("InvalidArgumentException (set_diary_period): Wrong date format\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
+		telegram_log("InvalidArgumentException (set_diary_period): Wrong date format\n\n" . $e->getMessage());
 		throw new InvalidArgumentException('Wrong date format');
 	}
 
@@ -28,19 +35,11 @@ try {
 
 } catch (Exception $e) {
 	// print_r($e);
-	telegram_log("InvalidArgumentException (set_diary_period): Wrong date format\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
+	telegram_log("InvalidArgumentException (set_diary_period): Wrong date format\n\n" . $e->getMessage());
 	exit(json_encode(array('message', 'InvalidArgumentException (set_diary_period): Wrong date format')));
 }
 
-try {
-	$db = dbConnect();
-} catch (Exception $e) {
-	// print_r($e);
-	telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
-	exit(json_encode(array('message', 'Database connection failed')));
-}
-
-set_diary_period($db, $period_start, $period_end);
+set_diary_period($db, $person, $period_start, $period_end);
 
 echo 'success';
 ?>
