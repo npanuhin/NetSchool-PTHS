@@ -126,6 +126,7 @@ gulp.task('reload-scss', function(){
     .pipe(sass({
         includePaths: ['C:\\OSPanel\\node_modules'],
         includePaths: ['C:\\OpenServer\\node_modules'],
+		includePaths: ['C:\\OpenServer\\domains\\node_modules'],
     }).on('error', sass.logError))
     .pipe(autoprefixer({
         brousers: ['last 3 versions', '> 5%'],
