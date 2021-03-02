@@ -57,6 +57,13 @@ html.dark * {
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out;
 }
 
+html:not(.loaded),
+html:not(.loaded) * {
+  transition: 0s all linear !important;
+  -webkit-animation-duration: 0s !important;
+  animation-duration: 0s !important;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
@@ -355,8 +362,8 @@ main .marks .period_end_label {
   margin-left: 30px;
 }
 
-main .marks #period_start,
-main .marks #period_end {
+main .marks .period_start,
+main .marks .period_end {
   font-family: Manrope;
   font-style: normal;
   font-weight: normal;
@@ -366,25 +373,26 @@ main .marks #period_end {
   padding: 7px 10px;
   border: 2px solid #1963A1;
   border-radius: 7px;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.2s border-color ease-in-out;
 }
 
-html.dark main .marks #period_start,
-html.dark main .marks #period_end {
+html.dark main .marks .period_start,
+html.dark main .marks .period_end {
   color: #C9D1D9;
 }
 
-html.dark main .marks #period_start,
-html.dark main .marks #period_end {
+html.dark main .marks .period_start,
+html.dark main .marks .period_end {
   border-color: #C9D1D9;
 }
 
-main .marks #period_start:focus,
-main .marks #period_end:focus {
+main .marks .period_start:focus,
+main .marks .period_end:focus {
   border: 2px solid #FF890C;
 }
 
-html.dark main .marks #period_start:focus,
-html.dark main .marks #period_end:focus {
+html.dark main .marks .period_start:focus,
+html.dark main .marks .period_end:focus {
   border-color: #FF890C;
 }
 
@@ -394,60 +402,135 @@ main .marks > div {
   grid-template-columns: auto auto auto;
 }
 
-main .marks > div > ul {
+main .marks > div .left_column,
+main .marks > div .right_column {
   position: relative;
   top: -7px;
   padding-top: 7px;
 }
 
-main .marks > div > ul li {
+main .marks > div .left_column li,
+main .marks > div .right_column li {
+  padding: 6px 12px;
+  height: 28px;
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
+  white-space: nowrap;
   color: #1963A1;
   background: #FFF;
-  white-space: nowrap;
-  padding: 6px 12px;
-  height: 28px;
 }
 
-html.dark main .marks > div > ul li {
+html.dark main .marks > div .left_column li,
+html.dark main .marks > div .right_column li {
   color: #C9D1D9;
   background: #28313d;
 }
 
-main .marks > div > ul li:nth-child(2) {
+main .marks > div .left_column li:nth-child(2),
+main .marks > div .right_column li:nth-child(2) {
   height: 58px;
 }
 
-main .marks > div > ul:first-child {
+main .marks > div .left_column .scroll_left,
+main .marks > div .left_column .scroll_right,
+main .marks > div .right_column .scroll_left,
+main .marks > div .right_column .scroll_right {
+  position: relative;
+}
+
+main .marks > div .left_column .scroll_left svg,
+main .marks > div .left_column .scroll_right svg,
+main .marks > div .right_column .scroll_left svg,
+main .marks > div .right_column .scroll_right svg {
+  position: absolute;
+  top: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 19px 15px 19px 30px;
+  cursor: pointer;
+  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+  opacity: 1;
+}
+
+main .marks > div .left_column .scroll_left svg path,
+main .marks > div .left_column .scroll_right svg path,
+main .marks > div .right_column .scroll_left svg path,
+main .marks > div .right_column .scroll_right svg path {
+  fill: #1963A1;
+}
+
+html.dark main .marks > div .left_column .scroll_left svg path,
+html.dark main .marks > div .left_column .scroll_right svg path,
+html.dark main .marks > div .right_column .scroll_left svg path,
+html.dark main .marks > div .right_column .scroll_right svg path {
+  fill: #C9D1D9;
+}
+
+main .marks > div .left_column .scroll_left svg:hover,
+main .marks > div .left_column .scroll_right svg:hover,
+main .marks > div .right_column .scroll_left svg:hover,
+main .marks > div .right_column .scroll_right svg:hover {
+  padding-right: 20px;
+}
+
+main .marks > div .left_column .scroll_left.hidden svg,
+main .marks > div .left_column .scroll_right.hidden svg,
+main .marks > div .right_column .scroll_left.hidden svg,
+main .marks > div .right_column .scroll_right.hidden svg {
+  opacity: 0;
+}
+
+main .marks > div .left_column .scroll_left svg,
+main .marks > div .right_column .scroll_left svg {
+  right: 0;
+  transform: scale(0.9, 1) translateY(-50%);
+}
+
+main .marks > div .left_column .scroll_left svg:hover,
+main .marks > div .right_column .scroll_left svg:hover {
+  transform: scale(0.9, 1) translateY(-50%);
+}
+
+main .marks > div .left_column .scroll_right svg,
+main .marks > div .right_column .scroll_right svg {
+  left: 0;
+  transform: scale(-0.9, 1) translateY(-50%);
+}
+
+main .marks > div .left_column .scroll_right svg:hover,
+main .marks > div .right_column .scroll_right svg:hover {
+  transform: scale(-0.9, 1) translateY(-50%);
+}
+
+main .marks > div .left_column {
   position: relative;
   z-index: 10;
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.1s box-shadow ease-in-out;
   box-shadow: 14px 0px 1px -14px #1963A1;
 }
 
-main .marks > div > ul:first-child li {
+main .marks > div .left_column li {
   padding-right: 20px;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
 }
 
-main .marks > div > ul:first-child.shadow {
+main .marks > div .left_column.shadow {
   box-shadow: 13px 0px 9px -14px #1963A1;
 }
 
-html.dark main .marks > div > ul:first-child {
+html.dark main .marks > div .left_column {
   box-shadow: 14px 0px 1px -14px #C9D1D9;
 }
 
-html.dark main .marks > div > ul:first-child.shadow {
+html.dark main .marks > div .left_column.shadow {
   box-shadow: 13px 0px 7px -14px #C9D1D9;
 }
 
-main .marks > div > ul:last-child {
+main .marks > div .right_column {
   position: relative;
   left: -1px;
   width: calc(100% + 1px);
@@ -456,33 +539,33 @@ main .marks > div > ul:last-child {
   box-shadow: -14px 0px 1px -14px #1963A1;
 }
 
-main .marks > div > ul:last-child li {
+main .marks > div .right_column li {
   padding-left: 15px;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-main .marks > div > ul:last-child.shadow {
+main .marks > div .right_column.shadow {
   box-shadow: -13px 0px 9px -14px #1963A1;
 }
 
-html.dark main .marks > div > ul:last-child {
+html.dark main .marks > div .right_column {
   box-shadow: -14px 0px 1px -14px #C9D1D9;
 }
 
-html.dark main .marks > div > ul:last-child.shadow {
+html.dark main .marks > div .right_column.shadow {
   box-shadow: -13px 0px 7px -14px #C9D1D9;
 }
 
-main .marks > div > div {
+main .marks > div .scrollbox {
   position: relative;
   z-index: 5;
   overflow-x: scroll;
   overflow-y: hidden;
 }
 
-main .marks > div > div .period_hidden_left,
-main .marks > div > div .period_hidden_right {
+main .marks > div .scrollbox .period_hidden_left,
+main .marks > div .scrollbox .period_hidden_right {
   position: absolute;
   top: 0;
   left: 0;
@@ -491,47 +574,47 @@ main .marks > div > div .period_hidden_right {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-html.dark main .marks > div > div .period_hidden_left,
-html.dark main .marks > div > div .period_hidden_right {
+html.dark main .marks > div .scrollbox .period_hidden_left,
+html.dark main .marks > div .scrollbox .period_hidden_right {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-main .marks > div > div .period_hidden_left {
+main .marks > div .scrollbox .period_hidden_left {
   box-shadow: inset -6px 0 2px -5px rgba(0, 0, 0, 0.25);
 }
 
-html.dark main .marks > div > div .period_hidden_left {
+html.dark main .marks > div .scrollbox .period_hidden_left {
   box-shadow: none;
 }
 
-main .marks > div > div .period_hidden_right {
+main .marks > div .scrollbox .period_hidden_right {
   box-shadow: inset 6px 0 2px -5px rgba(0, 0, 0, 0.25);
 }
 
-html.dark main .marks > div > div .period_hidden_right {
+html.dark main .marks > div .scrollbox .period_hidden_right {
   box-shadow: none;
 }
 
-main .marks > div > div table {
+main .marks > div .scrollbox table {
   position: relative;
   border-spacing: 0;
 }
 
-main .marks > div > div table tr {
+main .marks > div .scrollbox table tr {
   height: 30px;
 }
 
-main .marks > div > div table tr:nth-child(1) {
+main .marks > div .scrollbox table tr:nth-child(1) {
   height: 40px;
 }
 
-main .marks > div > div table tr:nth-child(1) td {
+main .marks > div .scrollbox table tr:nth-child(1) td {
   position: relative;
   padding: 4px 30px;
   overflow: hidden;
 }
 
-main .marks > div > div table tr:nth-child(1) td span {
+main .marks > div .scrollbox table tr:nth-child(1) td span {
   position: relative;
   font-family: Manrope;
   font-style: normal;
@@ -544,12 +627,12 @@ main .marks > div > div table tr:nth-child(1) td span {
   padding: 0 8px;
 }
 
-html.dark main .marks > div > div table tr:nth-child(1) td span {
+html.dark main .marks > div .scrollbox table tr:nth-child(1) td span {
   background: #28313d;
   color: #C9D1D9;
 }
 
-main .marks > div > div table tr:nth-child(1) td::before {
+main .marks > div .scrollbox table tr:nth-child(1) td::before {
   content: "";
   position: absolute;
   width: calc(100% - 20px);
@@ -562,15 +645,15 @@ main .marks > div > div table tr:nth-child(1) td::before {
   border-radius: 20px;
 }
 
-html.dark main .marks > div > div table tr:nth-child(1) td::before {
+html.dark main .marks > div .scrollbox table tr:nth-child(1) td::before {
   border-color: #C9D1D9;
 }
 
-main .marks > div > div table tr:nth-child(2) {
+main .marks > div .scrollbox table tr:nth-child(2) {
   height: 70px;
 }
 
-main .marks > div > div table tr:nth-child(2) td {
+main .marks > div .scrollbox table tr:nth-child(2) td {
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
@@ -581,11 +664,11 @@ main .marks > div > div table tr:nth-child(2) td {
   padding: 4px 20px;
 }
 
-html.dark main .marks > div > div table tr:nth-child(2) td {
+html.dark main .marks > div .scrollbox table tr:nth-child(2) td {
   color: #C9D1D9;
 }
 
-main .marks > div > div table tr td {
+main .marks > div .scrollbox table tr td {
   position: relative;
   white-space: nowrap;
   text-align: center;
@@ -594,7 +677,7 @@ main .marks > div > div table tr td {
   padding: 0 6px;
 }
 
-main .marks > div > div table tr td > div {
+main .marks > div .scrollbox table tr td > div {
   font-size: 0;
   position: relative;
   height: 100%;
@@ -603,7 +686,7 @@ main .marks > div > div table tr td > div {
   text-align: center;
 }
 
-main .marks > div > div table tr td > div span {
+main .marks > div .scrollbox table tr td > div span {
   display: inline-block;
   position: relative;
   top: 50%;
@@ -621,35 +704,35 @@ main .marks > div > div table tr td > div span {
   cursor: pointer;
 }
 
-html.dark main .marks > div > div table tr td > div span {
+html.dark main .marks > div .scrollbox table tr td > div span {
   color: #C9D1D9;
 }
 
-main .marks > div > div table tr td > div span:first-child {
+main .marks > div .scrollbox table tr td > div span:first-child {
   padding-left: 17px;
 }
 
-main .marks > div > div table tr td > div span:last-child {
+main .marks > div .scrollbox table tr td > div span:last-child {
   padding-right: 17px;
 }
 
-main .marks > div > div table tr td > div span.high {
+main .marks > div .scrollbox table tr td > div span.high {
   color: #FF890C;
 }
 
-html.dark main .marks > div > div table tr td > div span.high {
+html.dark main .marks > div .scrollbox table tr td > div span.high {
   color: #FF890C;
 }
 
-main .marks > div > div table tr td > div span.expired {
+main .marks > div .scrollbox table tr td > div span.expired {
   color: #f00;
 }
 
-main .marks > div > div table tr td > div span div {
+main .marks > div .scrollbox table tr td > div span div {
   display: none;
 }
 
-main .marks > div > div table tr td.filled > div::before {
+main .marks > div .scrollbox table tr td.filled > div::before {
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -661,100 +744,39 @@ main .marks > div > div table tr td.filled > div::before {
   border-radius: 2px;
 }
 
-html.dark main .marks > div > div table tr td.filled > div::before {
+html.dark main .marks > div .scrollbox table tr td.filled > div::before {
   border-color: #C9D1D9;
 }
 
-main .marks > div > div table tr td.expired > div::before {
+main .marks > div .scrollbox table tr td.expired > div::before {
   border-color: #f00;
   background: rgba(255, 0, 0, 0.1);
 }
 
-html.dark main .marks > div > div table tr td.expired > div::before {
+html.dark main .marks > div .scrollbox table tr td.expired > div::before {
   border-color: #f00;
   background: rgba(255, 0, 0, 0.25);
 }
 
-main .marks > div > div table tr td.selected > div::before {
+main .marks > div .scrollbox table tr td.selected > div::before {
   border-width: 2px;
   border-color: #FF890C;
 }
 
-html.dark main .marks > div > div table tr td.selected > div::before {
+html.dark main .marks > div .scrollbox table tr td.selected > div::before {
   border-color: #FF890C;
 }
 
-main .marks > div ul li:nth-child(2n+3),
+main .marks > div .left_column li:nth-child(2n+3),
+main .marks > div .right_column li:nth-child(2n+3),
 main .marks > div table tr:nth-child(2n+3) {
   background: #C9DDF0;
 }
 
-html.dark main .marks > div ul li:nth-child(2n+3),
+html.dark main .marks > div .left_column li:nth-child(2n+3),
+html.dark main .marks > div .right_column li:nth-child(2n+3),
 html.dark main .marks > div table tr:nth-child(2n+3) {
   background: #161B22;
-}
-
-main .marks #scroll_left,
-main .marks #scroll_right {
-  position: relative;
-}
-
-main .marks #scroll_left svg,
-main .marks #scroll_right svg {
-  position: absolute;
-  top: 50%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 19px 15px 19px 30px;
-  cursor: pointer;
-  transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
-  opacity: 1;
-}
-
-main .marks #scroll_left svg path,
-main .marks #scroll_right svg path {
-  fill: #1963A1;
-}
-
-html.dark main .marks #scroll_left svg path,
-html.dark main .marks #scroll_right svg path {
-  fill: #C9D1D9;
-}
-
-main .marks #scroll_left svg:hover,
-main .marks #scroll_right svg:hover {
-  padding-right: 20px;
-}
-
-main .marks #scroll_left.hidden svg,
-main .marks #scroll_right.hidden svg {
-  opacity: 0;
-}
-
-main .marks #scroll_left svg {
-  right: 0;
-  transform: scale(0.9, 1) translateY(-50%);
-}
-
-main .marks #scroll_left svg:hover {
-  transform: scale(0.9, 1) translateY(-50%);
-}
-
-main .marks #scroll_right {
-  background: #FFF;
-}
-
-html.dark main .marks #scroll_right {
-  background: #28313d;
-}
-
-main .marks #scroll_right svg {
-  left: 0;
-  transform: scale(-0.9, 1) translateY(-50%);
-}
-
-main .marks #scroll_right svg:hover {
-  transform: scale(-0.9, 1) translateY(-50%);
 }
 
 .details,

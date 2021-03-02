@@ -57,6 +57,13 @@ html.dark * {
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out;
 }
 
+html:not(.loaded),
+html:not(.loaded) * {
+  transition: 0s all linear !important;
+  -webkit-animation-duration: 0s !important;
+  animation-duration: 0s !important;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
@@ -291,8 +298,7 @@ main {
 
 main .tasks {
   position: relative;
-  top: 45px;
-  margin: 0 auto;
+  margin: 45px auto 25px auto;
   z-index: 10;
   box-sizing: border-box;
   padding: 20px;
@@ -414,7 +420,7 @@ main .announcements {
 main .timetable {
   position: relative;
   z-index: 10;
-  margin: 116px auto 0 auto;
+  margin: 45px auto 0 auto;
   width: calc(100% - 200px);
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out, 0.3s transform ease-in-out;
 }
@@ -423,6 +429,10 @@ main .timetable > div {
   position: absolute;
   width: 100%;
   pointer-events: none;
+}
+
+main .timetable > div.shown {
+  pointer-events: auto;
 }
 
 main .timetable > div h3 {
@@ -444,13 +454,9 @@ html.dark main .timetable > div h3 {
   text-shadow: none;
 }
 
-html.loaded main .timetable > div h3 {
+html.interacted main .timetable > div h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
-}
-
-main .timetable > div.shown {
-  pointer-events: auto;
 }
 
 main .timetable > div.shown h3 {
@@ -460,7 +466,7 @@ main .timetable > div.shown h3 {
   animation-duration: 0s;
 }
 
-html.loaded main .timetable > div.shown h3 {
+html.interacted main .timetable > div.shown h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }

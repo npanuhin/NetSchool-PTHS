@@ -1,36 +1,3 @@
-<?php
-
-require_once __DIR__ . '/../src/error.php';
-
-try {
-	$db = dbConnect();
-} catch (Exception $e) {
-	telegram_log("Database connection failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
-	ui_error('Database connection failed');
-}
-
-try {
-	$data = $db->getAll('SELECT * FROM `users` WHERE `id` = ?i LIMIT ?i', $_SESSION['user_id'], 2);
-} catch (Exception $e) {
-	// print_r($e);
-	telegram_log("Database request failed\nUser ID: {$_SESSION['user_id']}\n\n" . $e->getMessage());
-	exit(json_encode(array('message', 'Database request failed')));
-}
-
-if (count($data) > 1) {
-	telegram_log("Too many rows\nUser ID: {$_SESSION['user_id']}");
-	ui_error('Please, contact administrator (too many rows)');
-}
-
-if (count($data) == 0) {
-	telegram_log("ID not found\nUser ID: {$_SESSION['user_id']}");
-	ui_error('ID not found, please try to login again<br><a href="/src/logout.php">(click to logout)</a>');
-}
-
-$person = $data[0];
-
-?>
-
 <div class="menubar">
 	<div class="menu_icon_wrapper" title="Меню">
 		<?php include_once __DIR__ . '/../files/icons/menu.svg' ?>

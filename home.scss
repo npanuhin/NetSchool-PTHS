@@ -15,8 +15,7 @@ main {
 	
 	.tasks {
 		position: relative;
-		top: 45px;
-		margin: 0 auto;
+		margin: 45px auto 25px auto;
 		z-index: 10;
 
 		box-sizing: border-box;
@@ -151,7 +150,7 @@ main {
 	.timetable {
 		position: relative;
 		z-index: 10;
-		margin: 116px auto 0 auto;
+		margin: 45px auto 0 auto;
 		width: calc(100% - 200px);
 
 		transition: $dark_mode_transition, 0.3s transform ease-in-out;
@@ -160,11 +159,10 @@ main {
 			position: absolute;
 			width: 100%;
 
-			// transition: 0.5s all ease-in-out, visibility 0.5s;
-			// opacity: 0;
-			// visibility: hidden;
-
 			pointer-events: none;
+			&.shown {
+				pointer-events: auto;
+			}
 
 			h3 {
 				font-family: Manrope;
@@ -182,21 +180,17 @@ main {
 				animation: week_header_hide 0.5s ease-in-out forwards;
 				animation-duration: 0s;
 
-				html.loaded & {
+				html.interacted & {
 					animation-duration: 0.5s;
 				}
 			}
 
-			&.shown {
-				pointer-events: auto;
-				
-				h3 {
-					animation: week_header_show 0.5s ease-in-out forwards;
-					animation-duration: 0s;
+			&.shown h3 {
+				animation: week_header_show 0.5s ease-in-out forwards;
+				animation-duration: 0s;
 
-					html.loaded & {
-						animation-duration: 0.5s;
-					}
+				html.interacted & {
+					animation-duration: 0.5s;
 				}
 			}
 

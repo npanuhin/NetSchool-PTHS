@@ -57,6 +57,13 @@ html.dark * {
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out;
 }
 
+html:not(.loaded),
+html:not(.loaded) * {
+  transition: 0s all linear !important;
+  -webkit-animation-duration: 0s !important;
+  animation-duration: 0s !important;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
