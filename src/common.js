@@ -16,17 +16,19 @@ var
 
 Event.add(window, "load", () => {
 
+	html.classList.add("loaded");
+
 	main.style.minHeight = menu.clientHeight + "px";
 
 	Event.add(menu_button, "mousedown", () => {
-		html.classList.add("loaded");
+		html.classList.add("interacted");
 
 		menu.classList.toggle("shown");
 		menu_button.classList.toggle("active", menu.classList.contains("shown"));
 	});
 
 	Event.add(logout_button, "click", () => {
-		html.classList.add("loaded");
+		html.classList.add("interacted");
 		body.style.cursor = "wait";
 		
 		ajax(
@@ -54,7 +56,7 @@ Event.add(window, "load", () => {
 		if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
 
 			Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
-				html.classList.add("loaded");
+				html.classList.add("interacted");
 				body.style.cursor = "wait";
 				
 				ajax(
@@ -87,7 +89,7 @@ Event.add(window, "load", () => {
 	}
 
 	Event.add(dark_mode_button, "mousedown", () => {
-		html.classList.add("loaded");
+		html.classList.add("interacted");
 		body.style.cursor = "wait";
 
 		ajax(

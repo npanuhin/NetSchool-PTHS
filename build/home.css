@@ -57,6 +57,13 @@ html.dark * {
   transition: 0.5s color ease-in-out, 0.5s background-color ease-in-out, 0.5s border-color ease-in-out, 0.5s box-shadow ease-in-out, 0.5s text-shadow ease-in-out, 0.5s fill ease-in-out;
 }
 
+html:not(.loaded),
+html:not(.loaded) * {
+  transition: 0s all linear !important;
+  -webkit-animation-duration: 0s !important;
+  animation-duration: 0s !important;
+}
+
 body {
   background: #1963A1;
   overflow: hidden;
@@ -447,7 +454,7 @@ html.dark main .timetable > div h3 {
   text-shadow: none;
 }
 
-html.loaded main .timetable > div h3 {
+html.interacted main .timetable > div h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
@@ -459,7 +466,7 @@ main .timetable > div.shown h3 {
   animation-duration: 0s;
 }
 
-html.loaded main .timetable > div.shown h3 {
+html.interacted main .timetable > div.shown h3 {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }

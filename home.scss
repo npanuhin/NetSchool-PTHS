@@ -180,7 +180,7 @@ main {
 				animation: week_header_hide 0.5s ease-in-out forwards;
 				animation-duration: 0s;
 
-				html.loaded & {
+				html.interacted & {
 					animation-duration: 0.5s;
 				}
 			}
@@ -189,7 +189,7 @@ main {
 				animation: week_header_show 0.5s ease-in-out forwards;
 				animation-duration: 0s;
 
-				html.loaded & {
+				html.interacted & {
 					animation-duration: 0.5s;
 				}
 			}

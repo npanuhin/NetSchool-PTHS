@@ -1,6 +1,5 @@
 <?php
-
-// Creates $db and $person as well as $AUTHORIZED flag
+// Creates $AUTHORIZED flag, $db and $person variables
 
 $AUTHORIZED = isset($_COOKIE['session']);
 
