@@ -105,7 +105,7 @@ $vacation-color-dark: #00c814;
 	// box-sizing: content-box; 
 
 	// image-rendering: optimizeQuality; 
-	backface-visibility: hidden;
+	// backface-visibility: hidden;
 	// transition-duration: 0s;  
 
     background: none;
@@ -124,13 +124,20 @@ $dark-mode-transition: 0.5s color ease-in-out,
                        0.5s text-shadow ease-in-out,
                        0.5s fill ease-in-out;
 
+// Dark mode
 html, html *, html.dark, html.dark * {
     transition: $dark-mode-transition;
 }
 
+// Turn off transition on load
 html:not(.loaded), html:not(.loaded) * {
     transition: 0s all linear !important;
     animation-duration: 0s !important;
+}
+
+// Wait cursor
+html.wait, html.wait * {
+    cursor: wait !important;
 }
 
 body {

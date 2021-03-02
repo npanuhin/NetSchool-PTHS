@@ -11,7 +11,7 @@ Event.add(window, "load", () => {
 
 	Event.add(form, "submit", (e) => {
 		e.preventDefault();
-		body.style.cursor = "wait";
+		html.classList.add("wait");
 
 		username_input.classList.remove("invalid");
 		password_input.classList.remove("invalid");
@@ -34,7 +34,7 @@ Event.add(window, "load", () => {
 				
 				} else {
 					r = JSON.parse(req.responseText);
-					body.style.cursor = "";
+					html.classList.remove("wait");
 
 					if (r[0] == "username") {
 						username_input.classList.add("invalid");
@@ -62,7 +62,7 @@ Event.add(window, "load", () => {
 			},
 			(req) => {
 				message.classList.remove("shown");
-				body.style.cursor = "";
+				html.classList.remove("wait");
 				alert("Error");
 				alert(req.responseText);
 			}
