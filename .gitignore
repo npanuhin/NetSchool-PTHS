@@ -1,14 +1,12 @@
 # Configs
-/sftp-config.json
-/src/config/*
+sftp-config.json
+src/config/*
 
 # Doc
-/doc/*
+doc/*
 
 # Keep .htaccess
 !.htaccess
 
-#built files; should be built with the gulp
-/build/
-/**/build/
-
+# built files; should be built with the gulp
+build/

@@ -10,8 +10,8 @@ if (!$AUTHORIZED) {
 }
 
 if (
-	$_SERVER['REQUEST_METHOD'] != 'GET'  || !isset($_GET)         ||
-	!isset($_GET['file'])                || !trim($_GET['file'])  ||
+	$_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET)        ||
+	!isset($_GET['file'])               || !trim($_GET['file']) ||
 	!file_exists('../doc/' . trim($_GET['file']))
 ) {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
