@@ -56,7 +56,7 @@ if ($person['password'] != $password) exit(json_encode(array('password', 'Нев
 
 if (is_null($person['last_update'])) exit(json_encode(array('message', 'Ваша учётная запись ещё не готова.<br>Пожалуйста, подождите.')));
 
-if (!setcookie('session', person_hash($person), time() + 60 * 60 * 24 * 365 * 100, '/')) exit(json_encode(array('message', 'Failed to set cookie')));
+if (!setcookie('session', person_hash($person), time() + 60 * 60 * 24 * 365 * 100, '/; samesite=Lax', $httponly=false)) exit(json_encode(array('message', 'Failed to set cookie')));
 
 echo 'success';
 ?>

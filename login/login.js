@@ -1,4 +1,5 @@
 var
+	html = document.getElementsByTagName("html")[0],
 	body = document.getElementsByTagName("body")[0],
 	form = document.getElementById("login_form"),
 	username_input = document.getElementById("username"),
@@ -6,6 +7,8 @@ var
 	message = document.getElementsByClassName("message")[0];
 
 Event.add(window, "load", () => {
+	html.classList.add("loaded");
+
 	Event.add(form, "submit", (e) => {
 		e.preventDefault();
 		body.style.cursor = "wait";
