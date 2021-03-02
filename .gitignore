@@ -7,3 +7,7 @@
 
 # Keep .htaccess
 !.htaccess
+
+#built files; should be built with the gulp
+/build/
+/**/build/
