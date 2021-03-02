@@ -39,8 +39,6 @@
   outline: none;
   transform-origin: center center;
   font-family: Arial, Helvetica, sans-serif;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
   background: none;
   border: none;
 }
@@ -62,6 +60,11 @@ html:not(.loaded) * {
   transition: 0s all linear !important;
   -webkit-animation-duration: 0s !important;
   animation-duration: 0s !important;
+}
+
+html.wait,
+html.wait * {
+  cursor: wait !important;
 }
 
 body {
