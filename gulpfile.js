@@ -36,8 +36,8 @@ var
         'js': ['/dev/null']
     };
 
-    files['html'].push('*.html');
-    files['html'].push('src/*.html');
+    // files['html'].push('*.html');
+    // files['html'].push('src/*.html');
 
     files['php'].push('*.max.php');
     files['php'].push('src/*.max.php');

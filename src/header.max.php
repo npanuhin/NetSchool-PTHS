@@ -8,7 +8,7 @@
 </div>
 
 <div class="statusbar">
-	<div class="name" title="Ваше имя"><?php echo $person['first_name'] . ' ' . $person['last_name']?></div>
+	<div class="name" title="Ваше имя"><?php echo $person['name']?></div>
 	<div class="last_update" title="Время последнего обновления">
 		<?php echo date('H', strtotime($person['last_update'])) ?>
 		<span>:</span>
