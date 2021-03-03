@@ -149,8 +149,10 @@ body {
 	overflow: hidden;
 }
 
+
 @import 'src/styles/menubar';
 @import 'src/styles/statusbar';
+
 
 main {
 
@@ -251,14 +253,14 @@ main {
 
             display: grid;
             grid-template-rows: 1fr 1fr;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: auto auto auto;
             grid-row-gap: 10px;
             grid-column-gap: 100px;
 
             @media (max-width: $main-width) {
                 width: 80%;
                 grid-template-rows: 1fr 1fr 1fr;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: auto auto;
                 grid-column-gap: 95px;
             }
 
@@ -269,6 +271,7 @@ main {
             }
 
             li {
+                margin-left: 18px;
                 a {
                     font-family: Manrope;
                     font-style: normal;
