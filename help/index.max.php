@@ -73,20 +73,22 @@ if (!$AUTHORIZED) {
 			— Там (также в скором времени) появится гораздо больше полезной информации, и оно перестанет быть просто бесполезным пунктом в меню.
 			
 			<div class="question">— Почему в объявлениях лицо отображается только у Анны Анатольевны?</div>
-			— Это совпадает с функционалом обычного нетскула, и смысла добавлять других учителей достаточно мало. Если это кому-нибудь действительно нужно — пишите, добавим. Но зато каждый учитель имеет свой собственный случайно сгенерированный цвет.
+			— Это совпадает с функционалом обычного нетскула (но у нас также каждый учитель имеет свой индивидуальный цвет), и смысла добавлять других учителей достаточно мало. Если это кому-нибудь действительно нужно — пишите, добавим. 
+			<div>
 			<a href="https://github.com/npanuhin/NetSchool-PTHS"  target="_blank">
-				<div class="github_wrapper">
-					<?php include_once __DIR__ . '/../files/icons/github.svg' ?>
-				</div>
-			</a>
-			<a href="https://vk.com/netschool_pths" target="_blank">
-				<div class="vk_wrapper">
-					<?php include_once __DIR__ . '/../files/icons/vk.svg' ?>
-				</div> 
-			</a>
-		
+			<div class="github_wrapper">
+				<?php include_once __DIR__ . '/../files/icons/github.svg' ?>
+			</div>
+		</a>
+		<a href="https://vk.com/netschool_pths" target="_blank">
+			<div class="vk_wrapper">
+				<?php include_once __DIR__ . '/../files/icons/vk.svg' ?>
+			</div> 
+		</a>
 			<!-- © Никита Панюхин, Ева Пальчикова, Андрей Ситников, Марк Ипатов, 2021 -->
 		</div>
+	</div>  
+		
 	</main>
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
