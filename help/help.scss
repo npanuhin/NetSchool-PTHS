@@ -16,15 +16,15 @@ main {
 
 		&, & * {
 			color: $text-color;
+			text-align: justify;
 			html.dark & {
 				color: $text-color-dark;
 			}
 		}
 		
-
 		box-sizing: border-box;
 		border-radius: 30px;
-		// text-align: justify;
+		text-align: justify;
 
 		background: $block-color;
 		box-shadow: $block-shadow;
@@ -34,7 +34,14 @@ main {
 		}
 
 		h1 {
-			text-align: center;					
+			text-align: center;
+			font-weight: 600;
+			margin-bottom: 20px;
+		}
+
+
+		.desc {
+			text-align: center;
 		}
 
 		h4, h4 * {
@@ -45,21 +52,40 @@ main {
 		}
 
 		h4 {
-			margin: 30px 0 12px 10px;
+			margin: 35px 0 0 0;
 		}
 	
 		.question {
-			color: $orange-color;
 			font-weight: 600;
+			color: $orange-color;
 			html.dark & {
 				color: $orange-color-dark;
 			}
-			
+
+			margin-top: 22px;
+		}
+
+		h4 + .question {
+			margin-top: 10px;
+		}
+
+		p:not(.desc) {
+			margin-top: 12px;
 		}
 
 		.del {
 			text-decoration: line-through; 
 			display: inline-block;
+		}
+
+		a {
+			color: $orange-color;
+			html.dark & {
+				color: $orange-color;
+			}
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }
