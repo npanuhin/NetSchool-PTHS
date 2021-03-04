@@ -55,9 +55,10 @@ main {
 			.content {
 				position: relative;
 				float: right;
-				padding: 30px;
-				width: 90%;
-
+				padding: 10%;
+				margin: 0%;
+				width: 95%;
+				
 				@media (max-width: $main-width) {
 					width: 100%;
 				}
@@ -97,13 +98,15 @@ main {
 				}
 				.question {
 					color: $orange-color;
+					font-weight: 555;
 					html.dark & {
 						color: $orange-color-dark;
 					}
+					
 				}
 				.del{
+					font-weight: 600;
 					text-decoration: line-through; 
-					white-space: nowrap; 
 					display: inline-block;
 				}
 			}
