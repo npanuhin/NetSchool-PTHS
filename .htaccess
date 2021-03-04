@@ -14,12 +14,14 @@ Options  -Indexes
 ServerSignature Off
 AddDefaultCharset UTF-8
 
+
 #==========================| Redirect |==========================
 
 RewriteEngine on 
 Rewritecond %{HTTP_HOST} !^netschool.npanuhin\.me
 Rewritecond %{HTTP_HOST} !^netschool\.loc
 RewriteRule ^(.*)$ https://netschool.npanuhin.me/$1 [R=301,L]
+
 
 #=========================| File types |=========================
 
@@ -37,6 +39,7 @@ AddType video/mp4 .mp4
 AddType video/webm .webm
 AddType application/x-shockwave-flash swf
 
+
 #============================| PHP |=============================
 
 php_value upload_max_filesize 30M
@@ -47,15 +50,16 @@ php_value max_file_uploads 30
 # php_value session.gc_maxlifetime 3153600000
 php_value session.cookie_lifetime 3153600000
 
+
 #=====================| HTTP status codes |======================
 
 # ------------4XX------------------
 
-# Bad Rquest
+# Bad Request
 ErrorDocument 400 /fails/400.html
 
-# Authorization Required
-# ErrorDocument 401 /fails/401.html
+# Unauthorized
+ErrorDocument 401 /fails/401.html
 
 # Forbidden
 ErrorDocument 403 /fails/403.html
@@ -84,7 +88,7 @@ ErrorDocument 429 /fails/429.html
 ErrorDocument 500 /fails/500.html
 
 # Not Implemented
-# ErrorDocument 501 /fails/501.html
+ErrorDocument 501 /fails/501.html
 
 # Bad Gateway 
 ErrorDocument 502 /fails/502.html
