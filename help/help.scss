@@ -13,15 +13,18 @@ main {
 		width: calc(100% - 200px);
 
 		z-index: 10;
-		transition: $dark_mode_transition;
-		color: $text-color;
-		html.dark & {
-			color: $text-color-dark;
+
+		&, & * {
+			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
 		}
+		
 
 		box-sizing: border-box;
 		border-radius: 30px;
-		text-align: justify;
+		// text-align: justify;
 
 		background: $block-color;
 		box-shadow: $block-shadow;
