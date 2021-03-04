@@ -126,7 +126,7 @@ html {
 	overflow: auto;
 
     background: $page-color;
-    html.dark & {
+    &.dark {
         background: #06090F;
     }
 }
