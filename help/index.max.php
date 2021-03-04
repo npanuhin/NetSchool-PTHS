@@ -31,20 +31,14 @@ if (!$AUTHORIZED) {
 		?>
 
 		<div class="help">
-		
-			<div class="help_tile">
-			<div class="content">
-			<!-- <h2>Помощь</h2> -->
 			<?php require_once 'help_text.html' ?>
-			</div>
-			</div>
 		</div>
 	</main>
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
-	<!-- <script type="text/javascript" src="build/announcements.min.js" defer></script> -->
+	<!-- <script type="text/javascript" src="build/help.min.js" defer></script> -->
 </body>
 
 </html>

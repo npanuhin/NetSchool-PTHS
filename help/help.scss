@@ -5,23 +5,12 @@ main {
 	margin: 120px auto 100px auto;
 	width: $main-width;
 	max-width: 95%;
-	
-	.message_alert {
-		min-width: calc(630px - 5%);
-		@media (max-width: 700px) {
-			width: calc(100% - 70px);
-			min-width: 0;
-		}
-	}
 
 	.help {
 		position: relative;
-		margin: 0 auto;
-		width: calc(100% - 130px);
-
-		@media (max-width: $main-width) {
-			width: 100%;
-		}
+		margin: 35px auto;
+		padding: 5%;
+		width: calc(100% - 200px);
 
 		z-index: 10;
 		transition: $dark_mode_transition;
@@ -30,77 +19,44 @@ main {
 			color: $text-color-dark;
 		}
 
-		.help_tile {
-			position: relative;
-			padding: 35px;
+		box-sizing: border-box;
+		border-radius: 30px;
+		text-align: justify;
 
-			box-sizing: border-box;
+		background: $block-color;
+		box-shadow: $block-shadow;
+		html.dark & {
+			background: $block-color-dark;
+			box-shadow: $block-shadow-dark;
+		}
 
-			clear: both;
-			overflow: hidden;
+		h1 {
+			text-align: center;					
+		}
 
-			min-width: calc(700px - 5%);
-			@media (max-width: $main-width) {
-				margin: 0 auto;
-				width: calc(100% - 200px);
-				// padding-left: 0;
-				// padding-right: 0;
+		h4, h4 * {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 24px;
+		}
+
+		h4 {
+			margin: 30px 0 12px 10px;
+		}
+	
+		.question {
+			color: $orange-color;
+			font-weight: 600;
+			html.dark & {
+				color: $orange-color-dark;
 			}
-			@media (max-width: 700px) {
-				left: 0;
-				width: 100%;
-				min-width: 0;
-			}
-
-			.content {
-				position: relative;
-				float: right;
-				padding: 6%;
-				margin: 0%;
-				box-sizing: border-box;
-				border-radius: 30px;
-				text-align: justify;
-				
-				@media (max-width: $main-width) {
-					width: 100%;
-				}
-
-				background: $block-color;
-				box-shadow: $block-shadow;
-				html.dark & {
-					background: $block-color-dark;
-					box-shadow: $block-shadow-dark;
-				}
-
-				h1 {
-					text-align: center;					
-				}
-
-				h4, h4 * {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: 24px;
-				}
-
-				h4 {
-					margin: 30px 0 12px 10px;
-				}
 			
-				.question {
-					color: $orange-color;
-					font-weight: 600;
-					html.dark & {
-						color: $orange-color-dark;
-					}
-					
-				}
+		}
 
-				.del {
-					text-decoration: line-through; 
-					display: inline-block;
-				}
-			}
+		.del {
+			text-decoration: line-through; 
+			display: inline-block;
 		}
 	}
 }
