@@ -2,12 +2,14 @@ var
 	html = document.getElementsByTagName("html")[0],
 	body = document.getElementsByTagName("body")[0],
 	main = document.getElementsByTagName("main")[0],
-
+	
+	
 	main_bottom_margin = 100,
 
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
+	
 
 	menu = document.getElementsByClassName("menu")[0],
 

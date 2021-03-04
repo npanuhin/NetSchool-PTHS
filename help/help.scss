@@ -90,3 +90,29 @@ main {
 	}
 }
 
+.github_wrapper, .vk_wrapper {
+	display: flex;
+	cursor: pointer;
+	width: 50px;
+	.menu-icon {
+		padding: 8px 17px;
+	}
+
+	&:hover, &.active {
+		.menu-icon path {
+			fill: $buttons-active-color;
+			html.dark & {
+				fill: $buttons-active-color-dark;
+			}
+		}
+	}
+}
+
+.github_wrapper, .vk_wrapper path {
+	fill: $buttons-color;
+	html.dark & {
+		fill: $buttons-color-dark;
+	}
+
+	transition: $dark_mode_transition, 0.08s fill ease-in-out;
+}
