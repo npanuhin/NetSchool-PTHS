@@ -1,0 +1,113 @@
+@import '../src/styles/main';
+
+main {
+	position: relative;
+	margin: 120px auto 100px auto;
+	width: $main-width;
+	max-width: 95%;
+	
+	.message_alert {
+		min-width: calc(630px - 5%);
+		@media (max-width: 700px) {
+			width: calc(100% - 70px);
+			min-width: 0;
+		}
+	}
+
+	.help {
+		position: relative;
+		margin: 0 auto;
+		width: calc(100% - 130px);
+
+		@media (max-width: $main-width) {
+			width: 100%;
+		}
+
+		z-index: 10;
+		transition: $dark_mode_transition;
+		color: $text-color;
+		html.dark & {
+			color: $text-color-dark;
+		}
+
+		.help_tile {
+			position: relative;
+			padding: 35px;
+
+			box-sizing: border-box;
+
+			clear: both;
+			overflow: hidden;
+
+			min-width: calc(700px - 5%);
+			@media (max-width: $main-width) {
+				margin: 0 auto;
+				width: calc(100% - 200px);
+				// padding-left: 0;
+				// padding-right: 0;
+			}
+			@media (max-width: 700px) {
+				left: 0;
+				width: 100%;
+				min-width: 0;
+			}
+
+			.content {
+				position: relative;
+				float: right;
+				padding: 30px;
+				width: 90%;
+
+				@media (max-width: $main-width) {
+					width: 100%;
+				}
+
+				box-sizing: border-box;
+
+				background: $block-color;
+				box-shadow: $block-shadow;
+				html.dark & {
+					background: $block-color-dark;
+					box-shadow: $block-shadow-dark;
+				}
+
+				border-radius: 30px;
+
+				h4 {
+					font-family: Manrope;
+					font-style: normal;
+					
+				}
+
+				h4 {
+					font-weight: 600;
+					font-size: 24px;
+					margin-bottom: 15px;
+					&::before {
+						content: "";
+						float: right;
+						width: 200px;
+						height: 1em;
+					}
+					
+				}
+				
+				h1{
+					text-align: center;					
+				}
+				.question {
+					color: $orange-color;
+					html.dark & {
+						color: $orange-color-dark;
+					}
+				}
+				.del{
+					text-decoration: line-through; 
+					white-space: nowrap; 
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
