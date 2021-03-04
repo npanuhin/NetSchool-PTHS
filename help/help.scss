@@ -55,15 +55,15 @@ main {
 			.content {
 				position: relative;
 				float: right;
-				padding: 10%;
+				padding: 6%;
 				margin: 0%;
-				width: 95%;
+				box-sizing: border-box;
+				border-radius: 30px;
+				text-align: justify;
 				
 				@media (max-width: $main-width) {
 					width: 100%;
 				}
-
-				box-sizing: border-box;
 
 				background: $block-color;
 				box-shadow: $block-shadow;
@@ -72,40 +72,31 @@ main {
 					box-shadow: $block-shadow-dark;
 				}
 
-				border-radius: 30px;
-
-				h4 {
-					font-family: Manrope;
-					font-style: normal;
-					
-				}
-
-				h4 {
-					font-weight: 600;
-					font-size: 24px;
-					margin-bottom: 15px;
-					&::before {
-						content: "";
-						float: right;
-						width: 200px;
-						height: 1em;
-					}
-					
-				}
-				
-				h1{
+				h1 {
 					text-align: center;					
 				}
+
+				h4, h4 * {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 600;
+					font-size: 24px;
+				}
+
+				h4 {
+					margin: 30px 0 12px 10px;
+				}
+			
 				.question {
 					color: $orange-color;
-					font-weight: 555;
+					font-weight: 600;
 					html.dark & {
 						color: $orange-color-dark;
 					}
 					
 				}
-				.del{
-					font-weight: 600;
+
+				.del {
 					text-decoration: line-through; 
 					display: inline-block;
 				}

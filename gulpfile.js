@@ -38,6 +38,7 @@ var
 
     // files['html'].push('*.html');
     // files['html'].push('src/*.html');
+    // files['html'].push('help/*.html')
 
     files['php'].push('*.max.php');
     files['php'].push('fails/*.max.php');
@@ -47,7 +48,7 @@ var
     files['php'].push('announcements/*.max.php');
     files['php'].push('timetable/*.max.php');
     files['php'].push('delete/*.max.php');
-	files['php'].push('help/*.max.php');
+    files['php'].push('help/*.max.php');
 
     files['scss'].push('*.scss');
     files['scss'].push('src/*.scss');
@@ -58,14 +59,14 @@ var
     files['scss'].push('timetable/*.scss');
     files['scss'].push('help/*.scss');
     files['scss'].push('fails/*.scss');
-	
+
     files['js'].push('*.js');
     files['js'].push('src/*.js');
     files['js'].push('login/*.js');
     files['js'].push('marks/marks.js');
     files['js'].push('announcements/*.js');
     files['js'].push('timetable/*.js');
-	files['js'].push('help/*.js');
+    files['js'].push('help/*.js');
     files['js'].push('!gulpfile.js');
 
 
@@ -209,7 +210,7 @@ gulp.task('reload-scss', function (){
         .pipe(sass({
             includePaths: ['C:\\OSPanel\\node_modules'],
             includePaths: ['C:\\OpenServer\\node_modules'],
-    		includePaths: ['C:\\OpenServer\\domains\\node_modules'],
+            includePaths: ['C:\\OpenServer\\domains\\node_modules'],
         }).on('error', sass.logError))
         .pipe(autoprefixer({
             brousers: ['last 3 versions', '> 5%'],

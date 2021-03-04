@@ -35,11 +35,7 @@ if (!$AUTHORIZED) {
 			<div class="help_tile">
 			<div class="content">
 			<!-- <h2>Помощь</h2> -->
-			<li>
-				<?php
-					echo file_get_contents("help_text.html");
-				?>
-			</li>
+			<?php require_once 'help_text.html' ?>
 			</div>
 			</div>
 		</div>
