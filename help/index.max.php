@@ -37,7 +37,7 @@ if (!$AUTHORIZED) {
 			<!-- <h2>Помощь</h2> -->
 			<li>
 				<?php
-					echo file_get_contents("help_text.txt");
+					echo file_get_contents("help_text.html");
 				?>
 			</li>
 			</div>
