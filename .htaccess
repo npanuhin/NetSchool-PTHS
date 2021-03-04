@@ -1,8 +1,16 @@
 Options  -Indexes
 
+# Deny access to files starting with dot
+<FilesMatch "^\.">
+	Order allow,deny
+	Deny from all
+</FilesMatch>
+
+# Timezone
 <IfModule mod_setenvif.c>
 	SetEnv TZ Europe/Moscow
 </IfModule>
+
 ServerSignature Off
 AddDefaultCharset UTF-8
 

@@ -40,6 +40,7 @@ var
     // files['html'].push('src/*.html');
 
     files['php'].push('*.max.php');
+    files['php'].push('fails/*.max.php');
     files['php'].push('src/*.max.php');
     files['php'].push('login/*.max.php');
     files['php'].push('marks/*.max.php');
