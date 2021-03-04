@@ -1,0 +1,127 @@
+@import '../src/styles/main';
+
+main {
+	position: relative;
+	margin: 120px auto 100px auto;
+	width: $main-width;
+	max-width: 95%;
+
+	.help {
+		position: relative;
+		margin: 35px auto;
+		padding: 5% 5% 35px 5%;
+		width: calc(100% - 200px);
+		z-index: 10;
+		overflow: hidden;
+
+		&, & * {
+			color: $text-color;
+			text-align: justify;
+			html.dark & {
+				color: $text-color-dark;
+			}
+		}
+		
+		box-sizing: border-box;
+		border-radius: 30px;
+		text-align: justify;
+
+		background: $block-color;
+		box-shadow: $block-shadow;
+		html.dark & {
+			background: $block-color-dark;
+			box-shadow: $block-shadow-dark;
+		}
+
+		h1 {
+			text-align: center;
+			font-weight: 600;
+			margin-bottom: 20px;
+		}
+
+		h4, h4 * {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 24px;
+		}
+
+		h4 {
+			margin: 35px 0 0 0;
+		}
+	
+		.question {
+			font-weight: 600;
+			color: $orange-color;
+			html.dark & {
+				color: $orange-color-dark;
+			}
+
+			margin-top: 22px;
+		}
+
+		h4 + .question {
+			margin-top: 10px;
+		}
+
+		& > p {
+			margin-top: 12px;
+			
+			&::before {
+				content: "";
+				display: inline-block;
+				position: relative;
+				width: 22px;
+				height: 10px;
+			}
+		}
+
+		.del {
+			text-decoration: line-through; 
+			display: inline-block;
+		}
+
+		a {
+			color: $orange-color;
+			html.dark & {
+				color: $orange-color;
+			}
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		
+		.github_link, .vk_link {
+			display: inline-block;
+			float: right;
+			cursor: pointer;
+			font-size: 0;
+			margin: 15px 0 0 15px;
+
+			svg {
+				width: 45px;
+				height: 45px;
+
+				path {
+					// fill: $buttons-color;
+					// html.dark & {
+					// 	fill: $buttons-color-dark;
+					// }
+
+					// transition: $dark_mode_transition;
+				}
+
+				&:hover path {
+					// TODO
+				}
+			}
+		}
+
+		.github_link svg path {
+			html.dark & {
+				fill: #fff;
+			}
+		}
+	}
+}
+

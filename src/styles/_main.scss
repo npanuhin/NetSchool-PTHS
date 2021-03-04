@@ -1,6 +1,12 @@
 // @media (max-width: 1170px)
 // @media (max-width: 850px)
 
+$dark-mode-transition: 0.5s color ease-in-out,
+                       0.5s background-color ease-in-out,
+                       0.5s border-color ease-in-out,
+                       0.5s box-shadow ease-in-out,
+                       0.5s text-shadow ease-in-out,
+                       0.5s fill ease-in-out;
 
 $main-width: 1170px;
 
@@ -40,6 +46,9 @@ $buttons-active-color-dark: #205182;
 
 $vacation-color: #20822A;
 $vacation-color-dark: #00c814;
+
+// BRAND COLORS:
+$vk-blue-color: #2787F5;
 
 
 // FONTS:
@@ -96,7 +105,7 @@ $vacation-color-dark: #00c814;
 	font-style: normal;
 	font-weight: normal;
 	// z-index: 0;
-	color: #000;
+	//color: #000;
 	outline: none;
 	transform-origin: center center;
 	font-family: Arial, Helvetica, sans-serif;
@@ -115,18 +124,18 @@ $vacation-color-dark: #00c814;
 html {
 	min-height: 100vh;
 	overflow: auto;
-}
 
-$dark-mode-transition: 0.5s color ease-in-out,
-                       0.5s background-color ease-in-out,
-                       0.5s border-color ease-in-out,
-                       0.5s box-shadow ease-in-out,
-                       0.5s text-shadow ease-in-out,
-                       0.5s fill ease-in-out;
+    background: $page-color;
+    html.dark & {
+        background: #06090F;
+    }
+}
 
 // Dark mode
 html, html *, html.dark, html.dark * {
-    transition: $dark-mode-transition;
+    &, &::before, &::after {
+        transition: $dark-mode-transition;
+    }
 }
 
 // Turn off transition on load

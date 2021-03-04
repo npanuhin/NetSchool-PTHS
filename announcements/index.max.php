@@ -31,8 +31,6 @@ if (!$AUTHORIZED) {
 		?>
 
 		<div class="announcements">
-			<!-- <h2>Объявления</h2> -->
-
 			<ul>
 				<?php
 
