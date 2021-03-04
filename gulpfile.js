@@ -73,7 +73,7 @@ var
 var
     htmlmin_settings = {
         caseSensitive: true,
-        collapseInlineTagWhitespace: true,
+        collapseInlineTagWhitespace: false,
         collapseWhitespace: true,
         conservativeCollapse: false,
         continueOnParseError: true,

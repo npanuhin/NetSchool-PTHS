@@ -25,8 +25,11 @@ if (!$AUTHORIZED) {
 	<?php require_once __DIR__ . '/src/header.php' ?>
 	
 	<main>
-
 		<?php
+
+		$has_tasks = false;
+		$has_announcements = false;
+
 		// try {
 		// 	$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
 		// } catch (Exception $e) {
@@ -34,7 +37,6 @@ if (!$AUTHORIZED) {
 		// 	exit(json_encode(array('message', 'Database request failed')));
 		// }
 		// $has_announcements = (count($announcements) != 0);
-		$has_announcements = false;
 
 		include_once __DIR__ . '/src/message_alerts.php';
 		require_once __DIR__ . '/src/menu.php';

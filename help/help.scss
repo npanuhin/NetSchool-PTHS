@@ -9,10 +9,10 @@ main {
 	.help {
 		position: relative;
 		margin: 35px auto;
-		padding: 5%;
+		padding: 5% 5% 35px 5%;
 		width: calc(100% - 200px);
-
 		z-index: 10;
+		overflow: hidden;
 
 		&, & * {
 			color: $text-color;
@@ -37,11 +37,6 @@ main {
 			text-align: center;
 			font-weight: 600;
 			margin-bottom: 20px;
-		}
-
-
-		.desc {
-			text-align: center;
 		}
 
 		h4, h4 * {
@@ -69,8 +64,16 @@ main {
 			margin-top: 10px;
 		}
 
-		p:not(.desc) {
+		& > p {
 			margin-top: 12px;
+			
+			&::before {
+				content: "";
+				display: inline-block;
+				position: relative;
+				width: 22px;
+				height: 10px;
+			}
 		}
 
 		.del {
@@ -88,36 +91,37 @@ main {
 			}
 		}
 		
-		.github_wrapper, .vk_wrapper {
+		.github_link, .vk_link {
 			display: inline-block;
-			// text-align: center; 
-			// margin: 10%;
-			// padding: 30%
+			float: right;
 			cursor: pointer;
-			width: 10%;
-			.menu-icon {
-				padding: 8px 17px;
-			}
+			font-size: 0;
+			margin: 15px 0 0 15px;
 
-			&:hover, &.active {
-				.menu-icon path {
-					fill: $buttons-active-color;
-					html.dark & {
-						fill: $buttons-active-color-dark;
-					}
-				} 
+			svg {
+				width: 45px;
+				height: 45px;
+
+				path {
+					// fill: $buttons-color;
+					// html.dark & {
+					// 	fill: $buttons-color-dark;
+					// }
+
+					// transition: $dark_mode_transition;
+				}
+
+				&:hover path {
+					// TODO
+				}
 			}
 		}
 
-		.github_wrapper, .vk_wrapper path {
-			fill: $buttons-color;
+		.github_link svg path {
 			html.dark & {
-				fill: $buttons-color-dark;
+				fill: #fff;
 			}
-
-			transition: $dark_mode_transition, 0.08s fill ease-in-out;
 		}
-
 	}
 }
 
