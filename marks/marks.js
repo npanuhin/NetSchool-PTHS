@@ -28,7 +28,11 @@ let
 	table_unlocked = false,
 
 	details_block = document.getElementsByClassName("details")[0],
-	details_lock = false;
+	basic_details_content = details_block.innerHTML,
+	details_block_link_icon = details_block.getElementsByClassName("link-icon")[0],
+	details_lock = false,
+
+	current_task = null;
 
 
 // function onResize() {
@@ -42,16 +46,53 @@ let
 // =======================================================================
 
 
-function show_details(pageX, pageY, element) {
+function set_url(url) {
+	window.history.replaceState({"Title": document.title, "Url": url}, document.title, url);
+}
+
+function set_current_task_url(task) {
+	let url = new URL(window.location.href);
+	url.hash = task.id;
+	set_url(url.href);
+}
+
+function copy_to_clipboard(text) {
+	if (navigator.clipboard === undefined) {
+		alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+	} else {
+		navigator.clipboard.writeText(text)
+		.then(() => {
+			console.log("Copied to clipboard:", text);
+		})
+		.catch(err => {
+			// console.log(err);
+			alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+  		});
+	}
+}
+
+function copy_url() {
+	copy_to_clipboard(window.location.href);
+}
+
+function show_details(pageX, pageY, task) {
 	if (details_lock) return;
+
+	set_current_task_url(task);
 
 	locate_details(pageX, pageY);
 
 	// details_block.style.display = "";
-	// element.append(details_block);
+	// task.append(details_block);
 
-	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
-	details_block.classList.toggle("expired", element.classList.contains("expired"));
+	Event.remove(details_block_link_icon, "click", copy_url);
+
+	details_block.innerHTML = basic_details_content + task.getElementsByTagName("div")[0].innerHTML;
+
+	details_block_link_icon = details_block.getElementsByClassName("link-icon")[0];
+	Event.add(details_block_link_icon, "click", copy_url);
+
+	details_block.classList.toggle("expired", task.classList.contains("expired"));
 	details_block.classList.add("shown");
 }
 
@@ -85,6 +126,7 @@ function toggle_details_lock(event) {
 		if (span.contains(event.target)) {
 			details_lock = false;
 			show_details(event.pageX, event.pageY, span);
+			set_current_task_url(span);
 
 			details_lock = true;
 			empty_click = false;

@@ -397,8 +397,6 @@ main {
 								// width: 62%;
 								height: 100%;
 
-								// padding: 0 0px;
-
 								left: 50%;
 								transform: translateX(-50%);
 								text-align: center;
@@ -410,7 +408,6 @@ main {
 									transform: translateY(-50%);
 									padding: 6px 10px;
 									height: 100%;
-									// height: 100%;
 									box-sizing: border-box;
 
 									font-family: Manrope;
@@ -467,7 +464,7 @@ main {
 								html.dark & {
 									border-color: $text-color-dark;
 								}
-								border-radius: 2px;
+								border-radius: 3px;
 							}
 
 							&.expired > div::before {
@@ -522,11 +519,12 @@ main {
 	top: 0;
 	left: 0;
 	z-index: 50;
-	padding: 15px 20px;
+	padding: 15px 50px 15px 20px;
 	border-radius: 20px;
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
+	box-sizing: border-box;
 	background: $block-color;
 	box-shadow: $details-shadow;
 	color: $text-color;
@@ -590,6 +588,22 @@ main {
 			html.dark & {
 				color: #f00;
 			}
+		}
+	}
+
+	.link-icon {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 18.5px 18px 10px 10px;
+		width: 17px;
+		border-top-right-radius: 20px;
+
+		cursor: pointer;
+		opacity: 0.6;
+		transition: $dark_mode_transition, 0.08s opacity ease-in-out;
+		&:hover {
+			opacity: 1;
 		}
 	}
 }
