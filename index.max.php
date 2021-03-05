@@ -46,7 +46,7 @@ if (!$AUTHORIZED) {
 		if (!is_null($diary)) {
 			?>
 
-			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>">
+			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>" title="Просроченные задания и задания текущего дня">
 				<h2>Задания</h2>
 				<ul>
 					<?php
@@ -70,7 +70,7 @@ if (!$AUTHORIZED) {
 
 							if ($task_expired) {
 								?>
-								<li class="expired" title="Задание просрочено">
+								<li class="expired" title="Задание просрочено, было задано <?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>">
 									<?php echo $lesson . ': ' ?>
 
 									<span>
@@ -160,7 +160,7 @@ if (!$AUTHORIZED) {
 					<?php
 					if ($TODAY->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $TODAY->getTimestamp()) {
 						?>
-						<button>Сегодня &#8594;</button>
+						<button title="Перейти к текущей неделе">Сегодня &#8594;</button>
 						<?php
 					}
 					?>

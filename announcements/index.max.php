@@ -58,7 +58,7 @@ if (!$AUTHORIZED) {
 					);
 					?>
 
-					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?>">
+					<li class="announcement" announcement_id="<?php echo $announcement_id ?>" title="<?php echo $title ?> (<?php echo $author . ', ' . $date->format('d') . ' ' . $months_genetive[$date->format('m') - 1] ?>)">
 						<div class="author" title="<?php echo $author ?>">
 
 							<div class="profile_photo" style="<?php
