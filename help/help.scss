@@ -108,18 +108,24 @@ main {
 					// 	fill: $buttons-color-dark;
 					// }
 
-					// transition: $dark_mode_transition;
-				}
-
-				&:hover path {
-					// TODO
+					transition: $dark_mode_transition, 0.1s filter ease-in-out;
 				}
 			}
 		}
 
-		.github_link svg path {
-			html.dark & {
+		.github_link {
+			&:hover svg path {
+				filter: contrast(30%);
+			}
+
+			html.dark & svg path {
 				fill: #fff;
+			}
+		}
+
+		.vk_link {
+			&:hover svg .st0 {
+				filter: brightness(80%);
 			}
 		}
 	}

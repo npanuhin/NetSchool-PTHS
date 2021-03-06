@@ -178,7 +178,6 @@ gulp.task('build-scss', function (){
     return gulp.src(files['scss'], {allowEmpty: true})
 
         .pipe(sass({
-            includePaths: ['C:\\OSPanel\\node_modules'],
             includePaths: ['C:\\OpenServer\\node_modules'],
             includePaths: ['C:\\OpenServer\\domains\\node_modules'],
         }).on('error', sass.logError))
@@ -208,7 +207,6 @@ gulp.task('reload-scss', function (){
         // .pipe(sourcemaps.init({largeFile: true}))
 
         .pipe(sass({
-            includePaths: ['C:\\OSPanel\\node_modules'],
             includePaths: ['C:\\OpenServer\\node_modules'],
             includePaths: ['C:\\OpenServer\\domains\\node_modules'],
         }).on('error', sass.logError))

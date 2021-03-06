@@ -25,7 +25,8 @@ var
 	goto_today_buttons = timetable.getElementsByTagName("button"),
 
 	details_block = document.getElementsByClassName("details")[0],
-	details_lock = false;
+	details_lock = false,
+	details_distance = 20;
 
 
 function onResize() {
@@ -66,43 +67,52 @@ function goto_week(week) {
 
 // ===========================================================================================================
 
-function show_details(pageX, pageY, element) {
+function show_details(windowX, windowY, element) {
 	if (details_lock) return;
 
-	locate_details(pageX, pageY);
-
-	// details_block.style.display = "";
-
-	// element.append(details_block);
-
 	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
+	
 	details_block.classList.toggle("cur_lesson", element.classList.contains("cur_lesson"));
 	details_block.classList.toggle("vacation", element.classList.contains("vacation"));
+	
+	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
 }
 
-function locate_details(pageX, pageY) {
+function locate_details(windowX, windowY) {
 	if (details_lock) return;
 
-	details_block.style.top = Math.min(
-		document.documentElement.clientHeight - details_block.offsetHeight,
-		pageY - html.scrollTop + 20
-	) + "px";
+	if (
+		windowY + details_distance + details_block.offsetHeight > document.documentElement.clientHeight &&
+		windowY - details_distance - details_block.offsetHeight >= 0
+	) {
+		details_block.style.top = windowY - details_distance - details_block.offsetHeight + "px";
 
-	details_block.style.left = Math.min(
-		document.documentElement.clientWidth - details_block.offsetWidth,
-		pageX - html.scrollLeft + 20
-	) + "px";
+	} else {
+		details_block.style.top = Math.min(
+			document.documentElement.clientHeight - details_block.offsetHeight,
+			windowY + details_distance
+		) + "px";
+	}
+
+	if (
+		windowX + details_distance + details_block.offsetWidth > document.documentElement.clientWidth &&
+		windowX - details_distance - details_block.offsetWidth >= 0
+	) {
+		details_block.style.left = windowX - details_distance - details_block.offsetWidth + "px";
+
+	} else {
+		details_block.style.left = Math.min(
+			document.documentElement.clientWidth - details_block.offsetWidth,
+			windowX + details_distance
+		) + "px";
+	}
 }
 
 function hide_details() {
 	if (details_lock) return;
 
 	details_block.classList.remove("shown");
-
-	// setTimeout(() => {
-	// 	if (!details_block.classList.contains("shown")) details_block.style.display = "none";
-	// }, 200);
 }
 
 function toggle_details_lock(event) {
@@ -110,7 +120,7 @@ function toggle_details_lock(event) {
 	for (let lesson of lessons) {
 		if (lesson.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX, event.pageY, lesson);
+			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, lesson);
 
 			details_lock = true;
 			empty_click = false;
@@ -172,13 +182,13 @@ Event.add(window, "load", () => {
 		if (details !== undefined) {
 
 			Event.add(lesson, "mouseenter", (e) => {
-				show_details(e.pageX, e.pageY, lesson);
+				show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, lesson);
 			});
 			Event.add(lesson, "mouseleave", (e) => {
 				if (!details_block.contains(e.relatedTarget)) hide_details();
 			});
 			Event.add(lesson, "mousemove", (e) => {
-				locate_details(e.pageX, e.pageY);
+				locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 			});
 		}
 	}

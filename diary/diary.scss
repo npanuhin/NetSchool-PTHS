@@ -605,5 +605,12 @@ main {
 		&:hover {
 			opacity: 1;
 		}
+
+		path {
+			fill: $text-color;
+			html.dark & {
+				fill: $text-color-dark;
+			}
+		}
 	}
 }
