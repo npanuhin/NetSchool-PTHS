@@ -4,7 +4,7 @@ var
 
 if (table !== undefined) {
 
-let
+var
 	scroll_table = document.querySelector(".diary > div > div"),
 
 	tasks = table.querySelectorAll("tr:not(:nth-child(1)):not(:nth-child(2)) td span"),
@@ -31,6 +31,7 @@ let
 	basic_details_content = details_block.innerHTML,
 	details_block_link_icon = details_block.getElementsByClassName("link-icon")[0],
 	details_lock = false,
+	details_distance = 20,
 
 	current_task = null;
 
@@ -77,15 +78,13 @@ function copy_url() {
 	copy_to_clipboard(window.location.href);
 }
 
-function show_details(pageX, pageY, task) {
+// =======================================================================
+
+
+function show_details(windowX, windowY, task) {
 	if (details_lock) return;
 
 	set_current_task_url(task);
-
-	locate_details(pageX, pageY);
-
-	// details_block.style.display = "";
-	// task.append(details_block);
 
 	Event.remove(details_block_link_icon, "click", copy_url);
 
@@ -95,31 +94,45 @@ function show_details(pageX, pageY, task) {
 	Event.add(details_block_link_icon, "click", copy_url);
 
 	details_block.classList.toggle("expired", task.classList.contains("expired"));
+
+	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
 }
 
-function locate_details(pageX, pageY) {
+function locate_details(windowX, windowY) {
 	if (details_lock) return;
 
-	details_block.style.top = Math.min(
-		document.documentElement.clientHeight - details_block.offsetHeight,
-		pageY - html.scrollTop + 20
-	) + "px";
+	if (
+		windowY + details_distance + details_block.offsetHeight > document.documentElement.clientHeight &&
+		windowY - details_distance - details_block.offsetHeight >= 0
+	) {
+		details_block.style.top = windowY - details_distance - details_block.offsetHeight + "px";
 
-	details_block.style.left = Math.min(
-		document.documentElement.clientWidth - details_block.offsetWidth,
-		pageX - html.scrollLeft + 20
-	) + "px";
+	} else {
+		details_block.style.top = Math.min(
+			document.documentElement.clientHeight - details_block.offsetHeight,
+			windowY + details_distance
+		) + "px";
+	}
+
+	if (
+		windowX + details_distance + details_block.offsetWidth > document.documentElement.clientWidth &&
+		windowX - details_distance - details_block.offsetWidth >= 0
+	) {
+		details_block.style.left = windowX - details_distance - details_block.offsetWidth + "px";
+
+	} else {
+		details_block.style.left = Math.min(
+			document.documentElement.clientWidth - details_block.offsetWidth,
+			windowX + details_distance
+		) + "px";
+	}
 }
 
 function hide_details() {
 	if (details_lock) return;
 
 	details_block.classList.remove("shown");
-
-	// setTimeout(() => {
-	// 	if (!details_block.classList.contains("shown")) details_block.style.display = "none";
-	// }, 200);
 }
 
 function toggle_details_lock(event) {
@@ -127,7 +140,7 @@ function toggle_details_lock(event) {
 	for (let task of tasks) {
 		if (task.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX, event.pageY, task);
+			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, task);
 			set_current_task_url(task);
 
 			details_lock = true;
@@ -156,8 +169,8 @@ function onhashchange() {
 
 		details_lock = false;
 		show_details(
-			task_element.getBoundingClientRect().left + html.scrollLeft + 20,
-			task_element.getBoundingClientRect().top + html.scrollTop + 10,
+			(task_element.getBoundingClientRect().left + task_element.getBoundingClientRect().right) / 2,
+			(task_element.getBoundingClientRect().bottom + task_element.getBoundingClientRect().top) / 2,
 			task_element
 		);
 
@@ -169,8 +182,8 @@ function onhashchange() {
 			
 			scroll_table.scrollLeft = day.offsetLeft - scroll_table.offsetWidth / 2 + day.offsetWidth / 2;
 			locate_details(
-				task_element.getBoundingClientRect().left + html.scrollLeft + 20,
-				task_element.getBoundingClientRect().top + html.scrollTop + 10
+				(task_element.getBoundingClientRect().left + task_element.getBoundingClientRect().right) / 2,
+				(task_element.getBoundingClientRect().bottom + task_element.getBoundingClientRect().top) / 2
 			);
 
 			requestAnimationFrame(initial_scroll_table);
@@ -224,7 +237,7 @@ function on_table_scroll() {
 // =======================================================================
 
 
-function apply_period(safe=false) {
+function apply_period(save=false) {
 	if (!period_start_input.validity.valid || !period_end_input.validity.valid) return;
 
 	let period_start = period_start_input.value,
@@ -304,7 +317,7 @@ function apply_period(safe=false) {
 	period_hidden_right.style.width = scroll_table.scrollWidth - right_border - 1 + "px";
 	period_hidden_right.style.left = right_border + "px";
 
-	if (safe) {
+	if (save) {
 		ajax(
 			"POST",
 			"/src/set_diary_period.php",
@@ -336,7 +349,6 @@ Event.add(window, "load", () => {
 
 	Event.add(window, "hashchange", onhashchange);
 
-	let url_hash = decodeURIComponent(window.location.hash);
 	if (decodeURIComponent(window.location.hash)) {
 		setTimeout(onhashchange);
 
@@ -353,13 +365,13 @@ Event.add(window, "load", () => {
 	// body.append(details_block);
 	for (let task of tasks) {
 		Event.add(task, "mouseenter", (e) => {
-			show_details(e.pageX, e.pageY, task);
+			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
 		});
 		Event.add(task, "mouseleave", (e) => {
 			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
 		Event.add(task, "mousemove", (e) => {
-			locate_details(e.pageX, e.pageY);
+			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 		});
 	}
 	Event.add(window, "mousedown", toggle_details_lock);
