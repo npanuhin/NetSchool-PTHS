@@ -1,29 +1,29 @@
 var
-	marks = document.getElementsByClassName("marks")[0],
-	table = marks.getElementsByTagName("table")[0];
+	diary = document.getElementsByClassName("diary")[0],
+	table = diary.getElementsByTagName("table")[0];
 
 if (table !== undefined) {
 
 let
-	scroll_table = document.querySelector(".marks > div > div"),
+	scroll_table = document.querySelector(".diary > div > div"),
 
 	spans = table.querySelectorAll("tr:not(:nth-child(1)):not(:nth-child(2)) td span"),
 	table_tr = table.getElementsByTagName("tr"),
 
-	left_column = document.querySelector(".marks > div > ul:first-child"),
+	left_column = document.querySelector(".diary > div > ul:first-child"),
 	// left_column_li = left_column.getElementsByTagName("li"),
 	
-	right_column = document.querySelector(".marks > div > ul:last-child"),
+	right_column = document.querySelector(".diary > div > ul:last-child"),
 	right_column_li = right_column.getElementsByTagName("li"),
 
-	scroll_left_button = marks.getElementsByClassName("scroll_left")[0],
-	scroll_right_button = marks.getElementsByClassName("scroll_right")[0],
+	scroll_left_button = diary.getElementsByClassName("scroll_left")[0],
+	scroll_right_button = diary.getElementsByClassName("scroll_right")[0],
 
-	period_start_input = marks.getElementsByClassName("period_start")[0],
-	period_end_input = marks.getElementsByClassName("period_end")[0],
+	period_start_input = diary.getElementsByClassName("period_start")[0],
+	period_end_input = diary.getElementsByClassName("period_end")[0],
 
-	period_hidden_left = marks.getElementsByClassName("period_hidden_left")[0],
-	period_hidden_right = marks.getElementsByClassName("period_hidden_right")[0],
+	period_hidden_left = diary.getElementsByClassName("period_hidden_left")[0],
+	period_hidden_right = diary.getElementsByClassName("period_hidden_right")[0],
 
 	table_unlocked = false,
 

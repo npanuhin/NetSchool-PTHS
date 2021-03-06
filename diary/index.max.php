@@ -18,7 +18,7 @@ $default_mark_rate = 10;
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="build/marks.min.css">
+	<link rel="stylesheet" type="text/css" href="build/diary.min.css">
 	<?php include_once __DIR__ . '/../src/favicon.php' ?>
 	<title>NetSchool PTHS | Оценки</title>
 </head>
@@ -33,7 +33,7 @@ $default_mark_rate = 10;
 		require_once __DIR__ . '/../src/menu.php';
 		?>
 
-		<div class="marks">
+		<div class="diary">
 			<h3>Дневник</h3>
 
 			<?php
@@ -63,7 +63,7 @@ $default_mark_rate = 10;
 							trim($task_data[2]),    // task
 							trim($task_data[1]),    // task_type
 							$task_data[5],          // task_expired
-							trim($task_data[6][0]), // lesson_ext
+							trim($task_data[6][0]), // teacher
 							$task_data[6][1]        // task_data_ext
 						];
 
@@ -239,7 +239,7 @@ $default_mark_rate = 10;
 														$task = $task_data[2];
 														$task_type = $task_data[3];
 														$task_expired = $task_data[4];
-														$task_lesson_ext = $task_data[5];
+														$teacher = $task_data[5];
 														$task_data_ext = $task_data[6];
 
 														$has_mark = (!is_null($mark) || $task_expired);
@@ -292,6 +292,7 @@ $default_mark_rate = 10;
 
 																$task_data = [];
 
+																if ($teacher) $task_data[] = 'Учитель: ' . $teacher;
 																if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
 																if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
 
@@ -370,7 +371,7 @@ $default_mark_rate = 10;
 
 	</main>
 
-	<div class="details"> <!-- For marks -->
+	<div class="details"> <!-- For tasks -->
 		<?php // include_once __DIR__ . "/../files/icons/link.svg" ?>
 
 		<svg class="link-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -382,8 +383,8 @@ $default_mark_rate = 10;
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
-	<script type="text/javascript" src="build/marks.min.js" defer></script>
-	<!-- <script type="text/javascript" src="marks.js" defer></script> -->
+	<script type="text/javascript" src="build/diary.min.js" defer></script>
+	<!-- <script type="text/javascript" src="diary.js" defer></script> -->
 </body>
 
 </html>

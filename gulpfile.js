@@ -44,7 +44,7 @@ var
     files['php'].push('fails/*.max.php');
     files['php'].push('src/*.max.php');
     files['php'].push('login/*.max.php');
-    files['php'].push('marks/*.max.php');
+    files['php'].push('diary/*.max.php');
     files['php'].push('announcements/*.max.php');
     files['php'].push('timetable/*.max.php');
     files['php'].push('delete/*.max.php');
@@ -54,7 +54,7 @@ var
     files['scss'].push('src/*.scss');
     files['scss'].push('src/styles/*.scss');
     files['scss'].push('login/*.scss');
-    files['scss'].push('marks/*.scss');
+    files['scss'].push('diary/*.scss');
     files['scss'].push('announcements/*.scss');
     files['scss'].push('timetable/*.scss');
     files['scss'].push('help/*.scss');
@@ -63,7 +63,7 @@ var
     files['js'].push('*.js');
     files['js'].push('src/*.js');
     files['js'].push('login/*.js');
-    files['js'].push('marks/marks.js');
+    files['js'].push('diary/*.js');
     files['js'].push('announcements/*.js');
     files['js'].push('timetable/*.js');
     files['js'].push('help/*.js');
