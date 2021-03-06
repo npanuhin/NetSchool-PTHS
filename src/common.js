@@ -13,16 +13,16 @@ var
 
 	message_alerts = document.getElementsByClassName("message_alert"),
 
-	alert_box = document.getElementsByClassName("alert")[0],
-	alert_box_timout;
+	ui_alert_box = document.getElementsByClassName("ui_alert")[0],
+	ui_alert_box_timout;
 
 
 function ui_alert(text) {
-	alert_box.innerHTML = text;
-	alert_box.classList.add("shown");
-	clearTimeout(alert_box_timout);
-	alert_box_timout = setTimeout(() => {
-		alert_box.classList.remove("shown")
+	ui_alert_box.innerHTML = text;
+	ui_alert_box.classList.add("shown");
+	clearTimeout(ui_alert_box_timout);
+	ui_alert_box_timout = setTimeout(() => {
+		ui_alert_box.classList.remove("shown")
 	}, 5000);
 }
 

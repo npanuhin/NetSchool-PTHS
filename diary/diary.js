@@ -7,8 +7,8 @@ if (table !== undefined) {
 let
 	scroll_table = document.querySelector(".diary > div > div"),
 
-	spans = table.querySelectorAll("tr:not(:nth-child(1)):not(:nth-child(2)) td span"),
-	table_tr = table.getElementsByTagName("tr"),
+	tasks = table.querySelectorAll("tr:not(:nth-child(1)):not(:nth-child(2)) td span"),
+	// table_tr = table.getElementsByTagName("tr"),
 
 	left_column = document.querySelector(".diary > div > ul:first-child"),
 	// left_column_li = left_column.getElementsByTagName("li"),
@@ -58,7 +58,7 @@ function set_current_task_url(task) {
 
 function copy_to_clipboard(text) {
 	if (navigator.clipboard === undefined) {
-		ui_alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+		ui_alert("Мы не можем вставить ссылку в буфер обмена.<br>Пожалуйста, скопируйте URL самостоятельно");
 
 	} else {
 		navigator.clipboard.writeText(text)
@@ -68,7 +68,7 @@ function copy_to_clipboard(text) {
 		})
 		.catch(err => {
 			console.log(err);
-			ui_alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+			ui_alert("Мы не можем вставить ссылку в буфер обмена.<br>Пожалуйста, скопируйте URL самостоятельно");
   		});
 	}
 }
@@ -124,11 +124,11 @@ function hide_details() {
 
 function toggle_details_lock(event) {
 	let empty_click = true;
-	for (let span of spans) {
-		if (span.contains(event.target)) {
+	for (let task of tasks) {
+		if (task.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX, event.pageY, span);
-			set_current_task_url(span);
+			show_details(event.pageX, event.pageY, task);
+			set_current_task_url(task);
 
 			details_lock = true;
 			empty_click = false;
@@ -351,14 +351,14 @@ Event.add(window, "load", () => {
 	}
 
 	// body.append(details_block);
-	for (let item of spans) {
-		Event.add(item, "mouseenter", (e) => {
-			show_details(e.pageX, e.pageY, item);
+	for (let task of tasks) {
+		Event.add(task, "mouseenter", (e) => {
+			show_details(e.pageX, e.pageY, task);
 		});
-		Event.add(item, "mouseleave", (e) => {
+		Event.add(task, "mouseleave", (e) => {
 			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
-		Event.add(item, "mousemove", (e) => {
+		Event.add(task, "mousemove", (e) => {
 			locate_details(e.pageX, e.pageY);
 		});
 	}
