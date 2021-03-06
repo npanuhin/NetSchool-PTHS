@@ -269,8 +269,8 @@ main {
         
         max-height: 0px;
         overflow: hidden;
-
         transition: $dark_mode_transition, 0.3s max-height ease-in-out;
+
         &.shown {
             max-height: 140px;
 

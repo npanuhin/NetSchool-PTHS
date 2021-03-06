@@ -75,7 +75,7 @@ function copy_to_clipboard(text) {
 }
 
 function copy_url() {
-	copy_to_clipboard(window.location.href);
+	copy_to_clipboard(decodeURI(window.location.href));
 }
 
 // =======================================================================
