@@ -58,15 +58,17 @@ function set_current_task_url(task) {
 
 function copy_to_clipboard(text) {
 	if (navigator.clipboard === undefined) {
-		alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+		ui_alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+
 	} else {
 		navigator.clipboard.writeText(text)
 		.then(() => {
 			console.log("Copied to clipboard:", text);
+			ui_alert("Ссылка скопирована в буфер обмена");
 		})
 		.catch(err => {
-			// console.log(err);
-			alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
+			console.log(err);
+			ui_alert("Мы не можем вставить ссылку в буфер обмена.\nПожалуйста, скопируйте URL самостоятельно");
   		});
 	}
 }

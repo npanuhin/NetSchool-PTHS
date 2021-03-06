@@ -16,3 +16,5 @@
 	</div>
 	<div class="exit_icon" title="Выйти"><?php include_once __DIR__ . '/../files/icons/sign-out.svg' ?></div>
 </div>
+
+<div class="alert"></div>

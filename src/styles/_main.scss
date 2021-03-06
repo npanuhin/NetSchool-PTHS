@@ -163,6 +163,28 @@ body {
 @import 'src/styles/statusbar';
 
 
+.alert {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 50px;
+    padding: 15px 40px;
+    z-index: 10000;
+    border-radius: 50px;
+    background: rgba(20, 20, 20, 0.7);
+    color: #fff;
+
+    opacity: 0;
+
+    transition: $dark_mode_transition, 2s opacity ease-in-out;
+
+    &.shown {
+        transition: $dark_mode_transition, 0.4s opacity ease-in-out;
+        opacity: 1;
+    }
+}
+
+
 main {
 
     .message_alert {

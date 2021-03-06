@@ -3,18 +3,28 @@ var
 	body = document.getElementsByTagName("body")[0],
 	main = document.getElementsByTagName("main")[0],
 	
-	
-	main_bottom_margin = 100,
+	// main_bottom_margin = 100,
 
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 	
-
 	menu = document.getElementsByClassName("menu")[0],
 
-	message_alerts = document.getElementsByClassName("message_alert");
+	message_alerts = document.getElementsByClassName("message_alert"),
 
+	alert_box = document.getElementsByClassName("alert")[0],
+	alert_box_timout;
+
+
+function ui_alert(text) {
+	alert_box.innerHTML = text;
+	alert_box.classList.add("shown");
+	clearTimeout(alert_box_timout);
+	alert_box_timout = setTimeout(() => {
+		alert_box.classList.remove("shown")
+	}, 5000);
+}
 
 Event.add(window, "load", () => {
 
