@@ -77,6 +77,7 @@ if (!$AUTHORIZED) {
 							?>
 						</div>
 						<?php
+						require_once __DIR__ . '/../src/edu_request.php';
 					}
 
 					?>
@@ -128,7 +129,7 @@ if (!$AUTHORIZED) {
 			</div>
 
 			<?php
-
+			
 			$has_cources = false;
 			foreach ($cur_week as $day) {
 				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
