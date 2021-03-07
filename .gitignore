@@ -17,3 +17,5 @@ build/
 # ... but save non-generated
 !*.max.php
 
+#and save all the library
+!src/simplehtmldom/*.php
