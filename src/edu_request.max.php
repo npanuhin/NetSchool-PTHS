@@ -1,40 +1,40 @@
 <?php
-include_once('simplehtmldom\simple_html_dom.php');
-$url = "http://edu.school.ioffe.ru/tt_student.php";
-$letters = array(
-	'�' => "%C1",
-	'�' => "%C2",
-	'�' => "%C3"
-);
-$params = array(
-	'nweek' => 49,
-	'nclass' => "11{$letters['�']}",//"{$_POST['class']}{$letters[$_POST['letter']}",
-	'sub_asc' => '��������',
-	'nteacher' => '-'
-);
+include_once __DIR__ . '/lib/simple_html_dom.php';
 
-$query = "nweek={$params['nweek']}&nclass={$params['nclass']}&sub_asc=%D0%A1%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C&nteacher=-";
+// Это то, как должны приходить данные:
+$_POST['class'] = '11а';
+$_POST['day'] = '07.03.2021';
 
-//echo $query;
-$result = file_get_contents($url, false, stream_context_create(array(
+// Соответвенно нужно распарсить это $_POST['day'] и сгенерировать class (уже готово) и nweek:
+$class = mb_convert_encoding($_POST['class'], 'koi8-r', 'utf-8');
+$nweek = 49; // TODO from $_POST['day']
+
+
+$result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_student.php', false, stream_context_create(array(
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => $query
+        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=Смотреть&nteacher=-"
     )
-)));
+))), 'utf-8', 'koi8-r');
 
-echo $result;
-$dom=str_get_html($result)->find('tbody')[0];
-foreach($dom->find('tr') as $element){
-	echo "<\br>";
-    $arr = $element -> find('td');
-	echo preg_replace('#\</?td\>#', "", $arr[count($arr)-4]);
-	echo ' � ';
-	echo preg_replace('#\</?td\>#', "", $arr[count($arr)-3]);
-	echo ' � ';
-	echo preg_replace('#\</?td\>#', "", $arr[count($arr)-2]);
-	echo ' � ';
-	echo preg_replace('#\</?td\>#', "", $arr[count($arr)-1]);
+// print_r($result);
+
+$dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
+
+// print_r($dom);
+
+foreach ($dom->find('tr') as $line) {
+    $tds = $line->find('td');
+
+    echo $tds[2]->plaintext;
+
+    // НЕ НАДО preg_replace ПОЖАЛУЙСТА
+	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 4]);
+	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 3]);
+	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 2]);
+	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 1]);
+
+	echo '<br>';
 }
 ?>

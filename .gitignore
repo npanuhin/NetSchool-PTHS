@@ -8,14 +8,14 @@ doc/*
 # Keep .htaccess
 !.htaccess
 
-# built files; should be built with the gulp
+# Built files; should be built with the gulp
 build/
 
-# ignore generated php files
+# Ignore generated php files
 *.php
 
 # ... but save non-generated
 !*.max.php
 
-#and save all the library
-!src/simplehtmldom/*.php
+# ... but save all the library
+!/src/lib/*.php

@@ -11,7 +11,7 @@ $UI_ERROR = null;
 
 // ========================================== MODULES ==========================================
 
-require_once __DIR__ . '/safemysql.class.php';
+require_once __DIR__ . '/lib/safemysql.class.php';
 
 
 
