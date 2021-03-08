@@ -46,6 +46,7 @@ var
     files['php'].push('*.max.php');
     files['php'].push('fails/*.max.php');
     files['php'].push('src/*.max.php');
+    files['php'].push('src/lib/*.max.php');
     files['php'].push('login/*.max.php');
     files['php'].push('diary/*.max.php');
     files['php'].push('announcements/*.max.php');

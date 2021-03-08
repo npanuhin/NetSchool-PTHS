@@ -8,10 +8,10 @@ doc/*
 # Keep .htaccess
 !.htaccess
 
-# built files; should be built with the gulp
+# Built files; should be built with the gulp
 build/
 
-# ignore generated PHP and HTML files
+# Ignore generated PHP and HTML files
 *.php
 *.html
 
