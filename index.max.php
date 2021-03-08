@@ -344,7 +344,7 @@ if (!$AUTHORIZED) {
 		
 	</main>
 
-	<div class="details"></div> <!-- For timetable -->
+	<div class="details"></div>
 
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>

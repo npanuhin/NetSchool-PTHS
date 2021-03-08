@@ -371,7 +371,7 @@ $default_mark_rate = 10;
 
 	</main>
 
-	<div class="details"> <!-- For tasks -->
+	<div class="details">
 		<?php // include_once __DIR__ . "/../files/icons/link.svg" ?>
 
 		<svg class="link-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -384,7 +384,6 @@ $default_mark_rate = 10;
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/diary.min.js" defer></script>
-	<!-- <script type="text/javascript" src="diary.js" defer></script> -->
 </body>
 
 </html>

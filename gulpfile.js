@@ -78,6 +78,7 @@ var
 
     files['clean'].push('**/build');
     files['clean'].push('**/*.php');
+    files['clean'].push('!src/lib/*.php');
     files['clean'].push('!**/*.max.php');
     files['clean'].push('**/*.html');
     files['clean'].push('!**/*.max.html');
