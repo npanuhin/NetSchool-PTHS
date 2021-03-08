@@ -28,17 +28,20 @@ var
     htmlmin         = require('gulp-htmlmin'),
     minify_php      = require('gulp-php-minify'),
 
+    // Clean:
+    clean           = require('gulp-clean'),
+
     files = {
-        'scss': ['/dev/null'],
-        'html': ['/dev/null'],
-        'css': ['/dev/null'],
-        'php': ['/dev/null'],
-        'js': ['/dev/null']
+        'scss':  ['/dev/null'],
+        'html':  ['/dev/null'],
+        'css':   ['/dev/null'],
+        'php':   ['/dev/null'],
+        'js':    ['/dev/null'],
+        'clean': ['/dev/null']
     };
 
-    // files['html'].push('*.html');
-    // files['html'].push('src/*.html');
-    // files['html'].push('help/*.html')
+    files['html'].push('fails/*.max.html');
+    files['html'].push('src/*.max.html');
 
     files['php'].push('*.max.php');
     files['php'].push('fails/*.max.php');
@@ -49,6 +52,7 @@ var
     files['php'].push('timetable/*.max.php');
     files['php'].push('delete/*.max.php');
     files['php'].push('help/*.max.php');
+    files['php'].push('stats/*.max.php');
 
     files['scss'].push('*.scss');
     files['scss'].push('src/*.scss');
@@ -59,6 +63,7 @@ var
     files['scss'].push('timetable/*.scss');
     files['scss'].push('help/*.scss');
     files['scss'].push('fails/*.scss');
+    files['scss'].push('stats/*.scss');
 
     files['js'].push('*.js');
     files['js'].push('src/*.js');
@@ -67,7 +72,14 @@ var
     files['js'].push('announcements/*.js');
     files['js'].push('timetable/*.js');
     files['js'].push('help/*.js');
+    files['js'].push('stats/*.js');
     files['js'].push('!gulpfile.js');
+
+    files['clean'].push('**/build');
+    files['clean'].push('**/*.php');
+    files['clean'].push('!**/*.max.php');
+    files['clean'].push('**/*.html');
+    files['clean'].push('!**/*.max.html');
 
 
 var
@@ -92,9 +104,10 @@ gulp.task('build-html', function () {
 
         .pipe(htmlmin(htmlmin_settings))
 
-        .pipe(ext_replace('.min.html', '.html'))
+        .pipe(ext_replace('.html', '.max.html'))
         .pipe(gulp.dest(function (file) {
-            return Path.join(Path.parse(file.path).dir, 'build');
+            return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 });
 
@@ -104,9 +117,10 @@ gulp.task('reload-html', function () {
 
         .pipe(htmlmin(htmlmin_settings))
 
-        .pipe(ext_replace('.min.html', '.html'))
+        .pipe(ext_replace('.html', '.max.html'))
         .pipe(gulp.dest(function (file) {
-            return Path.join(Path.parse(file.path).dir, 'build');
+            return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
         .pipe(livereload());
@@ -124,6 +138,7 @@ gulp.task('build-php', function () {
         .pipe(ext_replace('.php', '.max.php'))
         .pipe(gulp.dest(function(file){
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 });
 
@@ -137,6 +152,7 @@ gulp.task('reload-php', function () {
         .pipe(ext_replace('.php', '.max.php'))
         .pipe(gulp.dest(function(file){
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
         .pipe(livereload());
@@ -146,7 +162,7 @@ gulp.task('reload-php', function () {
 // ================================= CSS ==================================
 
 
-gulp.task('build-css', function (){
+gulp.task('build-css', function () {
     return gulp.src(files['css'], {allowEmpty: true})
 
         .pipe(cleancss({compatibility: 'ie8'}))
@@ -154,6 +170,7 @@ gulp.task('build-css', function (){
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function(file){
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 });
 
@@ -166,6 +183,7 @@ gulp.task('reload-css', function () {
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function(file){
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
         .pipe(livereload());
@@ -174,7 +192,7 @@ gulp.task('reload-css', function () {
 
 // ================================= SCSS =================================
 
-gulp.task('build-scss', function (){
+gulp.task('build-scss', function () {
     return gulp.src(files['scss'], {allowEmpty: true})
 
         .pipe(sass({
@@ -189,6 +207,7 @@ gulp.task('build-scss', function (){
         // .pipe(shorthand())
 
         .pipe(gulp.dest(function (file) {
+            // return Path.parse(file.path).dir;
             return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
@@ -197,10 +216,11 @@ gulp.task('build-scss', function (){
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function (file) {
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 });
 
-gulp.task('reload-scss', function (){
+gulp.task('reload-scss', function () {
     return gulp.src(files['scss'], {allowEmpty: true})
         // .pipe(changedInPlace())
 
@@ -220,6 +240,7 @@ gulp.task('reload-scss', function (){
         // .pipe(sourcemaps.write())
 
         .pipe(gulp.dest(function (file) {
+            // return Path.parse(file.path).dir;
             return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
@@ -230,6 +251,7 @@ gulp.task('reload-scss', function (){
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function (file) {
             return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
         .pipe(livereload());
@@ -238,7 +260,7 @@ gulp.task('reload-scss', function (){
 
 // ================================== JS ==================================
 
-gulp.task('build-js', function (){
+gulp.task('build-js', function () {
     return gulp.src(files['js'], {allowEmpty: true})
         // .pipe(sourcemaps.init({largeFile: true}))
 
@@ -263,6 +285,7 @@ gulp.task('build-js', function (){
 
         .pipe(ext_replace('.min.js', '.js'))
         .pipe(gulp.dest(function(file){
+            // return Path.parse(file.path).dir;
             return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
@@ -270,7 +293,7 @@ gulp.task('build-js', function (){
         // .pipe(jscs.reporter())
 });
 
-gulp.task('reload-js', function (){
+gulp.task('reload-js', function () {
     return gulp.src(files['js'], {allowEmpty: true})
         .pipe(changedInPlace())
 
@@ -297,6 +320,7 @@ gulp.task('reload-js', function (){
 
         .pipe(ext_replace('.min.js', '.js'))
         .pipe(gulp.dest(function(file){
+            // return Path.parse(file.path).dir;
             return Path.join(Path.parse(file.path).dir, 'build');
         }))
 
@@ -306,10 +330,18 @@ gulp.task('reload-js', function (){
         .pipe(livereload());
 });
 
+
+// ================================ CLEAN ================================
+
+gulp.task('clean', function () {
+    return gulp.src(files['clean'], {allowEmpty: true, read: false})
+        .pipe(clean());
+});
+
 gulp.task('build', gulp.parallel('build-html', 'build-php', 'build-css', 'build-scss', 'build-js'));
+gulp.task('deploy', gulp.series('clean', 'build'));
 
-
-gulp.task('default', function (){
+gulp.task('default', function () {
     livereload.listen();
     gulp.watch(files['html'], gulp.series('reload-html'));
     gulp.watch(files['php'], gulp.series('reload-php'));

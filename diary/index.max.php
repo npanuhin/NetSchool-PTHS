@@ -30,7 +30,7 @@ $default_mark_rate = 10;
 
 		<?php
 		include_once __DIR__ . '/../src/message_alerts.php';
-		require_once __DIR__ . '/../src/menu.php';
+		require_once __DIR__ . '/../src/menu.html';
 		?>
 
 		<div class="diary">

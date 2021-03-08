@@ -39,7 +39,7 @@ if (!$AUTHORIZED) {
 		// $has_announcements = (count($announcements) != 0);
 
 		include_once __DIR__ . '/src/message_alerts.php';
-		require_once __DIR__ . '/src/menu.php';
+		require_once __DIR__ . '/src/menu.html';
 
 		$diary = json_decode($person['diary'], true);
 

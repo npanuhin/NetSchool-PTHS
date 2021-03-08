@@ -11,9 +11,10 @@ doc/*
 # built files; should be built with the gulp
 build/
 
-# ignore generated php files
+# ignore generated PHP and HTML files
 *.php
+*.html
 
-# ... but save non-generated
+# ... but keep non-generated
 !*.max.php
-
+!*.max.html
