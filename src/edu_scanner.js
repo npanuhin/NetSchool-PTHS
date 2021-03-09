@@ -1,17 +1,13 @@
-//import {ajax} from "ajax.js";
 
-//var headers = {
-//'Content-Type': 'application/x-www-form-urlencoded'}
 function logg(r){
-	
 
-	//console.log(r.responseText);
 	var js = JSON.parse(r.responseText);
 	if (js.length == 0){
 		return;
 	}
 	s = "";
 	for (let i in js){
+		//TODO: rewrite for table or smth like this
 		let lesson = js[i];
 		s += '<li>'
 		s += lesson["time"]
@@ -30,6 +26,7 @@ function logg(r){
 	document.getElementsByClassName('Zoom')[0].innerHTML = s;
 }
 
+//ugly, but found nothing more beutiful
 var currentDate = new Date()
 var d = currentDate.getDate()
 var m = currentDate.getMonth() + 1

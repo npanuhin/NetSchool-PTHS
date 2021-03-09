@@ -21,7 +21,7 @@ $result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_s
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=–°–Љ–Њ—В—А–µ—В—М&nteacher=-"
+        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=–Смотреть&nteacher=-"
     )
 ))), 'utf-8', 'koi8-r');
 
@@ -54,12 +54,6 @@ foreach ($dom->find('tr') as $line) {
 		echo $tds[count($tds)-2]->plaintext;
 		echo '","href":"';
 		echo $tds[count($tds)-1]->find('a')[0]->href;
-		
-		// –Э–Х –Э–Р–Ф–Ю preg_replace –Я–Ю–Ц–Р–Ы–£–Щ–°–¢–Р
-		// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 4]);
-		// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 3]);
-		// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 2]);
-		// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 1]);
 
 		echo '"}';
 	}
