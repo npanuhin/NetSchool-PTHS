@@ -1,14 +1,7 @@
-
 <?php
 
 include_once __DIR__ . '/lib/simple_html_dom.php';
 
-// –≠—В–Њ —В–Њ, –Ї–∞–Ї –і–Њ–ї–∂–љ—Л –њ—А–Є—Е–Њ–і–Є—В—М –і–∞–љ–љ—Л–µ:
-//echo iconv('utf-8', 'MacCyrillic', '11а');
-//$_POST['class'] = '11а';
-//$_POST['day'] = '09.03.2021';
-
-//mb_convert_encoding
 //jan feb mar apr may jun jul aug sep oct nov dec
 $_monthsList = array("Jan" => "января", "Feb" => "февраля", 
 "Mar" => "марта", "Apr" => "апреля", "May" => "мая", "Jun" => "июня", 
@@ -16,20 +9,13 @@ $_monthsList = array("Jan" => "января", "Feb" => "февраля",
 "Oct" => "октября", "Nov" => "ноября", "Dec" => "декабря");
 
 
-//echo mb_convert_encoding($_POST['class'], 'utf-8', 'koi8-r');
-// –°–Њ–Њ—В–≤–µ—В–≤–µ–љ–љ–Њ –љ—Г–∂–љ–Њ —А–∞—Б–њ–∞—А—Б–Є—В—М —Н—В–Њ $_POST['day'] –Є —Б–≥–µ–љ–µ—А–Є—А–Њ–≤–∞—В—М class (—Г–∂–µ –≥–Њ—В–Њ–≤–Њ) –Є nweek:
-//echo urlencode("11а");
-//echo "11%C1";
-//echo urlencode(mb_convert_encoding( $_POST['class'], 'koi8-r', 'utf-8'));
 $class = urlencode(mb_convert_encoding( $_POST['class'], 'koi8-r', 'utf-8'));
 
-//mb_convert_encoding($_POST['class'], 'koi8-r', 'utf-8');
 
-$nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->format('%a')/7) + 1; // TODO from $_POST['day']
-//echo $nweek;
-//echo "\n";
+$nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->format('%a')/7) + 1;
+
 $dayText = date_create($_POST['day'])->Format('j') .' '. $_monthsList[date_create($_POST['day'])->Format('M')];
-//echo $dayText;
+
 
 $result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_student.php', false, stream_context_create(array(
     'http' => array(
@@ -39,30 +25,25 @@ $result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_s
     )
 ))), 'utf-8', 'koi8-r');
 
-//print_r($result);
 
 $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
 
 echo "[";
-//print_r($dom);
+
 $out = false;
-$flag = false;
 foreach ($dom->find('tr') as $line) {
 	if ($out){
 		echo ",";
 	}
-	$flag = true;
 	$tds = $line->find('td');
-	//echo count($tds);
+
 	if (count($tds) == 5)
 	{
 
 		//!== , it's important. Don't change.
 		$out = strpos($tds[0]->plaintext, $dayText) !== false;
 	}
-	//echo $tds[0]->plaintext;
-	//echo $_POST['day'];
-	
+
 	if ($out)
 	{
 		echo '{"time":"';
