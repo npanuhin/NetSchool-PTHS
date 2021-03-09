@@ -21,7 +21,7 @@ $result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_s
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=–Смотреть&nteacher=-"
+        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=Смотреть&nteacher=-"
     )
 ))), 'utf-8', 'koi8-r');
 

@@ -7,7 +7,7 @@ function logg(r){
 	}
 	s = "";
 	for (let i in js){
-		//TODO: rewrite for table or smth like this
+		//TODO: rewrite to table or smth like this
 		let lesson = js[i];
 		s += '<li>'
 		s += lesson["time"]
@@ -26,7 +26,7 @@ function logg(r){
 	document.getElementsByClassName('Zoom')[0].innerHTML = s;
 }
 
-//ugly, but found nothing more beutiful
+//ugly, but found nothing more beautiful
 var currentDate = new Date()
 var d = currentDate.getDate()
 var m = currentDate.getMonth() + 1
