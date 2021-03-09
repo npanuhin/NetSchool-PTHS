@@ -42,15 +42,13 @@ $result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_s
 //print_r($result);
 
 $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
-if (!$dom){
-exit();
-}
+
 echo "[";
-// print_r($dom);
+//print_r($dom);
 $out = false;
 $flag = false;
 foreach ($dom->find('tr') as $line) {
-	if ($flag){
+	if ($out){
 		echo ",";
 	}
 	$flag = true;

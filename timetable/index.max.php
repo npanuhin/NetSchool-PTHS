@@ -94,7 +94,7 @@ if (!$AUTHORIZED) {
 
 						<ul>
 						<div class = "Zoom">
-						<!--
+
 							<?php
 
 							$lesson_index = 0;
@@ -121,7 +121,7 @@ if (!$AUTHORIZED) {
 							}
 
 							?>
-							-->
+
 							</ul>
 						</div>
 					</div>
