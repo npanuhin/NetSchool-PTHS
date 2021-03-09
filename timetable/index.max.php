@@ -20,9 +20,9 @@ if (!$AUTHORIZED) {
 	<title>NetSchool PTHS | Расписание</title>
 </head>
 <body>
-
+	
 	<?php require_once __DIR__ . '/../src/header.php' ?>
-
+	
 	<main>
 
 		<?php
@@ -76,9 +76,10 @@ if (!$AUTHORIZED) {
 
 							?>
 						</div>
+						
 						<?php
 					}
-
+					
 					?>
 				</div>
 
@@ -92,6 +93,8 @@ if (!$AUTHORIZED) {
 						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">на сегодня</div>
 
 						<ul>
+						<div class = "Zoom">
+						<!--
 							<?php
 
 							$lesson_index = 0;
@@ -118,10 +121,13 @@ if (!$AUTHORIZED) {
 							}
 
 							?>
+							-->
 							</ul>
+						</div>
 					</div>
 
 					<?php
+					
 				}
 				?>
 
@@ -213,6 +219,7 @@ if (!$AUTHORIZED) {
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
+	<script type="text/javascript" src="/src/edu_scanner.js" defer></script>
 	<!-- <script type="text/javascript" src="build/timetable.min.js" defer></script> -->
 </body>
 
