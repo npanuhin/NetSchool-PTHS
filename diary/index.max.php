@@ -47,7 +47,7 @@ $default_mark_rate = 10;
 				<?php
 			} else {
 
-				$all_days = [];
+				$all_days = [$TODAY->format('Y-m-d')];
 				$all_average_marks = [];
 				$table = [];
 				foreach ($diary as $day => $tasks) {
@@ -60,7 +60,7 @@ $default_mark_rate = 10;
 						$table[$lesson][$day][] = [
 							$task_data[4],          // mark
 							$task_data[3],          // mark_rate
-							trim($task_data[2]),    // task
+							trim($task_data[2]),    // task_name
 							trim($task_data[1]),    // task_type
 							$task_data[5],          // task_expired
 							trim($task_data[6][0]), // teacher
@@ -106,7 +106,7 @@ $default_mark_rate = 10;
 				</label>
 
 
-				<div>
+				<div class="table_layout">
 					<ul class="left_column">
 						<li></li>
 						<li class="scroll_left">
@@ -131,7 +131,7 @@ $default_mark_rate = 10;
 							<tr>
 								<?php
 								$cur_month = null;
-								$width = 0;
+								$empty_width = 0;
 
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
@@ -140,7 +140,7 @@ $default_mark_rate = 10;
 									if ($datetime->format('m') != $cur_month) {
 										?>
 
-										<td colspan="<?php echo $width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
+										<td colspan="<?php echo $empty_width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
 											<span>
 												<?php echo $months[(int)($cur_month - 1)] ?>
 											</span>
@@ -148,16 +148,16 @@ $default_mark_rate = 10;
 
 										<?php
 										$cur_month = $datetime->format('m');
-										$width = 0;
+										$empty_width = 0;
 									}
 
-									++$width;
+									++$empty_width;
 								}
 
-								if ($width != 0) {
+								if ($empty_width != 0) {
 									?>
 
-									<td colspan="<?php echo $width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
+									<td colspan="<?php echo $empty_width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
 										<span>
 											<?php echo $months[(int)($cur_month - 1)] ?>
 										</span>
@@ -173,7 +173,7 @@ $default_mark_rate = 10;
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
 									?>
-									<td title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
+									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
 										<?php echo $datetime->format('d') ?>
 										<br>
 										<?php echo $weekdays_short[$datetime->format('w') - 1] ?>
@@ -212,19 +212,23 @@ $default_mark_rate = 10;
 									}
 									$all_average_marks[$lesson] = $average_mark / $rate_summ;
 
-									$empty_space = 0;
+									$empty_width = 0;
 									foreach ($all_days as $day) {
-										if (isset($days[$day]) && $days[$day]) {
+										if ((isset($days[$day]) && $days[$day]) || $day == $TODAY->format('Y-m-d')) {
 
-											if ($empty_space) {
+											if ($empty_width) {
 												?>
-												<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
+												<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
 												<?php
 											}
-											$empty_space = 0;
+											$empty_width = 0;
 											?>
 
-											<td class="<?php echo $day ?> filled<?php if ($days_expired_key[$day]) echo ' expired' ?>">
+											<td class="<?php echo $day ?> <?php
+												if (isset($days[$day]) && $days[$day]) echo ' filled';
+												if ($days_expired_key[$day])           echo ' expired';
+												if ($day == $TODAY->format('Y-m-d'))   echo ' today';
+											?>">
 												<div>
 													<?php
 													$tasks = $days[$day];
@@ -320,13 +324,13 @@ $default_mark_rate = 10;
 											<?php
 
 										} else {
-											++$empty_space;
+											++$empty_width;
 										}
 									}
 
-									if ($empty_space) {
+									if ($empty_width) {
 										?>
-										<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
+										<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
 										<?php
 									}
 									?>

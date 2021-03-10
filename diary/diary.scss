@@ -6,6 +6,8 @@ $details-expired-shadow: 2px 1px 15px rgba(255, 0, 0, 0.3);
 $mark-expired-color: rgba(255, 0, 0, 0.1);
 $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 
+$today-color: rgba(0, 255, 0, 0.2);
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -104,7 +106,7 @@ main {
 			}
 		}
 
-		& > div {
+		.table_layout {
 
 			display: grid;
 			grid-template-rows: 1fr;
@@ -377,6 +379,11 @@ main {
 								white-space: nowrap;
 
 								padding: 4px 20px;
+
+								&.today {
+									border-top-left-radius: 10px;
+									border-top-right-radius: 10px;
+								}
 							}
 						}
 
@@ -480,7 +487,10 @@ main {
 								html.dark & {
 									border-color: $orange-color-dark;
 								}
-								// background: rgba(255, 137, 12, 0.1);
+							}
+
+							&.today {
+								background: $today-color;
 							}
 						}
 					}
