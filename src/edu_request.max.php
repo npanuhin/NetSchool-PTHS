@@ -1,5 +1,6 @@
 <?php
-
+require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 include_once __DIR__ . '/lib/simple_html_dom.php';
 
 //jan feb mar apr may jun jul aug sep oct nov dec
@@ -9,7 +10,7 @@ $_monthsList = array("Jan" => "января", "Feb" => "февраля",
 "Oct" => "октября", "Nov" => "ноября", "Dec" => "декабря");
 
 
-$class = urlencode(mb_convert_encoding( $_POST['class'], 'koi8-r', 'utf-8'));
+$class = urlencode(mb_convert_encoding($person['class'], 'koi8-r', 'utf-8'));
 
 
 $nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->format('%a')/7) + 1;
@@ -31,10 +32,9 @@ $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
 echo "[";
 
 $out = false;
+$flag = false;
 foreach ($dom->find('tr') as $line) {
-	if ($out){
-		echo ",";
-	}
+
 	$tds = $line->find('td');
 
 	if (count($tds) == 5)
@@ -46,6 +46,12 @@ foreach ($dom->find('tr') as $line) {
 
 	if ($out)
 	{
+		if($flag){
+			echo ",";
+		}
+		else{
+			$flag = true;
+		}
 		echo '{"time":"';
 		echo $tds[count($tds)-4]->plaintext;
 		echo '","name":"';

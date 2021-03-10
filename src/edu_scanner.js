@@ -1,8 +1,9 @@
 
 function logg(r){
-
+	//console.log(r.responseText);
 	var js = JSON.parse(r.responseText);
 	if (js.length == 0){
+		
 		return;
 	}
 	s = "";
@@ -32,8 +33,6 @@ var d = currentDate.getDate()
 var m = currentDate.getMonth() + 1
 var y = currentDate.getFullYear()
 
-let data = {
-	'class':"11а", //TODO: get class name
-	'day': d + '.' + m + '.' + y}
+let data = {'day': d + '.' + m + '.' + y}
 	
 let res = ajax('POST', "../src/edu_request.php", data = data, success = logg, error = console.log, complete = console.log);
