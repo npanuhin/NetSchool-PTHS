@@ -270,7 +270,16 @@ function format_days_delta($num, $upper=false) {
 	return ($upper ? 'Через ' : 'через ') . $num . ' ' . day_word_case($num);
 }
 
+// ============================================ LOG ============================================
+
 function send_telegram_message($text, $token, $chat_id) {
+	$text = str_replace('=', '\=', $text);
+	$text = str_replace('*', '\*', $text);
+	$text = str_replace('_', '\_', $text);
+	$text = str_replace('`', '\`', $text);
+	$text = str_replace('\'', '\\\'', $text);
+	$text = str_replace('"', '\"', $text);
+
 	$ch = curl_init();
 	curl_setopt_array(
 		$ch,
@@ -282,20 +291,21 @@ function send_telegram_message($text, $token, $chat_id) {
 			CURLOPT_POSTFIELDS => array(
 				'chat_id' => $chat_id,
 				'text' => $text,
-				'parse_mode' => 'Markdown'
+				'parse_mode' => 'MarkdownV2'
 			),
 		)
 	);
-	curl_exec($ch);
+	print_r(curl_exec($ch));
 }
 
 function telegram_log($message, $token=null, $chat_id=null, $force=true) {
+	global $UI_ERROR;
 
 	if (!$message) {
 		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Log empty message"';
 		return;
 	}
-	$message = "=== NetSchool PTHS website ===\n$message";
+	$message = "=== NetSchool PTHS website ===\n{$message}";
 
 	if (is_null($token)) {
 		if (!defined('TELEGRAM_TOKEN')) {

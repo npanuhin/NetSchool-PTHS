@@ -3,7 +3,7 @@ header('Location: /');
 exit;
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8"/>
@@ -17,4 +17,4 @@ exit;
 		<p>Запрашиваемая Вами страница не найдена. Скорее всего допущена ошибка в запросе. Попробуйте изменить адрес.</p>
 	</body>
 	<link rel="stylesheet" type="text/css" href="/fails/build/fail.min.css">
-</html>
+</html> -->

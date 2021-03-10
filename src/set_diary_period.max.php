@@ -18,8 +18,8 @@ if (
 	redirect();
 	exit;
 }
+get_person();
 
-header('Content-Type: application/json');
 
 try {
 	$period_start = new DateTime(trim($_POST['period_start']));

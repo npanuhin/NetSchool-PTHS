@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST['nam
 	redirect();
 	exit;
 }
+get_person();
 
-header('Content-Type: application/json');
 
 $name = trim($_POST['name']);
 

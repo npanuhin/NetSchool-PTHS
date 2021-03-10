@@ -15,7 +15,7 @@ main {
 	
 	.tasks {
 		position: relative;
-		margin: 45px auto 25px auto;
+		margin: 45px auto 45px auto;
 		z-index: 10;
 
 		box-sizing: border-box;
@@ -150,7 +150,7 @@ main {
 	.timetable {
 		position: relative;
 		z-index: 10;
-		margin: 45px auto 0 auto;
+		margin: 15px auto 0 auto;
 		width: calc(100% - 200px);
 
 		transition: $dark_mode_transition, 0.3s transform ease-in-out;

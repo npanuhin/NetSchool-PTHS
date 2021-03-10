@@ -7,6 +7,7 @@ $mark-expired-color: rgba(255, 0, 0, 0.1);
 $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 
 $today-color: rgba(0, 255, 0, 0.2);
+$today-color-dark: rgba(0, 255, 0, 0.2);
 
 main {
 	position: relative;
@@ -491,6 +492,9 @@ main {
 
 							&.today {
 								background: $today-color;
+								html.dark & {
+									background: $today-color-dark;
+								}
 							}
 						}
 					}
