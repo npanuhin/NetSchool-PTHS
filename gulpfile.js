@@ -32,12 +32,12 @@ var
     clean           = require('gulp-clean'),
 
     files = {
-        'scss':  ['/dev/null'],
-        'html':  ['/dev/null'],
-        'css':   ['/dev/null'],
-        'php':   ['/dev/null'],
-        'js':    ['/dev/null'],
-        'clean': ['/dev/null']
+        'scss':  ['/nosuchfileexists'],
+        'html':  ['/nosuchfileexists'],
+        'css':   ['/nosuchfileexists'],
+        'php':   ['/nosuchfileexists'],
+        'js':    ['/nosuchfileexists'],
+        'clean': ['/nosuchfileexists']
     };
 
     files['html'].push('fails/*.max.html');

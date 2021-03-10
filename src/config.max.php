@@ -279,6 +279,8 @@ function send_telegram_message($text, $token, $chat_id) {
 	$text = str_replace('`', '\`', $text);
 	$text = str_replace('\'', '\\\'', $text);
 	$text = str_replace('"', '\"', $text);
+	$text = str_replace('-', '\-', $text);
+	$text = str_replace('.', '\.', $text);
 
 	$ch = curl_init();
 	curl_setopt_array(
@@ -295,7 +297,7 @@ function send_telegram_message($text, $token, $chat_id) {
 			),
 		)
 	);
-	print_r(curl_exec($ch));
+	if (!json_encode(curl_exec($ch))['ok']) telegram_log('Errorintelegramlog');
 }
 
 function telegram_log($message, $token=null, $chat_id=null, $force=true) {
