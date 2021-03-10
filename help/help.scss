@@ -1,5 +1,8 @@
 @import '../src/styles/main';
 
+$github-icon-color-dark: #f0f6fc;
+$github-icon-hover-color-dark: rgba(240,246,252,0.7);
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -108,18 +111,24 @@ main {
 					// 	fill: $buttons-color-dark;
 					// }
 
-					transition: $dark_mode_transition, 0.1s filter ease-in-out;
+					transition: $dark_mode_transition, 0.1s fill ease-in-out, 0.1s filter ease-in-out;
 				}
 			}
 		}
 
 		.github_link {
-			&:hover svg path {
-				filter: contrast(30%);
+			svg path {
+				fill: #000;
+				html.dark & {
+					fill: $github-icon-color-dark;
+				}
 			}
 
-			html.dark & svg path {
-				fill: #fff;
+			&:hover svg path {
+				fill: #666;
+				html.dark & {
+					fill: $github-icon-hover-color-dark;
+				}
 			}
 		}
 
