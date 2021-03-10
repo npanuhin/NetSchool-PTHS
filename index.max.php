@@ -89,7 +89,7 @@ if (!$AUTHORIZED) {
 					foreach ($tasks as $task) {
 						$day = $task[0];
 						$lesson = $task[1];
-						$task = $task[2];
+						$task_name = $task[2];
 						$task_index = $task[3];
 						$task_expired = $task[4];
 						?>
@@ -106,7 +106,7 @@ if (!$AUTHORIZED) {
 							<?php echo $lesson . ': ' ?>
 							
 							<span>
-								<a href="/marks/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a>
+								<a href="/marks/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
 
 							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
