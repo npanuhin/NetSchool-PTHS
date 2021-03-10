@@ -27,7 +27,6 @@ if (!$AUTHORIZED) {
 	<main>
 		<?php
 
-		$has_tasks = false;
 		$has_announcements = false;
 
 		// try {
@@ -42,81 +41,83 @@ if (!$AUTHORIZED) {
 		require_once __DIR__ . '/src/menu.html';
 
 		$diary = json_decode($person['diary'], true);
+		$tasks = [];
 
 		if (!is_null($diary)) {
-			?>
 
-			<div class="tasks <?php if (!$has_announcements) echo 'wide' ?>" title="Просроченные задания и задания текущего дня">
+			// Expired tasks:
+			foreach ($diary as $date => $day_tasks) {
+
+				$lessons_task_index = [];
+				foreach ($day_tasks as $task_data) {
+					$lesson = $task_data[0];
+					$task = $task_data[2];
+					$task_expired = $task_data[5];
+
+					$day = new DateTime($date);
+
+					if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
+
+					$task_index = $lessons_task_index[$lesson]++;
+
+					if ($task_expired) $tasks[] = [$day, $lesson, $task, $task_index, true];
+				}
+			}
+
+			// Tomorrow tasks:
+			$day = new DateTime($SCHOOL_DAY->format('Y-m-d'));
+			$lessons_task_index = [];
+			foreach ($diary[$day->format('Y-m-d')] as $task_data) {
+				$lesson = $task_data[0];
+				$task = $task_data[2];
+
+				if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
+
+				$task_index = $lessons_task_index[$lesson]++;
+
+				$tasks[] = [$day, $lesson, $task, $task_index, false];
+			}
+		}
+
+		if (!empty($tasks)) {
+			?>
+			<div class="tasks<?php if (!$has_announcements) echo ' wide' ?>" title="Просроченные задания и задания текущего дня">
 				<h2>Задания</h2>
 				<ul>
 					<?php
 
-					foreach ($diary as $date => $tasks) {
+					foreach ($tasks as $task) {
+						$day = $task[0];
+						$lesson = $task[1];
+						$task_name = $task[2];
+						$task_index = $task[3];
+						$task_expired = $task[4];
+						?>
 
-						$lessons_task_index = [];
-						foreach ($tasks as $task_data) {
-							$lesson = $task_data[0];
-							$task_type = $task_data[1];
-							$task = $task_data[2];
-							$mark_rate = $task_data[3];
-							$mark = $task_data[4];
-							$task_expired = $task_data[5];
-
-							$day = new DateTime($date);
-
-							if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
-
-							$task_index = $lessons_task_index[$lesson]++;
-
+						<li
+							<?php
 							if ($task_expired) {
 								?>
-								<li class="expired" title="Задание просрочено, было задано <?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>">
-									<?php echo $lesson . ': ' ?>
-
-									<span>
-										<a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a>
-									</span>
-
-									<div><?php echo $day->format('d') . ' ' . $months_genetive[$day->format('m') - 1] . ', ' . format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>
-									</div>
-								
-								</li>
+								class="expired" title="Задание просрочено, было задано <?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>"
 								<?php
 							}
-						}
-					}
-
-					$day = new DateTime($SCHOOL_DAY->format('Y-m-d'));
-					$lessons_task_index = [];
-					foreach ($diary[$day->format('Y-m-d')] as $task_data) {
-						$lesson = $task_data[0];
-						$task_type = $task_data[1];
-						$task = $task_data[2];
-						$mark_rate = $task_data[3];
-						$mark = $task_data[4];
-						$task_expired = $task_data[5];
-
-						if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
-
-						$task_index = $lessons_task_index[$lesson]++;
-
-						?>
-						<li>
+							?>
+						>
 							<?php echo $lesson . ': ' ?>
 							
 							<span>
-								<a href="/marks#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task ?></a>
+								<a href="/marks/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
 
 							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
 						</li>
+
 						<?php
 					}
 
 					?>
 				</ul>
 			</div>
-
 			<?php
 		}
 
