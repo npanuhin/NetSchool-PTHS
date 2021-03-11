@@ -29,7 +29,8 @@ main {
 		}
 		border-radius: 30px;
 
-		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+		transition: 0.3s transform ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
 		h2 {
 			padding: 0 0 16px 0;
@@ -72,7 +73,7 @@ main {
 				padding-left: 7px;
 
 				span a {
-				    font-weight: 400;
+					font-weight: 400;
 					position: relative;
 					color: $text-color;
 					html.dark & {
@@ -92,7 +93,8 @@ main {
 					// 	}
 						
 					// 	opacity: 0;
-					// 	transition: $dark_mode_transition, 0.07s opacity ease-in-out;
+					// 	transition: 0.07s opacity ease-in-out;
+					// 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.07s opacity ease-in-out !important;}
 					// }
 
 					&:hover::before {
@@ -108,32 +110,23 @@ main {
 					position: relative;
 					top: -1.2px;
 					display: inline-block;
-					padding: 5px 11px;
+					padding: 4.5px 11px 5.5px 11px;
 					margin-left: 6px;
-					border-radius: 15px;
+					border-radius: 12px;
 					
-					line-height: 15px;
+					line-height: 14px;
 					font-size: 14px;
 					font-weight: 400;
 
-
-					border-width: 1px;
-					border-color: $green-color;
-					border-style: solid;
+					border: 1px solid $green-color;
 
 					color: $green-color;
-
-
 				}
 
-				&.expired {
-				    div {
-					    border-color: $orange-color;
-					    border-style: solid;
-
-					    color: $orange-color;
-					}
-			    }
+				&.expired div {
+					color: $orange-color;
+					border-color: $orange-color;
+				}
 			}
 		}
 	}
@@ -149,7 +142,8 @@ main {
 		margin: 15px auto 0 auto;
 		width: calc(100% - 200px);
 
-		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+		transition: 0.3s transform ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
 		& > div {
 			position: absolute;
@@ -238,11 +232,13 @@ main {
 					color: $text-color-dark;
 				}
 
-				transition: $dark_mode_transition, 0.15s opacity 0.2s ease-in-out;
+				transition: 0.15s opacity 0.2s ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.15s opacity 0.2s ease-in-out !important;}
 			}
 
 			&.shown > button {
-				transition: $dark_mode_transition, 0.2s opacity 0s ease-in-out;
+				transition: 0.2s opacity 0s ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s opacity 0s ease-in-out !important;}
 				opacity: 1;
 			}
 
@@ -268,7 +264,8 @@ main {
 					grid-row-gap: 40px;
 				}
 
-				transition: $dark_mode_transition, 0.5s opacity ease-in-out, visibility 0.5s;
+				transition: 0.5s opacity ease-in-out, visibility 0.5s;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.5s opacity ease-in-out, visibility 0.5s !important;}
 				opacity: 0;
 				visibility: hidden;
 
@@ -400,7 +397,6 @@ main {
 									html.dark & {
 										background: #5c6670;
 									}
-									transition: $dark-mode-transition;
 									border-radius: 2px;
 								}
 							}
@@ -468,7 +464,8 @@ main {
 			cursor: pointer;
 			padding: 0 45px;
 
-			transition: $dark_mode_transition, 0.15s transform ease-in-out, 0.2s opacity ease-in-out;
+			transition: 0.15s transform ease-in-out, 0.2s opacity ease-in-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.15s transform ease-in-out, 0.2s opacity ease-in-out !important;}
 
 			&.hidden {
 				opacity: 0;
@@ -542,10 +539,8 @@ main {
 
 	visibility: hidden;
 	opacity: 0;
-	transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
-	html.dark & {
-		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0.2s;
-	}
+	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
 	line-height: 23px;
 
@@ -571,10 +566,8 @@ main {
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
-		html.dark & {
-			transition: $dark_mode_transition, 0.1s opacity ease-in-out, 0s visibility 0s;
-		}
+		transition: 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0s !important;}
 	}
 
 	&.vacation {

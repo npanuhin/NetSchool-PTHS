@@ -33,7 +33,8 @@ main {
 		}
 		border-radius: 30px;
 
-		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+		transition: 0.3s transform ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
 		h3 {
 			font-family: Manrope;
@@ -97,7 +98,8 @@ main {
 			}
 			border-radius: 7px;
 
-			transition: $dark_mode_transition, 0.2s border-color ease-in-out;
+			transition: 0.2s border-color ease-in-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s border-color ease-in-out !important;}
 
 			&:focus {
 				border: 2px solid $orange-color;
@@ -153,7 +155,8 @@ main {
 						padding: 19px 15px 19px 30px;
 
 						cursor: pointer;
-						transition: $dark_mode_transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+						transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+						html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out !important;}
 						opacity: 1;
 
 						path {
@@ -205,7 +208,8 @@ main {
 				position: relative;
 
 				z-index: 10;
-				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
+				transition: 0.1s box-shadow ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s box-shadow ease-in-out !important;}
 
 				li {
 					padding-right: 20px;
@@ -231,7 +235,8 @@ main {
 				width: calc(100% + 1px);
 
 				z-index: 10;
-				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
+				transition: 0.1s box-shadow ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s box-shadow ease-in-out !important;}
 
 
 				li {
@@ -542,10 +547,8 @@ main {
 
 	visibility: hidden;
 	opacity: 0;
-	transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
-	html.dark & {
-		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
-	}
+	transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
 	line-height: 23px;
 
@@ -579,10 +582,8 @@ main {
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
-		html.dark & {
-			transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
-		}
+		transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s !important;}
 	}
 
 	&.expired {
@@ -606,7 +607,8 @@ main {
 
 		cursor: pointer;
 		opacity: 0.6;
-		transition: $dark_mode_transition, 0.08s opacity ease-in-out;
+		transition: 0.08s opacity ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.08s opacity ease-in-out !important;}
 		&:hover {
 			opacity: 1;
 		}

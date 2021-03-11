@@ -114,6 +114,7 @@ $container-shadow: 10px 10px 20px #205182;
 			cursor: pointer;
 
 			transition: 0.2s box-shadow ease-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s box-shadow ease-out !important;}
 
 			&:hover {
 				box-shadow: 5px 5px 10px rgba(228, 120, 5, 0.35);
@@ -140,6 +141,7 @@ $container-shadow: 10px 10px 20px #205182;
 		letter-spacing: -0.005em;
 
 		transition: 0.5s opacity ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.5s opacity ease-in-out !important;}
 
 		@media (max-width: 700px) {
 			background: rgba(0, 0, 0, 0.90);

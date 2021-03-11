@@ -55,7 +55,8 @@
 			html.dark & {
 				fill: $buttons-color-dark;
 			}
-			transition: $dark-mode-transition, 0.08s fill ease-in-out;
+			transition: 0.08s fill ease-in-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.08s fill ease-in-out !important;}
 		}
 
 		&:hover .sign-out-icon path {

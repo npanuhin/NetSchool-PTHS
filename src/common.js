@@ -1,6 +1,6 @@
 var
-	html = document.getElementsByTagName("html")[0],
-	body = document.getElementsByTagName("body")[0],
+	html = document.documentElement,
+	body = document.body,
 	main = document.getElementsByTagName("main")[0],
 	
 	// main_bottom_margin = 100,
@@ -14,7 +14,9 @@ var
 	message_alerts = document.getElementsByClassName("message_alert"),
 
 	ui_alert_box = document.getElementsByClassName("ui_alert")[0],
-	ui_alert_box_timout;
+	ui_alert_box_timout,
+
+	dark_mode_transition_timeout = 800;
 
 
 function ui_alert(text) {
@@ -28,9 +30,7 @@ function ui_alert(text) {
 
 Event.add(window, "load", () => {
 
-	html.classList.add("loaded");
-
-	main.style.minHeight = menu.clientHeight + "px";
+	setTimeout(() => {html.classList.add("loaded")}, 50);
 
 	Event.add(menu_button, "mousedown", () => {
 		html.classList.add("interacted");
@@ -48,6 +48,7 @@ Event.add(window, "load", () => {
 			"/src/toggle_dark_mode.php",
 			{},
 			(req) => {
+				html.classList.add("dark_mode_transition");
 				html.classList.remove("wait");
 
 				if (req.responseText == "1") {
@@ -60,6 +61,8 @@ Event.add(window, "load", () => {
 					alert("Error");
 					alert(req.responseText);
 				}
+
+				// setTimeout(() => {html.classList.remove("dark_mode_transition")}, dark_mode_transition_timeout);
 			},
 			(req) => {
 				html.classList.remove("wait");

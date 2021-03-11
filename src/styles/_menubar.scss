@@ -16,7 +16,8 @@
 			fill: $buttons-color-dark;
 		}
 
-		transition: $dark_mode_transition, 0.08s fill ease-in-out;
+		transition: 0.08s fill ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.08s fill ease-in-out !important;}
 	}
 
 	.menu_icon_wrapper {
