@@ -107,7 +107,7 @@ get_person();
 							<?php echo $lesson . ': ' ?>
 							
 							<span>
-								<a href="/marks/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
+								<a href="/diary/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
 
 							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
