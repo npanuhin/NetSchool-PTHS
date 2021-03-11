@@ -3,6 +3,13 @@ require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/session.php';
 include_once __DIR__ . '/lib/simple_html_dom.php';
 
+if (!$AUTHORIZED) {
+	logout();
+	redirect('/login/');
+	exit;
+}
+get_person();
+
 //jan feb mar apr may jun jul aug sep oct nov dec
 $_monthsList = array("Jan" => "января", "Feb" => "февраля", 
 "Mar" => "марта", "Apr" => "апреля", "May" => "мая", "Jun" => "июня", 
@@ -34,6 +41,7 @@ $result = mb_convert_encoding(file_get_contents($href, false, stream_context_cre
 
 
 $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
+
 
 echo "[";
 
