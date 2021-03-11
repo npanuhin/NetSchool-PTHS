@@ -4,7 +4,6 @@ $expired-color: rgb(255, 80, 80);
 
 $arrows-color-dark: #696979;
 
-
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -56,12 +55,13 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 18px;
+				font-size: 16px;
 				line-height: 32px;
 			}
 
 			li, li span, li a {
 				color: $text-color;
+				font-weight: 600;
 				html.dark & {
 					color: $text-color-dark;
 				}
@@ -72,10 +72,11 @@ main {
 				padding-left: 7px;
 
 				span a {
+				    font-weight: 400;
 					position: relative;
-					color: $orange-color;
+					color: $text-color;
 					html.dark & {
-						color: $orange-color-dark;
+						color: $text-color-dark;
 					}
 
 					// &::before {
@@ -103,27 +104,6 @@ main {
 					}
 				}
 
-				&.expired {
-
-					div {
-						background: #f53;
-					}
-
-					span a {
-						color: $expired-color;
-						html.dark & {
-							color: $expired-color;
-						}
-
-						&::before {
-							background: $expired-color;
-							html.dark & {
-								background: $expired-color;
-							}
-						}
-					}
-				}
-
 				div {
 					position: relative;
 					top: -1.2px;
@@ -133,11 +113,27 @@ main {
 					border-radius: 15px;
 					
 					line-height: 15px;
-					font-size: 13px;
-					color: #fff;
-					// background: $light-orange-color;
-					background: #0fb;
+					font-size: 14px;
+					font-weight: 400;
+
+
+					border-width: 1px;
+					border-color: $green-color;
+					border-style: solid;
+
+					color: $green-color;
+
+
 				}
+
+				&.expired {
+				    div {
+					    border-color: $orange-color;
+					    border-style: solid;
+
+					    color: $orange-color;
+					}
+			    }
 			}
 		}
 	}
@@ -308,7 +304,7 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
-						font-size: 15px;
+						font-size: 16px;
 						line-height: 32px;
 
 						height: 32px;
@@ -358,7 +354,7 @@ main {
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: normal;
-								font-size: 15px;
+								font-size: 16px;
 								line-height: 25px;
 								color: $text-color;
 								html.dark & {
