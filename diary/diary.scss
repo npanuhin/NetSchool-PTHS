@@ -33,7 +33,7 @@ main {
 		}
 		border-radius: 30px;
 
-		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+		transition:  0.3s transform ease-in-out;
 
 		h3 {
 			font-family: Manrope;
@@ -97,7 +97,7 @@ main {
 			}
 			border-radius: 7px;
 
-			transition: $dark_mode_transition, 0.2s border-color ease-in-out;
+			transition: 0.2s border-color ease-in-out;
 
 			&:focus {
 				border: 2px solid $orange-color;
@@ -153,7 +153,7 @@ main {
 						padding: 19px 15px 19px 30px;
 
 						cursor: pointer;
-						transition: $dark_mode_transition, 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
+						transition: 0.1s transform ease-in-out, 0.1s padding ease-in-out, 0.1s opacity ease-in-out;
 						opacity: 1;
 
 						path {
@@ -205,7 +205,7 @@ main {
 				position: relative;
 
 				z-index: 10;
-				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
+				transition: 0.1s box-shadow ease-in-out;
 
 				li {
 					padding-right: 20px;
@@ -231,7 +231,7 @@ main {
 				width: calc(100% + 1px);
 
 				z-index: 10;
-				transition: $dark_mode_transition, 0.1s box-shadow ease-in-out;
+				transition: 0.1s box-shadow ease-in-out;
 
 
 				li {
@@ -542,9 +542,9 @@ main {
 
 	visibility: hidden;
 	opacity: 0;
-	transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark & {
-		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+		transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	}
 
 	line-height: 23px;
@@ -579,9 +579,9 @@ main {
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
 		html.dark & {
-			transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+			transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
 		}
 	}
 
@@ -606,7 +606,7 @@ main {
 
 		cursor: pointer;
 		opacity: 0.6;
-		transition: $dark_mode_transition, 0.08s opacity ease-in-out;
+		transition: 0.08s opacity ease-in-out;
 		&:hover {
 			opacity: 1;
 		}

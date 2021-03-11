@@ -14,7 +14,9 @@ var
 	message_alerts = document.getElementsByClassName("message_alert"),
 
 	ui_alert_box = document.getElementsByClassName("ui_alert")[0],
-	ui_alert_box_timout;
+	ui_alert_box_timout,
+
+	dark_mode_transition_timeout = 600;
 
 
 function ui_alert(text) {
@@ -48,6 +50,7 @@ Event.add(window, "load", () => {
 			"/src/toggle_dark_mode.php",
 			{},
 			(req) => {
+				html.classList.add("dark_mode_transition");
 				html.classList.remove("wait");
 
 				if (req.responseText == "1") {
@@ -60,6 +63,8 @@ Event.add(window, "load", () => {
 					alert("Error");
 					alert(req.responseText);
 				}
+
+				setTimeout(() => {html.classList.remove("dark_mode_transition")}, dark_mode_transition_timeout);
 			},
 			(req) => {
 				html.classList.remove("wait");

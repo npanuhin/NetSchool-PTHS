@@ -11,7 +11,7 @@ main {
 	.timetable {
 		width: 100%;
 
-		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+		transition: 0.3s transform ease-in-out;
 
 		.float_wrapper {
 			overflow: hidden;
