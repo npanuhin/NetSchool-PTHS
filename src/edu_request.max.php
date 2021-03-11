@@ -17,12 +17,18 @@ $nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->form
 
 $dayText = date_create($_POST['day'])->Format('j') .' '. $_monthsList[date_create($_POST['day'])->Format('M')];
 
+if($_POST['courses']){
+	$href = 'http://edu.school.ioffe.ru/tt_special.php';
+}
+else{
+	$href = 'http://edu.school.ioffe.ru/tt_student.php';
+}
 
-$result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_student.php', false, stream_context_create(array(
+$result = mb_convert_encoding(file_get_contents($href, false, stream_context_create(array(
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=Смотреть&nteacher=-"
+        'content' => "nweek={$nweek}&nclass={$class}&nteacher=-" 
     )
 ))), 'utf-8', 'koi8-r');
 
@@ -37,7 +43,7 @@ foreach ($dom->find('tr') as $line) {
 
 	$tds = $line->find('td');
 
-	if (count($tds) == 5)
+	if (count($tds) == 5 + $_POST['courses'])
 	{
 
 		//!== , it's important. Don't change.
@@ -53,7 +59,7 @@ foreach ($dom->find('tr') as $line) {
 			$flag = true;
 		}
 		echo '{"time":"';
-		echo $tds[count($tds)-4]->plaintext;
+		echo $tds[count($tds)-4-$_POST['courses']]->plaintext;
 		echo '","name":"';
 		echo $tds[count($tds)-3]->plaintext;
 		echo '","teacher":"';
