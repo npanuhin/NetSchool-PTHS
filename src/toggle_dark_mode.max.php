@@ -9,13 +9,11 @@ if (!$AUTHORIZED) {
 	exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
 	redirect();
 	exit;
 }
-
-header('Content-Type: application/json');
 
 if (!isset($_COOKIE['dark']) || $_COOKIE['dark'] == '0') {
 	setcookie('dark', '1', time() + 60 * 60 * 24 * 365 * 100, '/; samesite=Lax', $httponly=false);

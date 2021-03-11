@@ -7,6 +7,7 @@ if (!$AUTHORIZED) {
 	redirect('/login/');
 	exit;
 }
+get_person();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ if (!$AUTHORIZED) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="build/home.min.css">
-	<?php include_once __DIR__ . '/src/favicon.php' ?>
+	<?php include_once __DIR__ . '/src/favicon.html' ?>
 	<title>NetSchool PTHS</title>
 </head>
 <body>
@@ -106,7 +107,7 @@ if (!$AUTHORIZED) {
 							<?php echo $lesson . ': ' ?>
 							
 							<span>
-								<a href="/marks/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
+								<a href="/diary/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
 
 							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>

@@ -6,6 +6,9 @@ $details-expired-shadow: 2px 1px 15px rgba(255, 0, 0, 0.3);
 $mark-expired-color: rgba(255, 0, 0, 0.1);
 $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 
+$today-color: rgba(0, 255, 0, 0.2);
+$today-color-dark: rgba(0, 255, 0, 0.2);
+
 main {
 	position: relative;
 	margin: 120px auto 100px auto;
@@ -104,7 +107,7 @@ main {
 			}
 		}
 
-		& > div {
+		.table_layout {
 
 			display: grid;
 			grid-template-rows: 1fr;
@@ -377,6 +380,11 @@ main {
 								white-space: nowrap;
 
 								padding: 4px 20px;
+
+								&.today {
+									border-top-left-radius: 10px;
+									border-top-right-radius: 10px;
+								}
 							}
 						}
 
@@ -410,7 +418,7 @@ main {
 
 									font-family: Manrope;
 									font-style: normal;
-									font-weight: 500;
+									font-weight: 600;
 									font-size: 20px;
 									line-height: 28px;
 
@@ -431,17 +439,20 @@ main {
 									}
 
 									&.high {
+										color: $green-color;
+									}
+
+									&.expired {
 										color: $orange-color;
 									}
 
 									html.dark & {
 										&.high {
+											color: $green-color-dark;
+										}
+										&.expired {
 											color: $orange-color-dark;
 										}
-									}
-
-									&.expired {
-										color: #f00;
 									}
 
 									div {
@@ -465,22 +476,19 @@ main {
 								border-radius: 3px;
 							}
 
-							&.expired > div::before {
-								border-color: #f00;
-								background: $mark-expired-color;
-								html.dark & {
-									border-color: #f00;
-									background: $mark-expired-color-dark;
-								}
-							}
-
 							&.selected > div::before {
 								border-width: 2px;
 								border-color: $orange-color;
 								html.dark & {
 									border-color: $orange-color-dark;
 								}
-								// background: rgba(255, 137, 12, 0.1);
+							}
+
+							&.today {
+								background: $today-color;
+								html.dark & {
+									background: $today-color-dark;
+								}
 							}
 						}
 					}

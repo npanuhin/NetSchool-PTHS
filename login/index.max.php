@@ -6,7 +6,6 @@ if ($AUTHORIZED) {
 	redirect();
 	exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@ if ($AUTHORIZED) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="build/login.min.css">
-		<?php include_once __DIR__ . '/../src/favicon.php' ?>
+		<?php include_once __DIR__ . '/../src/favicon.html' ?>
 		<title>NetSchool PTHS | Вход</title>
 	</head>
 	<body>

@@ -7,6 +7,7 @@ if (!$AUTHORIZED) {
 	redirect('/login/');
 	exit;
 }
+get_person();
 
 $remove_success = false;
 
@@ -33,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<?php include_once __DIR__ . '/../src/favicon.php' ?>
+	<?php include_once __DIR__ . '/../src/favicon.html' ?>
 	<title>NetSchool PTHS | Удалить аккаунт</title>
 </head>
 

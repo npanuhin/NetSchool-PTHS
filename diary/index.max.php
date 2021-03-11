@@ -7,6 +7,7 @@ if (!$AUTHORIZED) {
 	redirect('/login/');
 	exit;
 }
+get_person();
 
 $default_mark = 1;
 $default_mark_rate = 10;
@@ -19,7 +20,7 @@ $default_mark_rate = 10;
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="build/diary.min.css">
-	<?php include_once __DIR__ . '/../src/favicon.php' ?>
+	<?php include_once __DIR__ . '/../src/favicon.html' ?>
 	<title>NetSchool PTHS | Оценки</title>
 </head>
 <body>
@@ -47,7 +48,7 @@ $default_mark_rate = 10;
 				<?php
 			} else {
 
-				$all_days = [];
+				$all_days = [$TODAY->format('Y-m-d')];
 				$all_average_marks = [];
 				$table = [];
 				foreach ($diary as $day => $tasks) {
@@ -60,7 +61,7 @@ $default_mark_rate = 10;
 						$table[$lesson][$day][] = [
 							$task_data[4],          // mark
 							$task_data[3],          // mark_rate
-							trim($task_data[2]),    // task
+							trim($task_data[2]),    // task_name
 							trim($task_data[1]),    // task_type
 							$task_data[5],          // task_expired
 							trim($task_data[6][0]), // teacher
@@ -106,7 +107,7 @@ $default_mark_rate = 10;
 				</label>
 
 
-				<div>
+				<div class="table_layout">
 					<ul class="left_column">
 						<li></li>
 						<li class="scroll_left">
@@ -131,7 +132,7 @@ $default_mark_rate = 10;
 							<tr>
 								<?php
 								$cur_month = null;
-								$width = 0;
+								$empty_width = 0;
 
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
@@ -140,7 +141,7 @@ $default_mark_rate = 10;
 									if ($datetime->format('m') != $cur_month) {
 										?>
 
-										<td colspan="<?php echo $width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
+										<td colspan="<?php echo $empty_width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
 											<span>
 												<?php echo $months[(int)($cur_month - 1)] ?>
 											</span>
@@ -148,16 +149,16 @@ $default_mark_rate = 10;
 
 										<?php
 										$cur_month = $datetime->format('m');
-										$width = 0;
+										$empty_width = 0;
 									}
 
-									++$width;
+									++$empty_width;
 								}
 
-								if ($width != 0) {
+								if ($empty_width != 0) {
 									?>
 
-									<td colspan="<?php echo $width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
+									<td colspan="<?php echo $empty_width ?>" title="<?php echo $months[(int)($cur_month - 1)] ?>">
 										<span>
 											<?php echo $months[(int)($cur_month - 1)] ?>
 										</span>
@@ -173,7 +174,7 @@ $default_mark_rate = 10;
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
 									?>
-									<td title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
+									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
 										<?php echo $datetime->format('d') ?>
 										<br>
 										<?php echo $weekdays_short[$datetime->format('w') - 1] ?>
@@ -212,106 +213,115 @@ $default_mark_rate = 10;
 									}
 									$all_average_marks[$lesson] = $average_mark / $rate_summ;
 
-									$empty_space = 0;
+									$empty_width = 0;
 									foreach ($all_days as $day) {
-										if (isset($days[$day]) && $days[$day]) {
+										if ((isset($days[$day]) && $days[$day]) || $day == $TODAY->format('Y-m-d')) {
 
-											if ($empty_space) {
+											if ($empty_width) {
 												?>
-												<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
+												<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
 												<?php
 											}
-											$empty_space = 0;
+											$empty_width = 0;
 											?>
 
-											<td class="<?php echo $day ?> filled<?php if ($days_expired_key[$day]) echo ' expired' ?>">
+											<td class="<?php echo $day ?> <?php
+												if (isset($days[$day]) && $days[$day]) {
+													echo ' filled';
+													if ($days_expired_key[$day])     echo ' expired';
+												}
+												if ($day == $TODAY->format('Y-m-d')) echo ' today';
+											?>">
 												<div>
 													<?php
-													$tasks = $days[$day];
+													if (isset($days[$day]) && $days[$day]) {
 
-													$task_index = 0;
+														$tasks = $days[$day];
 
-													for ($task_index = 0; $task_index < count($tasks); ++$task_index) {
-														$task_data = $tasks[$task_index];
+														$task_index = 0;
 
-														$mark = $task_data[0];
-														$mark_rate = $task_data[1];
-														$task = $task_data[2];
-														$task_type = $task_data[3];
-														$task_expired = $task_data[4];
-														$teacher = $task_data[5];
-														$task_data_ext = $task_data[6];
+														for ($task_index = 0; $task_index < count($tasks); ++$task_index) {
+															$task_data = $tasks[$task_index];
 
-														$has_mark = (!is_null($mark) || $task_expired);
+															$mark = $task_data[0];
+															$mark_rate = $task_data[1];
+															$task = $task_data[2];
+															$task_type = $task_data[3];
+															$task_expired = $task_data[4];
+															$teacher = $task_data[5];
+															$task_data_ext = $task_data[6];
 
-														if ($mark_rate) $mark_rate = $default_mark_rate;
+															$has_mark = (!is_null($mark) || $task_expired);
 
-														?>
-														<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
-															<?php
-
-															if (!is_null($mark) || $task_expired) {
-
-																// $classes = [];
-																// if ($task_expired) $classes[] = 'expired';
-																// if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
-
-																if ($task_expired) echo ' class="expired"';
-
-																if ($mark) {
-																	echo ' data-mark="' . $mark . '"';
-																} else {
-																	echo ' data-mark="' . $default_mark . '"';
-																}
-
-																echo ' data-rate="' . $mark_rate . '"';
-															}
+															if ($mark_rate) $mark_rate = $default_mark_rate;
 
 															?>
-														>
-															<?php
-
-															if ($mark) {
-																echo $mark;
-															} else if ($task_expired) {
-																echo $default_mark;
-															} else {
-																echo '-';
-															}
-
-															?>
-
-															<div>
+															<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
 																<?php
 
-																if ($task) {
-																	?>
-																	<h5><?php echo $task ?></h5>
-																	<?php
-																}
+																if (!is_null($mark) || $task_expired) {
 
-																$task_data = [];
+																	// $classes = [];
+																	// if ($task_expired) $classes[] = 'expired';
+																	// if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
 
-																if ($teacher) $task_data[] = 'Учитель: ' . $teacher;
-																if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
-																if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
+																	if ($task_expired) echo ' class="expired"';
 
-																$ext_task_data = '';
-																foreach ($task_data_ext as $key => $value) {
-																	if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
-																		$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
+																	if ($mark) {
+																		echo ' data-mark="' . $mark . '"';
+																	} else {
+																		echo ' data-mark="' . $default_mark . '"';
 																	}
+
+																	echo ' data-rate="' . $mark_rate . '"';
 																}
 
-																if ($ext_task_data) $task_data[] = $ext_task_data;
-
-																echo implode('<br>', $task_data);
 																?>
-															</div>
-															
-														</span>
+															>
+																<?php
 
-														<?php
+																if ($mark) {
+																	echo $mark;
+																} else if ($task_expired) {
+																	echo $default_mark;
+																} else {
+																	echo '-';
+																}
+
+																?>
+
+																<div>
+																	<?php
+
+																	if ($task) {
+																		?>
+																		<h5><?php echo $task ?></h5>
+																		<?php
+																	}
+
+																	$task_data = [];
+
+																	if ($teacher) $task_data[] = 'Учитель: ' . $teacher;
+																	if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
+																	if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
+
+																	$ext_task_data = '';
+																	foreach ($task_data_ext as $key => $value) {
+																		if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
+																			$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
+																		}
+																	}
+
+																	if ($ext_task_data) $task_data[] = $ext_task_data;
+
+																	echo implode('<br>', $task_data);
+																	?>
+																</div>
+																
+															</span>
+
+															<?php
+														}
 													}
 													?>
 												</div>
@@ -320,13 +330,13 @@ $default_mark_rate = 10;
 											<?php
 
 										} else {
-											++$empty_space;
+											++$empty_width;
 										}
 									}
 
-									if ($empty_space) {
+									if ($empty_width) {
 										?>
-										<td<?php if ($empty_space > 1) echo ' colspan="' . $empty_space . '"' ?>></td>
+										<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
 										<?php
 									}
 									?>

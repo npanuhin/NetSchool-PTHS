@@ -47,6 +47,8 @@ if (count($data) == 0) {
 		exit(json_encode(array('message', 'Database request failed')));
 	}
 
+	telegram_log("User added\nUsername: {$username}");
+
 	exit(json_encode(array('message', 'Указанный логин не был найден, но был добавлен в очередь на обработку.<br>Если вы указали верные данные, вы сможете войти в систему через несколько минут.<br>В противном случае, ваши данные будут автоматически удалены.')));
 }
 
