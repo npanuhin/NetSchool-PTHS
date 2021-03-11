@@ -1,21 +1,23 @@
 function tablify(json){
-	s = "";
+	s = "<li><table>";
+	s += "<tr><th>Время</th><th>Учитель</th><th>Урок</th><th>Ссылка</th></tr>"
 	for (let i in json){
 		//TODO: rewrite to table or smth like this
 		let lesson = json[i];
-		s += '<li>'
-		s += lesson["time"]
-		s += '	'
-		s += lesson["teacher"]
-		s += '	'
-		s += lesson["name"]
+		s += '<tr><td>'
+		s += lesson["time"] + ""
+		s += '</td><td>'
+		s += lesson["teacher"] + ""
+		s += '</td><td>'
+		s += lesson["name"] + ""
+		s += '</td><td>'
 		if (lesson["href"]){
-			s += '	'
-			s += '<a href = ' + lesson["href"] + '> Zoom </a>'
+			s += '<a href = "' + lesson["href"] + '"> Zoom </a>'
 		}
-		s += '</li>'
+		s += '</td></tr>'
 		//console.log(lesson);
 	}
+	s += '</table></li>'
 	return s;
 }
 function zoom_main(r){
