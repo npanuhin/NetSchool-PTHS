@@ -246,3 +246,17 @@ main {
 
 	}
 }
+
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	
+	th {
+		color: $orange-color;
+		html.dark & {
+			color: $orange-color-dark;
+		}
+	}
+}
+
