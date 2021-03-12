@@ -53,37 +53,6 @@ get_person();
 
 			<div class="float_wrapper">
 
-				<div class="holidays<?php if (!$has_bells) echo ' wide' ?>" title="Расписание каникул">
-					<h3>Каникулы</h3>
-
-					<?php
-
-					$holidays = $db->getAll('SELECT ?n, ?n, ?n FROM `holidays`', 'name', 'start', 'end');
-
-					foreach ($holidays as $holiday) {
-						$holiday_start = new DateTime(trim($holiday['start']));
-						$holiday_end = new DateTime(trim($holiday['end']));
-						?>
-
-						<div class="holiday" title="<?php echo $holiday['name'] ?> каникулы: с <?php echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] ?> по <?php echo ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
-
-							<h6><?php echo $holiday['name'] ?></h6>
-
-							<?php
-
-							echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1]
-								 . ' - ' .
-								 ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1];
-
-							?>
-						</div>
-						
-						<?php
-					}
-					
-					?>
-				</div>
-
 				<?php
 
 				if ($has_bells) {
@@ -130,8 +99,10 @@ get_person();
 					<?php
 					
 				}
+				
 				?>
 				
+
 				
 			<?php
 			$has_cources = false;
@@ -152,7 +123,7 @@ get_person();
 
 			if ($has_cources) {
 				?>
-
+				 
 				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($MONDAY->format('d'), '0') . ' ' . $months_genetive[$MONDAY->format('m') - 1] ?> по <?php echo ltrim($SUNDAY->format('d'), '0') . ' ' . $months_genetive[$SUNDAY->format('m') - 1] ?>">
 					<h3>Спецкурсы<span>на этой неделе</span></h3>
 
@@ -207,6 +178,7 @@ get_person();
 					}
 					else{
 						?>
+						<div class="float_wrapper">
 						<div class="bells" title="Спецкурсы сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>)">
 						<h3>Спецкурсы</h3>
 						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">
@@ -220,11 +192,46 @@ get_person();
 						</li>
 						</div>
 						</div>
+						</div>
+						<div class="float_wrapper">
+				<div class="holidays<?php if (!$has_bells) echo ' wide' ?>" title="Расписание каникул">
+					<h3>Каникулы</h3>
+
+					<?php
+
+					$holidays = $db->getAll('SELECT ?n, ?n, ?n FROM `holidays`', 'name', 'start', 'end');
+
+					foreach ($holidays as $holiday) {
+						$holiday_start = new DateTime(trim($holiday['start']));
+						$holiday_end = new DateTime(trim($holiday['end']));
+						?>
+
+						<div class="holiday" title="<?php echo $holiday['name'] ?> каникулы: с <?php echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] ?> по <?php echo ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
+
+							<h6><?php echo $holiday['name'] ?></h6>
+
+							<?php
+
+							echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1]
+								 . ' - ' .
+								 ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1];
+
+							?>
+						</div>
+						
+						<?php
+					}
+					
+					?>
+				</div>
 						<?php
 					}
 					?>
 				</div>
-			</div> 
+				
+			</div>
+			
+			</div>
 		</div>
 
 	</main>
