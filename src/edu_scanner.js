@@ -1,6 +1,6 @@
 function tablify(json){
 	s = "<li><table>";
-	s += "<tr><th>Время</th><th>Учитель</th><th>Урок</th><th>Ссылка</th></tr>"
+	s += "<tr><th>Время</th><th>Учитель</th><th>Занятие</th><th>Ссылка</th></tr>"
 	for (let i in json){
 		//TODO: rewrite to table or smth like this
 		let lesson = json[i];
