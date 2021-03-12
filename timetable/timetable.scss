@@ -251,6 +251,14 @@ main {
 table {
 	table-layout: fixed;
 	width: 100%;
+	color: $text-color;
+	
+	td {
+		color: $text-color;
+		html.dark & {
+		color: $text-color-dark;
+		}
+	}
 	
 	th {
 		color: $orange-color;
