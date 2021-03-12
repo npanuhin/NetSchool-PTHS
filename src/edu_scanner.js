@@ -36,7 +36,10 @@ function zoom_cources(r){
 	}
 	document.getElementsByClassName("Zoom_cources")[0].innerHTML = tablify(json);
 }
-
+function update(){
+	ajax('POST', "../src/edu_request.php", data = data_m, success = zoom_main, error = console.log, complete = console.log);
+	ajax('POST', "../src/edu_request.php", data = data_c, success = zoom_cources, error = console.log, complete = console.log); 
+}
 //ugly, but found nothing more beautiful
 let currentDate = new Date()
 let d = currentDate.getDate()
@@ -48,6 +51,9 @@ let data_m = {'day': today,
 			'courses': 0};
 let data_c = {'day': today,
 			'courses': 1};
-	
-ajax('POST', "../src/edu_request.php", data = data_m, success = zoom_main, error = console.log, complete = console.log);
-ajax('POST', "../src/edu_request.php", data = data_c, success = zoom_cources, error = console.log, complete = console.log);  
+update();			
+window.setInterval(update, 10_000);
+
+
+
+
