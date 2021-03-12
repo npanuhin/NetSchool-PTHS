@@ -111,7 +111,7 @@ main {
 					// 	fill: $buttons-color-dark;
 					// }
 
-					transition: $dark_mode_transition, 0.1s fill ease-in-out, 0.1s filter ease-in-out;
+					transition: 0.1s fill ease-in-out, 0.1s filter ease-in-out;
 				}
 			}
 		}
@@ -134,7 +134,7 @@ main {
 
 		.vk_link {
 			&:hover svg .st0 {
-				filter: brightness(80%);
+				fill: #1F6CC4;
 			}
 		}
 	}
