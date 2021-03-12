@@ -58,9 +58,9 @@ get_person();
 				if ($has_bells) {
 					?>
 
-					<div class="bells" title="Звонки на сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>)">
-						<h3>Звонки</h3>
-						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">на сегодня</div>
+					<div class="bells" title="Уроки сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>)">
+						<h3>Уроки</h3>
+						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
 
 						<ul>
 						<div class = "Zoom_main_calls">
@@ -182,7 +182,7 @@ get_person();
 						<div class="bells" title="Спецкурсы сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>)">
 						<h3>Спецкурсы</h3>
 						<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">
-						на сегодня
+						сегодня
 						</div>
 
 						<ul>
