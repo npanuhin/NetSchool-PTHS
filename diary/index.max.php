@@ -129,6 +129,7 @@ $default_mark_rate = 10;
 					<div class="scrollbox">
 					
 						<table>
+							<!-- Months -->
 							<tr>
 								<?php
 								$cur_month = null;
@@ -169,6 +170,7 @@ $default_mark_rate = 10;
 								?>
 							</tr>
 
+							<!-- Days -->
 							<tr>
 								<?php
 								foreach ($all_days as $day) {
@@ -184,6 +186,7 @@ $default_mark_rate = 10;
 								?>
 							</tr>
 
+							<!-- Table -->
 							<?php
 							foreach ($all_lessons as $lesson) {
 								$days = $table[$lesson];

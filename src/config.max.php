@@ -19,8 +19,8 @@ require_once __DIR__ . '/lib/safemysql.class.php';
 
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
-define(TELEGRAM_TOKEN, $config['telegram_token']);
-define(TELEGRAM_CHATID, $config['telegram_chatid']);
+define('TELEGRAM_TOKEN', $config['telegram_token']);
+define('TELEGRAM_CHATID', $config['telegram_chatid']);
 
 
 // =========================================== CONST ===========================================
