@@ -6,7 +6,13 @@ $arrows-color-dark: #696979;
 
 main {
 	position: relative;
-	margin: 120px auto 100px auto;
+	
+	@media (max-width: $desktop) {
+		margin: 80px auto 100px auto;
+	}
+	@media (min-width: $desktop) {
+		margin: 120px auto 100px auto;
+	}
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: $main-width;
@@ -158,8 +164,8 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: bold;
-				font-size: 36px;
-				line-height: 65px;
+				font-size: var(--font-size-selector);
+				line-height: calc(var(--line-height-large));
 				color: #FFF;
 				text-shadow: $text-shadow;
 				html.dark & {
@@ -207,9 +213,11 @@ main {
 			}
 
 			& > button {
-				position: absolute;
+				@media (min-width: $desktop) {
+					position: absolute;
+				}
 				opacity: 0;
-				top: 20px;
+				top: -20px;
 				right: 20px;
 
 				padding: 7px;
@@ -258,10 +266,11 @@ main {
 					grid-column-gap: 50px;
 				}
 
-				@media (max-width: 850px) {
-					grid-template-rows: auto auto auto auto auto auto;
-					grid-template-columns: 1fr;
-					grid-row-gap: 40px;
+				@media (max-width: $desktop) {
+					grid-template-rows: auto auto;
+					grid-template-columns: 1fr 1fr;
+					grid-row-gap: 10px;
+					grid-column-gap: 10px;
 				}
 
 				transition: 0.5s opacity ease-in-out, visibility 0.5s;
@@ -301,6 +310,7 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
+						//TODO: font and line-height. height → 10px on mobile? 
 						font-size: 16px;
 						line-height: 32px;
 
