@@ -142,13 +142,13 @@ html.dark_mode_transition, html.dark_mode_transition * {
 }
 
 // Turn off transition on load
-html:not(.loaded), html:not(.loaded) * {
+html:not(.loaded), html:not(.loaded) body *:not(main > div:not(.message_alert)) {
     transition: 0s all linear !important;
     animation-duration: 0s !important;
 }
 
 // Wait cursor
-html.wait, html.wait * {
+html.wait, html.wait body * {
     cursor: wait !important;
 }
 
@@ -163,6 +163,7 @@ body {
 }
 
 
+@import 'src/styles/preloader';
 @import 'src/styles/menubar';
 @import 'src/styles/statusbar';
 
@@ -176,7 +177,7 @@ body {
     max-width: 100vw;
     max-height: 100vh;
     padding: 15px 40px;
-    z-index: 10000;
+    z-index: 1000;
     border-radius: 50px;
     background: rgba(20, 20, 20, 0.8);
     color: #fff;

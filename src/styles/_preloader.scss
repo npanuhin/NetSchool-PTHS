@@ -1,0 +1,9 @@
+main > div:not(.message_alert) {  // :not(.menu)
+	opacity: 0;
+	transition: 0.2s opacity ease-in-out; 
+
+	html.loaded & {
+		transition: 0.2s opacity ease-in-out;
+		opacity: 1;
+	}
+}

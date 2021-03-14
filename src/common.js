@@ -39,6 +39,14 @@ Event.add(window, "load", () => {
 		menu_button.classList.toggle("active", menu.classList.contains("shown"));
 	});
 
+	for (let menu_item of menu.getElementsByTagName("a")) {
+		Event.add(menu_item, "click", () => {
+			html.classList.remove("dark_mode_transition");
+			html.classList.add("wait");
+			html.classList.remove("loaded");
+		});
+	}
+
 	Event.add(dark_mode_button, "mousedown", () => {
 		html.classList.add("interacted");
 		html.classList.add("wait");
