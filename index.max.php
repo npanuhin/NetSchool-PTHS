@@ -174,7 +174,7 @@ get_person();
 						foreach ($day_period as $day) {
 							?>
 
-							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 								<?php
 
@@ -207,7 +207,7 @@ get_person();
 
 									?>
 
-									<h4><?php echo $weekdays[$day->format('w') - 1] ?></h4>
+									<h4><?php echo $weekdays[get_weekday($day)] ?></h4>
 
 									<div class="day_info"<?php if ($zoom_day) echo ' style="top: -11.5px"' ?>>
 										<?php
@@ -243,7 +243,7 @@ get_person();
 													++$lesson_index;
 													?>
 
-													<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+													<li class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
@@ -277,7 +277,7 @@ get_person();
 
 														?>
 
-														title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
+														title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
 													>
 
 														<a><?php echo handle_lesson_name($name) ?></a>
@@ -307,7 +307,7 @@ get_person();
 												++$lesson_index;
 												?>
 
-												<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+												<li class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 												<?php
 											}

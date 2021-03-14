@@ -176,10 +176,10 @@ $default_mark_rate = 10;
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
 									?>
-									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
+									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[get_weekday($datetime)] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[get_weekday($datetime)] ?>">
 										<?php echo $datetime->format('d') ?>
 										<br>
-										<?php echo $weekdays_short[$datetime->format('w') - 1] ?>
+										<?php echo $weekdays_short[get_weekday($datetime)] ?>
 									</td>
 									<?php
 								}

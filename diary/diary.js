@@ -269,7 +269,7 @@ function apply_period(save=false) {
 			average_mark = 0, rate_summ = 0;
 
 		for (let day of line.getElementsByTagName("td")) {
-			if (!day.classList.contains("filled")) continue;
+			// if (!day.classList.contains("filled") && !day.classList.contains("today")) continue;
 
 			let date;
 
@@ -299,7 +299,7 @@ function apply_period(save=false) {
 		}
 
 		for (let day of line.getElementsByTagName("td")) {
-			if (!day.classList.contains("filled")) continue;
+			// if (!day.classList.contains("filled") && !day.classList.contains("today")) continue;
 
 			let date;
 
@@ -351,23 +351,8 @@ function apply_period(save=false) {
 
 
 Event.add(window, "load", () => {
-	// Event.add(window, "resize", onResize);
+	Event.add(window, "resize", apply_period);
 	// onResize();
-
-	Event.add(window, "hashchange", onhashchange);
-
-	if (decodeURIComponent(window.location.hash)) {
-		setTimeout(onhashchange);
-
-	} else {
-		function initial_table_scroll() {
-			if (table_unlocked) return;
-			scroll_table.scrollLeft = scroll_table.scrollWidth;
-			on_table_scroll();
-			requestAnimationFrame(initial_table_scroll);
-		}
-		setTimeout(initial_table_scroll);
-	}
 
 	// body.append(details_block);
 	for (let task of tasks) {
@@ -392,20 +377,42 @@ Event.add(window, "load", () => {
 		scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
 	});
 
+	// Period
 	Event.add(period_start_input, "change", () => {
 		apply_period(true);
 	});
 	Event.add(period_end_input, "change", () => {
 		apply_period(true);
 	});
-	setTimeout(apply_period);
+	// setTimeout(apply_period);
+	setTimeout(apply_period, 100);
+	// setTimeout(apply_period, 200);
+	setTimeout(apply_period, 300);
+	setTimeout(apply_period, 500);
 
+	// Table scroll
 	setTimeout(on_table_scroll);
 	setTimeout(() => {
 		table_unlocked = true;
 		Event.add(scroll_table, "scroll", on_table_scroll);
 		setTimeout(apply_period);
 	}, 150);
+
+	// Hash
+	Event.add(window, "hashchange", onhashchange);
+
+	if (decodeURIComponent(window.location.hash)) {
+		setTimeout(onhashchange);
+
+	} else {
+		function initial_table_scroll() {
+			if (table_unlocked) return;
+			scroll_table.scrollLeft = scroll_table.scrollWidth;
+			on_table_scroll();
+			requestAnimationFrame(initial_table_scroll);
+		}
+		setTimeout(initial_table_scroll);
+	}
 });
 
 }
