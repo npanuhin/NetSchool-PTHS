@@ -145,7 +145,12 @@ main {
 	.timetable {
 		position: relative;
 		z-index: 10;
-		margin: 15px auto 0 auto;
+		@media (max-width: $desktop) {
+			margin: 15px auto 0 30px;
+		}
+		@media (min-width: $desktop) {
+			margin: 15px auto 0 auto;
+		}
 		width: calc(100% - 200px);
 
 		transition: 0.3s transform ease-in-out;
@@ -217,7 +222,7 @@ main {
 					position: absolute;
 				}
 				opacity: 0;
-				top: -20px;
+				top: 0px;
 				right: 20px;
 
 				padding: 7px;
@@ -496,7 +501,13 @@ main {
 		}
 
 		#timetable_previous {
-			left: -130px;
+			@media (max-width: $desktop) {
+				z-index: 1;
+				left: -70px;
+			}
+			@media (min-width: $desktop) {
+				left: -130px;
+			}
 			transform: translateY(-50%);
 			
 			&:hover {
@@ -505,7 +516,12 @@ main {
 		}
 
 		#timetable_next {
-			right: -130px;
+			@media (max-width: $desktop) {
+				right: -210px;
+			}
+			@media (min-width: $desktop) {
+				right: -130px;
+			}
 			transform: scale(-1, 1) translateY(-50%);
 
 			&:hover {
