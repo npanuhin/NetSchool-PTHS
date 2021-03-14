@@ -1,6 +1,34 @@
 // @media (max-width: 1170px)
 // @media (max-width: 850px)
 
+$desktop: 700px;
+
+@media (min-width: $desktop) {
+	//really desktop;
+	:root {
+		--font-size-smaller: 16px;
+		--font-size-usual: 18px;
+		--font-size-big: 24px;
+		--font-size-very-big: 36px;
+		--font-size-selector: 36px;
+		--line-height-article: 32px;
+		--line-height-large: 65px;
+	}
+}
+
+@media (max-width: $desktop) {
+	//mobile;
+	:root {
+		--font-size-smaller: 10px;
+		--font-size-usual: 12px;
+		--font-size-big: 14px;
+		--font-size-very-big: 18px;
+		--font-size-selector: 30px;
+		--line-height-article: 16px;
+		--line-height-large: 36px;
+	}
+}
+
 $dark-mode-transition: 0.5s color ease-in-out,
                        0.5s background-color ease-in-out,
                        0.5s border-color ease-in-out,
@@ -227,7 +255,7 @@ main {
         font-family: Manrope;
         font-style: normal;
         font-weight: normal;
-        font-size: 18px;
+        font-size: var(--font-size-usual);
         // line-height: 65px;
 
         box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
@@ -376,8 +404,7 @@ main {
                     font-family: Manrope;
                     font-style: normal;
                     font-weight: bold;
-                    font-size: 36px;
-                    line-height: 65px;
+					font-size: var(--font-size-selector);
                     cursor: pointer;
 
                     border-bottom: 2.5px solid transparent;
