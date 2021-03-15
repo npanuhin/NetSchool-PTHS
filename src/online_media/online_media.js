@@ -24,7 +24,7 @@ function load_online_media(argument) {
 
 	var tag = document.createElement('script');
 	tag.src = "https://www.youtube.com/iframe_api";
-	online_media.insertBefore(tag, online_media_toggle);
+	document.body.append(tag);
 	online_media_loaded = true;
 }
 

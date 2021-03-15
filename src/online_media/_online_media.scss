@@ -9,6 +9,7 @@
 	box-shadow: $block-shadow;
 
 	transition: 0.75s transform ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s transform ease-in-out !important;}
 
 	&.shown {
 		transform: translateX(-100%);
@@ -19,6 +20,7 @@
 
 		& ~ div {
 			transition: 0.75s opacity ease-in-out, 0s visibility 0s linear;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 0s linear !important;}
 
 			opacity: 1;
 			visibility: visible;
@@ -38,7 +40,10 @@
 		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
 		z-index: 305;
 
-		background: #fff;
+		background: $block-color;
+		html.dark & {
+			background: $block-color-dark;
+		}
 
 		font-family: Manrope;
 		font-style: normal;
@@ -46,10 +51,14 @@
 		font-size: 18px;
 		white-space: nowrap;
 		color: $text-color;
+		html.dark & {
+			color: $text-color-dark;
+		}
 
 		cursor: pointer;
 
 		transition: 0.1s transform ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s transform ease-in-out !important;}
 
 		&:hover {
 			transform: translate(calc(-50% - 7px), -50%) rotate(-90deg);
@@ -85,4 +94,5 @@
 	visibility: hidden;
 	pointer-events: none;
 	transition: 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out !important;}
 }
