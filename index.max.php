@@ -348,10 +348,13 @@ get_person();
 
 	<div class="details"></div>
 
+	<?php include_once __DIR__ . '/src/online_media/online_media.php' ?>
+
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/home.min.js" defer></script>
+	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 
 </html>

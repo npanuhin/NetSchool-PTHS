@@ -82,8 +82,7 @@ get_person();
 			
 			<div class="question" id="question-marks">— Почему некоторые оценки подсвечиваются?</div>
 			— Подсвечиваются оценки, которые выше среднего балла на текущий момент. Иными словами — то, что светится, его поднимает. 
-			<div>
-
+			
 			<a class="github_link" href="https://github.com/npanuhin/NetSchool-PTHS" target="_blank" title="Репозиторий вебсайта на GitHub">
 				<?php include_once __DIR__ . '/../files/icons/github.svg' ?>
 			</a>
@@ -92,14 +91,17 @@ get_person();
 				<?php include_once __DIR__ . '/../files/icons/vk.svg' ?>
 			</a>
 			<!-- © Никита Панюхин, Ева Пальчикова, Андрей Ситников, Марк Ипатов, 2021 -->
-		</div>
-	</div>  
+		</div>  
 		
 	</main>
+
+	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
+
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<!-- <script type="text/javascript" src="build/help.min.js" defer></script> -->
+	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 
 </html>
