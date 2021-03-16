@@ -408,11 +408,18 @@ main {
 
 							&.no_lesson {
 								cursor: auto;
+								@media (max-width: $desktop) {
+									height: 15px;
+								}
 								height: 25px;
 
 								&::before {
 									content: "";
 									position: absolute;
+									@media (max-width: $desktop) {
+										top: 2px;
+										height: 9px;
+									}
 									top: 5px;
 									left: 0;
 									width: 100%;

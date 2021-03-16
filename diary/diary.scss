@@ -41,6 +41,9 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
+			@media (max-width: $desktop) {
+				font-size: 10px;
+			}
 			font-size: 36px;
 			text-align: center;
 			margin-bottom: 25px;
@@ -55,6 +58,9 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
+			@media (max-width: $desktop) {
+				font-size: 9px;
+			}
 			font-size: 18px;
 			text-align: center;
 			padding-top: 15px;
@@ -128,6 +134,10 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 500;
+					@media (max-width: $desktop) {
+						font-size: 8px;
+						line-height: 14px;
+					}
 					font-size: 20px;
 					line-height: 28px;
 
