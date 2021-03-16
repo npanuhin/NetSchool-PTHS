@@ -18,10 +18,15 @@
 		font-family: Manrope;
 		font-style: normal;
 		font-weight: 100;
-		font-size: var(--font-size-very-big);
-		height: 65px;
-		line-height: 65px;
-
+		font-size: var(--font-size-name);
+		
+		//line-height: var(--line-height-article);
+		@media (max-width: $desktop) {
+			width: 50px;
+		}
+		@media (min-width: $desktop) {
+			height: 65px;
+		}
 		margin: 0 17px;
 	}
 

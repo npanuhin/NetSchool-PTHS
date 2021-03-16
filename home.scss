@@ -230,7 +230,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 18px;
+				font-size: var(--font-size-usual);
 				line-height: 27px;
 
 				cursor: pointer;
@@ -286,7 +286,7 @@ main {
 				// Day
 				& > div {
 					position: relative;
-					padding: 30px 32px;
+					padding: var(--padding-x-timetable-main) var(--padding-y-timetable-main);
 					min-height: 50px;
 					background: $block-color;
 					box-shadow: $block-shadow;
@@ -301,7 +301,7 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: 600;
-						font-size: 21px;
+						font-size: var(--font-size-big);
 						line-height: 33px;
 						color: $text-color;
 						html.dark & {
@@ -316,7 +316,7 @@ main {
 						font-style: normal;
 						font-weight: normal;
 						//TODO: font and line-height. height → 10px on mobile? 
-						font-size: 16px;
+						font-size: var(--font-size-usual);
 						line-height: 32px;
 
 						height: 32px;
@@ -330,9 +330,18 @@ main {
 						}
 
 						.zoom-icon {
+							@media (max-width: $desktop) {
+							    position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%,0%);
+								height: 40px;
+								width: 70px;
+							}
 							position: relative;
 							top: 11.7px;
 							left: -9px;
+							
 							display: inline;
 							width: 70px;
 
@@ -361,13 +370,13 @@ main {
 						li {
 							position: relative;
 							cursor: pointer;
-
+							display:flex;
 							a {
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: normal;
-								font-size: 16px;
-								line-height: 25px;
+								font-size: var(--font-size-usual);
+								line-height: var(--line-height-compact);
 								color: $text-color;
 								html.dark & {
 									color: $text-color-dark;

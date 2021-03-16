@@ -9,10 +9,16 @@ $desktop: 700px;
 		--font-size-smaller: 16px;
 		--font-size-usual: 18px;
 		--font-size-big: 24px;
+		--font-size-name: 36px;
 		--font-size-very-big: 36px;
-		--font-size-selector: 36px;
+		--font-size-selector: 25px;
+		//currently all the li, this stands for menu chapters;
+		--line-height-compact: 25px;
 		--line-height-article: 32px;
 		--line-height-large: 65px;
+		
+		--padding-x-timetable-main: 30px;
+		--padding-y-timetable-main: 32px;
 	}
 }
 
@@ -20,12 +26,16 @@ $desktop: 700px;
 	//mobile;
 	:root {
 		--font-size-smaller: 10px;
-		--font-size-usual: 12px;
+		--font-size-usual: 10px;
 		--font-size-big: 14px;
 		--font-size-very-big: 18px;
 		--font-size-selector: 30px;
+		--font-size-name: 16px;
+		--line-height-compact: 14px;
 		--line-height-article: 16px;
 		--line-height-large: 36px;
+		--padding-x-timetable-main: 10px;
+		--padding-y-timetable-main: 20px;
 	}
 }
 
@@ -355,7 +365,7 @@ main {
 
     .menu {
         width: $main-width - 200px;
-        max-width: calc(100% - 200px);
+        //max-width: calc(100% - 200px);
         margin: 0 auto;
         
         max-height: 0px;

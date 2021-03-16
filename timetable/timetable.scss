@@ -43,7 +43,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 36px;
+				font-size: var(--font-size-very-large);
 				line-height: 43px;
 				text-align: center;
 
@@ -68,7 +68,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
-				font-size: 18px;
+				font-size: var(--font-size-usual);
 				text-align: center;
 
 				color: $text-color;
