@@ -10,24 +10,27 @@ if (!$AUTHORIZED) {
 }
 get_person();
 
-//jan feb mar apr may jun jul aug sep oct nov dec
-$_monthsList = array("Jan" => "января", "Feb" => "февраля", 
-"Mar" => "марта", "Apr" => "апреля", "May" => "мая", "Jun" => "июня", 
-"Jul" => "июля", "Aug" => "августа", "Sep" => "сентября",
-"Oct" => "октября", "Nov" => "ноября", "Dec" => "декабря");
-
+if (
+	$_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)       ||
+	!isset($_POST['day'])                || !trim($_POST['day']) ||
+	!isset($_POST['courses'])            || (trim($_POST['courses']) != 0 && trim($_POST['courses']) != 1)
+) {
+	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+	redirect();
+	exit;
+}
 
 $class = urlencode(mb_convert_encoding($person['class'], 'koi8-r', 'utf-8'));
 
+$day = new DateTime($_POST['day']);
+$nweek = floor($day->diff(new DateTime('2020-03-30'))->format('%a') / 7) + 1;
+$day_text = $day->Format('j') . ' ' . mb_strtolower($months_genetive[$day->Format('m') - 1]);
 
-$nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->format('%a')/7) + 1;
+$courses = trim($_POST['courses']);
 
-$dayText = date_create($_POST['day'])->Format('j') .' '. $_monthsList[date_create($_POST['day'])->Format('M')];
-
-if($_POST['courses']){
+if ($courses) {
 	$href = 'http://edu.school.ioffe.ru/tt_special.php';
-}
-else{
+} else {
 	$href = 'http://edu.school.ioffe.ru/tt_student.php';
 }
 
@@ -41,42 +44,24 @@ $result = mb_convert_encoding(file_get_contents($href, false, stream_context_cre
 
 
 $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
-
-
-echo "[";
-
+$result = [];
 $out = false;
-$flag = false;
 foreach ($dom->find('tr') as $line) {
-
 	$tds = $line->find('td');
 
-	if (count($tds) == 5 + $_POST['courses'])
-	{
-
-		//!== , it's important. Don't change.
-		$out = strpos($tds[0]->plaintext, $dayText) !== false;
+	if (count($tds) == 5 + $courses) {
+		$out = strpos($tds[0]->plaintext, $day_text) !== false;
 	}
 
-	if ($out)
-	{
-		if($flag){
-			echo ",";
-		}
-		else{
-			$flag = true;
-		}
-		echo '{"time":"';
-		echo $tds[count($tds)-4-$_POST['courses']]->plaintext;
-		echo '","name":"';
-		echo $tds[count($tds)-3]->plaintext;
-		echo '","teacher":"';
-		echo $tds[count($tds)-2]->plaintext;
-		echo '","href":"';
-		echo $tds[count($tds)-1]->find('a')[0]->href;
-
-		echo '"}';
+	if ($out) {
+		array_push($result, array(
+			'time'    => $tds[count($tds) - 4 - $courses]->plaintext,
+			'name'    => $tds[count($tds) - 3]->plaintext,
+			'teacher' => $tds[count($tds) - 2]->plaintext,
+			'href'    => $tds[count($tds) - 1]->find('a')[0]->href,
+		));
 	}
 }
+
+echo json_encode($result);
 ?>
-]
