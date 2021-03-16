@@ -24,7 +24,7 @@ main {
 			position: relative;
 			padding: 30px 32px 40px 32px;
 
-			width: calc(100% - 200px);
+			width: calc(80% - 200px);
 
 			box-sizing: border-box;
 			margin: 0 auto;
@@ -56,11 +56,11 @@ main {
 
 		.holidays {
 			float: left;
-			width: calc(57% - 114px);
-			margin-left: 100px;
+			width: calc(60% - 84px);
+			margin-left: calc(25%);
 
 			h3 {
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 			}
 
 			.holiday {
@@ -68,7 +68,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
-				font-size: 18px;
+				font-size: 14px;
 				text-align: center;
 
 				color: $text-color;
@@ -83,7 +83,7 @@ main {
 					font-style: normal;
 					font-weight: 600;
 					font-size: 19px;
-					line-height: 27px;
+					line-height: 24px;
 					text-align: center;
 
 					color: $text-color;
@@ -96,7 +96,7 @@ main {
 
 		.bells {
 			float: right;
-			width: calc(32% - 64px);
+			width: calc(80% - 64px);
 			margin-right: 100px;
 
 			.details {
@@ -131,10 +131,49 @@ main {
 				}
 			}
 		}
+		
+		
+		.cources {
+			float: right;
+			width: calc(60% - 64px);
+			margin-right: 100px;
 
-		.holidays, .bells {
+			.details {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 18px;
+				text-align: center;
+
+				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
+			}
+
+			ul {
+				// width: 300px;
+				// min-width: 200px;
+				margin: 25px auto 0 auto;
+
+				li {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 18px;
+					text-align: center;
+
+					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
+				}
+			}
+		}
+		
+		.holidays, .bells, .cources {
 			&.wide {
-				width: calc(100% - 200px);
+				width: calc(70% - 200px);
 				margin-left: 100px;
 			}
 
@@ -155,95 +194,28 @@ main {
 			}
 		}
 
-		.cources {
-			position: relative;
-			width: calc(100% - 200px);
-			margin: 30px 0 0 100px;
-			padding-top: 75px;
-
-			display: grid;
-			grid-template-rows: auto auto auto;
-			grid-template-columns: 1fr 1fr;
-			grid-row-gap: 50px;
-			grid-column-gap: 60px;
-
-			h3 {
-				position: absolute;
-				top: 5px;
-				left: 10px;
-				font-family: Manrope;
-				font-style: normal;
-				font-weight: 600;
-				font-size: 36px;
-
-				color: #fff;
-				text-shadow: $text-shadow;
-				html.dark & {
-					color: $text-color-dark;
-					text-shadow: $text-shadow-dark;
-				}
-
-				span {
-					margin-left: 10px;
-					font-family: inherit;
-					font-style: inherit;
-					font-weight: inherit;
-					font-size: 0.5em;
-					color: inherit;
-					text-shadow: inherit;
-				}
-			}
-
-			.day {
-				width: auto;
-				margin: 0;
-				padding-bottom: 25px;
-
-				height: auto;
-
-				h5 {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: 24px;
-					line-height: 33px;
-					text-align: center;
-
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-
-					margin-bottom: 20px;
-				}
-
-				ul li {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: normal;
-					font-size: 14px;
-					line-height: 28px;
-
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-
-					margin-bottom: 10px;
-
-					span {
-						font-family: inherit;
-						font-style: inherit;
-						font-weight: inherit;
-						font-size: inherit;
-						color: $orange-color;
-						html.dark & {
-							color: $orange-color-dark;
-						}
-					}
-				}
-			}
-		}
 
 	}
 }
+
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	color: $text-color;
+	
+	td {
+		color: $text-color;
+		html.dark & {
+		color: $text-color-dark;
+		}
+	}
+	 
+	th {
+		color: $orange-color;
+		html.dark & {
+			color: $orange-color-dark;
+		}
+	}
+}
+

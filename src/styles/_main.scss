@@ -402,3 +402,10 @@ main {
         }
     }
 }
+
+a {
+	color: $orange-color;
+	html.dark & {
+		color: $orange-color-dark;
+	}
+}

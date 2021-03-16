@@ -1,40 +1,82 @@
 <?php
+require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/session.php';
 include_once __DIR__ . '/lib/simple_html_dom.php';
 
-// Это то, как должны приходить данные:
-$_POST['class'] = '11а';
-$_POST['day'] = '07.03.2021';
+if (!$AUTHORIZED) {
+	logout();
+	redirect('/login/');
+	exit;
+}
+get_person();
 
-// Соответвенно нужно распарсить это $_POST['day'] и сгенерировать class (уже готово) и nweek:
-$class = mb_convert_encoding($_POST['class'], 'koi8-r', 'utf-8');
-$nweek = 49; // TODO from $_POST['day']
+//jan feb mar apr may jun jul aug sep oct nov dec
+$_monthsList = array("Jan" => "января", "Feb" => "февраля", 
+"Mar" => "марта", "Apr" => "апреля", "May" => "мая", "Jun" => "июня", 
+"Jul" => "июля", "Aug" => "августа", "Sep" => "сентября",
+"Oct" => "октября", "Nov" => "ноября", "Dec" => "декабря");
 
 
-$result = mb_convert_encoding(file_get_contents('http://edu.school.ioffe.ru/tt_student.php', false, stream_context_create(array(
+$class = urlencode(mb_convert_encoding($person['class'], 'koi8-r', 'utf-8'));
+
+
+$nweek = floor(date_create($_POST['day'])->diff(date_create("2020-03-30"))->format('%a')/7) + 1;
+
+$dayText = date_create($_POST['day'])->Format('j') .' '. $_monthsList[date_create($_POST['day'])->Format('M')];
+
+if($_POST['courses']){
+	$href = 'http://edu.school.ioffe.ru/tt_special.php';
+}
+else{
+	$href = 'http://edu.school.ioffe.ru/tt_student.php';
+}
+
+$result = mb_convert_encoding(file_get_contents($href, false, stream_context_create(array(
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => "nweek={$nweek}&nclass={$class}&sub_asc=Смотреть&nteacher=-"
+        'content' => "nweek={$nweek}&nclass={$class}&nteacher=-" 
     )
 ))), 'utf-8', 'koi8-r');
 
-// print_r($result);
 
 $dom = str_get_html($result)->find('table')[0]->find('tbody')[0];
 
-// print_r($dom);
 
+echo "[";
+
+$out = false;
+$flag = false;
 foreach ($dom->find('tr') as $line) {
-    $tds = $line->find('td');
 
-    echo $tds[2]->plaintext;
+	$tds = $line->find('td');
 
-    // НЕ НАДО preg_replace ПОЖАЛУЙСТА
-	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 4]);
-	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 3]);
-	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 2]);
-	// echo preg_replace('#\</?td\>#', "", $arr[count($arr) - 1]);
+	if (count($tds) == 5 + $_POST['courses'])
+	{
 
-	echo '<br>';
+		//!== , it's important. Don't change.
+		$out = strpos($tds[0]->plaintext, $dayText) !== false;
+	}
+
+	if ($out)
+	{
+		if($flag){
+			echo ",";
+		}
+		else{
+			$flag = true;
+		}
+		echo '{"time":"';
+		echo $tds[count($tds)-4-$_POST['courses']]->plaintext;
+		echo '","name":"';
+		echo $tds[count($tds)-3]->plaintext;
+		echo '","teacher":"';
+		echo $tds[count($tds)-2]->plaintext;
+		echo '","href":"';
+		echo $tds[count($tds)-1]->find('a')[0]->href;
+
+		echo '"}';
+	}
 }
 ?>
+]
