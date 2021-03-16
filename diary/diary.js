@@ -46,17 +46,6 @@ var
 
 // =======================================================================
 
-
-function set_url(url) {
-	window.history.replaceState({"Title": document.title, "Url": url}, document.title, url);
-}
-
-function clear_url_hash() {
-	let url = new URL(window.location.href);
-	url.hash = "";
-	set_url(url.href);
-}
-
 function set_current_task_url(task) {
 	let url = new URL(window.location.href);
 	url.hash = task.id;
