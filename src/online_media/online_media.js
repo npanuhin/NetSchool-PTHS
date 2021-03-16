@@ -1,7 +1,9 @@
 var online_media_opacity = document.getElementsByClassName("online_media_opacity")[0],
 	online_media = document.getElementsByClassName("online_media")[0],
 	online_media_toggle = online_media.getElementsByClassName("toggle")[0],
-	online_media_loaded = false;
+	online_media_loaded = false,
+
+	lofi_toggled = false;
 
 Event.add(online_media_toggle, "click", () => {
 	online_media.classList.toggle("shown");
@@ -14,7 +16,14 @@ Event.add(window, "mousedown", (e) => {
 	}
 });
 
-
+Event.add(html, "interacted", (e) => {
+	let url = new URL(window.location.href);
+	if (url.searchParams.has("lofi") && url.searchParams.get("lofi") == "1") {
+		url.searchParams.delete("lofi");
+		set_url(url.href);
+		load_online_media();
+	}
+});
 
 
 // =================================== YouTube ===================================
@@ -33,8 +42,6 @@ function onYouTubePlayerAPIReady() {
 	// console.log("onYouTubePlayerAPIReady");
 
 	player = new YT.Player("ytplayer", {
-		// height: '360',
-		// width: '640',
 		videoId: "5qap5aO4i9A",
 
 		playerVars: {
@@ -60,6 +67,7 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
 	event.target.playVideo();
+	lofi_toggled = true;
 }
 
 function onPlayerPlaybackQualityChange(event) {
@@ -67,7 +75,20 @@ function onPlayerPlaybackQualityChange(event) {
 }
 
 function onPlayerStateChange(event) {
-	// SMTH
+	if (event.data == 1) {
+		for (let menu_link of menu_links) {
+			let url = new URL(menu_link.href);
+			url.searchParams.set("lofi", "1");
+			menu_link.href = url.href;
+		}
+
+	} else if (event.data == 2) {
+		for (let menu_link of menu_links) {
+			let url = new URL(menu_link.href);
+			url.searchParams.delete("lofi");
+			menu_link.href = url.href;
+		}
+	}
 }
 
 function onPlayerError(event) {
