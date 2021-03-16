@@ -162,10 +162,18 @@ body {
 	overflow: hidden;
 }
 
+a {
+    color: $orange-color;
+    html.dark & {
+        color: $orange-color-dark;
+    }
+}
+
 
 @import 'src/styles/preloader';
 @import 'src/styles/menubar';
 @import 'src/styles/statusbar';
+@import 'src/online_media/online_media';
 
 
 .ui_alert {
@@ -401,11 +409,4 @@ main {
             }
         }
     }
-}
-
-a {
-	color: $orange-color;
-	html.dark & {
-		color: $orange-color-dark;
-	}
 }
