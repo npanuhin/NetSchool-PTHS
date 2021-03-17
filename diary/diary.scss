@@ -12,12 +12,18 @@ $today-color-dark: rgba(0, 255, 0, 0.2);
 
 main {
 	position: relative;
+	@media (max-width: $desktop) {
+		margin: 80px auto 100px auto;
+	}
 	margin: 120px auto 100px auto;
 	width: 1300px;
 	max-width: 95%;
 
 	.diary {
 		position: relative;
+		@media (max-width: $desktop) {
+			padding: 30px 10px 40px 10px;
+		}
 		padding: 40px 32px 50px 32px;
 		top: 30px;
 		box-sizing: border-box;
@@ -42,7 +48,7 @@ main {
 			font-style: normal;
 			font-weight: 600;
 			@media (max-width: $desktop) {
-				font-size: 10px;
+				font-size: var(--font-size-selector);
 			}
 			font-size: 36px;
 			text-align: center;
@@ -90,6 +96,9 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
+			@media (max-width: $desktop) {
+				font-size: 8px;
+			}
 			font-size: 18px;
 			color: $text-color;
 			html.dark & {
@@ -137,6 +146,8 @@ main {
 					@media (max-width: $desktop) {
 						font-size: 8px;
 						line-height: 14px;
+						padding: 6px 6px;
+						height: 10px;
 					}
 					font-size: 20px;
 					line-height: 28px;
@@ -311,7 +322,9 @@ main {
 
 					tr {
 						height: 30px;
-
+						@media (max-width: $desktop) {
+							height: 10px;
+						}
 						&:nth-child(1) {
 							height: 40px;
 
@@ -322,6 +335,11 @@ main {
 								overflow: hidden;
 
 								span {
+									@media (max-width: $desktop) {
+										font-size: 8px;
+										line-height: 14px;
+										padding: 6px 6px;
+									}
 									position: relative;
 									font-family: Manrope;
 									font-style: normal;
@@ -362,9 +380,16 @@ main {
 
 						&:nth-child(2) {
 							height: 70px;
-
+							@media (max-width: $desktop) {
+								height: 50px;
+							}
 							td {
-
+								@media (max-width: $desktop) {
+									font-size: 8px;
+									line-height: 14px;
+									padding: 6px 6px;
+									height: 10px;
+								}
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: 500;
@@ -392,6 +417,10 @@ main {
 							white-space: nowrap;
 							text-align: center;
 							box-sizing: border-box;
+							@media (max-width: $desktop) {
+								height: auto;
+								padding: 4px 6px;
+							}
 							height: 40px;
 
 							padding: 0 6px;
@@ -407,6 +436,12 @@ main {
 								text-align: center;
 
 								span {
+									@media (max-width: $desktop) {
+										font-size: 8px;
+										line-height: 14px;
+										padding: 6px 6px;
+										height: 10px;
+									}
 									display: inline-block;
 									position: relative;
 									top: 50%;
