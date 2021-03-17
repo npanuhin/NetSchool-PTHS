@@ -81,7 +81,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
-			font-size: 21px;
+			font-size: var(--font-size-big);
 			color: $text-color;
 			html.dark & {
 				color: $text-color-dark;
@@ -89,6 +89,9 @@ main {
 		}
 
 		.period_end_label {
+			@media (max-width: $desktop) {
+				margin-left: 3px;
+			}
 			margin-left: 30px;
 		}
 
@@ -98,6 +101,9 @@ main {
 			font-weight: normal;
 			@media (max-width: $desktop) {
 				font-size: 8px;
+				margin: 5px 0 10px 5px;
+				padding: 2px 3px;
+				border: 0.5px solid $text-color;
 			}
 			font-size: 18px;
 			color: $text-color;
@@ -143,12 +149,15 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 500;
+					
 					@media (max-width: $desktop) {
 						font-size: 8px;
-						line-height: 14px;
+						line-height: 10px;
 						padding: 6px 6px;
 						height: 10px;
+						vertical-align:middle;
 					}
+					
 					font-size: 20px;
 					line-height: 28px;
 
@@ -162,6 +171,10 @@ main {
 					}
 
 					&:nth-child(2) {
+						@media (max-width: $desktop) {
+							height: 55px;
+						}
+						
 						height: 58px;
 					}
 				}
@@ -172,6 +185,10 @@ main {
 					svg {
 						position: absolute;
 						top: 50%;
+						@media (max-width: $desktop) {
+							height: 110%;
+							padding: 19px 10px 19px 30px;
+						}
 						height: 100%;
 						box-sizing: border-box;
 						padding: 19px 15px 19px 30px;
@@ -337,8 +354,9 @@ main {
 								span {
 									@media (max-width: $desktop) {
 										font-size: 8px;
-										line-height: 14px;
-										padding: 6px 6px;
+										line-height: 10px;
+										padding: 4px 6px 8px 6px;
+										
 									}
 									position: relative;
 									font-family: Manrope;
@@ -438,9 +456,10 @@ main {
 								span {
 									@media (max-width: $desktop) {
 										font-size: 8px;
-										line-height: 14px;
-										padding: 6px 6px;
-										height: 10px;
+										line-height: 10px;
+										padding: 6px 6px 6px 6px;
+										height: 14px;
+										vertical-align: middle;
 									}
 									display: inline-block;
 									position: relative;
