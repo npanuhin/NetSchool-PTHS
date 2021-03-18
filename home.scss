@@ -13,8 +13,6 @@ main {
 	@media (min-width: $desktop) {
 		margin: 120px auto 100px auto;
 	}
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: $main-width;
 	max-width: 100%;
 	
@@ -28,6 +26,7 @@ main {
 		@media (max-width: $desktop) {
 			width: calc(100% - 20px);
 		}
+		width: calc(100% - 200px);
 		background: $block-color;
 		box-shadow: $block-shadow;
 		html.dark & {
@@ -143,12 +142,10 @@ main {
 		z-index: 10;
 		@media (max-width: $desktop) {
 			margin: 15px auto 0 auto;
+			width: calc(100% - 20px);
 		}
-		@media (min-width: $desktop) {
-			margin: 15px auto 0 auto;
-		}
-		width: calc(100% - 20px);
-
+		margin: 15px auto 0 auto;
+		width: calc(100% - 200px);
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
