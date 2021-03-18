@@ -8,7 +8,7 @@ main {
 	position: relative;
 	
 	@media (max-width: $desktop) {
-		margin: 50px auto 100px auto;
+		margin: 60px auto 100px auto;
 	}
 	@media (min-width: $desktop) {
 		margin: 120px auto 100px auto;
