@@ -2,7 +2,7 @@
 
 $expired-color: rgb(255, 80, 80);
 
-$arrows-color-dark: #696979;
+$arrows-color-dark: #5c6670;
 
 main {
 	position: relative;
@@ -137,11 +137,6 @@ main {
 		}
 	}
 
-	.announcements {
-		// TODO
-		z-index: 10;
-	}
-
 	.timetable {
 		position: relative;
 		z-index: 10;
@@ -155,6 +150,68 @@ main {
 
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
+
+		#timetable_previous, #timetable_next {
+			position: absolute;
+			top: calc(36px + 50%);
+			height: calc(100% - 72px);
+			width: 40px;
+			filter: drop-shadow($arrows-shadow);
+			html.dark & {
+				filter: drop-shadow($arrows-shadow-dark);
+			}
+			cursor: pointer;
+			padding: 0 45px;
+
+			transition: 0.15s transform ease-in-out, 0.2s opacity ease-in-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.15s transform ease-in-out, 0.2s opacity ease-in-out !important;}
+
+			&.hidden {
+				opacity: 0;
+				cursor: auto;
+				pointer-events: none;
+			}
+
+			path {
+				fill: #fff;
+				html.dark & {
+					fill: $arrows-color-dark;
+				}
+			}
+
+			&:hover {
+				padding-right: 52px;
+			}
+		}
+
+		#timetable_previous {
+			@media (max-width: $desktop) {
+				z-index: 1;
+				left: -70px;
+			}
+			@media (min-width: $desktop) {
+				left: -130px;
+			}
+			transform: translateY(-50%);
+			
+			&:hover {
+				transform: translateX(-6px) translateY(-50%);
+			}
+		}
+
+		#timetable_next {
+			@media (max-width: $desktop) {
+				right: -210px;
+			}
+			@media (min-width: $desktop) {
+				right: -130px;
+			}
+			transform: scale(-1, 1) translateY(-50%);
+
+			&:hover {
+				transform: scale(-1, 1) translateX(-6px) translateY(-50%);
+			}
+		}
 
 		& > div {
 			position: absolute;
@@ -232,26 +289,20 @@ main {
 				font-weight: 600;
 				font-size: var(--font-size-usual);
 				line-height: 27px;
-
 				cursor: pointer;
-
-				// text-decoration: underline;
-				// text-decoration-style: dashed;
-
-				// border-bottom: 1px dashed #fff;
 
 				color: #fff;
 				html.dark & {
 					color: $text-color-dark;
 				}
 
-				transition: 0.15s opacity 0.2s ease-in-out;
-				html.dark_mode_transition & {transition: $dark-mode-transition, 0.15s opacity 0.2s ease-in-out !important;}
+				transition: 0.2s opacity 0.1s ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s opacity 0s ease-in-out !important;}
 			}
 
 			&.shown > button {
-				transition: 0.2s opacity 0s ease-in-out;
-				html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s opacity 0s ease-in-out !important;}
+				transition: 0.3s opacity 0.1s ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s opacity 0.1s ease-in-out !important;}
 				opacity: 1;
 			}
 
@@ -480,68 +531,6 @@ main {
 			&.shown > div {
 				opacity: 1;
 				visibility: visible;
-			}
-		}
-
-		#timetable_previous, #timetable_next {
-			position: absolute;
-			top: calc(36px + 50%);
-			height: calc(100% - 72px);
-			width: 40px;
-			filter: drop-shadow($arrows-shadow);
-			html.dark & {
-				filter: drop-shadow($arrows-shadow-dark);
-			}
-			cursor: pointer;
-			padding: 0 45px;
-
-			transition: 0.15s transform ease-in-out, 0.2s opacity ease-in-out;
-			html.dark_mode_transition & {transition: $dark-mode-transition, 0.15s transform ease-in-out, 0.2s opacity ease-in-out !important;}
-
-			&.hidden {
-				opacity: 0;
-				cursor: auto;
-				pointer-events: none;
-			}
-
-			path {
-				fill: #fff;
-				html.dark & {
-					fill: $arrows-color-dark;
-				}
-			}
-
-			&:hover {
-				padding-right: 52px;
-			}
-		}
-
-		#timetable_previous {
-			@media (max-width: $desktop) {
-				z-index: 1;
-				left: -70px;
-			}
-			@media (min-width: $desktop) {
-				left: -130px;
-			}
-			transform: translateY(-50%);
-			
-			&:hover {
-				transform: translateX(-6px) translateY(-50%);
-			}
-		}
-
-		#timetable_next {
-			@media (max-width: $desktop) {
-				right: -210px;
-			}
-			@media (min-width: $desktop) {
-				right: -130px;
-			}
-			transform: scale(-1, 1) translateY(-50%);
-
-			&:hover {
-				transform: scale(-1, 1) translateX(-6px) translateY(-50%);
 			}
 		}
 	}

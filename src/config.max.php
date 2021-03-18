@@ -311,9 +311,8 @@ function send_telegram_message($text, $token, $chat_id) {
 	$res = curl_exec($ch);
 	curl_close($ch);
 	if (!isset(json_decode($res, true)['ok']) || !json_decode($res, true)['ok']) {
-		var_dump($text);
-		var_dump(json_decode($res, true));
-		// telegram_log('Errorintelegramlog');
+		// var_dump(json_decode($res, true));
+		telegram_log('Errorintelegramlog');
 		exit;
 	}
 }

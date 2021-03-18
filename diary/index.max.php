@@ -23,6 +23,7 @@ $default_mark_rate = 10;
 	<?php include_once __DIR__ . '/../src/favicon.html' ?>
 	<title>NetSchool PTHS | Оценки</title>
 </head>
+
 <body>
 
 	<?php require_once __DIR__ . '/../src/header.php' ?>
@@ -393,10 +394,13 @@ $default_mark_rate = 10;
 		</svg>
 	</div>
 
+	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
+
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/diary.min.js" defer></script>
+	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 
 </html>

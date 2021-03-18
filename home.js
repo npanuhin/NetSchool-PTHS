@@ -36,8 +36,6 @@ function onResize() {
 // ===========================================================================================================
 
 function goto_day(date) {
-	html.classList.add("interacted");
-
 	cur_week = Array.prototype.slice.call(weeks).indexOf(
 		timetable.getElementsByClassName(date)[0].parentNode.parentNode
 	);
@@ -52,8 +50,6 @@ function goto_day(date) {
 }
 
 function goto_week(week) {
-	html.classList.add("interacted");
-
 	cur_week = week;
 
 	for (let week of weeks) week.classList.remove("shown");
@@ -142,8 +138,6 @@ Event.add(window, "load", () => {
 	setTimeout(onResize());
 
 	Event.add(timetable_previous, "mousedown", () => {
-		html.classList.add("interacted");
-
 		cur_week = Math.max(cur_week - 1, 0);
 
 		for (let week of weeks) week.classList.remove("shown");
@@ -156,8 +150,6 @@ Event.add(window, "load", () => {
 	});
 
 	Event.add(timetable_next, "mousedown", () => {
-		html.classList.add("interacted");
-
 		cur_week = Math.min(cur_week + 1, weeks.length - 1);
 
 		for (let week of weeks) week.classList.remove("shown");

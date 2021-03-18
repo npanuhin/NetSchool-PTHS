@@ -2,6 +2,8 @@ var
 	html = document.documentElement,
 	body = document.body,
 	main = document.getElementsByTagName("main")[0],
+
+	interacted = false,
 	
 	// main_bottom_margin = 100,
 
@@ -10,6 +12,7 @@ var
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 	
 	menu = document.getElementsByClassName("menu")[0],
+	menu_links = menu.getElementsByTagName("a"),
 
 	message_alerts = document.getElementsByClassName("message_alert"),
 
@@ -17,6 +20,35 @@ var
 	ui_alert_box_timout,
 
 	dark_mode_transition_timeout = 800;
+
+
+// ======================================== Tools ========================================
+function trigger_event(target, name) {
+	var event;
+	if (document.createEvent){
+		event = document.createEvent("HTMLEvents");
+		event.initEvent(name, true, true);
+		event.eventName = name;
+		target.dispatchEvent(event);
+	} else {
+		event = document.createEventObject();
+		event.eventName = name;
+		event.eventType = name;
+		target.fireEvent("on" + event.eventType, event);
+	}
+}
+
+function set_url(url) {
+	window.history.replaceState({"Title": document.title, "Url": url}, document.title, url);
+}
+
+function clear_url_hash() {
+	let url = new URL(window.location.href);
+	url.hash = "";
+	set_url(url.href);
+}
+
+// =======================================================================================
 
 
 function ui_alert(text) {
@@ -29,18 +61,22 @@ function ui_alert(text) {
 }
 
 Event.add(window, "load", () => {
-
+	Event.add(window, "mousedown", () => {
+		if (!interacted) {
+			html.classList.add("interacted");
+			trigger_event(html, "interacted");
+			interacted = true;
+		}
+	});
 	setTimeout(() => {html.classList.add("loaded")}, 50);
 
 	Event.add(menu_button, "mousedown", () => {
-		html.classList.add("interacted");
-
 		menu.classList.toggle("shown");
 		menu_button.classList.toggle("active", menu.classList.contains("shown"));
 	});
 
-	for (let menu_item of menu.getElementsByTagName("a")) {
-		Event.add(menu_item, "click", () => {
+	for (let menu_link of menu_links) {
+		Event.add(menu_link, "click", () => {
 			html.classList.remove("dark_mode_transition");
 			html.classList.add("wait");
 			html.classList.remove("loaded");
@@ -48,7 +84,6 @@ Event.add(window, "load", () => {
 	}
 
 	Event.add(dark_mode_button, "mousedown", () => {
-		html.classList.add("interacted");
 		html.classList.add("wait");
 
 		ajax(
@@ -81,7 +116,6 @@ Event.add(window, "load", () => {
 	});
 
 	Event.add(logout_button, "click", () => {
-		html.classList.add("interacted");
 		html.classList.add("wait");
 		
 		ajax(
@@ -109,7 +143,6 @@ Event.add(window, "load", () => {
 		if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
 
 			Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
-				html.classList.add("interacted");
 				html.classList.add("wait");
 				
 				ajax(

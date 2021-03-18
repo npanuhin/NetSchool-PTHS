@@ -47,6 +47,7 @@ var
     files['php'].push('fails/*.max.php');
     files['php'].push('src/*.max.php');
     files['php'].push('src/lib/*.max.php');
+    files['php'].push('src/online_media/*.max.php');
     files['php'].push('login/*.max.php');
     files['php'].push('diary/*.max.php');
     files['php'].push('announcements/*.max.php');
@@ -58,6 +59,7 @@ var
     files['scss'].push('*.scss');
     files['scss'].push('src/*.scss');
     files['scss'].push('src/styles/*.scss');
+    files['scss'].push('src/online_media/*.scss');
     files['scss'].push('login/*.scss');
     files['scss'].push('diary/*.scss');
     files['scss'].push('announcements/*.scss');
@@ -68,6 +70,7 @@ var
 
     files['js'].push('*.js');
     files['js'].push('src/*.js');
+    files['js'].push('src/online_media/*.js');
     files['js'].push('login/*.js');
     files['js'].push('diary/*.js');
     files['js'].push('announcements/*.js');

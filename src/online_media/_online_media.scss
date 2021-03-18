@@ -1,0 +1,99 @@
+.online_media {
+	position: fixed;
+	top: 0;
+	left: 100%;
+	height: 100vh;
+	width: 80%;
+	z-index: 300;
+	box-shadow: $block-shadow;
+
+	transition: 0.75s transform ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s transform ease-in-out !important;}
+
+	&.shown {
+		transform: translateX(-100%);
+
+		.toggle {
+			transform: translate(calc(-50% + 44px), -50%) rotate(-90deg);
+		}
+
+		& ~ div {
+			transition: 0.75s opacity ease-in-out, 0s visibility 0s linear;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 0s linear !important;}
+
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+	}
+
+	.toggle {
+		position: absolute;
+		top: 50%;
+		transform: translate(calc(-50% + 3px), -50%) rotate(-90deg);
+		left: -17px; // 34 / 2
+		padding: 4px 15px 0 15px;
+		height: 44px;
+		border-top-right-radius: 20px;
+		border-top-left-radius: 20px;
+		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+
+		background: $block-color;
+		html.dark & {
+			background: $block-color-dark;
+		}
+
+		font-family: Manrope;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 18px;
+		white-space: nowrap;
+		color: $text-color;
+		html.dark & {
+			color: $text-color-dark;
+		}
+
+		cursor: pointer;
+
+		transition: 0.1s transform ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s transform ease-in-out !important;}
+
+		&:hover {
+			transform: translate(calc(-50% - 7px), -50%) rotate(-90deg);
+		}
+	}
+
+	& > div:not(.toggle) {
+		position: relative;
+		width: 100%;
+		height: 100%;
+
+		z-index: 310;
+	}
+
+	& > div.youtube {
+		background: #000;
+
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.online_media_opacity {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 290;
+	// pointer-events: none;
+	background: rgba(0, 0, 0, 0.7);
+
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out !important;}
+}
