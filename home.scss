@@ -368,7 +368,7 @@ main {
 						font-style: normal;
 						font-weight: normal;
 						//TODO: font and line-height. height → 10px on mobile? 
-						font-size: var(--font-size-usual);
+						font-size: var(--font-size-smaller);
 						line-height: 32px;
 
 						height: 32px;
@@ -427,7 +427,7 @@ main {
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: normal;
-								font-size: var(--font-size-usual);
+								font-size: var(--font-size-smaller);
 								line-height: var(--line-height-compact);
 								color: $text-color;
 								html.dark & {
