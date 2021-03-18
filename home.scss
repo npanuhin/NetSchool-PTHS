@@ -8,7 +8,7 @@ main {
 	position: relative;
 	
 	@media (max-width: $desktop) {
-		margin: 80px auto 100px auto;
+		margin: 50px auto 100px auto;
 	}
 	@media (min-width: $desktop) {
 		margin: 120px auto 100px auto;
@@ -25,8 +25,9 @@ main {
 
 		box-sizing: border-box;
 		padding: 20px;
-		width: calc(100% - 200px);
-
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 		background: $block-color;
 		box-shadow: $block-shadow;
 		html.dark & {
@@ -45,7 +46,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
-			font-size: 36px;
+			font-size: var(--font-size-very-big);
 			line-height: 179.2%;
 
 			color: $text-color;
@@ -62,8 +63,8 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 16px;
-				line-height: 32px;
+				font-size: var(--font-size-smaller);
+				line-height: var(--line-height-article);
 			}
 
 			li, li span, li a {
@@ -141,12 +142,12 @@ main {
 		position: relative;
 		z-index: 10;
 		@media (max-width: $desktop) {
-			margin: 15px auto 0 30px;
+			margin: 15px auto 0 auto;
 		}
 		@media (min-width: $desktop) {
 			margin: 15px auto 0 auto;
 		}
-		width: calc(100% - 200px);
+		width: calc(100% - 20px);
 
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
@@ -187,7 +188,7 @@ main {
 		#timetable_previous {
 			@media (max-width: $desktop) {
 				z-index: 1;
-				left: -70px;
+				left: -60px;
 			}
 			@media (min-width: $desktop) {
 				left: -130px;
@@ -201,7 +202,7 @@ main {
 
 		#timetable_next {
 			@media (max-width: $desktop) {
-				right: -210px;
+				right: -50px;
 			}
 			@media (min-width: $desktop) {
 				right: -130px;
