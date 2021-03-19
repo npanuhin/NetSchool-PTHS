@@ -5,6 +5,9 @@ $github-icon-hover-color-dark: rgba(240,246,252,0.7);
 
 main {
 	position: relative;
+	@media (max-width: $desktop) {
+		margin: 60px auto 100px auto;
+	}
 	margin: 120px auto 100px auto;
 	width: $main-width;
 	max-width: 95%;
@@ -13,6 +16,9 @@ main {
 		position: relative;
 		margin: 35px auto;
 		padding: 5% 5% 35px 5%;
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 		width: calc(100% - 200px);
 		z-index: 10;
 		overflow: hidden;
@@ -24,7 +30,7 @@ main {
 				color: $text-color-dark;
 			}
 		}
-		
+		font-size: var(--font-size-smaller);
 		box-sizing: border-box;
 		border-radius: 30px;
 		text-align: justify;
@@ -50,6 +56,9 @@ main {
 		}
 
 		h4 {
+			@media (max-width: $desktop) {
+				margin: 15px 0 0 0;
+			}
 			margin: 35px 0 0 0;
 		}
 	
@@ -59,8 +68,12 @@ main {
 			html.dark & {
 				color: $orange-color-dark;
 			}
-
+			@media (max-width: $desktop) {
+				margin-top: 10px;
+				margin-bottom: 3px;
+			}
 			margin-top: 22px;
+			margin-bottom: 6px;
 		}
 
 		h4 + .question {

@@ -20,7 +20,7 @@ main {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
-		@media (min-width: $desktop) {
+		@media (max-width: $desktop) {
 			width: calc(100% - 20px);
 		}
 		width: calc(100% - 130px);
