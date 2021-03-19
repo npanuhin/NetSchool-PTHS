@@ -20,6 +20,9 @@ main {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
+		@media (min-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 		width: calc(100% - 130px);
 		// max-width: 100%;
 
@@ -44,7 +47,10 @@ main {
 		.announcement {
 			position: relative;
 			padding: 35px;
-
+			@media (max-width: $desktop) {
+				padding: 10px;
+				
+			}
 			box-sizing: border-box;
 
 			clear: both;
@@ -92,7 +98,6 @@ main {
 					font-size: var(--font-size-usual);
 					line-height: 32px;
 
-					// width: 90%;
 					width: 100%;
 					margin: 12px auto 0 auto;
 					text-align: center;
@@ -156,7 +161,7 @@ main {
 
 				.date {
 					position: absolute;
-					top: 30px;
+					top: 20px;
 					right: 40px;
 					font-weight: 500;
 					font-size: var(--font-size-big);
