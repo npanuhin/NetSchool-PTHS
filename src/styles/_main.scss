@@ -255,7 +255,10 @@ main {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-
+		@media (max-width: $desktop) {
+			width: $main-width - 20px;
+			max-width: calc(100% - 20px);
+		}
         box-sizing: border-box;
         width: $main-width - 200px;
         max-width: calc(100% - 200px);
@@ -378,6 +381,9 @@ main {
     }
 
     .menu {
+		@media (max-width: $desktop) {
+			width: $main-width - 20px;
+		}
         width: $main-width - 200px;
         //max-width: calc(100% - 200px);
         margin: 0 auto;
@@ -408,7 +414,9 @@ main {
             grid-template-columns: auto auto auto;
             grid-row-gap: 10px;
             grid-column-gap: 100px;
-
+			@media(max-width: $desktop) {
+				width: calc(100% - 20px);
+			}
             @media (max-width: $main-width) {
                 width: 80%;
                 grid-template-rows: 1fr 1fr 1fr;
@@ -423,6 +431,7 @@ main {
             }
 
             li {
+				
                 margin-left: 18px;
                 a {
                     font-family: Manrope;

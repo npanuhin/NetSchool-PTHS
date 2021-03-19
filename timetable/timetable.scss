@@ -148,8 +148,8 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 600;
-					font-size: 19px;
-					line-height: 24px;
+					font-size: var(--font-size-usual);
+					line-height: var(--line-height-compact);
 					text-align: center;
 
 					color: $text-color;
