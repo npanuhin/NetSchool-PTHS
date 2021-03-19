@@ -340,7 +340,7 @@ function apply_period(save=false) {
 
 
 Event.add(window, "load", () => {
-	Event.add(window, "resize", apply_period);
+	Event.add(window, "resize", () => {apply_period});
 	// onResize();
 
 	// body.append(details_block);
