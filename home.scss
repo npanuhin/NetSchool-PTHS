@@ -10,9 +10,7 @@ main {
 	@media (max-width: $desktop) {
 		margin: 60px auto 100px auto;
 	}
-	@media (min-width: $desktop) {
-		margin: 120px auto 100px auto;
-	}
+	margin: 120px auto 100px auto;
 	width: $main-width;
 	max-width: 100%;
 	
@@ -187,9 +185,7 @@ main {
 				z-index: 1;
 				left: -60px;
 			}
-			@media (min-width: $desktop) {
-				left: -130px;
-			}
+			left: -130px;
 			transform: translateY(-50%);
 			
 			&:hover {
@@ -201,9 +197,7 @@ main {
 			@media (max-width: $desktop) {
 				right: -50px;
 			}
-			@media (min-width: $desktop) {
-				right: -130px;
-			}
+			right: -130px;
 			transform: scale(-1, 1) translateY(-50%);
 
 			&:hover {
@@ -273,7 +267,7 @@ main {
 			}
 
 			& > button {
-				@media (min-width: $desktop) {
+				@media (min-width: $desktop + 1px) {
 					position: absolute;
 				}
 				opacity: 0;
