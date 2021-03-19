@@ -533,7 +533,7 @@ main {
 	font-family: Manrope;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: var(--font-size-smaller);
 	line-height: 25px;
 	color: $text-color;
 	html.dark & {
@@ -566,7 +566,7 @@ main {
 	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
-	line-height: 23px;
+	line-height: var(--line-height-compact);
 
 	h5 {
 		text-align: center;

@@ -47,10 +47,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
-			@media (max-width: $desktop) {
-				font-size: var(--font-size-selector);
-			}
-			font-size: 36px;
+			font-size: var(--font-size-selector);
 			text-align: center;
 			margin-bottom: 25px;
 
@@ -569,8 +566,8 @@ main {
 	font-family: Manrope;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
-	line-height: 25px;
+	font-size: var(--font-size-smaller);
+	line-height: var(--line-height-compact);
 	color: $text-color; 
 	html.dark & {
 		color: $text-color-dark;
@@ -583,6 +580,9 @@ main {
 	top: 0;
 	left: 0;
 	z-index: 50;
+	@media (max-width: $desktop) {
+		padding: 10px 10px 10px 10px;
+	}
 	padding: 15px 50px 15px 20px;
 	border-radius: 20px;
 	max-width: 100vw;
@@ -603,7 +603,7 @@ main {
 	transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
-	line-height: 23px;
+	line-height: var(--line-height-compact);
 
 	h5 {
 		text-align: center;
@@ -612,19 +612,15 @@ main {
 		font-weight: 600;
 	}
 
-	// h6 {
-	// 	text-align: center;
-	// 	width: 100%;
-	// 	font-size: 12px;
-		
-	// 	font-weight: 600;
-	// }
-
 	p {
 		width: 100%;
 		text-align: center;
 
 		a {
+			
+			@media (max-width: $desktop) {
+				font-size: 12px;
+			}
 			color: $orange-color;
 			html.dark & {
 				color: $orange-color-dark;
@@ -651,6 +647,9 @@ main {
 	}
 
 	.link-icon {
+		@media (max-width: $desktop) {
+			display: none;
+		}
 		position: absolute;
 		top: 0;
 		right: 0;
