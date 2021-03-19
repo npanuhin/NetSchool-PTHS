@@ -1,7 +1,9 @@
 .online_media {
-	@media (max-width: $desktop) {
-		display:none;
+	// @media (max-width: $desktop) {
+	@media (max-width: 1260px) {
+		display: none;
 	}
+
 	position: fixed;
 	top: 0;
 	left: 100%;

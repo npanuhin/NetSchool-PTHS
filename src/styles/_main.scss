@@ -4,16 +4,17 @@
 $desktop: 700px;
 
 
-//really desktop;
+// Desktop
 :root {
 	--font-size-small: 14px;
 	--font-size-smaller-but-even-smaller-in-mobile: 16px;
 	--font-size-smaller: 16px;
 	--font-size-usual: 18px;
-	--font-size-big: 24px;
+    --font-size-middle: 21px;
+    --font-size-big: 24px;
 	--font-size-name: 36px;
 	--font-size-very-big: 36px;
-	--font-size-selector: 36px; //big, doesn't need large resize
+	--font-size-selector: 36px; // Big, doesn't need large resize
 	--font-bells: 18px;
 	--line-height-compact: 25px;
 	--line-height-article: 32px;
@@ -24,8 +25,8 @@ $desktop: 700px;
 }
 
 
+// Mobile
 @media (max-width: $desktop) {
-	//mobile;
 	:root {
 		--font-size-small: 8px;
 		--font-size-smaller-but-even-smaller-in-mobile: 8px;
@@ -380,85 +381,5 @@ main {
         }
     }
 
-    .menu {
-		@media (max-width: $desktop) {
-			width: $main-width - 20px;
-		}
-        width: $main-width - 200px;
-        //max-width: calc(100% - 200px);
-        margin: 0 auto;
-        
-        max-height: 0px;
-        overflow: hidden;
-        transition: 0.3s max-height ease-in-out;
-        html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
-
-        &.shown {
-            max-height: 140px;
-
-            @media (max-width: $main-width) {
-                max-height: 215px;
-            }
-
-            @media (max-width: 850px) {
-                max-height: 415px;
-            }
-        }
-
-        ul {
-            margin: 0 auto;
-            width: 100%;
-
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            grid-template-columns: auto auto auto;
-            grid-row-gap: 10px;
-            grid-column-gap: 100px;
-			@media(max-width: $desktop) {
-				width: calc(100% - 20px);
-			}
-            @media (max-width: $main-width) {
-                width: 80%;
-                grid-template-rows: 1fr 1fr 1fr;
-                grid-template-columns: auto auto;
-                grid-column-gap: 95px;
-            }
-
-            @media (max-width: 850px) {
-                grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-                grid-template-columns: 1fr;
-                grid-row-gap: 5px;
-            }
-
-            li {
-				
-                margin-left: 18px;
-                a {
-                    font-family: Manrope;
-                    font-style: normal;
-                    font-weight: bold;
-					font-size: var(--font-size-selector);
-                    cursor: pointer;
-
-                    border-bottom: 2.5px solid transparent;
-                    color: #fff;
-                    text-shadow: $text-shadow;
-                    html.dark & {
-                        color: $text-color-dark;
-                        text-shadow: $text-shadow-dark;
-                    }
-
-                    transition: 0.1s border-color ease-in-out;
-                    html.dark_mode_transition & {transition: $dark-mode-transition, border-color ease-in-out !important;}
-
-                    &:hover {
-                        border-color: #fff;
-                        html.dark & {
-                            border-color: $text-color-dark;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    @import 'src/styles/menu';
 }

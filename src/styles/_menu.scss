@@ -1,0 +1,88 @@
+.menu_wrapper {
+    width: calc(100% - 200px);
+    @media (max-width: $desktop) {
+        width: $main-width - 20px;
+    }
+
+    margin: 0 auto;
+}
+
+.menu {
+    position: relative;
+    width: 100%;
+    
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.3s max-height ease-in-out;
+    html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
+
+    &.shown {
+        max-height: 140px;
+
+        @media (max-width: $main-width) {
+            max-height: 215px;
+        }
+
+        @media (max-width: 850px) {
+            max-height: 415px;
+        }
+    }
+
+    ul {
+        margin: 0 auto;
+        width: 100%;
+
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: auto auto auto;
+        grid-row-gap: 10px;
+        grid-column-gap: 100px;
+
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
+
+        @media (max-width: $main-width) {
+            width: 80%;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 75px;
+        }
+
+        @media (max-width: 850px) {
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
+            grid-row-gap: 5px;
+        }
+
+        li {
+            margin-left: 18px;
+
+            a {
+                font-family: Manrope;
+                font-style: normal;
+                font-weight: bold;
+				font-size: var(--font-size-selector);
+                cursor: pointer;
+
+                border-bottom: 2.5px solid transparent;
+                color: #fff;
+                text-shadow: $text-shadow;
+                html.dark & {
+                    color: $text-color-dark;
+                    text-shadow: $text-shadow-dark;
+                }
+
+                transition: 0.1s border-color ease-in-out;
+                html.dark_mode_transition & {transition: $dark-mode-transition, border-color ease-in-out !important;}
+
+                &:hover {
+                    border-color: #fff;
+                    html.dark & {
+                        border-color: $text-color-dark;
+                    }
+                }
+            }
+        }
+    }
+}

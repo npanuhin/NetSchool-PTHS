@@ -345,7 +345,7 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: 600;
-						font-size: var(--font-size-big);
+						font-size: var(--font-size-middle);
 						line-height: 33px;
 						color: $text-color;
 						html.dark & {
@@ -359,7 +359,7 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
-						//TODO: font and line-height. height → 10px on mobile? 
+						// TODO: font and line-height. height → 10px on mobile? 
 						font-size: var(--font-size-smaller);
 						line-height: 32px;
 

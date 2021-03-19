@@ -1,8 +1,8 @@
 .statusbar {
 	position: absolute;
 	height: 65px;
-	right: calc(50vw - 600px);
-	@media (max-width: 1200px) {
+	right: calc(50vw - 570px);
+	@media (max-width: 1140px) {
 		right: 0;
 	}
 
@@ -20,7 +20,6 @@
 		font-weight: 100;
 		font-size: var(--font-size-name);
 		
-		//line-height: var(--line-height-article);
 		@media (max-width: $desktop) {
 			display: none;
 			width: 50px;
