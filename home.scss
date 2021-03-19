@@ -9,7 +9,7 @@ main {
 	
 	margin: 120px auto 100px auto;
 	@media (max-width: $desktop) {
-		margin: 60px auto 45px auto;
+		margin: 80px auto 45px auto;
 	}
 	width: $main-width;
 	max-width: 100%;
@@ -18,7 +18,7 @@ main {
 		position: relative;
 		margin: 45px auto 45px auto;
 		@media (max-width: $desktop) {
-			margin-bottom: 35px;
+			margin: 30px auto 35px auto;
 		}
 		z-index: 10;
 
@@ -235,7 +235,7 @@ main {
 				font-style: normal;
 				font-weight: bold;
 				font-size: var(--font-size-selector);
-				line-height: calc(var(--line-height-large));
+				// line-height: var(--line-height-large);
 				color: #FFF;
 				text-shadow: $text-shadow;
 				html.dark & {
@@ -286,9 +286,10 @@ main {
 				position: absolute;
 				@media (max-width: $desktop) {
 					position: static;
+					top: 0;
 				}
 				opacity: 0;
-				top: 0px;
+				top: 10px;
 				right: 20px;
 
 				padding: 7px;
@@ -558,7 +559,7 @@ main {
 	font-style: normal;
 	font-weight: normal;
 	font-size: var(--font-size-smaller);
-	line-height: 25px;
+	// line-height: 25px;
 	color: $text-color;
 	html.dark & {
 		color: $text-color-dark;
@@ -572,16 +573,20 @@ main {
 	left: 0;
 	z-index: 50;
 	padding: 15px 20px;
+	@media (max-width: $desktop) {
+		padding: 10px 15px;
+	}
 	border-radius: var(--timetable-border-radius-small);
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
+	
 	background: #fff;
 	box-shadow: $block-shadow;
 	color: $text-color;
 	html.dark & {
 		background: #353f4c;
-		box-shadow: $block-shadow; // Not block-shado-dark
+		box-shadow: $block-shadow; // Not block-shadow-dark
 		color: $text-color-dark;
 	}
 
@@ -590,12 +595,11 @@ main {
 	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
-	line-height: var(--line-height-compact);
+	// line-height: var(--line-height-compact);
 
 	h5 {
 		text-align: center;
 		width: 100%;
-		
 		font-weight: 600;
 	}
 

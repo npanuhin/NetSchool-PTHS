@@ -1,7 +1,7 @@
 .menu_wrapper {
     width: calc(100% - 200px);
-    @media (max-width: $desktop) {
-        width: $main-width - 20px;
+    @media (max-width: $main-width) {
+        width: calc(65%);
     }
 
     margin: 0 auto;
@@ -9,7 +9,7 @@
 
 .menu {
     position: relative;
-    width: 100%;
+    // width: 100%;
     
     max-height: 0px;
     overflow: hidden;
@@ -20,17 +20,25 @@
         max-height: 140px;
 
         @media (max-width: $main-width) {
-            max-height: 215px;
+            max-height: 214.8px;
         }
 
         @media (max-width: 850px) {
-            max-height: 415px;
+            max-height: 343px;
+        }
+
+        @media (max-width: $desktop) {
+            max-height: 223px;
         }
     }
 
     ul {
+        position: relative;
         margin: 0 auto;
         width: 100%;
+        width: auto;
+
+        padding-bottom: 10px;
 
         display: grid;
         grid-template-rows: 1fr 1fr;
@@ -38,25 +46,24 @@
         grid-row-gap: 10px;
         grid-column-gap: 100px;
 
-		@media (max-width: $desktop) {
-			width: calc(100% - 20px);
-		}
-
         @media (max-width: $main-width) {
-            width: 80%;
             grid-template-rows: 1fr 1fr 1fr;
             grid-template-columns: 1fr 1fr;
             grid-column-gap: 75px;
         }
 
         @media (max-width: 850px) {
-            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto auto auto;
+            grid-template-columns: auto;
             grid-row-gap: 5px;
         }
 
         li {
+            position: relative;
             margin-left: 18px;
+            @media (max-width: $main-width) {
+                margin-left: 0;
+            }
 
             a {
                 font-family: Manrope;
