@@ -2,6 +2,9 @@
 
 main {
 	position: relative;
+	@media (max-width: $desktop) {
+		margin: 60px auto 60px auto;
+	}
 	margin: 120px auto 60px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
@@ -20,8 +23,11 @@ main {
 
 		.zoom_lessons, .zoom_courses, .holidays {
 			position: relative;
-			padding: 30px 32px 40px 32px;
-
+			padding: 30px 10px 40px 10px;
+			
+			@media (max-width: $desktop) {
+				width: calc(100% - 20px);
+			}
 			width: calc(100% - 200px);
 
 			box-sizing: border-box;
@@ -40,8 +46,8 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 36px;
-				line-height: 43px;
+				font-size: var(--font-size-very-big);
+				line-height: var(--line-height-medium);
 				text-align: center;
 
 				margin-left: 20px;
@@ -63,7 +69,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 18px;
+				font-size: var(--font-size-usual);
 				// line-height: px;
 				text-align: center;
 
@@ -87,12 +93,12 @@ main {
 					th, td {
 						font-family: Manrope;
 						font-style: normal;
-						font-size: 16px;
+						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
 					}
 
 					th {
-						// text-align: center;
-						padding: 0 0 5px 18px;
+						text-align: center;
+						padding: 0 5px 5px 5px;
 
 						font-weight: 600;
 						color: $orange-color;
@@ -102,10 +108,11 @@ main {
 					}
 					
 					td {
-						// &.center {
-						// 	text-align: center;
-						// }
-
+						&.center {
+							font-size: var(--font-size-smaller);
+						 	text-align: center;
+						}
+						text-align: center;
 						font-weight: 400;
 						color: $text-color;
 						html.dark & {
@@ -127,7 +134,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
-				font-size: 14px;
+				font-size: var(--font-size-small);
 				text-align: center;
 
 				color: $text-color;

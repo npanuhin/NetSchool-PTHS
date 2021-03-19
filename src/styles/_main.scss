@@ -6,6 +6,8 @@ $desktop: 700px;
 @media (min-width: $desktop) {
 	//really desktop;
 	:root {
+		--font-size-small: 14px;
+		--font-size-smaller-but-even-smaller-in-mobile: 16px;
 		--font-size-smaller: 16px;
 		--font-size-usual: 18px;
 		--font-size-big: 24px;
@@ -15,6 +17,7 @@ $desktop: 700px;
 		--font-bells: 18px;
 		--line-height-compact: 25px;
 		--line-height-article: 32px;
+		--line-height-medium: 43px;
 		--line-height-large: 65px;
 		--padding-x-timetable-main: 30px;
 		--padding-y-timetable-main: 32px;
@@ -24,6 +27,8 @@ $desktop: 700px;
 @media (max-width: $desktop) {
 	//mobile;
 	:root {
+		--font-size-small: 8px;
+		--font-size-smaller-but-even-smaller-in-mobile: 8px;
 		--font-size-smaller: 10px;
 		--font-size-usual: 10px;
 		--font-size-big: 14px;
@@ -33,6 +38,7 @@ $desktop: 700px;
 		--font-size-name: 16px;
 		--line-height-compact: 14px;
 		--line-height-article: 16px;
+		--line-height-medium: 25px;
 		--line-height-large: 36px;
 		--padding-x-timetable-main: 10px;
 		--padding-y-timetable-main: 20px;
