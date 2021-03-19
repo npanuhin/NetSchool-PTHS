@@ -191,7 +191,7 @@ get_person();
 
 									<h4><?php echo $weekdays[get_weekday($day)] ?></h4>
 
-									<div class="day_info"<?php if ($zoom_day) echo ' style="top: -11.5px"' ?>>
+									<div class="day_info<?php if ($zoom_day) echo ' zoom_day' ?>">
 										<?php
 
 										echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1];

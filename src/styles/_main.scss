@@ -20,8 +20,11 @@ $desktop: 700px;
 	--line-height-article: 32px;
 	--line-height-medium: 43px;
 	--line-height-large: 65px;
-	--padding-x-timetable-main: 30px;
-	--padding-y-timetable-main: 32px;
+
+	--timetable-day-padding-x: 30px;
+	--timetable-day-padding-y: 32px;
+    --timetable-border-radius: 30px;
+    --timetable-border-radius-small: 20px;
 }
 
 
@@ -32,6 +35,7 @@ $desktop: 700px;
 		--font-size-smaller-but-even-smaller-in-mobile: 8px;
 		--font-size-smaller: 10px;
 		--font-size-usual: 10px;
+        --font-size-middle: 12px;
 		--font-size-big: 14px;
 		--font-bells: 18px;
 		--font-size-very-big: 18px;
@@ -41,8 +45,11 @@ $desktop: 700px;
 		--line-height-article: 16px;
 		--line-height-medium: 25px;
 		--line-height-large: 36px;
-		--padding-x-timetable-main: 10px;
-		--padding-y-timetable-main: 20px;
+
+		--timetable-day-padding-x: 18px;
+		--timetable-day-padding-y: 15px;
+        --timetable-border-radius: 15px;
+        --timetable-border-radius-small: 15px;
 	}
 }
 
