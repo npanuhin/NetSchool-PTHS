@@ -267,8 +267,9 @@ main {
 			}
 
 			& > button {
-				@media (min-width: $desktop + 1px) {
-					position: absolute;
+				position: absolute;
+				@media (max-width: $desktop) {
+					position: static;
 				}
 				opacity: 0;
 				top: 0px;

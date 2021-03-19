@@ -3,26 +3,26 @@
 
 $desktop: 700px;
 
-@media (min-width: $desktop) {
-	//really desktop;
-	:root {
-		--font-size-small: 14px;
-		--font-size-smaller-but-even-smaller-in-mobile: 16px;
-		--font-size-smaller: 16px;
-		--font-size-usual: 18px;
-		--font-size-big: 24px;
-		--font-size-name: 36px;
-		--font-size-very-big: 36px;
-		--font-size-selector: 36px; //big, doesn't need large resize
-		--font-bells: 18px;
-		--line-height-compact: 25px;
-		--line-height-article: 32px;
-		--line-height-medium: 43px;
-		--line-height-large: 65px;
-		--padding-x-timetable-main: 30px;
-		--padding-y-timetable-main: 32px;
-	}
+
+//really desktop;
+:root {
+	--font-size-small: 14px;
+	--font-size-smaller-but-even-smaller-in-mobile: 16px;
+	--font-size-smaller: 16px;
+	--font-size-usual: 18px;
+	--font-size-big: 24px;
+	--font-size-name: 36px;
+	--font-size-very-big: 36px;
+	--font-size-selector: 36px; //big, doesn't need large resize
+	--font-bells: 18px;
+	--line-height-compact: 25px;
+	--line-height-article: 32px;
+	--line-height-medium: 43px;
+	--line-height-large: 65px;
+	--padding-x-timetable-main: 30px;
+	--padding-y-timetable-main: 32px;
 }
+
 
 @media (max-width: $desktop) {
 	//mobile;
