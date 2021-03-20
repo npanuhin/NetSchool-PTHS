@@ -12,6 +12,7 @@ main {
 		padding: 5% 5% 35px 5%;
 		@media (max-width: $desktop) {
 			width: calc(100% - 20px);
+			padding: 4% 4% 25px 4%;
 		}
 		width: calc(100% - 200px);
 		z-index: 10;

@@ -15,15 +15,16 @@ main {
 
 		.zoom_lessons, .zoom_courses, .holidays {
 			position: relative;
-			padding: 30px 10px 40px 10px;
-			
-			@media (max-width: $desktop) {
-				width: calc(100% - 20px);
-			}
-			width: calc(100% - 200px);
-
 			box-sizing: border-box;
 			margin: 50px auto 0 auto;
+			padding: 30px 10px 40px 10px;
+
+			width: calc(100% - 200px);
+			@media (max-width: $desktop) {
+				margin: 25px auto 0 auto;
+				padding: 15px 5px 35px 5px;
+				width: calc(100% - 20px);
+			}
 
 			background: $block-color;
 			box-shadow: $block-shadow;
@@ -39,21 +40,24 @@ main {
 				font-style: normal;
 				font-weight: 600;
 				font-size: var(--font-size-very-big);
-				line-height: var(--line-height-medium);
 				text-align: center;
-
-				margin-left: 20px;
 
 				color: $text-color;
 				html.dark & {
 					color: $text-color-dark;
 				}
 
-				img {
+				.zoom-icon {
 					position: relative;
 					top: 17.5px;
-					left: -15px;
+					margin: 0 -15px;
 					height: 55px;
+
+					@media (max-width: $desktop) {
+						margin: 0 -10px;
+						top: 11.7px;
+						height: 34px;
+					}
 				}
 			}
 
