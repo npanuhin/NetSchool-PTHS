@@ -1,15 +1,7 @@
 @import '../src/styles/main';
 
 main {
-	position: relative;
-	@media (max-width: $desktop) {
-		margin: 60px auto 60px auto;
-	}
-	margin: 120px auto 60px auto;
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: 1170px;
-	max-width: 100%;
 
 	.timetable {
 		width: 100%;

@@ -4,13 +4,7 @@ $github-icon-color-dark: #f0f6fc;
 $github-icon-hover-color-dark: rgba(240,246,252,0.7);
 
 main {
-	position: relative;
-	@media (max-width: $desktop) {
-		margin: 60px auto 100px auto;
-	}
-	margin: 120px auto 100px auto;
 	width: $main-width;
-	max-width: 95%;
 
 	.help {
 		position: relative;

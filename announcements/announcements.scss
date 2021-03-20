@@ -1,12 +1,9 @@
 @import '../src/styles/main';
 
 main {
-	position: relative;
-	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: $main-width;
-	max-width: 95%;
 
 	.message_alert {
 		min-width: calc(630px - 5%);

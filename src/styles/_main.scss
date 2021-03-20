@@ -258,6 +258,12 @@ a {
 
 
 main {
+    position: relative;
+    margin: 120px auto 100px auto;
+    @media (max-width: $desktop) {
+        margin: 90px auto 60px auto;
+    }
+    max-width: 100%;
 
     .message_alert {
         position: relative;

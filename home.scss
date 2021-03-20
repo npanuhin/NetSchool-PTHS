@@ -5,14 +5,7 @@ $expired-color: rgb(255, 80, 80);
 $arrows-color-dark: #5c6670;
 
 main {
-	position: relative;
-	
-	margin: 120px auto 100px auto;
-	@media (max-width: $desktop) {
-		margin: 80px auto 45px auto;
-	}
 	width: $main-width;
-	max-width: 100%;
 	
 	.tasks {
 		position: relative;
@@ -284,9 +277,12 @@ main {
 
 			& > button {
 				position: absolute;
-				@media (max-width: $desktop) {
+				@media (max-width: 350px) {
 					position: static;
 					top: 0;
+				}
+				@media (max-width: $desktop) {
+					top: 3px;
 				}
 				opacity: 0;
 				top: 10px;
@@ -297,7 +293,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: var(--font-size-usual);
+				font-size: var(--font-size-middle);
 				line-height: 27px;
 				cursor: pointer;
 
@@ -333,8 +329,6 @@ main {
 				}
 
 				@media (max-width: $desktop) {
-					grid-template-rows: auto auto;
-					grid-template-columns: 1fr 1fr;
 					grid-row-gap: 10px;
 					grid-column-gap: 10px;
 				}

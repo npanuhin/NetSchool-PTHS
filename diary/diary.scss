@@ -11,13 +11,7 @@ $today-color: rgba(0, 255, 0, 0.2);
 $today-color-dark: rgba(0, 255, 0, 0.2);
 
 main {
-	position: relative;
-	@media (max-width: $desktop) {
-		margin: 80px auto 100px auto;
-	}
-	margin: 120px auto 100px auto;
 	width: 1300px;
-	max-width: 95%;
 
 	.diary {
 		position: relative;
