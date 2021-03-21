@@ -39,6 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 </head>
 
 <body>
+	<!--Да, br-br-br — плохо, но это специально страница без стилей, и здесь пофиг.-->
+	Чисто формально нам, конечно, фиолетово на то, будете ли Вы этим пользоваться или нет…<br> …но мы старались (и можем еще постараться, если будут конструктивные предложения)…<br><br>
+	
 	<?php
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confirm'])) {
@@ -58,7 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 		<form action="" method="POST">
 			<input type="submit" name="confirm" value="Удалить аккаунт">
 		</form>
-
+		<br>
+		<form action="../" method="POST">
+			<input type="submit" value="Я передумал!">
+		</form>
 		<?php
 	}
 	?>
