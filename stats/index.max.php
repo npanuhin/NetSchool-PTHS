@@ -7,6 +7,7 @@ if (!$AUTHORIZED) {
 	redirect('/login/');
 	exit;
 }
+get_person(); 
 
 $default_mark = 1;
 $default_mark_rate = 10;
@@ -19,7 +20,7 @@ $default_mark_rate = 10;
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="build/stats.min.css">
-	<?php include_once __DIR__ . '/../src/favicon.php' ?>
+	<?php include_once __DIR__ . '/../src/favicon.html' ?>
 	<title>NetSchool PTHS | Статистика</title>
 </head>
 <body>
