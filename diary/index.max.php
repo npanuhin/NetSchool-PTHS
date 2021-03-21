@@ -23,6 +23,7 @@ $default_mark_rate = 10;
 	<?php include_once __DIR__ . '/../src/favicon.html' ?>
 	<title>NetSchool PTHS | Оценки</title>
 </head>
+
 <body>
 
 	<?php require_once __DIR__ . '/../src/header.php' ?>
@@ -129,6 +130,7 @@ $default_mark_rate = 10;
 					<div class="scrollbox">
 					
 						<table>
+							<!-- Months -->
 							<tr>
 								<?php
 								$cur_month = null;
@@ -169,21 +171,23 @@ $default_mark_rate = 10;
 								?>
 							</tr>
 
+							<!-- Days -->
 							<tr>
 								<?php
 								foreach ($all_days as $day) {
 									$datetime = new DateTime($day);
 									?>
-									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[$datetime->format('w') - 1] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[$datetime->format('m') - 1] ?>">
+									<td<?php if ($day == $TODAY->format('Y-m-d')) echo ' class="today"' ?> title="<?php echo $weekdays[get_weekday($datetime)] . ', ' . ltrim($datetime->format('d'), '0') . ' ' . $months_genetive[get_weekday($datetime)] ?>">
 										<?php echo $datetime->format('d') ?>
 										<br>
-										<?php echo $weekdays_short[$datetime->format('w') - 1] ?>
+										<?php echo $weekdays_short[get_weekday($datetime)] ?>
 									</td>
 									<?php
 								}
 								?>
 							</tr>
 
+							<!-- Table -->
 							<?php
 							foreach ($all_lessons as $lesson) {
 								$days = $table[$lesson];
@@ -390,10 +394,13 @@ $default_mark_rate = 10;
 		</svg>
 	</div>
 
+	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
+
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/diary.min.js" defer></script>
+	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 
 </html>

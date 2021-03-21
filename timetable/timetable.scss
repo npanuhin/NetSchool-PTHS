@@ -14,21 +14,18 @@ main {
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
-		.float_wrapper {
-			overflow: hidden;
-			padding: 30px 0 40px 0;
-			width: 100%;
+		& > div:first-child {
+			margin-top: 40px;
 		}
 
-		.holidays, .bells, .cources .day {
+		.zoom_lessons, .zoom_courses, .holidays {
 			position: relative;
 			padding: 30px 32px 40px 32px;
 
 			width: calc(100% - 200px);
 
 			box-sizing: border-box;
-			margin: 0 auto;
-			z-index: 10;
+			margin: 50px auto 0 auto;
 
 			background: $block-color;
 			box-shadow: $block-shadow;
@@ -47,17 +44,79 @@ main {
 				line-height: 43px;
 				text-align: center;
 
+				margin-left: 20px;
+
+				color: $text-color;
+				html.dark & {
+					color: $text-color-dark;
+				}
+
+				img {
+					position: relative;
+					top: 17.5px;
+					left: -15px;
+					height: 55px;
+				}
+			}
+
+			.details {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 18px;
+				// line-height: px;
+				text-align: center;
+
 				color: $text-color;
 				html.dark & {
 					color: $text-color-dark;
 				}
 			}
+
+			table {
+				margin: 30px auto 0 auto;
+				// table-layout: fixed;
+				width: 100%;
+				color: $text-color;
+
+				border-spacing: 10px 3px;
+				border-collapse: separate;
+				table-layout: fixed;
+
+				tr {
+					th, td {
+						font-family: Manrope;
+						font-style: normal;
+						font-size: 16px;
+					}
+
+					th {
+						// text-align: center;
+						padding: 0 0 5px 18px;
+
+						font-weight: 600;
+						color: $orange-color;
+						html.dark & {
+							color: $orange-color-dark;
+						}
+					}
+					
+					td {
+						// &.center {
+						// 	text-align: center;
+						// }
+
+						font-weight: 400;
+						color: $text-color;
+						html.dark & {
+							color: $text-color-dark;
+						}
+					}
+				}
+			}
 		}
 
 		.holidays {
-			float: left;
-			width: calc(57% - 114px);
-			margin-left: 100px;
 
 			h3 {
 				margin-bottom: 20px;
@@ -68,7 +127,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
-				font-size: 18px;
+				font-size: 14px;
 				text-align: center;
 
 				color: $text-color;
@@ -83,7 +142,7 @@ main {
 					font-style: normal;
 					font-weight: 600;
 					font-size: 19px;
-					line-height: 27px;
+					line-height: 24px;
 					text-align: center;
 
 					color: $text-color;
@@ -93,157 +152,5 @@ main {
 				}
 			}
 		}
-
-		.bells {
-			float: right;
-			width: calc(32% - 64px);
-			margin-right: 100px;
-
-			.details {
-				font-family: Manrope;
-				font-style: normal;
-				font-weight: normal;
-				font-size: 18px;
-				text-align: center;
-
-				color: $text-color;
-				html.dark & {
-					color: $text-color-dark;
-				}
-			}
-
-			ul {
-				// width: 300px;
-				// min-width: 200px;
-				margin: 25px auto 0 auto;
-
-				li {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: normal;
-					font-size: 18px;
-					text-align: center;
-
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-				}
-			}
-		}
-
-		.holidays, .bells {
-			&.wide {
-				width: calc(100% - 200px);
-				margin-left: 100px;
-			}
-
-			&.hidden {
-				display: none;
-			}
-		}
-
-		@media (max-width: 1000px) {
-			.holidays, .bells {
-				float: none;
-				width: calc(100% - 200px);
-				margin: 0 auto;
-			}
-
-			.holidays:not(.wide) {
-				margin-bottom: 50px;
-			}
-		}
-
-		.cources {
-			position: relative;
-			width: calc(100% - 200px);
-			margin: 30px 0 0 100px;
-			padding-top: 75px;
-
-			display: grid;
-			grid-template-rows: auto auto auto;
-			grid-template-columns: 1fr 1fr;
-			grid-row-gap: 50px;
-			grid-column-gap: 60px;
-
-			h3 {
-				position: absolute;
-				top: 5px;
-				left: 10px;
-				font-family: Manrope;
-				font-style: normal;
-				font-weight: 600;
-				font-size: 36px;
-
-				color: #fff;
-				text-shadow: $text-shadow;
-				html.dark & {
-					color: $text-color-dark;
-					text-shadow: $text-shadow-dark;
-				}
-
-				span {
-					margin-left: 10px;
-					font-family: inherit;
-					font-style: inherit;
-					font-weight: inherit;
-					font-size: 0.5em;
-					color: inherit;
-					text-shadow: inherit;
-				}
-			}
-
-			.day {
-				width: auto;
-				margin: 0;
-				padding-bottom: 25px;
-
-				height: auto;
-
-				h5 {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: 24px;
-					line-height: 33px;
-					text-align: center;
-
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-
-					margin-bottom: 20px;
-				}
-
-				ul li {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: normal;
-					font-size: 14px;
-					line-height: 28px;
-
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
-
-					margin-bottom: 10px;
-
-					span {
-						font-family: inherit;
-						font-style: inherit;
-						font-weight: inherit;
-						font-size: inherit;
-						color: $orange-color;
-						html.dark & {
-							color: $orange-color-dark;
-						}
-					}
-				}
-			}
-		}
-
 	}
 }

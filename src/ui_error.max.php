@@ -9,7 +9,7 @@ function trigger_ui_error($message) {
 				position: fixed;
 				width: 100vw;
 				height: 100vh;
-				z-index: 10000;
+				z-index: 1000;
 				background: rgba(0, 0, 0, 0.7);
 				visibility: visible;
 			}

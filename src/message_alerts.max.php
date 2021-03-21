@@ -2,12 +2,13 @@
 
 // Insert if not exists
 $db->query('
-		INSERT INTO `messages` (`user_id`, `pro_tip_hover`, `official_warning`)
+		INSERT INTO `messages` (`user_id`, `pro_tip_hover`, `official_warning`, `zoom_page`)
 		SELECT * FROM (
 			SELECT
 			?i AS `user_id`,
 			?s AS `pro_tip_hover`,
-			?s AS `official_warning`
+			?s AS `official_warning`,
+			?s AS `zoom_page`
 		) AS tmp
 		WHERE NOT EXISTS (
 		    SELECT 1 FROM `messages` WHERE `user_id` = ?i
@@ -16,6 +17,7 @@ $db->query('
 	$person['id'],
 	'<p title="Да, например вот так">ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию.',
 	'<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>.',
+	'Вы можете использовать <kbd>Ctrl -/+</kbd> или <kbd>Ctrl + <div class="mouse"></div></kbd> для изменения масштаба',
 	$person['id']
 );
 

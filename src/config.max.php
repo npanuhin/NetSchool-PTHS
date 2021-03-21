@@ -19,8 +19,8 @@ require_once __DIR__ . '/lib/safemysql.class.php';
 
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
-define(TELEGRAM_TOKEN, $config['telegram_token']);
-define(TELEGRAM_CHATID, $config['telegram_chatid']);
+define('TELEGRAM_TOKEN', $config['telegram_token']);
+define('TELEGRAM_CHATID', $config['telegram_chatid']);
 
 
 // =========================================== CONST ===========================================
@@ -242,6 +242,13 @@ function class_to_diary_period($db, $class) {
 	return array($TRUE_SCHOOL_YEAR_BEGIN, $TRUE_SCHOOL_YEAR_END);
 }
 
+
+// ========================================== DATETIME ==========================================
+
+function get_weekday($datetime) {
+	return ($datetime->format('w') + 6) % 7;
+}
+
 function day_word_case($count) {
 	if ($count == '1') return 'день';
 	if ($count == '2') return 'дня';
@@ -270,9 +277,13 @@ function format_days_delta($num, $upper=false) {
 	return ($upper ? 'Через ' : 'через ') . $num . ' ' . day_word_case($num);
 }
 
+
 // ============================================ LOG ============================================
 
 function send_telegram_message($text, $token, $chat_id) {
+	$text = str_replace('\\', '\\\\', $text);
+	$text = str_replace('/', '\/', $text);
+
 	$text = str_replace('=', '\=', $text);
 	$text = str_replace('*', '\*', $text);
 	$text = str_replace('_', '\_', $text);
@@ -281,8 +292,6 @@ function send_telegram_message($text, $token, $chat_id) {
 	$text = str_replace('"', '\"', $text);
 	$text = str_replace('-', '\-', $text);
 	$text = str_replace('.', '\.', $text);
-	$text = str_replace('\\', '\\\\', $text);
-	$text = str_replace('/', '\/', $text);
 
 	$ch = curl_init();
 	curl_setopt_array(

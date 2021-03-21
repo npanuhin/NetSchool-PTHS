@@ -20,24 +20,14 @@ get_person();
 	<?php include_once __DIR__ . '/src/favicon.html' ?>
 	<title>NetSchool PTHS</title>
 </head>
+
 <body>
 
 	<?php require_once __DIR__ . '/src/ui_error.php' ?>
 	<?php require_once __DIR__ . '/src/header.php' ?>
-	
+
 	<main>
 		<?php
-
-		$has_announcements = false;
-
-		// try {
-		// 	$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date`');
-		// } catch (Exception $e) {
-		// 	telegram_log("Database request failed\n\n" . $e->getMessage());
-		// 	exit(json_encode(array('message', 'Database request failed')));
-		// }
-		// $has_announcements = (count($announcements) != 0);
-
 		include_once __DIR__ . '/src/message_alerts.php';
 		require_once __DIR__ . '/src/menu.html';
 
@@ -82,7 +72,7 @@ get_person();
 
 		if (!empty($tasks)) {
 			?>
-			<div class="tasks<?php if (!$has_announcements) echo ' wide' ?>" title="Просроченные задания и задания текущего дня">
+			<div class="tasks" title="Просроченные задания и задания текущего дня">
 				<h2>Задания</h2>
 				<ul>
 					<?php
@@ -118,14 +108,6 @@ get_person();
 
 					?>
 				</ul>
-			</div>
-			<?php
-		}
-
-		if ($has_announcements) {
-			?>
-			<div class="announcements">
-				<?php // include_once __DIR__ . "/files/icons/cross.svg" ?>
 			</div>
 			<?php
 		}
@@ -174,7 +156,7 @@ get_person();
 						foreach ($day_period as $day) {
 							?>
 
-							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<div class="<?php echo $day->format('Y-m-d'); if ($day == $TODAY) echo ' today' ?>" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
 
 								<?php
 
@@ -207,7 +189,7 @@ get_person();
 
 									?>
 
-									<h4><?php echo $weekdays[$day->format('w') - 1] ?></h4>
+									<h4><?php echo $weekdays[get_weekday($day)] ?></h4>
 
 									<div class="day_info"<?php if ($zoom_day) echo ' style="top: -11.5px"' ?>>
 										<?php
@@ -243,7 +225,7 @@ get_person();
 													++$lesson_index;
 													?>
 
-													<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+													<li class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 													<?php
 												} else if ($type == 'lesson' || $type == 'vacation') {
@@ -277,7 +259,7 @@ get_person();
 
 														?>
 
-														title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
+														title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': ' . $lesson_index . ' урок' ?>"
 													>
 
 														<a><?php echo handle_lesson_name($name) ?></a>
@@ -307,7 +289,7 @@ get_person();
 												++$lesson_index;
 												?>
 
-												<li class="no_lesson" title="<?php echo $weekdays[$day->format('w') - 1] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
+												<li class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></li>
 
 												<?php
 											}
@@ -348,10 +330,13 @@ get_person();
 
 	<div class="details"></div>
 
+	<?php include_once __DIR__ . '/src/online_media/online_media.php' ?>
+
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<script type="text/javascript" src="build/home.min.js" defer></script>
+	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 
 </html>
