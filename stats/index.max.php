@@ -49,6 +49,7 @@ $default_mark_rate = 10;
 				<div class="tabs">
 					<div class="tab avg_dinamic">
 						<h3>Динамика среднего балла</h3>
+						<canvas id="dynamics_canvas"></canvas>
 					</div>
 				</div>
 				<?php
@@ -59,10 +60,11 @@ $default_mark_rate = 10;
 	</main>
 
 	<div class="details"></div>
-
+ 
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
+	<script type="text/javascript" src="/src/lib/chart.js" defer></script>
 	<script type="text/javascript" src="build/stats.min.js" defer></script>
 </body>
 
