@@ -69,6 +69,13 @@ main {
 			}
 			margin-top: 22px;
 			margin-bottom: 6px;
+			
+			.del {
+				text-decoration: line-through; 
+				display: inline-block;
+				color: inherit;
+				font-weight: inherit;
+			}
 		}
 
 		h4 + .question {
@@ -86,12 +93,10 @@ main {
 				height: 10px;
 			}
 		}
-
 		.del {
 			text-decoration: line-through; 
 			display: inline-block;
 		}
-
 		a {
 			color: $orange-color;
 			html.dark & {
