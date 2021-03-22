@@ -60,6 +60,43 @@ $default_mark_rate = 10;
 	</main>
 
 	<div class="details"></div>
+	
+	<div id="data" style="display:none">
+	
+	<?php
+		$diary = json_decode($person['diary'], true);
+		$sum_mark_points = [];
+		$sum_weight = [];
+		foreach ($diary as $day => $tasks) {
+			foreach ($tasks as $task_data) {
+				$lesson = handle_lesson_name(trim($task_data[0]));
+				$date = new DateTime($day);
+				$day_number = $date->format("z");
+				
+				if(!isset($sum_mark_points[$lesson])){
+					$sum_mark_points[$lesson] = [];
+					$sum_weight[$lesson] = [];
+					$sum_mark_points[$lesson][$day_number] = 0;
+					$sum_weight[$lesson][$day_number] = 0;
+				}
+				if($task_data[3]){
+					$sum_mark_points[$lesson][$day_number] += end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
+					$sum_weight[$lesson][$day_number] += end($sum_weight[$lesson]) + $task_data[3];
+				}
+			}
+		}
+		$result = [];
+		foreach($sum_mark_points as $lesson => $mark_points_per_lesson){
+			foreach($mark_points_per_lesson as $day_number => $_){
+				if (!isset($result[$lesson])) $result[$lesson] = [];
+				//echo $sum_mark_points[$lesson][$day_number];
+				$result[$lesson][$day_number] = $sum_mark_points[$lesson][$day_number]/$sum_weight[$lesson][$day_number];
+			}
+		}
+		echo json_encode($result);
+	?>
+	
+	</div>
  
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
