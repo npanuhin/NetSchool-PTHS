@@ -2,33 +2,44 @@ window.onload = function() {
 	var drawingCanvas = document.getElementById("dynamics_canvas");
     if(drawingCanvas && drawingCanvas.getContext) {
 		var context = drawingCanvas.getContext('2d');
-		var data = JSON.parse(document.getElementById("data").innerText);
-		console.log(data);
+		var main_data = JSON.parse(document.getElementById("data").innerText);
+		console.log(main_data);
+		
+		chart_data = {datasets: []};
+		for(lesson in main_data){
+			lesson_data = [];
+			//console.log(main_data[lesson]);
+			for(day in main_data[lesson]){
+				lesson_data.push({x: Number(day), y : main_data[lesson][day].toFixed(2)})
+			}
+			
+			chart_data["datasets"].push(
+							{label: lesson,
+							borderColor : 'violet',
+							data: lesson_data,
+							fill : false}
+							)
+			//data[labels].push(lesson);
+		}
+		console.log(chart_data); 
+		
 		var myChart = new Chart(context, {
 			type: 'line', 
-			data: {
-				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-				datasets: [{
-					label: '% of Votes',
-					borderColor: "blueviolet",
-					data: [12, 19, 3, 5, 2, 3],
-					fill : false
-				},
-				{
-					borderColor: "moccasin",
-					label: '% of People',
-					data: [3, 2, 6, 7, 4, 9],
-					fill : false
-				}
-				]
-			},
+			data: chart_data,
 			
 			options: {
-				
+				responsive: true,
 				scales: {
 					yAxes: [{
+						type: 'linear',
 						ticks: {
-							beginAtZero: true
+							//beginAtZero: true
+						}
+					}],
+					xAxes: [{
+						type: 'linear',
+						ticks: {
+							//beginAtZero: true
 						}
 					}]
 				}

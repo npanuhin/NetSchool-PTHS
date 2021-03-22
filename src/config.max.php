@@ -342,7 +342,7 @@ function telegram_log($message, $token=null, $chat_id=null, $force=true) {
 		$chat_id = TELEGRAM_CHATID;
 	}
 
-	send_telegram_message($message, $token, $chat_id);
+	//send_telegram_message($message, $token, $chat_id);
 }
 
 function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {
