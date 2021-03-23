@@ -1,6 +1,6 @@
 .online_media {
 	// @media (max-width: $desktop) {
-	@media (max-width: 1260px) {
+	@media (max-width: $online-media-threshold) {
 		display: none;
 	}
 
