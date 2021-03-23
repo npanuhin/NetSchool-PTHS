@@ -6,6 +6,13 @@ function random_color(){
 	return chart_colors[Math.floor(Math.random() * chart_colors.length)];
 }
 
+function random_setted_color(){
+	let brightness = 50 + Math.random()*30;
+	let saturation = 85;
+	let tone = Math.random()*360;
+	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
+}
+
 function daysOfYearFromDate(date){
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
@@ -28,7 +35,7 @@ window.onload = function() {
 		var chart_data = {datasets: []};
 		for(let lesson in main_data){
 			var lesson_data = [];
-			let r_color = random_color()
+			let r_color = random_setted_color;//random_color()
 			//console.log(main_data[lesson]);
 			
 			for(let day in main_data[lesson]){
