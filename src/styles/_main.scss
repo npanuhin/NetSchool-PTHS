@@ -275,16 +275,15 @@ main {
 			width: $main-width - 20px;
 			max-width: calc(100% - 20px);
 		}
+		
         box-sizing: border-box;
         width: $main-width - 200px;
         max-width: calc(100% - 200px);
-
-        @media (max-width: 700px) {
-            width: calc(100% - 200px);
-            max-width: none;
-        }
-
-        padding: 12px 50px 12px 30px;
+		
+		@media (max-width: $desktop) {
+			padding: 12px 50px 12px 10px;
+		}
+		padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
         border-radius: 15px;
