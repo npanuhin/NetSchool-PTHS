@@ -60,6 +60,9 @@ window.onload = function() {
 						type: 'linear',
 						ticks: {
 							//beginAtZero: true
+						},
+						gridLines: {
+							color: 'grey'
 						}
 					}],
 					xAxes: [{
@@ -78,6 +81,9 @@ window.onload = function() {
 							min: min_date,
 							beginAtZero: true,
 							
+						},
+						gridLines: {
+							color: 'grey'
 						}
 					}]
 				}
