@@ -45,7 +45,7 @@ window.onload = function() {
 			var lesson_data = [];
 			let r_color = random_setted_color(360.0*i/lessons.length);//random_color()
 			//console.log(main_data[lesson]);
-			
+			if(main_data[lesson].length === 0) continue;//That means that it's parsed as array and has zero length → no marks, shuld be ignored
 			for(let day in main_data[lesson]){
 				var last_y = main_data[lesson][day].toFixed(2);
 				let last_x = daysOfYearToDate(Number(day))
@@ -53,6 +53,7 @@ window.onload = function() {
 				lesson_data.push({x: last_x, y : last_y})
 			}
 			lesson_data.push({x: today, y : last_y})
+			
 			chart_data["datasets"].push(
 							{label: lesson,// + r_color,
 							borderColor : r_color,
