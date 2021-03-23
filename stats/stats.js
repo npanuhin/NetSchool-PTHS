@@ -22,7 +22,7 @@ function daysOfYearFromDate(date){
 function daysOfYearToDate(day){
 	let date = new Date();
 	date.setMonth(0);
-	date.setDate(day);
+	date.setDate(day + 1);
 	return date;
 }
 
@@ -56,6 +56,7 @@ window.onload = function() {
 			chart_data["datasets"].push(
 							{label: lesson,// + r_color,
 							borderColor : r_color,
+							backgroundColor: r_color,
 							data: lesson_data,
 							fill : false}
 							)
@@ -63,13 +64,23 @@ window.onload = function() {
 		console.log(chart_data); 
 		let min_date = daysOfYearToDate(min_day);
 		min_date.setDate(0);
-		console.log(min_day, min_date);
+		//console.log(min_day, min_date);
 		var myChart = new Chart(context, {
 			type: 'line', 
 			data: chart_data,
 			
 			options: {
 				responsive: true,
+				
+				tooltips: {
+					callbacks: {
+						title: function (tooltipItem, data) {
+							let date = new Date(tooltipItem[0]["xLabel"]);
+							return date.toLocaleDateString()
+						} 
+					}
+				},
+				
 				scales: {
 					yAxes: [{
 						type: 'linear',
