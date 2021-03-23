@@ -1,12 +1,9 @@
 @import '../src/styles/main';
 
 main {
-	position: relative;
-	margin: 120px auto 100px auto;
 	// left: 50%;
 	// transform: translateX(-50%);
 	width: $main-width;
-	max-width: 95%;
 
 	.message_alert {
 		min-width: calc(630px - 5%);
@@ -20,6 +17,9 @@ main {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 		width: calc(100% - 130px);
 		// max-width: 100%;
 
@@ -43,25 +43,23 @@ main {
 
 		.announcement {
 			position: relative;
-			padding: 35px;
-
 			box-sizing: border-box;
 
-			clear: both;
-			overflow: hidden;
-
+			padding: 35px;
 			min-width: calc(700px - 5%);
 			@media (max-width: $main-width) {
 				margin: 0 auto;
 				width: calc(100% - 200px);
-				// padding-left: 0;
-				// padding-right: 0;
 			}
-			@media (max-width: 700px) {
+			@media (max-width: $desktop) {
+				padding: 15px 0;
 				left: 0;
 				width: 100%;
 				min-width: 0;
 			}
+
+			clear: both;
+			overflow: hidden;
 			
 			.author {
 				position: relative;
@@ -89,10 +87,9 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 600;
-					font-size: 18px;
+					font-size: var(--font-size-usual);
 					line-height: 32px;
 
-					// width: 90%;
 					width: 100%;
 					margin: 12px auto 0 auto;
 					text-align: center;
@@ -114,11 +111,14 @@ main {
 			.content {
 				position: relative;
 				float: right;
+
 				padding: 30px;
 				width: 76%;
-
 				@media (max-width: $main-width) {
 					width: 100%;
+				}
+				@media (max-width: $desktop) {
+					padding: 5%;
 				}
 
 				box-sizing: border-box;
@@ -143,7 +143,7 @@ main {
 
 				h4 {
 					font-weight: 600;
-					font-size: 24px;
+					font-size: var(--font-size-big);
 					margin-bottom: 15px;
 
 					&::before {
@@ -156,17 +156,17 @@ main {
 
 				.date {
 					position: absolute;
-					top: 30px;
+					top: 20px;
 					right: 40px;
 					font-weight: 500;
-					font-size: 24px;
+					font-size: var(--font-size-big);
 				}
 
 				article {
 					font-weight: 500;
-					font-size: 16px;
-					line-height: 32px;
-
+					font-size: var(--font-size-smaller);
+					line-height: var(--line-height-article);
+					
 					a {
 						color: $orange-color;
 						html.dark & {

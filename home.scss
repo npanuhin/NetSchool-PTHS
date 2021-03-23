@@ -5,21 +5,24 @@ $expired-color: rgb(255, 80, 80);
 $arrows-color-dark: #5c6670;
 
 main {
-	position: relative;
-	margin: 120px auto 100px auto;
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: $main-width;
-	max-width: 100%;
 	
 	.tasks {
 		position: relative;
 		margin: 45px auto 45px auto;
+		@media (max-width: $desktop) {
+			margin: 30px auto 35px auto;
+		}
 		z-index: 10;
 
 		box-sizing: border-box;
 		padding: 20px;
+		border-radius: var(--timetable-border-radius);
+
 		width: calc(100% - 200px);
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 
 		background: $block-color;
 		box-shadow: $block-shadow;
@@ -27,7 +30,6 @@ main {
 			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
 		}
-		border-radius: 30px;
 
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
@@ -39,8 +41,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
-			font-size: 36px;
-			line-height: 179.2%;
+			font-size: var(--font-size-very-big);
 
 			color: $text-color;
 			html.dark & {
@@ -56,8 +57,8 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 16px;
-				line-height: 32px;
+				font-size: var(--font-size-smaller);
+				line-height: var(--line-height-article);
 			}
 
 			li, li span, li a {
@@ -72,12 +73,18 @@ main {
 				list-style: disc;
 				padding-left: 7px;
 
-				span a {
-					font-weight: 400;
-					position: relative;
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
+				span {
+					a {
+						font-weight: 400;
+						position: relative;
+						color: $text-color;
+						html.dark & {
+							color: $text-color-dark;
+						}
+					}
+
+					&:hover a, &:active a {
+						text-decoration: underline;
 					}
 
 					// &::before {
@@ -97,25 +104,28 @@ main {
 					// 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.07s opacity ease-in-out !important;}
 					// }
 
-					&:hover::before {
+					&:hover::before, &:active::before {
 						opacity: 1;
-					}
-
-					&:hover {
-						text-decoration: underline;
 					}
 				}
 
 				div {
 					position: relative;
-					top: -1.2px;
 					display: inline-block;
-					padding: 4.5px 11px 5.5px 11px;
+					top: -1.2px;
+					padding: 4.5px 10px 5.5px 10px;
 					margin-left: 6px;
 					border-radius: 12px;
-					
-					line-height: 14px;
-					font-size: 14px;
+
+					@media (max-width: $desktop) {
+						top: -0.6px;
+						padding: 2px 6px 2px 6px;
+						margin-left: 6px;
+						border-radius: 1000px;
+					}
+
+					font-size: var(--font-size-small);
+					line-height: var(--font-size-small);
 					font-weight: 400;
 
 					border: 1px solid $green-color;
@@ -134,9 +144,11 @@ main {
 	.timetable {
 		position: relative;
 		z-index: 10;
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+		}
 		margin: 15px auto 0 auto;
 		width: calc(100% - 200px);
-
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
@@ -171,9 +183,17 @@ main {
 			&:hover {
 				padding-right: 52px;
 			}
+
+			@media (max-width: $desktop) {
+				display: none;
+			}
 		}
 
 		#timetable_previous {
+			@media (max-width: $desktop) {
+				z-index: 1;
+				left: -60px;
+			}
 			left: -130px;
 			transform: translateY(-50%);
 			
@@ -183,6 +203,9 @@ main {
 		}
 
 		#timetable_next {
+			@media (max-width: $desktop) {
+				right: -50px;
+			}
 			right: -130px;
 			transform: scale(-1, 1) translateY(-50%);
 
@@ -204,8 +227,8 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: bold;
-				font-size: 36px;
-				line-height: 65px;
+				font-size: var(--font-size-selector);
+				// line-height: var(--line-height-large);
 				color: #FFF;
 				text-shadow: $text-shadow;
 				html.dark & {
@@ -254,8 +277,15 @@ main {
 
 			& > button {
 				position: absolute;
+				@media (max-width: 350px) {
+					position: static;
+					top: 0;
+				}
+				@media (max-width: $desktop) {
+					top: 3px;
+				}
 				opacity: 0;
-				top: 20px;
+				top: 10px;
 				right: 20px;
 
 				padding: 7px;
@@ -263,7 +293,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 18px;
+				font-size: var(--font-size-middle);
 				line-height: 27px;
 				cursor: pointer;
 
@@ -298,10 +328,9 @@ main {
 					grid-column-gap: 50px;
 				}
 
-				@media (max-width: 850px) {
-					grid-template-rows: auto auto auto auto auto auto;
-					grid-template-columns: 1fr;
-					grid-row-gap: 40px;
+				@media (max-width: $desktop) {
+					grid-row-gap: 10px;
+					grid-column-gap: 10px;
 				}
 
 				transition: 0.5s opacity ease-in-out, visibility 0.5s;
@@ -312,23 +341,21 @@ main {
 				// Day
 				& > div {
 					position: relative;
-					padding: 30px 32px;
-					min-height: 50px;
+					padding: var(--timetable-day-padding-x) var(--timetable-day-padding-y);
 					background: $block-color;
 					box-shadow: $block-shadow;
 					html.dark & {
 						background: $block-color-dark;
 						box-shadow: $block-shadow-dark;
 					}
-					border-radius: 30px;
+					border-radius: var(--timetable-border-radius);
 
 					h4 {
 						text-align: center;
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: 600;
-						font-size: 21px;
-						line-height: 33px;
+						font-size: var(--font-size-middle);
 						color: $text-color;
 						html.dark & {
 							color: $text-color-dark;
@@ -341,10 +368,8 @@ main {
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
-						font-size: 16px;
-						line-height: 32px;
-
-						height: 32px;
+						// TODO: font and line-height. height → 10px on mobile? 
+						font-size: var(--font-size-smaller);
 
 						width: 100%;
 						text-align: center;
@@ -354,14 +379,33 @@ main {
 							color: $text-color-dark;
 						}
 
+						&.zoom_day {
+							// top: -11.5px;
+							margin-bottom: 11.5px;
+							margin-top: -11.5px;
+							@media (max-width: $desktop) {
+								margin-bottom: 10px;
+								margin-top: -10px;
+							}
+
+							& + ul {
+
+							}
+						}
+
 						.zoom-icon {
 							position: relative;
+							display: inline;
 							top: 11.7px;
 							left: -9px;
-							display: inline;
 							width: 70px;
-
 							margin-right: -15px;
+
+							@media (max-width: $desktop) {
+								top: 9px;
+								left: -6px;
+								width: 52px;
+							}
 
 							&::before, &::after {
 								position: relative;
@@ -382,6 +426,9 @@ main {
 
 					ul {
 						margin-top: 20px;
+						@media (max-width: $desktop) {
+							margin-top: 10px;
+						}
 
 						li {
 							position: relative;
@@ -391,8 +438,8 @@ main {
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: normal;
-								font-size: 16px;
-								line-height: 25px;
+								font-size: var(--font-size-smaller);
+								// line-height: var(--line-height-compact);
 								color: $text-color;
 								html.dark & {
 									color: $text-color-dark;
@@ -425,10 +472,17 @@ main {
 							&.no_lesson {
 								cursor: auto;
 								height: 25px;
+								@media (max-width: $desktop) {
+									height: 15px;
+								}
 
 								&::before {
 									content: "";
 									position: absolute;
+									@media (max-width: $desktop) {
+										top: 4px;
+										height: 9px;
+									}
 									top: 5px;
 									left: 0;
 									width: 100%;
@@ -498,8 +552,8 @@ main {
 	font-family: Manrope;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
-	line-height: 25px;
+	font-size: var(--font-size-smaller);
+	// line-height: 25px;
 	color: $text-color;
 	html.dark & {
 		color: $text-color-dark;
@@ -513,16 +567,20 @@ main {
 	left: 0;
 	z-index: 50;
 	padding: 15px 20px;
-	border-radius: 20px;
+	@media (max-width: $desktop) {
+		padding: 10px 15px;
+	}
+	border-radius: var(--timetable-border-radius-small);
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
+	
 	background: #fff;
 	box-shadow: $block-shadow;
 	color: $text-color;
 	html.dark & {
 		background: #353f4c;
-		box-shadow: $block-shadow; // Not block-shado-dark
+		box-shadow: $block-shadow; // Not block-shadow-dark
 		color: $text-color-dark;
 	}
 
@@ -531,12 +589,11 @@ main {
 	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
-	line-height: 23px;
+	// line-height: var(--line-height-compact);
 
 	h5 {
 		text-align: center;
 		width: 100%;
-		
 		font-weight: 600;
 	}
 

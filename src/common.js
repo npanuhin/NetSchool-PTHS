@@ -19,7 +19,12 @@ var
 	ui_alert_box = document.getElementsByClassName("ui_alert")[0],
 	ui_alert_box_timout,
 
-	dark_mode_transition_timeout = 800;
+	dark_mode_transition_timeout = 800,
+
+	MOBILE = false,
+	min_desktop_width = 700,
+
+	swipe_start_x = 0, swipe_start_y = 0, swipe_threshold = 50;
 
 
 // ======================================== Tools ========================================
@@ -60,6 +65,54 @@ function ui_alert(text) {
 	}, 5000);
 }
 
+function swipe_start(e) {
+	swipe_start_x = e.touches[0].clientX;
+	swipe_start_y = e.touches[0].clientY;
+
+	Event.add(window, "touchmove", swipe_detect);
+}
+
+function swipe_detect(e) {
+	if (e.touches[0].clientX - swipe_start_x > swipe_threshold) { // Swipe right
+		trigger_event(window, "rightSwipe");
+		console.log("rightSwipe");
+		swipe_cancel();
+	}
+	if (swipe_start_x - e.touches[0].clientX  > swipe_threshold) { // Swipe left
+		trigger_event(window, "leftSwipe");
+		console.log("leftSwipe");
+		swipe_cancel();
+	}
+	if (e.touches[0].clientY - swipe_start_y > swipe_threshold) { // Swipe right
+		trigger_event(window, "downSwipe");
+		console.log("downSwipe");
+		swipe_cancel();
+	}
+	if (swipe_start_y - e.touches[0].clientY  > swipe_threshold) { // Swipe left
+		trigger_event(window, "upSwipe");
+		console.log("upSwipe");
+		swipe_cancel();
+	}
+}
+
+function swipe_cancel() {
+	Event.remove(window, "touchmove", swipe_detect);
+}
+
+
+function onResize() {
+	// MOBILE = (document.documentElement.clientWidth <= min_desktop_width);
+	MOBILE = (window.innerWidth <= min_desktop_width);
+
+	if (MOBILE) {
+		Event.add(window, "touchstart", swipe_start);
+
+	} else {
+		Event.remove(window, "touchstart", swipe_start);
+		Event.remove(window, "touchmove", swipe_detect);
+	}
+}
+
 Event.add(window, "load", () => {
 	Event.add(window, "mousedown", () => {
 		if (!interacted) {
@@ -68,7 +121,23 @@ Event.add(window, "load", () => {
 			interacted = true;
 		}
 	});
-	setTimeout(() => {html.classList.add("loaded")}, 50);
+	Event.add(window, "touchstart", () => {
+		if (!interacted) {
+			html.classList.add("interacted");
+			trigger_event(html, "interacted");
+			interacted = true;
+		}
+	});
+
+	Event.add(window, "resize", onResize);
+	onResize();
+
+	Event.add(window, "touchend", swipe_cancel);
+
+	setTimeout(() => {
+		html.classList.add("loaded");
+		// onResize();
+	}, 50);
 
 	Event.add(menu_button, "mousedown", () => {
 		menu.classList.toggle("shown");

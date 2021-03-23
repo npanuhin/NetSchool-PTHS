@@ -1,8 +1,8 @@
 .statusbar {
 	position: absolute;
 	height: 65px;
-	right: calc(50vw - 600px);
-	@media (max-width: 1200px) {
+	right: calc(50vw - 570px);
+	@media (max-width: 1140px) {
 		right: 0;
 	}
 
@@ -18,10 +18,13 @@
 		font-family: Manrope;
 		font-style: normal;
 		font-weight: 100;
-		font-size: 36px;
+		font-size: var(--font-size-name);
+		
+		@media (max-width: $desktop) {
+			display: none;
+			width: 50px;
+		}
 		height: 65px;
-		line-height: 65px;
-
 		margin: 0 17px;
 	}
 

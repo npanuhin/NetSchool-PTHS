@@ -1,12 +1,7 @@
 @import '../src/styles/main';
 
 main {
-	position: relative;
-	margin: 120px auto 60px auto;
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: 1170px;
-	max-width: 100%;
 
 	.timetable {
 		width: 100%;
@@ -20,12 +15,16 @@ main {
 
 		.zoom_lessons, .zoom_courses, .holidays {
 			position: relative;
-			padding: 30px 32px 40px 32px;
-
-			width: calc(100% - 200px);
-
 			box-sizing: border-box;
 			margin: 50px auto 0 auto;
+			padding: 30px 10px 40px 10px;
+
+			width: calc(100% - 200px);
+			@media (max-width: $desktop) {
+				margin: 25px auto 0 auto;
+				padding: 15px 5px 35px 5px;
+				width: calc(100% - 20px);
+			}
 
 			background: $block-color;
 			box-shadow: $block-shadow;
@@ -40,22 +39,25 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 36px;
-				line-height: 43px;
+				font-size: var(--font-size-very-big);
 				text-align: center;
-
-				margin-left: 20px;
 
 				color: $text-color;
 				html.dark & {
 					color: $text-color-dark;
 				}
 
-				img {
+				.zoom-icon {
 					position: relative;
 					top: 17.5px;
-					left: -15px;
+					margin: 0 -15px;
 					height: 55px;
+
+					@media (max-width: $desktop) {
+						margin: 0 -10px;
+						top: 11.7px;
+						height: 34px;
+					}
 				}
 			}
 
@@ -63,7 +65,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: 600;
-				font-size: 18px;
+				font-size: var(--font-size-usual);
 				// line-height: px;
 				text-align: center;
 
@@ -87,12 +89,12 @@ main {
 					th, td {
 						font-family: Manrope;
 						font-style: normal;
-						font-size: 16px;
+						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
 					}
 
 					th {
-						// text-align: center;
-						padding: 0 0 5px 18px;
+						text-align: center;
+						padding: 0 5px 5px 5px;
 
 						font-weight: 600;
 						color: $orange-color;
@@ -102,10 +104,11 @@ main {
 					}
 					
 					td {
-						// &.center {
-						// 	text-align: center;
-						// }
-
+						&.center {
+							font-size: var(--font-size-smaller);
+						 	text-align: center;
+						}
+						text-align: center;
 						font-weight: 400;
 						color: $text-color;
 						html.dark & {
@@ -127,7 +130,7 @@ main {
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
-				font-size: 14px;
+				font-size: var(--font-size-small);
 				text-align: center;
 
 				color: $text-color;
@@ -141,8 +144,8 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 600;
-					font-size: 19px;
-					line-height: 24px;
+					font-size: var(--font-size-usual);
+					line-height: var(--line-height-compact);
 					text-align: center;
 
 					color: $text-color;
