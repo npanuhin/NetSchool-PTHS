@@ -101,8 +101,9 @@ $default_mark_rate = 10;
 					$sum_weight[$lesson][$day_number] = 0;
 				}
 				if($task_data[3]&&$task_data[4]){
-					$sum_mark_points[$lesson][$day_number] += end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
-					$sum_weight[$lesson][$day_number] += end($sum_weight[$lesson]) + $task_data[3];
+					//var_dump($lesson, end($sum_weight[$lesson]), $task_data[3]);
+					$sum_mark_points[$lesson][$day_number] = end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
+					$sum_weight[$lesson][$day_number] = end($sum_weight[$lesson]) + $task_data[3];
 				}
 			}
 		}
@@ -119,7 +120,6 @@ $default_mark_rate = 10;
 				}
 			}
 		} 
-		//var_dump($result);
 		
 		echo json_encode($result);
 		//echo json_last_error_msg();
