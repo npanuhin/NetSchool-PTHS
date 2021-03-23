@@ -1,5 +1,7 @@
 chart_colors = ["aliceblue", "aqua", "aquamarine", "azure", "beige", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgreen", "darkgrey", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "forestgreen", "fuchsia", "gainsboro", "gold", "goldenrod", "gray", "green", "greenyellow", "grey", "hotpink", "indianred", "indigo", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "moccasin", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "rebeccapurple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "yellow", "yellowgreen"]
 
+months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
 function random_color(){
 	return chart_colors[Math.floor(Math.random() * chart_colors.length)];
 }
@@ -42,7 +44,6 @@ window.onload = function() {
 							data: lesson_data,
 							fill : false}
 							)
-			//data[labels].push(lesson);
 		}
 		console.log(chart_data); 
 		let min_date = daysOfYearToDate(min_day);
@@ -64,12 +65,19 @@ window.onload = function() {
 					xAxes: [{
 						type: 'time',
 						time: {
-							unit: 'month'
+							unit: 'month',
+							displayFormats: {
+								month: "MM"
+							}
 						},
 						ticks: {
+							callback: function(value, index, values) {
+								return months[Number(value)-1]
+							},
 							max:  today,
 							min: min_date,
-							beginAtZero: true
+							beginAtZero: true,
+							
 						}
 					}]
 				}
