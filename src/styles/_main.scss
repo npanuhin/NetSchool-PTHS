@@ -352,11 +352,22 @@ main {
                 html.dark & {
                     border-color: #aaa;
                 }
+				@media (max-width: $desktop) {
+					height: 12px;
+					width: 8px;
+				}
                 height: 18px;
                 width: 11px;
                 border-radius: 50px;
 
                 &::after {
+					@media (max-width: $desktop) {
+						animation: none;
+						height: 4px;
+						width: 1.5px;
+						left: calc(50% - 0.75px);
+						border-radius: 60%;
+					}
                     content: "";
                     position: absolute;
                     top: 1px;
