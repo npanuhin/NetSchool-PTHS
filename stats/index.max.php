@@ -92,7 +92,7 @@ $default_mark_rate = 10;
 				if(($date > $period_end) || ($date < $period_start)){
 					continue;
 				}
-				$day_number = $date->format("z");
+				$day_number = $date->format("m.d.y");//!!! month, day, year
 				
 				if(!isset($sum_mark_points[$lesson])){
 					$sum_mark_points[$lesson] = [];

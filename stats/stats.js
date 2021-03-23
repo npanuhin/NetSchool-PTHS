@@ -1,5 +1,3 @@
-chart_colors = ["aliceblue", "aqua", "aquamarine", "azure", "beige", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgreen", "darkgrey", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "forestgreen", "fuchsia", "gainsboro", "gold", "goldenrod", "gray", "green", "greenyellow", "grey", "hotpink", "indianred", "indigo", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "moccasin", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "rebeccapurple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "yellow", "yellowgreen"]
-
 months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
 function random_color(){
@@ -15,7 +13,7 @@ function random_setted_color(tone = null){
 	}
 	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
 }
-
+/*
 function daysOfYearFromDate(date){
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
@@ -24,7 +22,7 @@ function daysOfYearToDate(day){
 	date.setMonth(0);
 	date.setDate(day + 1);
 	return date;
-}
+}*/
 
 window.onload = function() {
 	today = new Date();
@@ -35,7 +33,7 @@ window.onload = function() {
 		var main_data = JSON.parse(document.getElementById("data").innerText);
 		console.log(main_data);
 		
-		var min_day = 366;
+		var min_day = new Date();
 		var chart_data = {datasets: []};
 		
 		var lessons = Object.keys(main_data).sort();
@@ -43,13 +41,14 @@ window.onload = function() {
 		for(let i = 0; i<lessons.length;i++){
 			let lesson = lessons[i];
 			var lesson_data = [];
-			let r_color = random_setted_color(360.0*i/lessons.length);//random_color()
-			//console.log(main_data[lesson]);
+			let r_color = random_setted_color(360.0*i/lessons.length);
+
 			if(main_data[lesson].length === 0) continue;//That means that it's parsed as array and has zero length → no marks, shuld be ignored
+			
 			for(let day in main_data[lesson]){
 				var last_y = main_data[lesson][day].toFixed(2);
-				let last_x = daysOfYearToDate(Number(day))
-				min_day = Math.min(min_day, day)
+				let last_x = new Date(day)
+				if (last_x < min_day) min_day = last_x;
 				lesson_data.push({x: last_x, y : last_y})
 			}
 			lesson_data.push({x: today, y : last_y})
@@ -63,8 +62,9 @@ window.onload = function() {
 							)
 		}
 		console.log(chart_data); 
-		let min_date = daysOfYearToDate(min_day);
-		min_date.setDate(0);
+		console.log(min_day);
+		//let min_date = daysOfYearToDate(min_day);
+		min_day.setDate(0);
 		//console.log(min_day, min_date);
 		var myChart = new Chart(context, {
 			type: 'line', 
@@ -105,7 +105,7 @@ window.onload = function() {
 								return months[Number(value)-1]
 							},
 							max:  today,
-							min: min_date,
+							min: min_day,
 							beginAtZero: true,
 							
 						},
