@@ -7,7 +7,7 @@ function random_color(){
 }
 
 function random_setted_color(){
-	let brightness = 50 + Math.random()*30;
+	let brightness = 40 + Math.random()*20;
 	let saturation = 85;
 	let tone = Math.random()*360;
 	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
@@ -31,9 +31,14 @@ window.onload = function() {
 		var context = drawingCanvas.getContext('2d');
 		var main_data = JSON.parse(document.getElementById("data").innerText);
 		console.log(main_data);
+		
 		var min_day = 366;
 		var chart_data = {datasets: []};
-		for(let lesson in main_data){
+		
+		var lessons = Object.keys(main_data).sort();
+		
+		for(let i = 0; i<lessons.length;i++){
+			let lesson = lessons[i];
 			var lesson_data = [];
 			let r_color = random_setted_color;//random_color()
 			//console.log(main_data[lesson]);
