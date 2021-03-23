@@ -13,26 +13,17 @@ function random_setted_color(tone = null){
 	}
 	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
 }
-/*
-function daysOfYearFromDate(date){
-    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
-}
-function daysOfYearToDate(day){
-	let date = new Date();
-	date.setMonth(0);
-	date.setDate(day + 1);
-	return date;
-}*/
+
 
 window.onload = function() {
 	today = new Date();
-	
 	var drawingCanvas = document.getElementById("dynamics_canvas");
+	
     if(drawingCanvas && drawingCanvas.getContext) {
+		
 		var context = drawingCanvas.getContext('2d');
 		var main_data = JSON.parse(document.getElementById("data").innerText);
-		console.log(main_data);
-		
+
 		var min_day = new Date();
 		var chart_data = {datasets: []};
 		
@@ -61,11 +52,9 @@ window.onload = function() {
 							fill : false}
 							)
 		}
-		console.log(chart_data); 
-		console.log(min_day);
-		//let min_date = daysOfYearToDate(min_day);
-		min_day.setDate(0);
-		//console.log(min_day, min_date);
+
+		min_day.setDate(1);
+
 		var myChart = new Chart(context, {
 			type: 'line', 
 			data: chart_data,
@@ -86,7 +75,7 @@ window.onload = function() {
 					yAxes: [{
 						type: 'linear',
 						ticks: {
-							//beginAtZero: true
+							//
 						},
 						gridLines: {
 							color: 'grey'
@@ -106,7 +95,6 @@ window.onload = function() {
 							},
 							max:  today,
 							min: min_day,
-							beginAtZero: true,
 							
 						},
 						gridLines: {
