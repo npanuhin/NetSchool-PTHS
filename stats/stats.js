@@ -5,7 +5,7 @@ function random_color(){
 }
 
 function random_setted_color(tone = null){
-	let brightness = 40 + Math.random()*20;
+	let brightness = 60;
 	let saturation = 90;
 	
 	if(tone === null){
