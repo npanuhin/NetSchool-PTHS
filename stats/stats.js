@@ -56,14 +56,21 @@ window.onload = function() {
 		}
 
 		min_day.setDate(1);
-
+		let ratio = 1.4;
+		//console.log(window_width);
+		if (window_width < 700){
+			ratio = 1/(-0.8+800/window_width);
+		}
+		else if (window_width > 1000){
+			ratio = 2;
+		}
 		var myChart = new Chart(context, {
 			type: 'line', 
 			data: chart_data,
 			
 			options: {
 				responsive: true,
-				aspectRatio: 1/(-0.8+800/window_width),
+				aspectRatio: ratio,
 				tooltips: {
 					callbacks: {
 						title: function (tooltipItem, data) {
