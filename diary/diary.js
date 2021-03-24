@@ -94,6 +94,19 @@ function show_details(windowX, windowY, task) {
 	details_block.classList.add("shown");
 }
 
+function show_details_for_graphs(windowX, windowY, graph_number) {
+	if (details_lock) return;
+	Event.remove(details_block_link_icon, "click", copy_url);
+	
+	let marks = mark_count[graph_number-2];
+
+	details_block.innerHTML = ('1: ' + marks[1] + '<br>2: ' + marks[2] + '<br>3: '+marks[3]+
+								'<br>4: '+marks[4] + '<br>5: '+marks[5]);
+
+	locate_details(windowX, windowY);
+	details_block.classList.add("shown");
+}
+
 function locate_details(windowX, windowY) {
 	if (details_lock) return;
 
@@ -232,6 +245,7 @@ function on_table_scroll() {
 
 // =======================================================================
 
+var mark_count = []
 
 function apply_period(save=false) {
 	if (!period_start_input.validity.valid || !period_end_input.validity.valid) return;
@@ -254,6 +268,7 @@ function apply_period(save=false) {
 	period_end = new Date(period_end);
 
 	for (let tr_index = 2; tr_index < table.getElementsByTagName("tr").length; ++tr_index) {
+		mark_count.push({1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
 		let line = table.getElementsByTagName("tr")[tr_index],
 			average_mark = 0, rate_summ = 0;
 
@@ -273,6 +288,7 @@ function apply_period(save=false) {
 
 				for (let task of day.getElementsByTagName("span")) {
 					if (task.dataset.mark && task.dataset.rate) {
+						mark_count[mark_count.length - 1][Number(task.dataset.mark)]++;
 						average_mark += Number(task.dataset.mark) * Number(task.dataset.rate);
 						rate_summ += Number(task.dataset.rate);
 					}
@@ -352,6 +368,18 @@ Event.add(window, "load", () => {
 			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
 		Event.add(task, "mousemove", (e) => {
+			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
+		});
+	}
+	for (let i = 0; i < right_column_li.length; i++){
+		let sum_mark_tile = right_column_li[i];
+		Event.add(sum_mark_tile, "mouseenter", (e) => {
+			show_details_for_graphs(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, i);
+		});
+		Event.add(sum_mark_tile, "mouseleave", (e) => {
+			if (!details_block.contains(e.relatedTarget)) hide_details();
+		});
+		Event.add(sum_mark_tile, "mousemove", (e) => {
 			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 		});
 	}
