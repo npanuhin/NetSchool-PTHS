@@ -62,7 +62,7 @@ main {
 					height: 140px;
 					margin: 0 auto;
 					background-color: $block-color;
-					box-shadow: $block-shadow;
+					box-shadow: var(--block-shadow);
 					html.dark & {
 						background-color: $block-color-dark;
 						box-shadow: $block-shadow-dark;
@@ -86,7 +86,7 @@ main {
 
 					color: #fff;
 
-					text-shadow: $text-shadow;
+					text-shadow: var(--text-shadow);
 					html.dark & {
 						color: $text-color-dark;
 						text-shadow: $text-shadow-dark;
@@ -114,7 +114,7 @@ main {
 				box-sizing: border-box;
 
 				background: $block-color;
-				box-shadow: $block-shadow;
+				box-shadow: var(--block-shadow);
 				html.dark & {
 					background: $block-color-dark;
 					box-shadow: $block-shadow-dark;

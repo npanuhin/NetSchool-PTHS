@@ -25,10 +25,10 @@ main {
 		}
 
 		background: $block-color;
-		box-shadow: $block-shadow;
+		box-shadow: var(--block-shadow);
 		html.dark & {
 			background: $block-color-dark;
-			box-shadow: $block-shadow-dark;
+			box-shadow: var(--block-shadow);
 		}
 
 		transition: 0.3s transform ease-in-out;
@@ -157,7 +157,7 @@ main {
 			top: calc(36px + 50%);
 			height: calc(100% - 72px);
 			width: 40px;
-			filter: drop-shadow($arrows-shadow);
+			filter: drop-shadow(var(--arrows-shadow));
 			html.dark & {
 				filter: drop-shadow($arrows-shadow-dark);
 			}
@@ -230,7 +230,7 @@ main {
 				font-size: var(--font-size-selector);
 				// line-height: var(--line-height-large);
 				color: #FFF;
-				text-shadow: $text-shadow;
+				text-shadow: var(--text-shadow);
 				html.dark & {
 					color: $text-color-dark;
 					text-shadow: $text-shadow-dark;
@@ -343,7 +343,7 @@ main {
 					position: relative;
 					padding: var(--timetable-day-padding-x) var(--timetable-day-padding-y);
 					background: $block-color;
-					box-shadow: $block-shadow;
+					box-shadow: var(--block-shadow);
 					html.dark & {
 						background: $block-color-dark;
 						box-shadow: $block-shadow-dark;
@@ -576,11 +576,11 @@ main {
 	max-height: 100vw;
 	
 	background: #fff;
-	box-shadow: $block-shadow;
+	box-shadow: var(--block-shadow);
 	color: $text-color;
 	html.dark & {
 		background: #353f4c;
-		box-shadow: $block-shadow; // Not block-shadow-dark
+		box-shadow: var(--block-shadow); // Not block-shadow-dark
 		color: $text-color-dark;
 	}
 

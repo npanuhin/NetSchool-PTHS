@@ -30,7 +30,7 @@ main {
 		text-align: center;
 
 		background: $block-color;
-		box-shadow: $block-shadow;
+		box-shadow: var(--block-shadow);
 		html.dark & {
 			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
@@ -591,7 +591,7 @@ main {
 
 	html.dark & {
 		background: $block-color-dark;
-		box-shadow: $block-shadow;
+		box-shadow: $block-shadow-dark;
 		color: $text-color-dark;
 	}
 

@@ -25,6 +25,10 @@ $desktop: 700px;
 	--timetable-day-padding-y: 32px;
     --timetable-border-radius: 30px;
     --timetable-border-radius-small: 20px;
+	
+	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+	--arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -50,6 +54,10 @@ $desktop: 700px;
 		--timetable-day-padding-y: 15px;
         --timetable-border-radius: 22px;
         --timetable-border-radius-small: 18px;
+		
+		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
+		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+		--arrows-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 	}
 }
 
@@ -70,14 +78,16 @@ $online-media-threshold: 1260px;
 $block-color: #FFF;
 $block-color-dark: #28313d;
 
-$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+//$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 $block-shadow-dark: none;
 
-$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+//$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 $text-shadow-dark: none;
 
-$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+//$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 $arrows-shadow-dark: none;
+
+
 
 $page-color: #1963A1;
 $page-color-dark: #06090F;
