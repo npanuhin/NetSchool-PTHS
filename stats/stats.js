@@ -14,6 +14,8 @@ function random_setted_color(tone = null){
 	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
 }
 
+const window_width  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
 
 window.onload = function() {
 	today = new Date();
@@ -61,7 +63,7 @@ window.onload = function() {
 			
 			options: {
 				responsive: true,
-				
+				aspectRatio: 1/(-0.8+800/window_width),
 				tooltips: {
 					callbacks: {
 						title: function (tooltipItem, data) {
@@ -70,7 +72,12 @@ window.onload = function() {
 						} 
 					}
 				},
-				
+				legend: {
+					display: true,
+					labels: {
+						fontSize: 10
+					}
+				},
 				scales: {
 					yAxes: [{
 						type: 'linear',
