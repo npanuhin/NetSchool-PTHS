@@ -36,14 +36,6 @@ var
 	current_task = null;
 
 
-// function onResize() {
-// 	// left_column.style.height = weeks[cur_week].offsetHeight + "px";
-// 	for (let i = 0; i < table_tr.length; ++i) {
-// 		left_column_li[i].style.paddingTop = (40 - 28) / 2 + "px";
-// 		left_column_li[i].style.paddingBottom = (40 - 28) / 2 + "px";
-// 	}
-// }
-
 // =======================================================================
 
 function set_current_task_url(task) {
@@ -102,41 +94,34 @@ function show_details_for_graphs(windowX, windowY, graph_number) {
 	if(!marks) return; //not that line
 	
 	for (let mark in marks){
-		if(marks[mark]==0) delete marks[mark];
+		if(marks[mark] === 0) delete marks[mark];
 	}
 	let keys = Object.keys(marks);
 	let values = Object.values(marks);
 	
-	if(keys.length===0) return; //no marks
+	if(keys.length === 0) return; //no marks — no graph
 	
 	let bg_colors = {
-		1: "hsla(0, 50%, 50%)", 
-		2: "hsla(35, 50%, 50%)", 
-		3: "hsla(60, 50%, 50%)",
-		4: "hsla(180, 50%, 50%)",
-		5: "hsla(120, 50%, 50%)"}
-	
-	let bd_colors = {
-		1: "hsla(0, 90%, 60%)", 
-		2: "hsla(35, 90%, 60%)", 
-		3: "hsla(60, 90%, 60%)",
-		4: "hsla(120, 90%, 60%)",
-		5: "hsla(220, 90%, 60%)"}
-	
+		1: "hsla(0, 50%, 70%)", 
+		2: "hsla(35, 50%, 70%)", 
+		3: "hsla(60, 50%, 70%)",
+		4: "hsla(180, 50%, 70%)",
+		5: "hsla(120, 50%, 70%)"
+	}
 	
 	let dataset = {
         labels: keys,
 		datasets: [{
 			data: values,
 			backgroundColor: (context) => {return bg_colors[Number(keys[context.dataIndex])]},
-			borderColor: 'grey',//(context) => {return bg_colors[Number(keys[context.dataIndex])]},
+			borderColor: "hsla(0, 0%, 40%)",
 			borderWidth: 1
 		}]
 	};
 	
 	details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
 	let canvas = document.getElementById("mark_dispersion_canvas");
-	//console.log(canvas);
+	
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
 	
@@ -153,20 +138,25 @@ function show_details_for_graphs(windowX, windowY, graph_number) {
                     ticks: {
                         beginAtZero: true,
 						precision: 0,
-						maxTicksLimit: 4
+						maxTicksLimit: 4,
+						fontColor: '#888'
                     },
 					gridLines: {
-						z: -150,
 						color: 'grey'
 					}
                 }],
 				xAxes: [{
+					ticks: {
+						fontColor: '#888'
+					},
 					gridLines: {
 						color: 'grey',
-						z: -150
 					}
-				}]
+				}],
+				
+				
             }
+			
 		}
 	})
 }
@@ -337,7 +327,6 @@ function apply_period(save=false) {
 			average_mark = 0, rate_summ = 0;
 
 		for (let day of line.getElementsByTagName("td")) {
-			// if (!day.classList.contains("filled") && !day.classList.contains("today")) continue;
 
 			let date;
 
