@@ -17,29 +17,19 @@ main {
 		position: relative;
 		// padding: 30px 32px 50px 32px;
 		margin: 0 auto;
-		@media (max-width: $desktop) {
-			width: calc(100% - 20px);
-		}
 		width: calc(100% - 130px);
-		// max-width: 100%;
-
 		@media (max-width: $main-width) {
 			width: 100%;
 		}
+		// @media (max-width: $desktop) {
+		// 	padding: 0 10px;
+		// 	// width: calc(100% - 20px);
+		// }
+		// max-width: 100%;
 
 		z-index: 10;
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
-
-		// h2 {
-		// 	font-family: Manrope;
-		// 	font-style: normal;
-		// 	font-weight: 600;
-		// 	font-size: 36px;
-		// 	text-align: center;
-
-		// 	color: $text-color;
-		// }
 
 		.announcement {
 			position: relative;
@@ -52,7 +42,7 @@ main {
 				width: calc(100% - 200px);
 			}
 			@media (max-width: $desktop) {
-				padding: 15px 0;
+				padding: 15px 10px 35px 10px;
 				left: 0;
 				width: 100%;
 				min-width: 0;

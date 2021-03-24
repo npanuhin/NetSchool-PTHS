@@ -3,6 +3,9 @@
     @media (max-width: $main-width) {
         width: calc(65%);
     }
+    @media (max-width: $desktop) {
+        margin-top: 25px;
+    }
 
     margin: 0 auto;
 }
