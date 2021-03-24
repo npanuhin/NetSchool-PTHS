@@ -99,12 +99,76 @@ function show_details_for_graphs(windowX, windowY, graph_number) {
 	Event.remove(details_block_link_icon, "click", copy_url);
 	
 	let marks = mark_count[graph_number-2];
-
-	details_block.innerHTML = ('1: ' + marks[1] + '<br>2: ' + marks[2] + '<br>3: '+marks[3]+
-								'<br>4: '+marks[4] + '<br>5: '+marks[5]);
-
+	if(!marks) return; //not that line
+	
+	for (let mark in marks){
+		if(marks[mark]==0) delete marks[mark];
+	}
+	let keys = Object.keys(marks);
+	let values = Object.values(marks);
+	
+	if(keys.length===0) return; //no marks
+	
+	let bg_colors = {
+		1: "hsla(0, 50%, 50%)", 
+		2: "hsla(35, 50%, 50%)", 
+		3: "hsla(60, 50%, 50%)",
+		4: "hsla(180, 50%, 50%)",
+		5: "hsla(120, 50%, 50%)"}
+	
+	let bd_colors = {
+		1: "hsla(0, 90%, 60%)", 
+		2: "hsla(35, 90%, 60%)", 
+		3: "hsla(60, 90%, 60%)",
+		4: "hsla(120, 90%, 60%)",
+		5: "hsla(220, 90%, 60%)"}
+	
+	
+	let dataset = {
+        labels: keys,
+		datasets: [{
+			data: values,
+			backgroundColor: (context) => {return bg_colors[Number(keys[context.dataIndex])]},
+			borderColor: 'grey',//(context) => {return bg_colors[Number(keys[context.dataIndex])]},
+			borderWidth: 1
+		}]
+	};
+	
+	details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
+	let canvas = document.getElementById("mark_dispersion_canvas");
+	//console.log(canvas);
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
+	
+	window.graph = new Chart(canvas, {
+		type: 'bar', 
+		data: dataset,
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+			scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+						precision: 0,
+						maxTicksLimit: 4
+                    },
+					gridLines: {
+						z: -150,
+						color: 'grey'
+					}
+                }],
+				xAxes: [{
+					gridLines: {
+						color: 'grey',
+						z: -150
+					}
+				}]
+            }
+		}
+	})
 }
 
 function locate_details(windowX, windowY) {

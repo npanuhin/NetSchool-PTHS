@@ -399,6 +399,7 @@ $default_mark_rate = 10;
 	<script type="text/javascript" src="/src/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
+	<script type="text/javascript" src="/src/lib/chart.js" defer></script>
 	<script type="text/javascript" src="build/diary.min.js" defer></script>
 	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
