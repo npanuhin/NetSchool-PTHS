@@ -4,15 +4,16 @@ $github-icon-color-dark: #f0f6fc;
 $github-icon-hover-color-dark: rgba(240,246,252,0.7);
 
 main {
-	position: relative;
-	margin: 120px auto 100px auto;
 	width: $main-width;
-	max-width: 95%;
 
 	.help {
 		position: relative;
 		margin: 35px auto;
 		padding: 5% 5% 35px 5%;
+		@media (max-width: $desktop) {
+			width: calc(100% - 20px);
+			padding: 4% 4% 25px 4%;
+		}
 		width: calc(100% - 200px);
 		z-index: 10;
 		overflow: hidden;
@@ -24,13 +25,13 @@ main {
 				color: $text-color-dark;
 			}
 		}
-		
+		font-size: var(--font-size-smaller);
 		box-sizing: border-box;
 		border-radius: 30px;
 		text-align: justify;
 
 		background: $block-color;
-		box-shadow: $block-shadow;
+		box-shadow: var(--block-shadow);
 		html.dark & {
 			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
@@ -46,10 +47,13 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
-			font-size: 24px;
+			font-size: var(--font-size-big);
 		}
 
 		h4 {
+			@media (max-width: $desktop) {
+				margin: 15px 0 0 0;
+			}
 			margin: 35px 0 0 0;
 		}
 	
@@ -59,8 +63,19 @@ main {
 			html.dark & {
 				color: $orange-color-dark;
 			}
-
+			@media (max-width: $desktop) {
+				margin-top: 10px;
+				margin-bottom: 3px;
+			}
 			margin-top: 22px;
+			margin-bottom: 6px;
+			
+			.del {
+				text-decoration: line-through; 
+				display: inline-block;
+				color: inherit;
+				font-weight: inherit;
+			}
 		}
 
 		h4 + .question {
@@ -78,12 +93,10 @@ main {
 				height: 10px;
 			}
 		}
-
 		.del {
 			text-decoration: line-through; 
 			display: inline-block;
 		}
-
 		a {
 			color: $orange-color;
 			html.dark & {

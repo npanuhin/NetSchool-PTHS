@@ -1,11 +1,16 @@
 .online_media {
+	// @media (max-width: $desktop) {
+	@media (max-width: $online-media-threshold) {
+		display: none;
+	}
+
 	position: fixed;
 	top: 0;
 	left: 100%;
 	height: 100vh;
 	width: 80%;
 	z-index: 300;
-	box-shadow: $block-shadow;
+	box-shadow: var(--block-shadow);
 
 	transition: 0.75s transform ease-in-out;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s transform ease-in-out !important;}

@@ -58,7 +58,7 @@ foreach ($dom->find('tr') as $line) {
 			'time'    => $tds[count($tds) - 4 - $courses]->plaintext,
 			'name'    => $tds[count($tds) - 3]->plaintext,
 			'teacher' => $tds[count($tds) - 2]->plaintext,
-			'href'    => $tds[count($tds) - 1]->find('a')[0]->href,
+			'href'    => isset($tds[count($tds) - 1]->find('a')[0]) ? $tds[count($tds) - 1]->find('a')[0]->href : "",
 		));
 	}
 }

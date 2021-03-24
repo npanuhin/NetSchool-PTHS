@@ -1,6 +1,66 @@
 // @media (max-width: 1170px)
 // @media (max-width: 850px)
 
+$desktop: 700px;
+
+
+// Desktop
+:root {
+	--font-size-small: 14px;
+	--font-size-smaller-but-even-smaller-in-mobile: 16px;
+	--font-size-smaller: 16px;
+	--font-size-usual: 18px;
+    --font-size-middle: 21px;
+    --font-size-big: 24px;
+	--font-size-name: 36px;
+	--font-size-very-big: 36px;
+	--font-size-selector: 36px; // Big, doesn't need large resize
+	--font-bells: 18px;
+	--line-height-compact: 25px;
+	--line-height-article: 32px;
+	--line-height-medium: 43px;
+	--line-height-large: 65px;
+
+	--timetable-day-padding-x: 30px;
+	--timetable-day-padding-y: 32px;
+    --timetable-border-radius: 30px;
+    --timetable-border-radius-small: 20px;
+	
+	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+	--arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+// Mobile
+@media (max-width: $desktop) {
+	:root {
+		--font-size-small: 8px;
+		--font-size-smaller-but-even-smaller-in-mobile: 8px;
+		--font-size-smaller: 10px;
+		--font-size-usual: 10px;
+        --font-size-middle: 12px;
+		--font-size-big: 14px;
+		--font-bells: 18px;
+		--font-size-very-big: 18px;
+		--font-size-selector: 22px;
+		--font-size-name: 16px;
+		--line-height-compact: 14px;
+		--line-height-article: 16px;
+		--line-height-medium: 25px;
+		--line-height-large: 36px;
+
+		--timetable-day-padding-x: 18px;
+		--timetable-day-padding-y: 15px;
+        --timetable-border-radius: 22px;
+        --timetable-border-radius-small: 18px;
+		
+		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
+		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+		--arrows-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+	}
+}
+
 $dark-mode-transition: 0.5s color ease-in-out,
                        0.5s background-color ease-in-out,
                        0.5s border-color ease-in-out,
@@ -10,20 +70,24 @@ $dark-mode-transition: 0.5s color ease-in-out,
 
 $main-width: 1170px;
 
+$online-media-threshold: 1260px;
+
 // COLORS:
 // $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
 
 $block-color: #FFF;
 $block-color-dark: #28313d;
 
-$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+//$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 $block-shadow-dark: none;
 
-$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+//$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 $text-shadow-dark: none;
 
-$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+//$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 $arrows-shadow-dark: none;
+
+
 
 $page-color: #1963A1;
 $page-color-dark: #06090F;
@@ -206,22 +270,31 @@ a {
 
 
 main {
+    position: relative;
+    margin: 120px auto 100px auto;
+    @media (max-width: $desktop) {
+        margin: 90px auto 60px auto;
+    }
+    max-width: 100%;
 
     .message_alert {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-
+		@media (max-width: $desktop) {
+			width: $main-width - 20px;
+			max-width: calc(100% - 20px);
+		}
+		
         box-sizing: border-box;
         width: $main-width - 200px;
         max-width: calc(100% - 200px);
-
-        @media (max-width: 700px) {
-            width: calc(100% - 200px);
-            max-width: none;
-        }
-
-        padding: 12px 50px 12px 30px;
+		
+		@media (max-width: $desktop) {
+			padding: 12px 50px 12px 10px;
+			 margin-bottom: 10px;
+		}
+		padding: 12px 50px 12px 30px;
         margin-bottom: 30px;
 
         border-radius: 15px;
@@ -235,7 +308,7 @@ main {
         font-family: Manrope;
         font-style: normal;
         font-weight: normal;
-        font-size: 18px;
+        font-size: var(--font-size-usual);
         // line-height: 65px;
 
         box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
@@ -289,11 +362,22 @@ main {
                 html.dark & {
                     border-color: #aaa;
                 }
+				@media (max-width: $desktop) {
+					height: 12px;
+					width: 8px;
+				}
                 height: 18px;
                 width: 11px;
                 border-radius: 50px;
 
                 &::after {
+					@media (max-width: $desktop) {
+						animation: none;
+						height: 4px;
+						width: 1.5px;
+						left: calc(50% - 0.75px);
+						border-radius: 60%;
+					}
                     content: "";
                     position: absolute;
                     top: 1px;
@@ -333,80 +417,5 @@ main {
         }
     }
 
-    .menu {
-        width: $main-width - 200px;
-        max-width: calc(100% - 200px);
-        margin: 0 auto;
-        
-        max-height: 0px;
-        overflow: hidden;
-        transition: 0.3s max-height ease-in-out;
-        html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
-
-        &.shown {
-            max-height: 140px;
-
-            @media (max-width: $main-width) {
-                max-height: 215px;
-            }
-
-            @media (max-width: 850px) {
-                max-height: 415px;
-            }
-        }
-
-        ul {
-            margin: 0 auto;
-            width: 100%;
-
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            grid-template-columns: auto auto auto;
-            grid-row-gap: 10px;
-            grid-column-gap: 100px;
-
-            @media (max-width: $main-width) {
-                width: 80%;
-                grid-template-rows: 1fr 1fr 1fr;
-                grid-template-columns: auto auto;
-                grid-column-gap: 95px;
-            }
-
-            @media (max-width: 850px) {
-                grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-                grid-template-columns: 1fr;
-                grid-row-gap: 5px;
-            }
-
-            li {
-                margin-left: 18px;
-                a {
-                    font-family: Manrope;
-                    font-style: normal;
-                    font-weight: bold;
-                    font-size: 36px;
-                    line-height: 65px;
-                    cursor: pointer;
-
-                    border-bottom: 2.5px solid transparent;
-                    color: #fff;
-                    text-shadow: $text-shadow;
-                    html.dark & {
-                        color: $text-color-dark;
-                        text-shadow: $text-shadow-dark;
-                    }
-
-                    transition: 0.1s border-color ease-in-out;
-                    html.dark_mode_transition & {transition: $dark-mode-transition, border-color ease-in-out !important;}
-
-                    &:hover {
-                        border-color: #fff;
-                        html.dark & {
-                            border-color: $text-color-dark;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    @import 'src/styles/menu';
 }

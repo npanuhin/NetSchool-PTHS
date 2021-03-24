@@ -11,23 +11,26 @@ $today-color: rgba(0, 255, 0, 0.2);
 $today-color-dark: rgba(0, 255, 0, 0.2);
 
 main {
-	position: relative;
-	margin: 120px auto 100px auto;
 	width: 1300px;
-	max-width: 95%;
 
 	.diary {
 		position: relative;
+		@media (max-width: $desktop) {
+			padding: 30px 10px 40px 10px;
+		}
 		padding: 40px 32px 50px 32px;
 		top: 30px;
 		box-sizing: border-box;
 		width: 100%;
+		@media (min-width: $online-media-threshold) {
+			max-width: calc(100vw - 100px);
+		}
 		margin: 0 auto;
 		z-index: 10;
 		text-align: center;
 
 		background: $block-color;
-		box-shadow: $block-shadow;
+		box-shadow: var(--block-shadow);
 		html.dark & {
 			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
@@ -41,7 +44,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: 600;
-			font-size: 36px;
+			font-size: var(--font-size-selector);
 			text-align: center;
 			margin-bottom: 25px;
 
@@ -55,6 +58,9 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
+			@media (max-width: $desktop) {
+				font-size: 9px;
+			}
 			font-size: 18px;
 			text-align: center;
 			padding-top: 15px;
@@ -69,7 +75,7 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
-			font-size: 21px;
+			font-size: var(--font-size-big);
 			color: $text-color;
 			html.dark & {
 				color: $text-color-dark;
@@ -77,6 +83,9 @@ main {
 		}
 
 		.period_end_label {
+			@media (max-width: $desktop) {
+				margin-left: 3px;
+			}
 			margin-left: 30px;
 		}
 
@@ -84,6 +93,12 @@ main {
 			font-family: Manrope;
 			font-style: normal;
 			font-weight: normal;
+			@media (max-width: $desktop) {
+				font-size: 8px;
+				margin: 5px 0 10px 5px;
+				padding: 2px 3px;
+				border: 0.5px solid $text-color;
+			}
 			font-size: 18px;
 			color: $text-color;
 			html.dark & {
@@ -128,6 +143,14 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 500;
+					
+					@media (max-width: $desktop) {
+						font-size: 8px;
+						line-height: 10px;
+						padding: 6px 6px;
+						height: 12.9px
+					}
+					
 					font-size: 20px;
 					line-height: 28px;
 
@@ -141,6 +164,10 @@ main {
 					}
 
 					&:nth-child(2) {
+						@media (max-width: $desktop) {
+							height: 55px;
+						}
+						
 						height: 58px;
 					}
 				}
@@ -151,6 +178,10 @@ main {
 					svg {
 						position: absolute;
 						top: 50%;
+						@media (max-width: $desktop) {
+							height: 110%;
+							padding: 19px 10px 19px 30px;
+						}
 						height: 100%;
 						box-sizing: border-box;
 						padding: 19px 15px 19px 30px;
@@ -301,7 +332,9 @@ main {
 
 					tr {
 						height: 30px;
-
+						@media (max-width: $desktop) {
+							height: 10px;
+						}
 						&:nth-child(1) {
 							height: 40px;
 
@@ -312,6 +345,12 @@ main {
 								overflow: hidden;
 
 								span {
+									@media (max-width: $desktop) {
+										font-size: 8px;
+										line-height: 10px;
+										padding: 4px 6px 8px 6px;
+										
+									}
 									position: relative;
 									font-family: Manrope;
 									font-style: normal;
@@ -352,9 +391,16 @@ main {
 
 						&:nth-child(2) {
 							height: 70px;
-
+							@media (max-width: $desktop) {
+								height: 50px;
+							}
 							td {
-
+								@media (max-width: $desktop) {
+									font-size: 8px;
+									line-height: 14px;
+									padding: 6px 6px;
+									height: 10px;
+								}
 								font-family: Manrope;
 								font-style: normal;
 								font-weight: 500;
@@ -382,6 +428,10 @@ main {
 							white-space: nowrap;
 							text-align: center;
 							box-sizing: border-box;
+							@media (max-width: $desktop) {
+								height: auto;
+								padding: 4px 6px;
+							}
 							height: 40px;
 
 							padding: 0 6px;
@@ -397,6 +447,12 @@ main {
 								text-align: center;
 
 								span {
+									@media (max-width: $desktop) {
+										font-size: 8px;
+										line-height: 8px;
+										padding: 10px 6px 0px 6px;
+										height: 10px;
+									}
 									display: inline-block;
 									position: relative;
 									top: 50%;
@@ -507,9 +563,9 @@ main {
 	font-family: Manrope;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
-	line-height: 25px;
-	color: $text-color;
+	font-size: var(--font-size-smaller);
+	line-height: var(--line-height-compact);
+	color: $text-color; 
 	html.dark & {
 		color: $text-color-dark;
 	}
@@ -521,6 +577,9 @@ main {
 	top: 0;
 	left: 0;
 	z-index: 50;
+	@media (max-width: $desktop) {
+		padding: 10px 10px 10px 10px;
+	}
 	padding: 15px 50px 15px 20px;
 	border-radius: 20px;
 	max-width: 100vw;
@@ -532,7 +591,7 @@ main {
 
 	html.dark & {
 		background: $block-color-dark;
-		box-shadow: $block-shadow;
+		box-shadow: $block-shadow-dark;
 		color: $text-color-dark;
 	}
 
@@ -541,7 +600,7 @@ main {
 	transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
-	line-height: 23px;
+	line-height: var(--line-height-compact);
 
 	h5 {
 		text-align: center;
@@ -550,19 +609,15 @@ main {
 		font-weight: 600;
 	}
 
-	// h6 {
-	// 	text-align: center;
-	// 	width: 100%;
-	// 	font-size: 12px;
-		
-	// 	font-weight: 600;
-	// }
-
 	p {
 		width: 100%;
 		text-align: center;
 
 		a {
+			
+			@media (max-width: $desktop) {
+				font-size: 12px;
+			}
 			color: $orange-color;
 			html.dark & {
 				color: $orange-color-dark;
@@ -589,6 +644,9 @@ main {
 	}
 
 	.link-icon {
+		@media (max-width: $desktop) {
+			display: none;
+		}
 		position: absolute;
 		top: 0;
 		right: 0;
