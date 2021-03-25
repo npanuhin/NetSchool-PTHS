@@ -44,5 +44,4 @@ foreach ($messages as $key => $message) {
 		<?php
 	}
 }
-
 ?>

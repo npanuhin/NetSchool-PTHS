@@ -132,4 +132,3 @@ window.onload = function() {
 		generate_dynamics_chart(chart_data, min_day);
 	});
 }
-
