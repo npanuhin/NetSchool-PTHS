@@ -92,6 +92,9 @@ document.body.clientWidth;
 			},
 			hover: {
 			  mode: 'x'
+			},
+			animation: { 
+				duration: 0
 			}
 		}
 	});
