@@ -29,7 +29,9 @@ var
 	text_color = "#1963A1", text_color_dark = "#C9D1D9";
 
 
+
 // ======================================== Tools ========================================
+
 function trigger_event(target, name) {
 	var event;
 	if (document.createEvent){
@@ -55,8 +57,8 @@ function clear_url_hash() {
 	set_url(url.href);
 }
 
-// =======================================================================================
 
+// =======================================================================================
 
 function ui_alert(text) {
 	ui_alert_box.innerHTML = text;
@@ -115,133 +117,140 @@ function onResize() {
 	}
 }
 
-Event.add(window, "load", () => {
-	Event.add(window, "mousedown", () => {
-		if (!interacted) {
-			html.classList.add("interacted");
-			trigger_event(html, "interacted");
-			interacted = true;
-		}
-	});
-	Event.add(window, "touchstart", () => {
-		if (!interacted) {
-			html.classList.add("interacted");
-			trigger_event(html, "interacted");
-			interacted = true;
-		}
-	});
 
-	Event.add(window, "resize", onResize);
-	onResize();
+// =======================================================================================
 
-	Event.add(window, "touchend", swipe_cancel);
+setTimeout(() => {
+	html.classList.add("loaded");
+	// onResize();
+}, 50);
 
-	setTimeout(() => {
-		html.classList.add("loaded");
-		// onResize();
-	}, 50);
 
-	Event.add(menu_button, "mousedown", () => {
-		menu.classList.toggle("shown");
-		menu_button.classList.toggle("active", menu.classList.contains("shown"));
-	});
-
-	for (let menu_link of menu_links) {
-		Event.add(menu_link, "click", () => {
-			html.classList.remove("dark_mode_transition");
-			html.classList.add("wait");
-			html.classList.remove("loaded");
-		});
+Event.add(window, "mousedown", () => {
+	if (!interacted) {
+		html.classList.add("interacted");
+		trigger_event(html, "interacted");
+		interacted = true;
 	}
+});
+Event.add(window, "touchstart", () => {
+	if (!interacted) {
+		html.classList.add("interacted");
+		trigger_event(html, "interacted");
+		interacted = true;
+	}
+});
 
-	Event.add(dark_mode_button, "mousedown", () => {
+Event.add(window, "resize", onResize);
+onResize();
+
+Event.add(window, "touchend", swipe_cancel);
+
+setTimeout(() => {
+	html.classList.add("loaded");
+	// onResize();
+}, 50);
+
+Event.add(menu_button, "mousedown", () => {
+	menu.classList.toggle("shown");
+	menu_button.classList.toggle("active", menu.classList.contains("shown"));
+});
+
+for (let menu_link of menu_links) {
+	Event.add(menu_link, "click", () => {
+		html.classList.remove("dark_mode_transition");
 		html.classList.add("wait");
+		html.classList.remove("loaded");
+	});
+}
 
-		ajax(
-			"POST",
-			"/src/toggle_dark_mode.php",
-			{},
-			(req) => {
-				html.classList.add("dark_mode_transition");
-				html.classList.remove("wait");
+Event.add(dark_mode_button, "mousedown", () => {
+	html.classList.add("wait");
 
-				if (req.responseText == "1") {
-					html.classList.add("dark");
+	ajax(
+		"POST",
+		"/src/toggle_dark_mode.php",
+		{},
+		(req) => {
+			html.classList.add("dark_mode_transition");
+			html.classList.remove("wait");
 
-				} else if (req.responseText == "0"){
-					html.classList.remove("dark");
+			if (req.responseText == "1") {
+				html.classList.add("dark");
 
-				} else {
-					alert("Error");
-					alert(req.responseText);
-				}
+			} else if (req.responseText == "0"){
+				html.classList.remove("dark");
 
-				// setTimeout(() => {html.classList.remove("dark_mode_transition")}, dark_mode_transition_timeout);
-			},
-			(req) => {
+			} else {
+				alert("Error");
+				alert(req.responseText);
+			}
+
+			// setTimeout(() => {html.classList.remove("dark_mode_transition")}, dark_mode_transition_timeout);
+		},
+		(req) => {
+			html.classList.remove("wait");
+			alert("Error");
+			alert(req.responseText);
+		}
+	);
+});
+
+Event.add(logout_button, "click", () => {
+	html.classList.add("wait");
+	
+	ajax(
+		"POST",
+		"/src/logout.php",
+		{},
+		(req) => {
+			if (req.responseText == "success") {
+				window.location = "/login/";
+			} else {
 				html.classList.remove("wait");
 				alert("Error");
 				alert(req.responseText);
 			}
-		);
-	});
+		},
+		(req) => {
+			html.classList.remove("wait");
+			alert("Error");
+			alert(req.responseText);
+		}
+	);
+});
 
-	Event.add(logout_button, "click", () => {
-		html.classList.add("wait");
-		
-		ajax(
-			"POST",
-			"/src/logout.php",
-			{},
-			(req) => {
-				if (req.responseText == "success") {
-					window.location = "/login/";
-				} else {
+for (let message_alert of message_alerts) {
+	if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
+
+		Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
+			html.classList.add("wait");
+			
+			ajax(
+				"POST",
+				"/src/message_alert_close.php",
+				{
+					"name": message_alert.id.slice(14)
+				},
+				(req) => {
+					html.classList.remove("wait");
+
+					if (req.responseText == "success") {
+						message_alert.classList.add("hidden");
+						setTimeout(() => {
+							message_alert.remove();
+						}, 650);
+					} else {
+						alert("Error");
+						alert(req.responseText);
+					}
+				},
+				(req) => {
 					html.classList.remove("wait");
 					alert("Error");
 					alert(req.responseText);
 				}
-			},
-			(req) => {
-				html.classList.remove("wait");
-				alert("Error");
-				alert(req.responseText);
-			}
-		);
-	});
-
-	for (let message_alert of message_alerts) {
-		if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
-
-			Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
-				html.classList.add("wait");
-				
-				ajax(
-					"POST",
-					"/src/message_alert_close.php",
-					{
-						"name": message_alert.id.slice(14)
-					},
-					(req) => {
-						html.classList.remove("wait");
-
-						if (req.responseText == "success") {
-							message_alert.classList.add("hidden");
-							setTimeout(() => {
-								message_alert.remove();
-							}, 650);
-						} else {
-							alert("Error");
-							alert(req.responseText);
-						}
-					},
-					(req) => {
-						html.classList.remove("wait");
-						alert("Error");
-						alert(req.responseText);
-					}
-				);
-			});
-		}
+			);
+		});
 	}
-});
+}

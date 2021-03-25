@@ -91,45 +91,43 @@ function generate_dynamics_chart(chart_data, min_day){
 }
 
 
-window.onload = function() {
-	let today = new Date();
+let today = new Date();
 
-	let main_data = JSON.parse(document.getElementById("data").innerText);
+let main_data = JSON.parse(document.getElementById("data").innerText);
 
-	let min_day = new Date();
-	let chart_data = {datasets: []};
+let min_day = new Date();
+let chart_data = {datasets: []};
+
+let lessons = Object.keys(main_data).sort();
+let count = 0;
+
+for(let i = 0; i<lessons.length;i++){
+	let lesson = lessons[i];
+	var lesson_data = [];
+	let r_color = random_setted_color(360.0*count/lessons.length);
+
+	if (main_data[lesson].length === 0) continue;//That means that it's parsed as array and has zero length → no marks, shuld be ignored
 	
-	let lessons = Object.keys(main_data).sort();
-	let count = 0;
+	count++;
 	
-	for(let i = 0; i<lessons.length;i++){
-		let lesson = lessons[i];
-		var lesson_data = [];
-		let r_color = random_setted_color(360.0*count/lessons.length);
-
-		if (main_data[lesson].length === 0) continue;//That means that it's parsed as array and has zero length → no marks, shuld be ignored
-		
-		count++;
-		
-		for(let day in main_data[lesson]){
-			var last_y = main_data[lesson][day].toFixed(2);
-			let last_x = new Date(day)
-			if (last_x < min_day) min_day = last_x;
-			lesson_data.push({x: last_x, y : last_y})
-		}
-		lesson_data.push({x: today, y : last_y})
-		
-		chart_data["datasets"].push(
-						{label: lesson,// + r_color,
-						borderColor : r_color,
-						backgroundColor: r_color,
-						data: lesson_data,
-						fill : false}
-						)
+	for(let day in main_data[lesson]){
+		var last_y = main_data[lesson][day].toFixed(2);
+		let last_x = new Date(day)
+		if (last_x < min_day) min_day = last_x;
+		lesson_data.push({x: last_x, y : last_y})
 	}
-
-	generate_dynamics_chart(chart_data, min_day);
-	window.addEventListener('resize', function(event){
-		generate_dynamics_chart(chart_data, min_day);
-	});
+	lesson_data.push({x: today, y : last_y})
+	
+	chart_data["datasets"].push(
+					{label: lesson,// + r_color,
+					borderColor : r_color,
+					backgroundColor: r_color,
+					data: lesson_data,
+					fill : false}
+					)
 }
+
+generate_dynamics_chart(chart_data, min_day);
+window.addEventListener('resize', function(event){
+	generate_dynamics_chart(chart_data, min_day);
+});

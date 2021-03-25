@@ -437,83 +437,83 @@ function apply_period(save=false) {
 }
 
 
-Event.add(window, "load", () => {
-	Event.add(window, "resize", () => {apply_period});
-	// onResize();
+// =======================================================================
 
-	for (let task of tasks) {
-		Event.add(task, "mouseenter", (e) => {
-			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
-		});
-		Event.add(task, "mouseleave", (e) => {
-			if (!details_block.contains(e.relatedTarget)) hide_details();
-		});
-		Event.add(task, "mousemove", (e) => {
-			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
-		});
-	}
-	for (let line_index = 0; line_index < right_column_li.length; ++line_index){
-		let avg_mark_tile = right_column_li[line_index];
-		Event.add(avg_mark_tile, "mouseenter", (e) => {
-			show_graph_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, line_index);
-		});
-		Event.add(avg_mark_tile, "mouseleave", (e) => {
-			if (!details_block.contains(e.relatedTarget)) hide_details();
-		});
-		Event.add(avg_mark_tile, "mousemove", (e) => {
-			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
-		});
-	}
-	Event.add(window, "mousedown", toggle_details_lock);
-	Event.add(details_block, "mouseleave", hide_details);
-	Event.add(window, "scroll", () => {hide_details(true)});
-	Event.add(scroll_table, "scroll", () => {hide_details(true)});
+Event.add(window, "resize", () => {apply_period});
+// onResize();
 
-
-	// Table scroll controls
-	Event.add(scroll_left_button, "mousedown", () => {
-		scroll_table_by(-Math.round(0.8 * scroll_table.offsetWidth));
+for (let task of tasks) {
+	Event.add(task, "mouseenter", (e) => {
+		show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
 	});
-	Event.add(scroll_right_button, "mousedown", () => {
-		scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
+	Event.add(task, "mouseleave", (e) => {
+		if (!details_block.contains(e.relatedTarget)) hide_details();
 	});
-
-	// Period
-	Event.add(period_start_input, "change", () => {
-		apply_period(true);
+	Event.add(task, "mousemove", (e) => {
+		locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 	});
-	Event.add(period_end_input, "change", () => {
-		apply_period(true);
+}
+for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+	let avg_mark_tile = right_column_li[line_index];
+	Event.add(avg_mark_tile, "mouseenter", (e) => {
+		show_graph_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, line_index);
 	});
-	// setTimeout(apply_period);
-	setTimeout(apply_period, 100);
-	// setTimeout(apply_period, 200);
-	setTimeout(apply_period, 300);
-	setTimeout(apply_period, 500);
+	Event.add(avg_mark_tile, "mouseleave", (e) => {
+		if (!details_block.contains(e.relatedTarget)) hide_details();
+	});
+	Event.add(avg_mark_tile, "mousemove", (e) => {
+		locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
+	});
+}
+Event.add(window, "mousedown", toggle_details_lock);
+Event.add(details_block, "mouseleave", hide_details);
+Event.add(window, "scroll", () => {hide_details(true)});
+Event.add(scroll_table, "scroll", () => {hide_details(true)});
 
-	// Table scroll handler
-	setTimeout(on_table_scroll);
-	setTimeout(() => {
-		table_unlocked = true;
-		Event.add(scroll_table, "scroll", on_table_scroll);
-		setTimeout(apply_period);
-	}, 150);
 
-	// Hash
-	Event.add(window, "hashchange", onhashchange);
-
-	if (decodeURIComponent(window.location.hash)) {
-		setTimeout(onhashchange);
-
-	} else {
-		function initial_table_scroll() {
-			if (table_unlocked) return;
-			scroll_table.scrollLeft = scroll_table.scrollWidth;
-			on_table_scroll();
-			requestAnimationFrame(initial_table_scroll);
-		}
-		setTimeout(initial_table_scroll);
-	}
+// Table scroll controls
+Event.add(scroll_left_button, "mousedown", () => {
+	scroll_table_by(-Math.round(0.8 * scroll_table.offsetWidth));
 });
+Event.add(scroll_right_button, "mousedown", () => {
+	scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
+});
+
+// Period
+Event.add(period_start_input, "change", () => {
+	apply_period(true);
+});
+Event.add(period_end_input, "change", () => {
+	apply_period(true);
+});
+// setTimeout(apply_period);
+setTimeout(apply_period, 100);
+// setTimeout(apply_period, 200);
+setTimeout(apply_period, 300);
+setTimeout(apply_period, 500);
+
+// Table scroll handler
+setTimeout(on_table_scroll);
+setTimeout(() => {
+	table_unlocked = true;
+	Event.add(scroll_table, "scroll", on_table_scroll);
+	setTimeout(apply_period);
+}, 150);
+
+// Hash
+Event.add(window, "hashchange", onhashchange);
+
+if (decodeURIComponent(window.location.hash)) {
+	setTimeout(onhashchange);
+
+} else {
+	function initial_table_scroll() {
+		if (table_unlocked) return;
+		scroll_table.scrollLeft = scroll_table.scrollWidth;
+		on_table_scroll();
+		requestAnimationFrame(initial_table_scroll);
+	}
+	setTimeout(initial_table_scroll);
+}
 
 }

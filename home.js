@@ -157,41 +157,38 @@ function show_next_week() {
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 }
 
+
 // ===========================================================================================================
 
-Event.add(window, "load", () => {
+Event.add(window, "resize", resize_table);
+setTimeout(resize_table());
 
-	Event.add(window, "resize", resize_table);
-	setTimeout(resize_table());
+Event.add(timetable_previous, "mousedown", show_previos_week);
+Event.add(window, "rightSwipe", show_previos_week);
+Event.add(timetable_next, "mousedown", show_next_week);
+Event.add(window, "leftSwipe", show_next_week);
 
-	Event.add(timetable_previous, "mousedown", show_previos_week);
-	Event.add(window, "rightSwipe", show_previos_week);
-	Event.add(timetable_next, "mousedown", show_next_week);
-	Event.add(window, "leftSwipe", show_next_week);
+for (let goto_today_button of goto_today_buttons) {
+	Event.add(goto_today_button, "mousedown", () => {
+		goto_week(today_week);
+	});
+}
 
-	for (let goto_today_button of goto_today_buttons) {
-		Event.add(goto_today_button, "mousedown", () => {
-			goto_week(today_week);
+for (let lesson of lessons) {
+	let details = lesson.getElementsByTagName("div")[0];
+
+	if (details !== undefined) {
+
+		Event.add(lesson, "mouseenter", (e) => {
+			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, lesson);
+		});
+		Event.add(lesson, "mouseleave", (e) => {
+			if (!details_block.contains(e.relatedTarget)) hide_details();
+		});
+		Event.add(lesson, "mousemove", (e) => {
+			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 		});
 	}
-
-	// body.append(details_block);
-	for (let lesson of lessons) {
-		let details = lesson.getElementsByTagName("div")[0];
-
-		if (details !== undefined) {
-
-			Event.add(lesson, "mouseenter", (e) => {
-				show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, lesson);
-			});
-			Event.add(lesson, "mouseleave", (e) => {
-				if (!details_block.contains(e.relatedTarget)) hide_details();
-			});
-			Event.add(lesson, "mousemove", (e) => {
-				locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
-			});
-		}
-	}
-	Event.add(window, "mousedown", toggle_details_lock);
-	Event.add(details_block, "mouseleave", hide_details);
-});
+}
+Event.add(window, "mousedown", toggle_details_lock);
+Event.add(details_block, "mouseleave", hide_details);
