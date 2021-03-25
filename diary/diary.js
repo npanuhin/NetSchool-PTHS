@@ -35,13 +35,7 @@ var
 
 	current_task = null,
 	mark_count = [],
-	graph_colors = {
-		1: "hsla(0, 50%, 70%)", 
-		2: "hsla(35, 50%, 70%)", 
-		3: "hsla(60, 50%, 70%)",
-		4: "hsla(180, 50%, 70%)",
-		5: "hsla(120, 50%, 70%)"
-	};
+	graph_colors
 
 
 // =======================================================================
@@ -113,12 +107,31 @@ function show_graph_details(windowX, windowY, line_index) {
 	
 	if (keys.length === 0) return; // no marks — no graph
 	
+	if(html.classList.contains("dark")){
+		graph_colors = {
+			1: "hsla(0,   80%, 70%)", 
+			2: "hsla(35,  80%, 70%)", 
+			3: "hsla(60,  80%, 60%)",
+			4: "hsla(180, 80%, 70%)",
+			5: "hsla(120, 80%, 70%)"
+		};
+	}
+	else{
+		graph_colors = {
+			1: "hsla(0, 75%, 70%)", 
+			2: "hsla(35, 75%, 70%)", 
+			3: "hsla(60, 75%, 70%)",
+			4: "hsla(200, 75%, 70%)",
+			5: "hsla(120, 75%, 70%)"
+		};
+	}
+	
 	let dataset = {
 		labels: keys,
 		datasets: [{
 			data: values,
 			backgroundColor: (context) => {return graph_colors[Number(keys[context.dataIndex])]},
-			// borderColor: "hsla(0, 0%, 40%)",
+			borderColor: "hsla(0, 0%, 60%)",
 			borderWidth: 1
 		}]
 	};
