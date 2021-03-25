@@ -1,5 +1,7 @@
 months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
+months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+
 function random_color(){
 	return chart_colors[Math.floor(Math.random() * chart_colors.length)];
 }
@@ -47,14 +49,16 @@ document.body.clientWidth;
 				callbacks: {
 					title: function (tooltipItem, data) {
 						let date = new Date(tooltipItem[0]["xLabel"]);
-						return date.toLocaleDateString()
+						return date.getDay() + " " + months_genetive[date.getMonth()] + " " + date.getFullYear()
 					} 
 				}
 			},
 			legend: {
 				display: true,
 				labels: {
-					fontSize: 10
+					fontSize: 10,
+					fontFamily: "Manrope",
+					fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 				}
 			},
 			scales: {
