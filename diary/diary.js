@@ -169,7 +169,8 @@ function show_graph_details(windowX, windowY, line_index) {
 						// fontStyle: "bold"
 					},
 					gridLines: {
-						color: '#ccc'
+						color: '#ccc',
+						zeroLineColor: '#ccc'
 					}
 				}],
 				xAxes: [{
