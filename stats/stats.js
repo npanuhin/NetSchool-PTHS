@@ -1,3 +1,6 @@
+Chart.defaults.global.defaultFontStyle="Bold";
+Chart.defaults.global.defaultFontFamily='Manrope';
+
 months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
 months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
@@ -69,7 +72,8 @@ document.body.clientWidth;
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: 'grey'
+						color: '#ccc',
+						zeroLineColor: '#f00'
 					}
 				}],
 				xAxes: [{
@@ -90,7 +94,8 @@ document.body.clientWidth;
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: 'grey'
+						color: '#ccc',
+						zeroLineColor: '#888'
 					}
 				}]
 			},
@@ -141,8 +146,9 @@ for(let i = 0; i<lessons.length;i++){
 					fill : false}
 					)
 }
-
+//setTimeout(() => {generate_dynamics_chart(chart_data, min_day)}, 1)
 generate_dynamics_chart(chart_data, min_day);
+
 window.addEventListener('resize', function(event){
 	generate_dynamics_chart(chart_data, min_day);
 });

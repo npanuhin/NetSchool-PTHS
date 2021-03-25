@@ -1,3 +1,6 @@
+Chart.defaults.global.defaultFontStyle="Bold";
+Chart.defaults.global.defaultFontFamily='Manrope';
+
 var
 	diary = document.getElementsByClassName("diary")[0],
 	table = diary.getElementsByTagName("table")[0];
@@ -170,7 +173,7 @@ function show_graph_details(windowX, windowY, line_index) {
 					},
 					gridLines: {
 						color: '#ccc',
-						zeroLineColor: '#ccc'
+						zeroLineColor: '#aaa'
 					}
 				}],
 				xAxes: [{
@@ -180,6 +183,7 @@ function show_graph_details(windowX, windowY, line_index) {
 					},
 					gridLines: {
 						color: 'transparent'
+						zeroLineColor: '#aaa'
 					}
 				}],
 			}
