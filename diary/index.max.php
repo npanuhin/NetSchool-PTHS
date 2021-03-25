@@ -396,7 +396,7 @@ $default_mark_rate = 10;
 
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
 
-	<script type="text/javascript" src="/src/event.js" defer></script>
+	<script type="text/javascript" src="/src/lib/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/lib/chart.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
