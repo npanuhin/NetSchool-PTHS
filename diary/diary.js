@@ -165,7 +165,7 @@ function show_graph_details(windowX, windowY, line_index) {
 						maxTicksLimit: 4,
 
 						fontFamily: "Manrope",
-						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color),
+						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 						// fontStyle: "bold"
 					},
 					gridLines: {
@@ -174,6 +174,7 @@ function show_graph_details(windowX, windowY, line_index) {
 				}],
 				xAxes: [{
 					ticks: {
+						fontFamily: "Manrope",
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
