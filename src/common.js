@@ -166,7 +166,7 @@ for (let menu_link of menu_links) {
 
 Event.add(dark_mode_button, "mousedown", () => {
 	html.classList.add("wait");
-
+	
 	ajax(
 		"POST",
 		"/src/toggle_dark_mode.php",
@@ -185,7 +185,7 @@ Event.add(dark_mode_button, "mousedown", () => {
 				alert("Error");
 				alert(req.responseText);
 			}
-
+			trigger_event(html, "themeChange");
 			// setTimeout(() => {html.classList.remove("dark_mode_transition")}, dark_mode_transition_timeout);
 		},
 		(req) => {
