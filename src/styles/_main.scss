@@ -89,33 +89,37 @@ $arrows-shadow-dark: none;
 
 
 
-$page-color: #1963A1;
-$page-color-dark: #06090F;
+$page-color: 		 hsl(207, 72%, 36%);	//#1963A1;
+$page-color-dark: 	 hsl(220, 42%,  4%);	//#06090F;
 
-$orange-color: #FF890C;
-$orange-color-dark: #FF890C;
+$orange-color: 		 hsl(30, 100%, 52%);	//#FF890C;
+$orange-color-dark:  hsl(30, 100%, 52%);	//#FF890C;
 
-$green-color: #20822a;
-$green-color-dark: #20822a;
+$green-color: 		 hsl(126, 60%, 31%);	//#20822a;
+$green-color-dark:	 hsl(126, 60%, 31%);	//#20822a;
 
-$light-orange-color: #ffa94d;
+$light-orange-color: hsl(31, 100%, 65%);	//#ffa94d;
 
-$orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+$orange-gradient: linear-gradient(92.76deg,
+						hsl(30, 96%, 68%) 0%, 		//#FCB263
+						hsl(30, 99%, 51%) 52.3%); 	//#FE8708
 
 $text-color: $page-color;
-$text-color-dark: #C9D1D9;
 
-$buttons-color: #307FBD;
-$buttons-color-dark: #307FBD;
+$text-color-dark: 		hsl(210, 17%, 81%); //#C9D1D9;
 
-$buttons-active-color: #205182;
-$buttons-active-color-dark: #205182;
+$buttons-color:	  		hsl(206, 59%, 46%); //#307FBD;
+$buttons-color-dark: 	hsl(206, 59%, 46%); //#307FBD;
 
-$vacation-color: #20822A;
-$vacation-color-dark: #00c814;
+$buttons-active-color: 		hsl(210, 60%, 31%); //#205182;
+$buttons-active-color-dark: hsl(210, 60%, 31%); //#205182;
+
+$vacation-color: 			hsl(126, 60%, 61%); //#20822A;
+$vacation-color-dark: 		hsl(126, 100%, 39%); //#00c814;
 
 // BRAND COLORS:
-$vk-blue-color: #2787F5;
+$vk-blue-color: hsl(212, 91%, 55%); //#2787F5;
+
 
 
 // FONTS:
