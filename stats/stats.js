@@ -11,7 +11,7 @@ function random_setted_color(tone = null){
 	if(tone === null){
 		tone = Math.random()*360;
 	}
-	return 'hsla(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
+	return 'hsl(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
 }
 
 function getRatio(window_width){
@@ -83,6 +83,9 @@ document.body.clientWidth;
 						color: 'grey'
 					}
 				}]
+			},
+			hover: {
+			  mode: 'x'
 			}
 		}
 	});
@@ -126,7 +129,6 @@ window.onload = function() {
 						)
 	}
 
-	min_day.setDate(1);
 	generate_dynamics_chart(chart_data, min_day);
 	window.addEventListener('resize', function(event){
 		generate_dynamics_chart(chart_data, min_day);
