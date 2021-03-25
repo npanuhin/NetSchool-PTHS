@@ -220,7 +220,7 @@ function toggle_details_lock(event) {
 	for (let task of tasks) {
 		if (task.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, task);
+			show_details(event.clientX, event.clientY, task);
 			set_current_task_url(task);
 			details_lock = true;
 
@@ -234,7 +234,7 @@ function toggle_details_lock(event) {
 			let avg_mark_tile = right_column_li[line_index];
 			if (avg_mark_tile.contains(event.target)) {
 				details_lock = false;
-				show_graph_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, line_index);
+				show_graph_details(event.clientX, event.clientY, line_index);
 				details_lock = true;
 
 				empty_click = false;
@@ -444,29 +444,29 @@ Event.add(window, "resize", () => {apply_period});
 
 for (let task of tasks) {
 	Event.add(task, "mouseenter", (e) => {
-		show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
+		show_details(e.clientX, e.clientY, task);
 	});
 	Event.add(task, "mouseleave", (e) => {
 		if (!details_block.contains(e.relatedTarget)) hide_details();
 	});
 	Event.add(task, "mousemove", (e) => {
-		locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
+		locate_details(e.clientX, e.clientY);
 	});
 }
 for (let line_index = 0; line_index < right_column_li.length; ++line_index){
 	let avg_mark_tile = right_column_li[line_index];
 	Event.add(avg_mark_tile, "mouseenter", (e) => {
-		show_graph_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, line_index);
+		show_graph_details(e.clientX, e.clientY, line_index);
 	});
 	Event.add(avg_mark_tile, "mouseleave", (e) => {
 		if (!details_block.contains(e.relatedTarget)) hide_details();
 	});
 	Event.add(avg_mark_tile, "mousemove", (e) => {
-		locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
+		locate_details(e.clientX, e.clientY);
 	});
 }
 Event.add(window, "mousedown", toggle_details_lock);
-Event.add(details_block, "mouseleave", hide_details);
+Event.add(details_block, "mouseleave", () => {hide_details()});
 Event.add(window, "scroll", () => {hide_details(true)});
 Event.add(scroll_table, "scroll", () => {hide_details(true)});
 

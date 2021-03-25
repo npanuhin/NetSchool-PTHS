@@ -116,7 +116,7 @@ function toggle_details_lock(event) {
 	for (let lesson of lessons) {
 		if (lesson.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, lesson);
+			show_details(event.clientX, event.clientY, lesson);
 
 			details_lock = true;
 			empty_click = false;
@@ -180,13 +180,13 @@ for (let lesson of lessons) {
 	if (details !== undefined) {
 
 		Event.add(lesson, "mouseenter", (e) => {
-			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, lesson);
+			show_details(e.clientX, e.clientY, lesson);
 		});
 		Event.add(lesson, "mouseleave", (e) => {
 			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
 		Event.add(lesson, "mousemove", (e) => {
-			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
+			locate_details(e.clientX, e.clientY);
 		});
 	}
 }
