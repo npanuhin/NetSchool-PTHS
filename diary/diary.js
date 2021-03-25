@@ -89,6 +89,7 @@ function show_details(windowX, windowY, task) {
 	Event.add(details_block_link_icon, "click", copy_url);
 
 	details_block.classList.toggle("expired", task.classList.contains("expired"));
+	details_block.classList.remove("graph");
 
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
@@ -117,7 +118,7 @@ function show_graph_details(windowX, windowY, line_index) {
 		datasets: [{
 			data: values,
 			backgroundColor: (context) => {return graph_colors[Number(keys[context.dataIndex])]},
-			borderColor: "hsla(0, 0%, 40%)",
+			// borderColor: "hsla(0, 0%, 40%)",
 			borderWidth: 1
 		}]
 	};
@@ -130,9 +131,6 @@ function show_graph_details(windowX, windowY, line_index) {
 	let canvas = document.createElement("canvas");
 	canvas.id = "mark_dispersion_canvas";
 	details_block.append(canvas);
-	
-	locate_details(windowX, windowY);
-	details_block.classList.add("shown");
 	
 	window.graph = new Chart(canvas, {
 		type: 'bar', 
@@ -158,7 +156,7 @@ function show_graph_details(windowX, windowY, line_index) {
 						// fontStyle: "bold"
 					},
 					gridLines: {
-						color: 'transparent'
+						color: '#ccc'
 					}
 				}],
 				xAxes: [{
@@ -171,7 +169,10 @@ function show_graph_details(windowX, windowY, line_index) {
 				}],
 			}
 		}
-	})
+	});
+
+	locate_details(windowX, windowY);
+	details_block.classList.add("shown");
 }
 
 function locate_details(windowX, windowY) {
@@ -204,8 +205,9 @@ function locate_details(windowX, windowY) {
 	}
 }
 
-function hide_details() {
-	if (details_lock) return;
+function hide_details(force=false) {
+	if (!force && details_lock) return;
+	details_lock = false;
 
 	clear_url_hash();
 	details_block.classList.remove("shown");
@@ -464,6 +466,8 @@ Event.add(window, "load", () => {
 	}
 	Event.add(window, "mousedown", toggle_details_lock);
 	Event.add(details_block, "mouseleave", hide_details);
+	Event.add(window, "scroll", () => {hide_details(true)});
+	Event.add(scroll_table, "scroll", () => {hide_details(true)});
 
 
 	// Table scroll controls
