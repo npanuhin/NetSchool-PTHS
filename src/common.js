@@ -24,7 +24,9 @@ var
 	MOBILE = false,
 	min_desktop_width = 700,
 
-	swipe_start_x = 0, swipe_start_y = 0, swipe_threshold = 50;
+	swipe_start_x = 0, swipe_start_y = 0, swipe_threshold = 50,
+
+	text_color = "#1963A1", text_color_dark = "#C9D1D9";
 
 
 // ======================================== Tools ========================================

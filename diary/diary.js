@@ -33,7 +33,15 @@ var
 	details_lock = false,
 	details_distance = 20,
 
-	current_task = null;
+	current_task = null,
+	mark_count = [],
+	graph_colors = {
+		1: "hsla(0, 50%, 70%)", 
+		2: "hsla(35, 50%, 70%)", 
+		3: "hsla(60, 50%, 70%)",
+		4: "hsla(180, 50%, 70%)",
+		5: "hsla(120, 50%, 70%)"
+	};
 
 
 // =======================================================================
@@ -57,7 +65,7 @@ function copy_to_clipboard(text) {
 		.catch(err => {
 			console.log(err);
 			ui_alert("Мы не можем вставить ссылку в буфер обмена.<br>Пожалуйста, скопируйте URL самостоятельно");
-  		});
+		});
 	}
 }
 
@@ -86,41 +94,42 @@ function show_details(windowX, windowY, task) {
 	details_block.classList.add("shown");
 }
 
-function show_details_for_graphs(windowX, windowY, graph_number) {
+function show_graph_details(windowX, windowY, line_index) {
 	if (details_lock) return;
 	Event.remove(details_block_link_icon, "click", copy_url);
+
+	details_block.classList.remove("expired");
+	details_block.classList.add("graph");
 	
-	let marks = mark_count[graph_number-2];
-	if(!marks) return; //not that line
+	let marks = mark_count[line_index - 2];
+	if (!marks) return;
 	
-	for (let mark in marks){
-		if(marks[mark] === 0) delete marks[mark];
+	for (let mark in marks) {
+		if (marks[mark] === 0) delete marks[mark];
 	}
-	let keys = Object.keys(marks);
-	let values = Object.values(marks);
+	let keys = Object.keys(marks),
+		values = Object.values(marks);
 	
-	if(keys.length === 0) return; //no marks — no graph
-	
-	let bg_colors = {
-		1: "hsla(0, 50%, 70%)", 
-		2: "hsla(35, 50%, 70%)", 
-		3: "hsla(60, 50%, 70%)",
-		4: "hsla(180, 50%, 70%)",
-		5: "hsla(120, 50%, 70%)"
-	}
+	if (keys.length === 0) return; // no marks — no graph
 	
 	let dataset = {
-        labels: keys,
+		labels: keys,
 		datasets: [{
 			data: values,
-			backgroundColor: (context) => {return bg_colors[Number(keys[context.dataIndex])]},
+			backgroundColor: (context) => {return graph_colors[Number(keys[context.dataIndex])]},
 			borderColor: "hsla(0, 0%, 40%)",
 			borderWidth: 1
 		}]
 	};
 	
-	details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
-	let canvas = document.getElementById("mark_dispersion_canvas");
+	// details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
+	// let canvas = document.getElementById("mark_dispersion_canvas");
+
+	details_block.innerHTML = "";
+
+	let canvas = document.createElement("canvas");
+	canvas.id = "mark_dispersion_canvas";
+	details_block.append(canvas);
 	
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
@@ -133,30 +142,34 @@ function show_details_for_graphs(windowX, windowY, graph_number) {
 			legend: {
 				display: false
 			},
+			animation: {
+				easing: "easeInOutQuad",
+				duration: 500
+			},
 			scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
 						precision: 0,
 						maxTicksLimit: 4,
-						fontColor: '#888'
-                    },
-					gridLines: {
-						color: 'grey'
-					}
-                }],
-				xAxes: [{
-					ticks: {
-						fontColor: '#888'
+
+						fontFamily: "Manrope",
+						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color),
+						// fontStyle: "bold"
 					},
 					gridLines: {
-						color: 'grey',
+						color: 'transparent'
 					}
 				}],
-				
-				
-            }
-			
+				xAxes: [{
+					ticks: {
+						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
+					},
+					gridLines: {
+						color: 'transparent'
+					}
+				}],
+			}
 		}
 	})
 }
@@ -196,19 +209,35 @@ function hide_details() {
 
 	clear_url_hash();
 	details_block.classList.remove("shown");
+	Event.remove(details_block_link_icon, "click", copy_url);
 }
 
 function toggle_details_lock(event) {
 	let empty_click = true;
+	
 	for (let task of tasks) {
 		if (task.contains(event.target)) {
 			details_lock = false;
 			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, task);
 			set_current_task_url(task);
-
 			details_lock = true;
+
 			empty_click = false;
 			break;
+		}
+	}
+
+	if (empty_click) {
+		for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+			let avg_mark_tile = right_column_li[line_index];
+			if (avg_mark_tile.contains(event.target)) {
+				details_lock = false;
+				show_graph_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, line_index);
+				details_lock = true;
+
+				empty_click = false;
+				break;
+			}
 		}
 	}
 
@@ -265,23 +294,23 @@ function onhashchange() {
 
 
 function ScrollParametricBlend(t) {
-    return t * t / (1.85 * t * (t - 1) + 1.0);
+	return t * t / (1.85 * t * (t - 1) + 1.0);
 }
 
 function scroll_table_to(target) {
 	let steps_count = 45,
 		step_length = 1 / steps_count,
-        length = target - scroll_table.scrollLeft;
+		length = target - scroll_table.scrollLeft;
 
-    (function scrollStep() {
-        scroll_table.scrollLeft = target - ScrollParametricBlend(steps_count * step_length) * length;
-        if (steps_count <= 0) {
-            scroll_animation = false;
-            return;
-        }
-        --steps_count;
-        requestAnimationFrame(scrollStep);
-    })()
+	(function scrollStep() {
+		scroll_table.scrollLeft = target - ScrollParametricBlend(steps_count * step_length) * length;
+		if (steps_count <= 0) {
+			scroll_animation = false;
+			return;
+		}
+		--steps_count;
+		requestAnimationFrame(scrollStep);
+	})()
 }
 
 function scroll_table_by(distance) {scroll_table_to(Math.min(scroll_table.scrollWidth - scroll_table.offsetWidth, Math.max(0, scroll_table.scrollLeft + distance)))}
@@ -298,8 +327,6 @@ function on_table_scroll() {
 }
 
 // =======================================================================
-
-var mark_count = []
 
 function apply_period(save=false) {
 	if (!period_start_input.validity.valid || !period_end_input.validity.valid) return;
@@ -412,7 +439,6 @@ Event.add(window, "load", () => {
 	Event.add(window, "resize", () => {apply_period});
 	// onResize();
 
-	// body.append(details_block);
 	for (let task of tasks) {
 		Event.add(task, "mouseenter", (e) => {
 			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
@@ -424,15 +450,15 @@ Event.add(window, "load", () => {
 			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 		});
 	}
-	for (let i = 0; i < right_column_li.length; i++){
-		let sum_mark_tile = right_column_li[i];
-		Event.add(sum_mark_tile, "mouseenter", (e) => {
-			show_details_for_graphs(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, i);
+	for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+		let avg_mark_tile = right_column_li[line_index];
+		Event.add(avg_mark_tile, "mouseenter", (e) => {
+			show_graph_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, line_index);
 		});
-		Event.add(sum_mark_tile, "mouseleave", (e) => {
+		Event.add(avg_mark_tile, "mouseleave", (e) => {
 			if (!details_block.contains(e.relatedTarget)) hide_details();
 		});
-		Event.add(sum_mark_tile, "mousemove", (e) => {
+		Event.add(avg_mark_tile, "mousemove", (e) => {
 			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
 		});
 	}
@@ -440,6 +466,7 @@ Event.add(window, "load", () => {
 	Event.add(details_block, "mouseleave", hide_details);
 
 
+	// Table scroll controls
 	Event.add(scroll_left_button, "mousedown", () => {
 		scroll_table_by(-Math.round(0.8 * scroll_table.offsetWidth));
 	});
@@ -460,7 +487,7 @@ Event.add(window, "load", () => {
 	setTimeout(apply_period, 300);
 	setTimeout(apply_period, 500);
 
-	// Table scroll
+	// Table scroll handler
 	setTimeout(on_table_scroll);
 	setTimeout(() => {
 		table_unlocked = true;
