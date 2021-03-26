@@ -1,47 +1,34 @@
-Chart.defaults.global.defaultFontStyle="Bold";
-Chart.defaults.global.defaultFontFamily='Manrope';
+Chart.defaults.global.defaultFontFamily = 'Manrope';
+Chart.defaults.global.defaultFontStyle  = "bold";
 
-months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-
+months =          ['Январь', 'Февраль', 'Март',  'Апрель', 'Май', 'Июнь', 'Июль', 'Август',  'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 months_genetive = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-function random_color(){
+function random_color() {
 	return chart_colors[Math.floor(Math.random() * chart_colors.length)];
 }
 
-function random_setted_color(tone = null){
-	let brightness = 50;
-	let saturation = 70;
-	if(html.classList.contains("dark")){
-		brightness = 50;
-		saturation = 90;
-	}
+function random_setted_color(tone=null) {
+	let brightness = 50,
+		saturation = (html.classList.contains("dark") ? 90 : 70);
 
-	if(tone === null){
-		tone = Math.random()*360;
-	}
-	return 'hsl(' + tone + ', '+ saturation + '%, '+ brightness + '%)'
+	if (tone === null) tone = Math.random() * 360;
+
+	return 'hsl(' + tone + ', '+ saturation + '%, '+ brightness + '%)';
 }
 
-function getRatio(window_width){
-	if (window_width < 700){
-		return 1/(-0.8+800/window_width);
-	}
-	else if (window_width > 1000){
-		return 2;
-	}
-	else{
-		return 1.4;
-	}
+function getRatio(window_width) {
+	if (window_width < 700)  return 1 / (-0.8 + 800 / window_width);
+	if (window_width > 1000) return 2;
+	return 1.4;
 }
 
-function generate_dynamics_chart(chart_data, min_day){
-	let canvas = document.getElementById("dynamics_canvas");
-	let window_width  = window.innerWidth || document.documentElement.clientWidth || 
-document.body.clientWidth;
-	if(window.graph){
-		window.graph.destroy();
-	}
+function generate_dynamics_chart(chart_data, min_day) {
+	let canvas = document.getElementById("dynamics_canvas"),
+		window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	
+	if (window.graph) window.graph.destroy();
+	
 	window.graph = new Chart(canvas, {
 		type: 'line', 
 		data: chart_data,
@@ -72,8 +59,7 @@ document.body.clientWidth;
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: '#ccc',
-						zeroLineColor: '#f00'
+						color: '#ccc'
 					}
 				}],
 				xAxes: [{
@@ -94,8 +80,7 @@ document.body.clientWidth;
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: '#ccc',
-						zeroLineColor: '#888'
+						color: '#ccc'
 					}
 				}]
 			},
@@ -121,16 +106,16 @@ let chart_data = {datasets: []};
 let lessons = Object.keys(main_data).sort();
 let count = 0;
 
-for(let i = 0; i<lessons.length;i++){
-	let lesson = lessons[i];
+for (let i = 0; i < lessons.length; ++i) {
 	var lesson_data = [];
-	let r_color = random_setted_color(360.0*count/lessons.length);
+	let lesson = lessons[i],
+		r_color = random_setted_color(360.0 * count / lessons.length);
 
-	if(main_data[lesson].length === 0) continue;//That means that it's parsed as array and has zero length → no marks, shuld be ignored
+	if (main_data[lesson].length === 0) continue;  // That means that it's parsed as array and has zero length → no marks, shuld be ignored
 	
-	count++;
+	++count;
 	
-	for(let day in main_data[lesson]){
+	for (let day in main_data[lesson]) {
 		var last_y = main_data[lesson][day].toFixed(2);
 		let last_x = new Date(day)
 		if (last_x < min_day) min_day = last_x;
@@ -138,18 +123,19 @@ for(let i = 0; i<lessons.length;i++){
 	}
 	lesson_data.push({x: today, y : last_y})
 	
-	chart_data["datasets"].push(
-					{label: lesson,// + r_color,
-					borderColor : r_color,
-					backgroundColor: r_color,
-					data: lesson_data,
-					fill : false}
-					)
+	chart_data["datasets"].push({
+		label: lesson,  // + r_color,
+		borderColor: r_color,
+		backgroundColor: r_color,
+		data: lesson_data,
+		fill: false
+	});
 }
-//setTimeout(() => {generate_dynamics_chart(chart_data, min_day)}, 1)
+
+// setTimeout(() => {generate_dynamics_chart(chart_data, min_day)}, 1)
 generate_dynamics_chart(chart_data, min_day);
 
-window.addEventListener('resize', function(event){
+Event.add(window, "resize", () => {
 	generate_dynamics_chart(chart_data, min_day);
 });
 Event.add(html, "themeChange", ()=>{generate_dynamics_chart(chart_data, min_day)})

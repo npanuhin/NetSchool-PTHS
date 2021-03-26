@@ -182,7 +182,7 @@ function show_graph_details(windowX, windowY, line_index) {
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: 'transparent'
+						color: 'transparent',
 						zeroLineColor: '#aaa'
 					}
 				}],
@@ -431,6 +431,7 @@ function apply_period(save=false) {
 	period_hidden_right.style.left = right_border + "px";
 
 	if (save) {
+		// html.classList.add("wait");
 		ajax(
 			"POST",
 			"/src/set_diary_period.php",
@@ -439,9 +440,10 @@ function apply_period(save=false) {
 				"period_end": period_end.getFullYear() + '-' + (period_end.getMonth() + 1) + '-' + period_end.getDate()
 			},
 			(req) => {
+				// html.classList.remove("wait");
+
 				if (req.responseText == "success") {
 					console.log("Period saved");
-
 				} else {
 					alert("Error");
 					alert(req.responseText);
