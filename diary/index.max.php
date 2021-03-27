@@ -21,7 +21,7 @@ $default_mark_rate = 10;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="build/diary.min.css">
 	<?php include_once __DIR__ . '/../src/favicon.html' ?>
-	<title>NetSchool PTHS | Оценки</title>
+	<title>NetSchool PTHS | Дневник</title>
 </head>
 
 <body>
