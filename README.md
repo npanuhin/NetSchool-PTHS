@@ -30,13 +30,7 @@
 
 3. CMD (на несколько директорий выше корня проекта): `npm install gulp`
 
-4. Перейти в корень проекта, попробовать запустить команду `gulp`. Он выдаст ошибку из-за отсутствия какой-то из библиотек. Нужно запустить `npm install <имя библиотеки>`, пока ошибки не закончатся. Чтобы было быстрее, можно запустить следующую команду, но не гарантируется, что всех библиотек будет хватать:
-
-   ```bash
-   npm install gulp-rename gulp-livereload gulp-sourcemaps gulp-changed-in-place gulp-ext-replace gulp-dart-sass gulp-autoprefixer gulp-group-css-media-queries gulp-clean-css gulp-csso gulp-uglify-es gulp-terser gulp-htmlmin gulp-php-minify gulp-clean
-   ```
-
-   Список необходимых библиотек также можно найти в коде gulpfile.js в выражениях `require({библиотека})`.
+4. CMD (в корне проекта): `"src/config/install_node.cmd"` (Windows) или `sh ./src/config/install_node.sh` (Linux)
 
 5. Запустить `gulp deploy` или `gulp build`
 
