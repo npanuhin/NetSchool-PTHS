@@ -12,15 +12,14 @@ $UI_ERROR = null;
 // ========================================== MODULES ==========================================
 
 require_once __DIR__ . '/lib/safemysql.class.php';
-
+require_once __DIR__ . '/lib/Telegram.php';
 
 
 // ========================================== CONFIGS ==========================================
 
 $config = json_decode(file_get_contents(__DIR__ . '/config/config.json'), true);
 
-define('TELEGRAM_TOKEN', $config['telegram_token']);
-define('TELEGRAM_CHATID', $config['telegram_chatid']);
+$telegram = new Telegram($config['telegram_token']);
 
 
 // =========================================== CONST ===========================================
@@ -161,7 +160,7 @@ function handle_task_type($task_type) {
 	return isset($_task_types[$task_type]) ? $_task_types[$task_type] : $task_type;
 }
 
-function replace_school_class_regex($school_class) {
+function replace_school_class($school_class) {
 	global $_replace_class, $_class_regex;
 
 	if (preg_match($_class_regex, $school_class, $matches)) {
@@ -280,45 +279,8 @@ function format_days_delta($num, $upper=false) {
 
 // ============================================ LOG ============================================
 
-function send_telegram_message($text, $token, $chat_id) {
-	$text = str_replace('\\', '\\\\', $text);
-	$text = str_replace('/', '\/', $text);
-
-	$text = str_replace('=', '\=', $text);
-	$text = str_replace('*', '\*', $text);
-	$text = str_replace('_', '\_', $text);
-	$text = str_replace('`', '\`', $text);
-	$text = str_replace('\'', '\\\'', $text);
-	$text = str_replace('"', '\"', $text);
-	$text = str_replace('-', '\-', $text);
-	$text = str_replace('.', '\.', $text);
-
-	$ch = curl_init();
-	curl_setopt_array(
-		$ch,
-		array(
-			CURLOPT_URL => 'https://api.telegram.org/bot' . $token . '/sendMessage',
-			CURLOPT_POST => TRUE,
-			CURLOPT_RETURNTRANSFER => TRUE,
-			CURLOPT_TIMEOUT => 10,
-			CURLOPT_POSTFIELDS => array(
-				'chat_id' => $chat_id,
-				'text' => $text,
-				'parse_mode' => 'MarkdownV2'
-			),
-		)
-	);
-	$res = curl_exec($ch);
-	curl_close($ch);
-	if (!isset(json_decode($res, true)['ok']) || !json_decode($res, true)['ok']) {
-		// var_dump(json_decode($res, true));
-		telegram_log('Errorintelegramlog');
-		exit;
-	}
-}
-
 function telegram_log($message, $token=null, $chat_id=null, $force=true) {
-	global $UI_ERROR;
+	global $UI_ERROR, $config, $telegram;
 
 	if (!$message) {
 		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Log empty message"';
@@ -326,23 +288,10 @@ function telegram_log($message, $token=null, $chat_id=null, $force=true) {
 	}
 	$message = "=== NetSchool PTHS website ===\n{$message}";
 
-	if (is_null($token)) {
-		if (!defined('TELEGRAM_TOKEN')) {
-			$UI_ERROR = 'Please contact administrator with the following message: "Log token not defined"';
-			return;
-		}
-		$token = TELEGRAM_TOKEN;
-	}
-
-	if (is_null($chat_id)) {
-		if (!defined('TELEGRAM_CHATID')) {
-			$UI_ERROR = 'Please contact administrator with the following message: "Log chat ID not defined"';
-			return;
-		}
-		$chat_id = TELEGRAM_CHATID;
-	}
-
-	send_telegram_message($message, $token, $chat_id);
+	$telegram->sendMessage(array(
+		'chat_id' => $config['telegram_chatid'],
+		'text' => $message
+	));
 }
 
 function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {

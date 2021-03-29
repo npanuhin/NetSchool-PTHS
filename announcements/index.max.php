@@ -54,7 +54,7 @@ get_person();
 					$title = nl2br(trim($announcement['title']));
 					$date = new DateTime(trim($announcement['date']));
 					$article = preg_replace(
-						'/(' . replace_school_class_regex(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
+						'/(' . replace_school_class(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
 						'<span class="school_class" title="Это ваш класс (тут нет никакой ссылки)">\1</span>',
 						nl2br(trim($announcement['text']))
 					);
