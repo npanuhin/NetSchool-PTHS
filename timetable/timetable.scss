@@ -42,10 +42,7 @@ main {
 				font-size: var(--font-size-very-big);
 				text-align: center;
 
-				color: $text-color;
-				html.dark & {
-					color: $text-color-dark;
-				}
+				color: var(--text-color-main);
 
 				.zoom-icon {
 					position: relative;
@@ -69,17 +66,13 @@ main {
 				// line-height: px;
 				text-align: center;
 
-				color: $text-color;
-				html.dark & {
-					color: $text-color-dark;
-				}
+				color: var(--text-color-main);
 			}
 
 			table {
 				margin: 30px auto 0 auto;
 				// table-layout: fixed;
 				width: 100%;
-				color: $text-color;
 
 				border-spacing: 10px 3px;
 				border-collapse: separate;
@@ -97,10 +90,7 @@ main {
 						padding: 0 5px 5px 5px;
 
 						font-weight: 600;
-						color: $orange-color;
-						html.dark & {
-							color: $orange-color-dark;
-						}
+						color: var(--orange-color);
 					}
 					
 					td {
@@ -110,10 +100,7 @@ main {
 						}
 						text-align: center;
 						font-weight: 400;
-						color: $text-color;
-						html.dark & {
-							color: $text-color-dark;
-						}
+						color: var(--text-color-main);
 					}
 				}
 			}
@@ -133,10 +120,7 @@ main {
 				font-size: var(--font-size-small);
 				text-align: center;
 
-				color: $text-color;
-				html.dark & {
-					color: $text-color-dark;
-				}
+				color: var(--text-color-main);
 
 				h6 {
 					margin-top: 10px;
@@ -148,10 +132,7 @@ main {
 					line-height: var(--line-height-compact);
 					text-align: center;
 
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
+					color: var(--text-color-main);
 				}
 			}
 		}

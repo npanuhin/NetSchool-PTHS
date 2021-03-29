@@ -41,7 +41,7 @@ $container-shadow: 10px 10px 20px #205182;
 			font-size: 30px;
 		}
 
-		color: $text-color;
+		color: var(--text-color-main);
 	}
 
 	#login_form {
@@ -57,7 +57,7 @@ $container-shadow: 10px 10px 20px #205182;
 			margin-top: 35px;
 			padding: 12px 24px;
 
-			border: 1px solid $text-color;
+			border: 1px solid var(--text-color-main);
 			border-radius: 30px;
 
 			font-family: Manrope;
@@ -66,7 +66,7 @@ $container-shadow: 10px 10px 20px #205182;
 			font-size: 24px;
 			letter-spacing: -0.005em;
 
-			color: $text-color;
+			color: var(--text-color-main);
 
 			@media (max-width: 700px) {
 				margin-top: 20px;
@@ -76,8 +76,8 @@ $container-shadow: 10px 10px 20px #205182;
 			}
 
 			&.invalid {
-				color: $orange-color;
-				border: 1px solid $orange-color;
+				color: var(--orange-color);
+				border: 1px solid var(--orange-color);
 			}
 		}
 

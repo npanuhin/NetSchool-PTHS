@@ -43,10 +43,7 @@ main {
 			font-weight: 600;
 			font-size: var(--font-size-very-big);
 
-			color: $text-color;
-			html.dark & {
-				color: $text-color-dark;
-			}
+			color: var(--text-color-main);
 		}
 
 		ul {
@@ -62,11 +59,8 @@ main {
 			}
 
 			li, li span, li a {
-				color: $text-color;
+				color: var(--text-color-main);
 				font-weight: 600;
-				html.dark & {
-					color: $text-color-dark;
-				}
 			}
 
 			li {
@@ -77,10 +71,7 @@ main {
 					a {
 						font-weight: 400;
 						position: relative;
-						color: $text-color;
-						html.dark & {
-							color: $text-color-dark;
-						}
+						color: var(--text-color-main);
 					}
 
 					&:hover a, &:active a {
@@ -94,10 +85,7 @@ main {
 					// 	bottom: -1px;
 					// 	width: 100%;
 					// 	height: 1.7px;
-					// 	background: $orange-color;
-					// 	html.dark & {
-					// 		background: $orange-color-dark;
-					// 	}
+					// 	background: var(--orange-color);
 						
 					// 	opacity: 0;
 					// 	transition: 0.07s opacity ease-in-out;
@@ -134,8 +122,8 @@ main {
 				}
 
 				&.expired div {
-					color: $orange-color;
-					border-color: $orange-color;
+					color: var(--orange-color);
+					border-color: var(--orange-color);
 				}
 			}
 		}
@@ -232,7 +220,7 @@ main {
 				color: #FFF;
 				text-shadow: var(--text-shadow);
 				html.dark & {
-					color: $text-color-dark;
+					color: var(--text-color-main-dark);
 					text-shadow: $text-shadow-dark;
 				}
 
@@ -299,7 +287,7 @@ main {
 
 				color: #fff;
 				html.dark & {
-					color: $text-color-dark;
+					color: var(--text-color-main-dark);
 				}
 
 				transition: 0.2s opacity 0.1s ease-in-out;
@@ -356,10 +344,7 @@ main {
 						font-style: normal;
 						font-weight: 600;
 						font-size: var(--font-size-middle);
-						color: $text-color;
-						html.dark & {
-							color: $text-color-dark;
-						}
+						color: var(--text-color-main);
 					}
 
 					.day_info {
@@ -374,10 +359,7 @@ main {
 						width: 100%;
 						text-align: center;
 
-						color: $text-color;
-						html.dark & {
-							color: $text-color-dark;
-						}
+						color: var(--text-color-main);
 
 						&.zoom_day {
 							// top: -11.5px;
@@ -439,11 +421,7 @@ main {
 								font-style: normal;
 								font-weight: normal;
 								font-size: var(--font-size-smaller);
-								// line-height: var(--line-height-compact);
-								color: $text-color;
-								html.dark & {
-									color: $text-color-dark;
-								}
+								color: var(--text-color-main);
 							}
 
 							& > div {
@@ -461,10 +439,7 @@ main {
 
 							&.cur_lesson {
 								a {
-									color: $orange-color;
-									html.dark & {
-										color: $orange-color-dark;
-									}
+									color: var(--orange-color);
 									font-weight: 600;
 								}
 							}
@@ -524,17 +499,14 @@ main {
 
 							color: #fff;
 							html.dark & {
-								color: $text-color-dark;
+								color: var(--text-color-main-dark);
 							}
 						}
 					}
 
 					&.today {
 						h4, .day_info {
-							color: $orange-color;
-							html.dark & {
-								color: $orange-color-dark;
-							}
+							color: var(--orange-color);
 						}
 					}
 				}
@@ -553,11 +525,7 @@ main {
 	font-style: normal;
 	font-weight: normal;
 	font-size: var(--font-size-smaller);
-	// line-height: 25px;
-	color: $text-color;
-	html.dark & {
-		color: $text-color-dark;
-	}
+	color: var(--text-color-main);
 }
 
 .details {
@@ -577,11 +545,10 @@ main {
 	
 	background: #fff;
 	box-shadow: var(--block-shadow);
-	color: $text-color;
+	color: var(--text-color-main);
 	html.dark & {
 		background: #353f4c;
 		box-shadow: var(--block-shadow); // Not block-shadow-dark
-		color: $text-color-dark;
 	}
 
 	visibility: hidden;
@@ -602,10 +569,7 @@ main {
 		text-align: center;
 
 		a {
-			color: $orange-color;
-			html.dark & {
-				color: $orange-color-dark;
-			}
+			color: var(--orange-color);
 		}
 	}
 
@@ -627,10 +591,7 @@ main {
 
 	&.cur_lesson {
 		h5 {
-			color: $orange-color;
-			html.dark & {
-				color: $orange-color-dark;
-			}
+			color: var(--orange-color);
 		}
 	}
 }

@@ -53,10 +53,7 @@
 		font-weight: 600;
 		font-size: 18px;
 		white-space: nowrap;
-		color: $text-color;
-		html.dark & {
-			color: $text-color-dark;
-		}
+		color: var(--text-color-main);
 
 		cursor: pointer;
 

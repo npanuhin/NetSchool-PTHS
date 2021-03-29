@@ -88,7 +88,7 @@ main {
 
 					text-shadow: var(--text-shadow);
 					html.dark & {
-						color: $text-color-dark;
+						color: var(--text-color-main-dark);
 						text-shadow: $text-shadow-dark;
 					}
 				}
@@ -125,10 +125,7 @@ main {
 				h4, .date, article {
 					font-family: Manrope;
 					font-style: normal;
-					color: $text-color;
-					html.dark & {
-						color: $text-color-dark;
-					}
+					color: var(--text-color-main);
 				}
 
 				h4 {
@@ -158,10 +155,7 @@ main {
 					line-height: var(--line-height-article);
 					
 					a {
-						color: $orange-color;
-						html.dark & {
-							color: $orange-color-dark;
-						}
+						color: var(--orange-color);
 
 						&:hover {
 							text-decoration: underline;
@@ -170,10 +164,7 @@ main {
 
 					.school_class {
 						cursor: default;
-						color: $orange-color;
-						html.dark & {
-							color: $orange-color-dark;
-						}
+						color: var(--orange-color);
 					}
 				}
 			}

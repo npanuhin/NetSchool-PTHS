@@ -79,7 +79,7 @@
                 color: #fff;
                 text-shadow: var(--text-shadow);
                 html.dark & {
-                    color: $text-color-dark;
+                    color: var(--text-color-main-dark);
                     text-shadow: $text-shadow-dark;
                 }
 
@@ -89,7 +89,7 @@
                 &:hover {
                     border-color: #fff;
                     html.dark & {
-                        border-color: $text-color-dark;
+                        border-color: var(--text-color-main-dark);
                     }
                 }
             }

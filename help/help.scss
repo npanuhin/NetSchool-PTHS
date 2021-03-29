@@ -19,11 +19,8 @@ main {
 		overflow: hidden;
 
 		&, & * {
-			color: $text-color;
+			color: var(--text-color-main);
 			text-align: justify;
-			html.dark & {
-				color: $text-color-dark;
-			}
 		}
 		font-size: var(--font-size-smaller);
 		box-sizing: border-box;
@@ -59,10 +56,7 @@ main {
 	
 		.question {
 			font-weight: 600;
-			color: $orange-color;
-			html.dark & {
-				color: $orange-color-dark;
-			}
+			color: var(--orange-color);
 			@media (max-width: $desktop) {
 				margin-top: 10px;
 				margin-bottom: 3px;
@@ -98,10 +92,7 @@ main {
 			display: inline-block;
 		}
 		a {
-			color: $orange-color;
-			html.dark & {
-				color: $orange-color;
-			}
+			color: var(--orange-color);
 			&:hover {
 				text-decoration: underline;
 			}

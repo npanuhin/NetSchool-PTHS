@@ -12,7 +12,7 @@
 	.name, .last_update, .last_update span {
 		color: #fff;
 		html.dark & {
-			color: $text-color-dark;
+			color: var(--text-color-main-dark);
 		}
 
 		font-family: Manrope;

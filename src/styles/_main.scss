@@ -1,7 +1,64 @@
 // @media (max-width: 1170px)
 // @media (max-width: 850px)
 
+$main-width: 1170px;
 $desktop: 700px;
+
+$dark-mode-transition: 0.5s color ease-in-out,
+					   0.5s background-color ease-in-out,
+					   0.5s border-color ease-in-out,
+					   0.5s box-shadow ease-in-out,
+					   0.5s text-shadow ease-in-out,
+					   0.5s fill ease-in-out;
+
+$online-media-threshold: 1260px;
+
+
+// COLORS:
+$block-color: #FFF;
+$block-color-dark: #28313d;
+
+$block-shadow-dark: none;
+$text-shadow-dark: none;
+$arrows-shadow-dark: none;
+
+$page-color: hsl(207, 72%, 36%);
+
+html {
+	--page-color:            hsl(207, 72%, 36%);        // #1963A1;
+	--page-color-dark:       hsl(220, 42%,  4%);        // #06090F;
+
+	--text-color-main-light: var(--page-color);         // #1963A1;
+	--text-color-main:       var(--text-color-main-light);
+	--text-color-main-dark:  hsl(210, 17%, 81%);        // #C9D1D9;
+	--orange-color:          hsl(30, 100%, 52%);        // #FF890C;
+}
+
+html.dark {
+	--text-color-main: var(--text-color-main-dark);
+}
+
+$green-color:               hsl(126, 60%, 31%);     // #20822a;
+$green-color-dark:          hsl(126, 60%, 31%);     // #20822a;
+
+$light-orange-color:        hsl(31, 100%, 65%);     // #ffa94d;
+
+$orange-gradient: linear-gradient(92.76deg,
+						hsl(30, 96%, 68%) 0%,       // #FCB263
+						hsl(30, 99%, 51%) 52.3%);   // #FE8708
+
+$buttons-color:             hsl(206, 59%, 46%);     // #307FBD;
+$buttons-color-dark:        hsl(206, 59%, 46%);     // #307FBD;
+
+$buttons-active-color:      hsl(210, 60%, 31%);     // #205182;
+$buttons-active-color-dark: hsl(210, 60%, 31%);     // #205182;
+
+$vacation-color:            hsl(126, 60%, 32%);     // #20822A;
+$vacation-color-dark:       hsl(126, 100%, 35%);    // #00b312;
+
+// BRAND COLORS:
+$vk-blue-color: hsl(212, 91%, 55%);                 // #2787F5;
+
 
 
 // Desktop
@@ -60,66 +117,6 @@ $desktop: 700px;
 		--arrows-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 	}
 }
-
-$dark-mode-transition: 0.5s color ease-in-out,
-					   0.5s background-color ease-in-out,
-					   0.5s border-color ease-in-out,
-					   0.5s box-shadow ease-in-out,
-					   0.5s text-shadow ease-in-out,
-					   0.5s fill ease-in-out;
-
-$main-width: 1170px;
-
-$online-media-threshold: 1260px;
-
-// COLORS:
-// $background: linear-gradient(90deg, #307FBD 0%, #1963A1 14.16%);
-
-$block-color: #FFF;
-$block-color-dark: #28313d;
-
-//$block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
-$block-shadow-dark: none;
-
-//$text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
-$text-shadow-dark: none;
-
-//$arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-$arrows-shadow-dark: none;
-
-
-
-$page-color:        hsl(207, 72%, 36%); //#1963A1;
-$page-color-dark:   hsl(220, 42%,  4%); //#06090F;
-
-$orange-color:      hsl(30, 100%, 52%); //#FF890C;
-$orange-color-dark: hsl(30, 100%, 52%); //#FF890C;
-
-$green-color:       hsl(126, 60%, 31%); //#20822a;
-$green-color-dark:  hsl(126, 60%, 31%); //#20822a;
-
-$light-orange-color: hsl(31, 100%, 65%);    //#ffa94d;
-
-$orange-gradient: linear-gradient(92.76deg,
-						hsl(30, 96%, 68%) 0%,       //#FCB263
-						hsl(30, 99%, 51%) 52.3%);   //#FE8708
-
-$text-color: $page-color;
-
-$text-color-dark:       hsl(210, 17%, 81%); //#C9D1D9;
-
-$buttons-color:         hsl(206, 59%, 46%); //#307FBD;
-$buttons-color-dark:    hsl(206, 59%, 46%); //#307FBD;
-
-$buttons-active-color:      hsl(210, 60%, 31%); //#205182;
-$buttons-active-color-dark: hsl(210, 60%, 31%); //#205182;
-
-$vacation-color:            hsl(126, 60%, 32%); //#20822A;
-$vacation-color-dark:       hsl(126, 100%, 39%); //#00c814;
-
-// BRAND COLORS:
-$vk-blue-color: hsl(212, 91%, 55%); //#2787F5;
-
 
 
 // FONTS:
@@ -231,10 +228,7 @@ body {
 }
 
 a {
-	color: $orange-color;
-	html.dark & {
-		color: $orange-color-dark;
-	}
+	color: var(--orange-color);
 }
 
 
@@ -319,7 +313,7 @@ main {
 
 		color: #003ea8;
 		html.dark & {
-			color: $text-color-dark;
+			color: var(--text-color-main-dark);
 		}
 
 		transition: 0.6s opacity ease-in-out;
@@ -343,7 +337,7 @@ main {
 			cursor: pointer;
 
 			path {
-				fill: $text-color;
+				fill: var(--text-color-main-light);
 				html.dark & {
 					fill: #8394a3;
 				}
@@ -352,7 +346,7 @@ main {
 
 		kbd {
 			padding: 3px 6px 2px 6px;
-			border: 1px solid $text-color;
+			border: 1px solid var(--text-color-main-light);
 			html.dark & {
 				border-color: #aaa;
 			}
@@ -362,7 +356,7 @@ main {
 				display: inline-block;
 				position: relative;
 				top: 3px;
-				border: 1px solid $text-color;
+				border: 1px solid var(--text-color-main-light);
 				html.dark & {
 					border-color: #aaa;
 				}
@@ -387,7 +381,7 @@ main {
 					top: 1px;
 					left: calc(50% - 1px);
 					width: 2px;
-					background: $text-color;
+					background: var(--text-color-main-light);
 					html.dark & {
 						background: #aaa;
 					}
