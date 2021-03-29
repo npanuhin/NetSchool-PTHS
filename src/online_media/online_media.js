@@ -31,6 +31,8 @@ Event.add(html, "interacted", (e) => {
 function load_online_media(argument) {
 	if (online_media_loaded) return;
 
+	online_media.classList.add("wait");
+
 	var tag = document.createElement('script');
 	tag.src = "https://www.youtube.com/iframe_api";
 	document.body.append(tag);
@@ -40,6 +42,8 @@ function load_online_media(argument) {
 var player;
 function onYouTubePlayerAPIReady() {
 	// console.log("onYouTubePlayerAPIReady");
+
+	online_media.classList.remove("wait");
 
 	player = new YT.Player("ytplayer", {
 		videoId: "5qap5aO4i9A",

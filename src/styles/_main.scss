@@ -10,8 +10,8 @@ $desktop: 700px;
 	--font-size-smaller-but-even-smaller-in-mobile: 16px;
 	--font-size-smaller: 16px;
 	--font-size-usual: 18px;
-    --font-size-middle: 21px;
-    --font-size-big: 24px;
+	--font-size-middle: 21px;
+	--font-size-big: 24px;
 	--font-size-name: 36px;
 	--font-size-very-big: 36px;
 	--font-size-selector: 36px; // Big, doesn't need large resize
@@ -23,8 +23,8 @@ $desktop: 700px;
 
 	--timetable-day-padding-x: 30px;
 	--timetable-day-padding-y: 32px;
-    --timetable-border-radius: 30px;
-    --timetable-border-radius-small: 20px;
+	--timetable-border-radius: 30px;
+	--timetable-border-radius-small: 20px;
 	
 	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
@@ -39,7 +39,7 @@ $desktop: 700px;
 		--font-size-smaller-but-even-smaller-in-mobile: 8px;
 		--font-size-smaller: 10px;
 		--font-size-usual: 10px;
-        --font-size-middle: 12px;
+		--font-size-middle: 12px;
 		--font-size-big: 14px;
 		--font-bells: 18px;
 		--font-size-very-big: 18px;
@@ -52,8 +52,8 @@ $desktop: 700px;
 
 		--timetable-day-padding-x: 18px;
 		--timetable-day-padding-y: 15px;
-        --timetable-border-radius: 22px;
-        --timetable-border-radius-small: 18px;
+		--timetable-border-radius: 22px;
+		--timetable-border-radius-small: 18px;
 		
 		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
 		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
@@ -62,11 +62,11 @@ $desktop: 700px;
 }
 
 $dark-mode-transition: 0.5s color ease-in-out,
-                       0.5s background-color ease-in-out,
-                       0.5s border-color ease-in-out,
-                       0.5s box-shadow ease-in-out,
-                       0.5s text-shadow ease-in-out,
-                       0.5s fill ease-in-out;
+					   0.5s background-color ease-in-out,
+					   0.5s border-color ease-in-out,
+					   0.5s box-shadow ease-in-out,
+					   0.5s text-shadow ease-in-out,
+					   0.5s fill ease-in-out;
 
 $main-width: 1170px;
 
@@ -89,73 +89,77 @@ $arrows-shadow-dark: none;
 
 
 
-$page-color: #1963A1;
-$page-color-dark: #06090F;
+$page-color:        hsl(207, 72%, 36%); //#1963A1;
+$page-color-dark:   hsl(220, 42%,  4%); //#06090F;
 
-$orange-color: #FF890C;
-$orange-color-dark: #FF890C;
+$orange-color:      hsl(30, 100%, 52%); //#FF890C;
+$orange-color-dark: hsl(30, 100%, 52%); //#FF890C;
 
-$green-color: #20822a;
-$green-color-dark: #20822a;
+$green-color:       hsl(126, 60%, 31%); //#20822a;
+$green-color-dark:  hsl(126, 60%, 31%); //#20822a;
 
-$light-orange-color: #ffa94d;
+$light-orange-color: hsl(31, 100%, 65%);    //#ffa94d;
 
-$orange-gradient: linear-gradient(92.76deg, #FCB263 0%, #FE8708 52.3%);
+$orange-gradient: linear-gradient(92.76deg,
+						hsl(30, 96%, 68%) 0%,       //#FCB263
+						hsl(30, 99%, 51%) 52.3%);   //#FE8708
 
 $text-color: $page-color;
-$text-color-dark: #C9D1D9;
 
-$buttons-color: #307FBD;
-$buttons-color-dark: #307FBD;
+$text-color-dark:       hsl(210, 17%, 81%); //#C9D1D9;
 
-$buttons-active-color: #205182;
-$buttons-active-color-dark: #205182;
+$buttons-color:         hsl(206, 59%, 46%); //#307FBD;
+$buttons-color-dark:    hsl(206, 59%, 46%); //#307FBD;
 
-$vacation-color: #20822A;
-$vacation-color-dark: #00c814;
+$buttons-active-color:      hsl(210, 60%, 31%); //#205182;
+$buttons-active-color-dark: hsl(210, 60%, 31%); //#205182;
+
+$vacation-color:            hsl(126, 60%, 32%); //#20822A;
+$vacation-color-dark:       hsl(126, 100%, 39%); //#00c814;
 
 // BRAND COLORS:
-$vk-blue-color: #2787F5;
+$vk-blue-color: hsl(212, 91%, 55%); //#2787F5;
+
 
 
 // FONTS:
 @font-face {
-    font-family: 'Manrope';
-    src: url('/files/fonts/Manrope/Manrope-Thin.eot');
-    src: local('Manrope Thin'), local('Manrope-Thin'),
-        url('/files/fonts/Manrope/Manrope-Thin.eot?#iefix') format('embedded-opentype'),
-        url('/files/fonts/Manrope/Manrope-Thin.woff2') format('woff2'),
-        url('/files/fonts/Manrope/Manrope-Thin.woff') format('woff'),
-        url('/files/fonts/Manrope/Manrope-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Manrope';
+	src: url('/files/fonts/Manrope/Manrope-Thin.eot');
+	src: local('Manrope Thin'), local('Manrope-Thin'),
+		url('/files/fonts/Manrope/Manrope-Thin.eot?#iefix') format('embedded-opentype'),
+		url('/files/fonts/Manrope/Manrope-Thin.woff2') format('woff2'),
+		url('/files/fonts/Manrope/Manrope-Thin.woff') format('woff'),
+		url('/files/fonts/Manrope/Manrope-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'Manrope';
-    src: url('/files/fonts/Manrope/Manrope-Regular.eot');
-    src: local('Manrope Regular'), local('Manrope-Regular'),
-        url('/files/fonts/Manrope/Manrope-Regular.eot?#iefix') format('embedded-opentype'),
-        url('/files/fonts/Manrope/Manrope-Regular.woff2') format('woff2'),
-        url('/files/fonts/Manrope/Manrope-Regular.woff') format('woff'),
-        url('/files/fonts/Manrope/Manrope-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Manrope';
+	src: url('/files/fonts/Manrope/Manrope-Regular.eot');
+	src: local('Manrope Regular'), local('Manrope-Regular'),
+		url('/files/fonts/Manrope/Manrope-Regular.eot?#iefix') format('embedded-opentype'),
+		url('/files/fonts/Manrope/Manrope-Regular.woff2') format('woff2'),
+		url('/files/fonts/Manrope/Manrope-Regular.woff') format('woff'),
+		url('/files/fonts/Manrope/Manrope-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'Manrope';
-    src: url('/files/fonts/Manrope/Manrope-Semibold.eot');
-    src: local('Manrope Semibold'), local('Manrope-Semibold'),
-        url('/files/fonts/Manrope/Manrope-Semibold.eot?#iefix') format('embedded-opentype'),
-        url('/files/fonts/Manrope/Manrope-Semibold.woff2') format('woff2'),
-        url('/files/fonts/Manrope/Manrope-Semibold.woff') format('woff'),
-        url('/files/fonts/Manrope/Manrope-Semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Manrope';
+	src: url('/files/fonts/Manrope/Manrope-Semibold.eot');
+	src: local('Manrope Semibold'), local('Manrope-Semibold'),
+		url('/files/fonts/Manrope/Manrope-Semibold.eot?#iefix') format('embedded-opentype'),
+		url('/files/fonts/Manrope/Manrope-Semibold.woff2') format('woff2'),
+		url('/files/fonts/Manrope/Manrope-Semibold.woff') format('woff'),
+		url('/files/fonts/Manrope/Manrope-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
 }
 
 
@@ -184,53 +188,53 @@ $vk-blue-color: #2787F5;
 	// backface-visibility: hidden;
 	// transition-duration: 0s;  
 
-    background: none;
-    border: none;
+	background: none;
+	border: none;
 }
 
 html {
 	min-height: 100vh;
 	overflow: auto;
 
-    background: $page-color;
-    &.dark {
-        background: #06090F;
-    }
+	background: $page-color;
+	&.dark {
+		background: #06090F;
+	}
 }
 
 // Dark mode
 html.dark_mode_transition, html.dark_mode_transition * {
-    &, &::before, &::after {
-        transition: $dark-mode-transition !important;
-    }
+	&, &::before, &::after {
+		transition: $dark-mode-transition !important;
+	}
 }
 
 // Turn off transition on load
 html:not(.loaded), html:not(.loaded) body *:not(main > div:not(.message_alert)) {
-    transition: 0s all linear !important;
-    animation-duration: 0s !important;
+	transition: 0s all linear !important;
+	animation-duration: 0s !important;
 }
 
 // Wait cursor
 html.wait, html.wait body * {
-    cursor: wait !important;
+	cursor: wait !important;
 }
 
 
 body {
 	background: $page-color;
-    html.dark & {
-        background: #06090F;
-    }
+	html.dark & {
+		background: #06090F;
+	}
 
 	overflow: hidden;
 }
 
 a {
-    color: $orange-color;
-    html.dark & {
-        color: $orange-color-dark;
-    }
+	color: $orange-color;
+	html.dark & {
+		color: $orange-color-dark;
+	}
 }
 
 
@@ -241,136 +245,136 @@ a {
 
 
 .ui_alert {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 50px;
-    box-sizing: border-box;
-    max-width: 100vw;
-    max-height: 100vh;
-    padding: 15px 40px;
-    z-index: 1000;
-    border-radius: 50px;
-    background: rgba(20, 20, 20, 0.8);
-    color: #fff;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 50px;
+	box-sizing: border-box;
+	max-width: 100vw;
+	max-height: 100vh;
+	padding: 15px 40px;
+	z-index: 1000;
+	border-radius: 50px;
+	background: rgba(20, 20, 20, 0.8);
+	color: #fff;
 
-    opacity: 0;
-    visibility: hidden;
+	opacity: 0;
+	visibility: hidden;
 
-    transition: 2s opacity ease-in-out, 0s visibility 2s;
-    html.dark_mode_transition & {transition: $dark-mode-transition, 2s opacity ease-in-out, 0s visibility 2s !important;}
+	transition: 2s opacity ease-in-out, 0s visibility 2s;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 2s opacity ease-in-out, 0s visibility 2s !important;}
 
-    &.shown {
-        transition: 0.4s opacity ease-in-out, 0s visibility 0s;
-        html.dark_mode_transition & {transition: $dark-mode-transition, 0.4s opacity ease-in-out, 0s visibility 0s !important;}
-        opacity: 1;
-        visibility: visible;
-    }
+	&.shown {
+		transition: 0.4s opacity ease-in-out, 0s visibility 0s;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.4s opacity ease-in-out, 0s visibility 0s !important;}
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 
 main {
-    position: relative;
-    margin: 120px auto 100px auto;
-    @media (max-width: $desktop) {
-        margin: 90px auto 60px auto;
-    }
-    max-width: 100%;
+	position: relative;
+	margin: 120px auto 100px auto;
+	@media (max-width: $desktop) {
+		margin: 90px auto 60px auto;
+	}
+	max-width: 100%;
 
-    .message_alert {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+	.message_alert {
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
 		@media (max-width: $desktop) {
 			width: $main-width - 20px;
 			max-width: calc(100% - 20px);
 		}
 		
-        box-sizing: border-box;
-        width: $main-width - 200px;
-        max-width: calc(100% - 200px);
+		box-sizing: border-box;
+		width: $main-width - 200px;
+		max-width: calc(100% - 200px);
 		
 		@media (max-width: $desktop) {
 			padding: 12px 50px 12px 10px;
-			 margin-bottom: 10px;
+			margin-bottom: 10px;
 		}
 		padding: 12px 50px 12px 30px;
-        margin-bottom: 30px;
+		margin-bottom: 30px;
 
-        border-radius: 15px;
-        background: #55ff7d;
-        html.dark & {
-            background: $block-color-dark;
-        }
+		border-radius: 15px;
+		background: #55ff7d;
+		html.dark & {
+			background: $block-color-dark;
+		}
 
-        text-align: left;
+		text-align: left;
 
-        font-family: Manrope;
-        font-style: normal;
-        font-weight: normal;
-        font-size: var(--font-size-usual);
-        // line-height: 65px;
+		font-family: Manrope;
+		font-style: normal;
+		font-weight: normal;
+		font-size: var(--font-size-usual);
+		// line-height: 65px;
 
-        box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+		box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
 
-        color: #003ea8;
-        html.dark & {
-            color: $text-color-dark;
-        }
+		color: #003ea8;
+		html.dark & {
+			color: $text-color-dark;
+		}
 
-        transition: 0.6s opacity ease-in-out;
-        html.dark_mode_transition & {transition: $dark-mode-transition, 0.6s opacity ease-in-out !important;}
+		transition: 0.6s opacity ease-in-out;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0.6s opacity ease-in-out !important;}
 
-        span, p {
-            color: #50f;
-            // color: $light-orange-color;
-            font-weight: 600;
-            display: inline;
-        }
+		span, p {
+			color: #50f;
+			// color: $light-orange-color;
+			font-weight: 600;
+			display: inline;
+		}
 
-        .cross-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 5px;
-            width: 13px;
-            height: 13px;
-            padding: 15px;
-            cursor: pointer;
+		.cross-icon {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 5px;
+			width: 13px;
+			height: 13px;
+			padding: 15px;
+			cursor: pointer;
 
-            path {
-                fill: $text-color;
-                html.dark & {
-                    fill: #8394a3;
-                }
-            }
-        }
+			path {
+				fill: $text-color;
+				html.dark & {
+					fill: #8394a3;
+				}
+			}
+		}
 
-        kbd {
-            padding: 3px 6px 2px 6px;
-            border: 1px solid $text-color;
-            html.dark & {
-                border-color: #aaa;
-            }
-            border-radius: 8px;
+		kbd {
+			padding: 3px 6px 2px 6px;
+			border: 1px solid $text-color;
+			html.dark & {
+				border-color: #aaa;
+			}
+			border-radius: 8px;
 
-            .mouse {
-                display: inline-block;
-                position: relative;
-                top: 3px;
-                border: 1px solid $text-color;
-                html.dark & {
-                    border-color: #aaa;
-                }
+			.mouse {
+				display: inline-block;
+				position: relative;
+				top: 3px;
+				border: 1px solid $text-color;
+				html.dark & {
+					border-color: #aaa;
+				}
 				@media (max-width: $desktop) {
 					height: 12px;
 					width: 8px;
 				}
-                height: 18px;
-                width: 11px;
-                border-radius: 50px;
+				height: 18px;
+				width: 11px;
+				border-radius: 50px;
 
-                &::after {
+				&::after {
 					@media (max-width: $desktop) {
 						animation: none;
 						height: 4px;
@@ -378,44 +382,44 @@ main {
 						left: calc(50% - 0.75px);
 						border-radius: 60%;
 					}
-                    content: "";
-                    position: absolute;
-                    top: 1px;
-                    left: calc(50% - 1px);
-                    width: 2px;
-                    background: $text-color;
-                    html.dark & {
-                        background: #aaa;
-                    }
-                    height: 4px;
-                    border-radius: 50%;
+					content: "";
+					position: absolute;
+					top: 1px;
+					left: calc(50% - 1px);
+					width: 2px;
+					background: $text-color;
+					html.dark & {
+						background: #aaa;
+					}
+					height: 4px;
+					border-radius: 50%;
 
-                    animation: kbd_mouse 1s ease-in-out infinite;
-                }
+					animation: kbd_mouse 1s ease-in-out infinite;
+				}
 
-                @keyframes kbd_mouse {
-                    0% {
-                        opacity: 0;
-                        transform: translateY(0);
-                    }
+				@keyframes kbd_mouse {
+					0% {
+						opacity: 0;
+						transform: translateY(0);
+					}
 
-                    50% {
-                        opacity: 1;
-                        transform: translateY(2px);
-                    }
+					50% {
+						opacity: 1;
+						transform: translateY(2px);
+					}
 
-                    100% {
-                        opacity: 0;
-                        transform: translateY(4px);
-                    }
-                }
-            }
-        }
+					100% {
+						opacity: 0;
+						transform: translateY(4px);
+					}
+				}
+			}
+		}
 
-        &.hidden {
-            opacity: 0;
-        }
-    }
+		&.hidden {
+			opacity: 0;
+		}
+	}
 
-    @import 'src/styles/menu';
+	@import 'src/styles/menu';
 }

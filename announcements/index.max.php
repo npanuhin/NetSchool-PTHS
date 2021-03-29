@@ -54,7 +54,7 @@ get_person();
 					$title = nl2br(trim($announcement['title']));
 					$date = new DateTime(trim($announcement['date']));
 					$article = preg_replace(
-						'/(' . replace_school_class_regex(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
+						'/(' . replace_school_class(trim($person['class'])) . ')(?![^<]*>|[^<>]*<\/)/imu',
 						'<span class="school_class" title="Это ваш класс (тут нет никакой ссылки)">\1</span>',
 						nl2br(trim($announcement['text']))
 					);
@@ -106,7 +106,7 @@ get_person();
 
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
 
-	<script type="text/javascript" src="/src/event.js" defer></script>
+	<script type="text/javascript" src="/src/lib/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
 	<!-- <script type="text/javascript" src="build/announcements.min.js" defer></script> -->

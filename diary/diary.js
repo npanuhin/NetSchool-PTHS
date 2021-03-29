@@ -1,3 +1,6 @@
+Chart.defaults.global.defaultFontStyle="Bold";
+Chart.defaults.global.defaultFontFamily='Manrope';
+
 var
 	diary = document.getElementsByClassName("diary")[0],
 	table = diary.getElementsByTagName("table")[0];
@@ -33,16 +36,10 @@ var
 	details_lock = false,
 	details_distance = 20,
 
-	current_task = null;
+	current_task = null,
+	mark_count = [],
+	graph_colors
 
-
-// function onResize() {
-// 	// left_column.style.height = weeks[cur_week].offsetHeight + "px";
-// 	for (let i = 0; i < table_tr.length; ++i) {
-// 		left_column_li[i].style.paddingTop = (40 - 28) / 2 + "px";
-// 		left_column_li[i].style.paddingBottom = (40 - 28) / 2 + "px";
-// 	}
-// }
 
 // =======================================================================
 
@@ -65,7 +62,7 @@ function copy_to_clipboard(text) {
 		.catch(err => {
 			console.log(err);
 			ui_alert("Мы не можем вставить ссылку в буфер обмена.<br>Пожалуйста, скопируйте URL самостоятельно");
-  		});
+		});
 	}
 }
 
@@ -89,6 +86,109 @@ function show_details(windowX, windowY, task) {
 	Event.add(details_block_link_icon, "click", copy_url);
 
 	details_block.classList.toggle("expired", task.classList.contains("expired"));
+	details_block.classList.remove("graph");
+
+	locate_details(windowX, windowY);
+	details_block.classList.add("shown");
+}
+
+function show_graph_details(windowX, windowY, line_index) {
+	if (details_lock) return;
+	Event.remove(details_block_link_icon, "click", copy_url);
+
+	details_block.classList.remove("expired");
+	details_block.classList.add("graph");
+	
+	let marks = mark_count[line_index - 2];
+	if (!marks) return;
+	
+	for (let mark in marks) {
+		if (marks[mark] === 0) delete marks[mark];
+	}
+	let keys = Object.keys(marks),
+		values = Object.values(marks);
+	
+	if (keys.length === 0) return; // no marks — no graph
+	
+	if(html.classList.contains("dark")){
+		graph_colors = {
+			1: "hsla(0,   80%, 70%)", 
+			2: "hsla(35,  80%, 70%)", 
+			3: "hsla(60,  80%, 60%)",
+			4: "hsla(180, 80%, 70%)",
+			5: "hsla(120, 80%, 70%)"
+		};
+	}
+	else{
+		graph_colors = {
+			1: "hsla(0, 75%, 70%)", 
+			2: "hsla(35, 75%, 70%)", 
+			3: "hsla(60, 75%, 70%)",
+			4: "hsla(200, 75%, 70%)",
+			5: "hsla(120, 75%, 70%)"
+		};
+	}
+	
+	let dataset = {
+		labels: keys,
+		datasets: [{
+			data: values,
+			backgroundColor: (context) => {return graph_colors[Number(keys[context.dataIndex])]},
+			borderColor: "hsla(0, 0%, 60%)",
+			borderWidth: 1
+		}]
+	};
+	
+	// details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
+	// let canvas = document.getElementById("mark_dispersion_canvas");
+
+	details_block.innerHTML = "";
+
+	let canvas = document.createElement("canvas");
+	canvas.id = "mark_dispersion_canvas";
+	details_block.append(canvas);
+	
+	window.graph = new Chart(canvas, {
+		type: 'bar', 
+		data: dataset,
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+			animation: {
+				easing: "easeInOutQuad",
+				duration: 500
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						precision: 0,
+						maxTicksLimit: 4,
+
+						fontFamily: "Manrope",
+						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
+						// fontStyle: "bold"
+					},
+					gridLines: {
+						color: '#ccc',
+						zeroLineColor: '#aaa'
+					}
+				}],
+				xAxes: [{
+					ticks: {
+						fontFamily: "Manrope",
+						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
+					},
+					gridLines: {
+						color: 'transparent',
+						zeroLineColor: '#aaa'
+					}
+				}],
+			}
+		}
+	});
 
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
@@ -124,24 +224,41 @@ function locate_details(windowX, windowY) {
 	}
 }
 
-function hide_details() {
-	if (details_lock) return;
+function hide_details(force=false) {
+	if (!force && details_lock) return;
+	details_lock = false;
 
 	clear_url_hash();
 	details_block.classList.remove("shown");
+	Event.remove(details_block_link_icon, "click", copy_url);
 }
 
 function toggle_details_lock(event) {
 	let empty_click = true;
+	
 	for (let task of tasks) {
 		if (task.contains(event.target)) {
 			details_lock = false;
-			show_details(event.pageX - html.scrollLeft, event.pageY - html.scrollTop, task);
+			show_details(event.clientX, event.clientY, task);
 			set_current_task_url(task);
-
 			details_lock = true;
+
 			empty_click = false;
 			break;
+		}
+	}
+
+	if (empty_click) {
+		for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+			let avg_mark_tile = right_column_li[line_index];
+			if (avg_mark_tile.contains(event.target)) {
+				details_lock = false;
+				show_graph_details(event.clientX, event.clientY, line_index);
+				details_lock = true;
+
+				empty_click = false;
+				break;
+			}
 		}
 	}
 
@@ -198,23 +315,23 @@ function onhashchange() {
 
 
 function ScrollParametricBlend(t) {
-    return t * t / (1.85 * t * (t - 1) + 1.0);
+	return t * t / (1.85 * t * (t - 1) + 1.0);
 }
 
 function scroll_table_to(target) {
 	let steps_count = 45,
 		step_length = 1 / steps_count,
-        length = target - scroll_table.scrollLeft;
+		length = target - scroll_table.scrollLeft;
 
-    (function scrollStep() {
-        scroll_table.scrollLeft = target - ScrollParametricBlend(steps_count * step_length) * length;
-        if (steps_count <= 0) {
-            scroll_animation = false;
-            return;
-        }
-        --steps_count;
-        requestAnimationFrame(scrollStep);
-    })()
+	(function scrollStep() {
+		scroll_table.scrollLeft = target - ScrollParametricBlend(steps_count * step_length) * length;
+		if (steps_count <= 0) {
+			scroll_animation = false;
+			return;
+		}
+		--steps_count;
+		requestAnimationFrame(scrollStep);
+	})()
 }
 
 function scroll_table_by(distance) {scroll_table_to(Math.min(scroll_table.scrollWidth - scroll_table.offsetWidth, Math.max(0, scroll_table.scrollLeft + distance)))}
@@ -231,7 +348,6 @@ function on_table_scroll() {
 }
 
 // =======================================================================
-
 
 function apply_period(save=false) {
 	if (!period_start_input.validity.valid || !period_end_input.validity.valid) return;
@@ -254,11 +370,11 @@ function apply_period(save=false) {
 	period_end = new Date(period_end);
 
 	for (let tr_index = 2; tr_index < table.getElementsByTagName("tr").length; ++tr_index) {
+		mark_count.push({1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
 		let line = table.getElementsByTagName("tr")[tr_index],
 			average_mark = 0, rate_summ = 0;
 
 		for (let day of line.getElementsByTagName("td")) {
-			// if (!day.classList.contains("filled") && !day.classList.contains("today")) continue;
 
 			let date;
 
@@ -273,6 +389,7 @@ function apply_period(save=false) {
 
 				for (let task of day.getElementsByTagName("span")) {
 					if (task.dataset.mark && task.dataset.rate) {
+						mark_count[mark_count.length - 1][Number(task.dataset.mark)]++;
 						average_mark += Number(task.dataset.mark) * Number(task.dataset.rate);
 						rate_summ += Number(task.dataset.rate);
 					}
@@ -314,6 +431,7 @@ function apply_period(save=false) {
 	period_hidden_right.style.left = right_border + "px";
 
 	if (save) {
+		// html.classList.add("wait");
 		ajax(
 			"POST",
 			"/src/set_diary_period.php",
@@ -322,9 +440,10 @@ function apply_period(save=false) {
 				"period_end": period_end.getFullYear() + '-' + (period_end.getMonth() + 1) + '-' + period_end.getDate()
 			},
 			(req) => {
+				// html.classList.remove("wait");
+
 				if (req.responseText == "success") {
 					console.log("Period saved");
-
 				} else {
 					alert("Error");
 					alert(req.responseText);
@@ -339,69 +458,83 @@ function apply_period(save=false) {
 }
 
 
-Event.add(window, "load", () => {
-	Event.add(window, "resize", () => {apply_period});
-	// onResize();
+// =======================================================================
 
-	// body.append(details_block);
-	for (let task of tasks) {
-		Event.add(task, "mouseenter", (e) => {
-			show_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop, task);
-		});
-		Event.add(task, "mouseleave", (e) => {
-			if (!details_block.contains(e.relatedTarget)) hide_details();
-		});
-		Event.add(task, "mousemove", (e) => {
-			locate_details(e.pageX - html.scrollLeft, e.pageY - html.scrollTop);
-		});
-	}
-	Event.add(window, "mousedown", toggle_details_lock);
-	Event.add(details_block, "mouseleave", hide_details);
+Event.add(window, "resize", () => {apply_period});
+// onResize();
 
-
-	Event.add(scroll_left_button, "mousedown", () => {
-		scroll_table_by(-Math.round(0.8 * scroll_table.offsetWidth));
+for (let task of tasks) {
+	Event.add(task, "mouseenter", (e) => {
+		show_details(e.clientX, e.clientY, task);
 	});
-	Event.add(scroll_right_button, "mousedown", () => {
-		scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
+	Event.add(task, "mouseleave", (e) => {
+		if (!details_block.contains(e.relatedTarget)) hide_details();
 	});
-
-	// Period
-	Event.add(period_start_input, "change", () => {
-		apply_period(true);
+	Event.add(task, "mousemove", (e) => {
+		locate_details(e.clientX, e.clientY);
 	});
-	Event.add(period_end_input, "change", () => {
-		apply_period(true);
+}
+for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+	let avg_mark_tile = right_column_li[line_index];
+	Event.add(avg_mark_tile, "mouseenter", (e) => {
+		show_graph_details(e.clientX, e.clientY, line_index);
 	});
-	// setTimeout(apply_period);
-	setTimeout(apply_period, 100);
-	// setTimeout(apply_period, 200);
-	setTimeout(apply_period, 300);
-	setTimeout(apply_period, 500);
+	Event.add(avg_mark_tile, "mouseleave", (e) => {
+		if (!details_block.contains(e.relatedTarget)) hide_details();
+	});
+	Event.add(avg_mark_tile, "mousemove", (e) => {
+		locate_details(e.clientX, e.clientY);
+	});
+}
+Event.add(window, "mousedown", toggle_details_lock);
+Event.add(details_block, "mouseleave", () => {hide_details()});
+Event.add(window, "scroll", () => {hide_details(true)});
+Event.add(scroll_table, "scroll", () => {hide_details(true)});
 
-	// Table scroll
-	setTimeout(on_table_scroll);
-	setTimeout(() => {
-		table_unlocked = true;
-		Event.add(scroll_table, "scroll", on_table_scroll);
-		setTimeout(apply_period);
-	}, 150);
 
-	// Hash
-	Event.add(window, "hashchange", onhashchange);
-
-	if (decodeURIComponent(window.location.hash)) {
-		setTimeout(onhashchange);
-
-	} else {
-		function initial_table_scroll() {
-			if (table_unlocked) return;
-			scroll_table.scrollLeft = scroll_table.scrollWidth;
-			on_table_scroll();
-			requestAnimationFrame(initial_table_scroll);
-		}
-		setTimeout(initial_table_scroll);
-	}
+// Table scroll controls
+Event.add(scroll_left_button, "mousedown", () => {
+	scroll_table_by(-Math.round(0.8 * scroll_table.offsetWidth));
 });
+Event.add(scroll_right_button, "mousedown", () => {
+	scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
+});
+
+// Period
+Event.add(period_start_input, "change", () => {
+	apply_period(true);
+});
+Event.add(period_end_input, "change", () => {
+	apply_period(true);
+});
+// setTimeout(apply_period);
+setTimeout(apply_period, 100);
+// setTimeout(apply_period, 200);
+setTimeout(apply_period, 300);
+setTimeout(apply_period, 500);
+
+// Table scroll handler
+setTimeout(on_table_scroll);
+setTimeout(() => {
+	table_unlocked = true;
+	Event.add(scroll_table, "scroll", on_table_scroll);
+	setTimeout(apply_period);
+}, 150);
+
+// Hash
+Event.add(window, "hashchange", onhashchange);
+
+if (decodeURIComponent(window.location.hash)) {
+	setTimeout(onhashchange);
+
+} else {
+	function initial_table_scroll() {
+		if (table_unlocked) return;
+		scroll_table.scrollLeft = scroll_table.scrollWidth;
+		on_table_scroll();
+		requestAnimationFrame(initial_table_scroll);
+	}
+	setTimeout(initial_table_scroll);
+}
 
 }

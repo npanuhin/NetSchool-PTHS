@@ -277,12 +277,12 @@ main {
 
 			& > button {
 				position: absolute;
-				@media (max-width: 350px) {
+				@media (max-width: 380px) {
 					position: static;
 					top: 0;
 				}
 				@media (max-width: $desktop) {
-					top: 3px;
+					top: 1px;
 				}
 				opacity: 0;
 				top: 10px;

@@ -74,5 +74,4 @@ function get_person() {
 		$person = $data[0];
 	}
 }
-
 ?>

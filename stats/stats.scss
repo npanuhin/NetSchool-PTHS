@@ -1,0 +1,227 @@
+@import '../src/styles/main';
+
+$details-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
+$details-expired-shadow: 2px 1px 15px rgba(255, 0, 0, 0.3);
+
+$mark-expired-color: rgba(255, 0, 0, 0.1);
+$mark-expired-color-dark: rgba(255, 0, 0, 0.25);
+
+main {
+	position: relative;
+	margin: 120px auto 100px auto;
+	width: 1300px;
+	max-width: 95%;
+
+	.stats {
+		position: relative;
+		padding: 40px 32px 50px 32px;
+		top: 30px;
+		box-sizing: border-box;
+		width: 100%;
+		margin: 0 auto;
+		z-index: 10;
+		text-align: center;
+
+		background: $block-color;
+		box-shadow: var(--block-shadow);
+		html.dark & {
+			background: $block-color-dark;
+			box-shadow: $block-shadow-dark;
+		}
+		border-radius: 30px;
+
+		transition: $dark_mode_transition, 0.3s transform ease-in-out;
+
+		.tabs {
+			.tab {
+				h3 {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: 600;
+					font-size: var(--font-size-very-big);
+					text-align: center;
+					margin-bottom: 25px;
+
+					color: $text-color;
+					html.dark & {
+						color: $text-color-dark;
+					}
+					@media (max-width: $desktop) {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+
+		& > p {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 18px;
+			text-align: center;
+			padding-top: 15px;
+
+			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
+		}
+
+		.period_start_label, .period_end_label {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 21px;
+			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
+		}
+
+		.period_end_label {
+			margin-left: 30px;
+		}
+
+		.period_start, .period_end {
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 18px;
+			color: $text-color;
+			html.dark & {
+				color: $text-color-dark;
+			}
+
+			margin: 5px 0 22px 5px;
+
+			padding: 7px 10px;
+			border: 2px solid $text-color;
+			html.dark & {
+				border-color: $text-color-dark;
+			}
+			border-radius: 7px;
+
+			transition: $dark_mode_transition, 0.2s border-color ease-in-out;
+
+			&:focus {
+				border: 2px solid $orange-color;
+				html.dark & {
+					border-color: $orange-color-dark;
+				}
+			}
+		}
+	}
+}
+
+.details, .details h5, .details p {
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 25px;
+	color: $text-color;
+	html.dark & {
+		color: $text-color-dark;
+	}
+}
+
+.details {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	padding: 15px 50px 15px 20px;
+	border-radius: 20px;
+	max-width: 100vw;
+	max-height: 100vw;
+	box-sizing: border-box;
+	background: $block-color;
+	box-shadow: $details-shadow;
+	color: $text-color;
+
+	html.dark & {
+		background: $block-color-dark;
+		box-shadow: var(--block-shadow);
+		color: $text-color-dark;
+	}
+
+	visibility: hidden;
+	opacity: 0;
+	transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark & {
+		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	}
+
+	line-height: 23px;
+
+	h5 {
+		text-align: center;
+		width: 100%;
+		
+		font-weight: 600;
+	}
+
+	// h6 {
+	// 	text-align: center;
+	// 	width: 100%;
+	// 	font-size: 12px;
+		
+	// 	font-weight: 600;
+	// }
+
+	p {
+		width: 100%;
+		text-align: center;
+
+		a {
+			color: $orange-color;
+			html.dark & {
+				color: $orange-color-dark;
+			}
+		}
+	}
+
+	&.shown {
+		visibility: visible;
+		opacity: 1;
+		transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark & {
+			transition: $dark_mode_transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		}
+	}
+
+	&.expired {
+		box-shadow: $details-expired-shadow;
+
+		h5 {
+			color: #f00;
+			html.dark & {
+				color: #f00;
+			}
+		}
+	}
+
+	.link-icon {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 18.5px 18px 10px 10px;
+		width: 17px;
+		border-top-right-radius: 20px;
+
+		cursor: pointer;
+		opacity: 0.6;
+		transition: $dark_mode_transition, 0.08s opacity ease-in-out;
+		&:hover {
+			opacity: 1;
+		}
+
+		path {
+			fill: $text-color;
+			html.dark & {
+				fill: $text-color-dark;
+			}
+		}
+	}
+}

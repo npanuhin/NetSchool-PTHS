@@ -84,6 +84,11 @@
 			height: 100%;
 		}
 	}
+
+
+	&.wait, &.wait * {
+		cursor: wait;
+	}
 }
 
 .online_media_opacity {

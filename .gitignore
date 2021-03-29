@@ -15,6 +15,7 @@ build/
 *.php
 *.html
 
-# ... but keep non-generated
+# ... but keep non-generated code and libraries
 !*.max.php
 !*.max.html
+!/src/lib/*
