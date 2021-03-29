@@ -110,7 +110,7 @@ function show_graph_details(windowX, windowY, line_index) {
 	
 	if (keys.length === 0) return; // no marks — no graph
 	
-	if(html.classList.contains("dark")){
+	if (html.classList.contains("dark")) {
 		graph_colors = {
 			1: "hsla(0,   80%, 70%)", 
 			2: "hsla(35,  80%, 70%)", 
@@ -118,8 +118,7 @@ function show_graph_details(windowX, windowY, line_index) {
 			4: "hsla(180, 80%, 70%)",
 			5: "hsla(120, 80%, 70%)"
 		};
-	}
-	else{
+	} else {
 		graph_colors = {
 			1: "hsla(0, 75%, 70%)", 
 			2: "hsla(35, 75%, 70%)", 
@@ -249,7 +248,7 @@ function toggle_details_lock(event) {
 	}
 
 	if (empty_click) {
-		for (let line_index = 0; line_index < right_column_li.length; ++line_index){
+		for (let line_index = 0; line_index < right_column_li.length; ++line_index) {
 			let avg_mark_tile = right_column_li[line_index];
 			if (avg_mark_tile.contains(event.target)) {
 				details_lock = false;
@@ -272,10 +271,10 @@ function toggle_details_lock(event) {
 
 
 function onhashchange() {
-	let url_hash = decodeURIComponent(window.location.hash);
+	let hash = decodeURIComponent(window.location.hash);
 
-	if (url_hash) {
-		let task_element = document.getElementById(url_hash.slice(1)),
+	if (hash) {
+		let task_element = document.getElementById(hash.slice(1)),
 			day = task_element.parentElement.parentElement;
 
 		day.classList.add("selected");
@@ -460,9 +459,27 @@ function apply_period(save=false) {
 
 // =======================================================================
 
+// Resize
 Event.add(window, "resize", () => {apply_period});
 // onResize();
 
+
+// Hash
+Event.add(window, "hashchange", onhashchange);
+if (decodeURIComponent(window.location.hash)) {
+	onhashchange();
+} else {
+	function initial_table_scroll() {
+		if (table_unlocked) return;
+		scroll_table.scrollLeft = scroll_table.scrollWidth;
+		on_table_scroll();
+		requestAnimationFrame(initial_table_scroll);
+	}
+	setTimeout(initial_table_scroll);
+}
+
+
+// Details
 for (let task of tasks) {
 	Event.add(task, "mouseenter", (e) => {
 		show_details(e.clientX, e.clientY, task);
@@ -474,8 +491,8 @@ for (let task of tasks) {
 		locate_details(e.clientX, e.clientY);
 	});
 }
-for (let line_index = 0; line_index < right_column_li.length; ++line_index){
-	let avg_mark_tile = right_column_li[line_index];
+for (let line_index = 0, avg_mark_tile; line_index < right_column_li.length; ++line_index) {
+	avg_mark_tile = right_column_li[line_index];
 	Event.add(avg_mark_tile, "mouseenter", (e) => {
 		show_graph_details(e.clientX, e.clientY, line_index);
 	});
@@ -488,8 +505,12 @@ for (let line_index = 0; line_index < right_column_li.length; ++line_index){
 }
 Event.add(window, "mousedown", toggle_details_lock);
 Event.add(details_block, "mouseleave", () => {hide_details()});
-Event.add(window, "scroll", () => {hide_details(true)});
-Event.add(scroll_table, "scroll", () => {hide_details(true)});
+Event.add(window, "load", () => {
+	setTimeout(() => {
+		Event.add(window, "scroll", () => {hide_details(true)});
+		Event.add(scroll_table, "scroll", () => {hide_details(true)});
+	}, 1000);
+});
 
 
 // Table scroll controls
@@ -499,6 +520,7 @@ Event.add(scroll_left_button, "mousedown", () => {
 Event.add(scroll_right_button, "mousedown", () => {
 	scroll_table_by(Math.round(0.8 * scroll_table.offsetWidth));
 });
+
 
 // Period
 Event.add(period_start_input, "change", () => {
@@ -513,6 +535,7 @@ setTimeout(apply_period, 100);
 setTimeout(apply_period, 300);
 setTimeout(apply_period, 500);
 
+
 // Table scroll handler
 setTimeout(on_table_scroll);
 setTimeout(() => {
@@ -520,21 +543,5 @@ setTimeout(() => {
 	Event.add(scroll_table, "scroll", on_table_scroll);
 	setTimeout(apply_period);
 }, 150);
-
-// Hash
-Event.add(window, "hashchange", onhashchange);
-
-if (decodeURIComponent(window.location.hash)) {
-	setTimeout(onhashchange);
-
-} else {
-	function initial_table_scroll() {
-		if (table_unlocked) return;
-		scroll_table.scrollLeft = scroll_table.scrollWidth;
-		on_table_scroll();
-		requestAnimationFrame(initial_table_scroll);
-	}
-	setTimeout(initial_table_scroll);
-}
 
 }
