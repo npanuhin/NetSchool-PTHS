@@ -161,6 +161,7 @@ function show_next_week() {
 // ===========================================================================================================
 
 Event.add(window, "resize", resize_table);
+Event.add(window, "load", resize_table);
 setTimeout(resize_table());
 
 Event.add(timetable_previous, "mousedown", show_previos_week);

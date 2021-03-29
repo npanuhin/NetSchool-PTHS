@@ -24,11 +24,11 @@ main {
 			width: calc(100% - 20px);
 		}
 
-		background: $block-color;
+		background: var(--block-color);
 		box-shadow: var(--block-shadow);
+
 		html.dark & {
-			background: $block-color-dark;
-			box-shadow: var(--block-shadow);
+			box-shadow: $block-shadow-dark;
 		}
 
 		transition: 0.3s transform ease-in-out;
@@ -116,9 +116,9 @@ main {
 					line-height: var(--font-size-small);
 					font-weight: 400;
 
-					border: 1px solid $green-color;
+					border: 1px solid var(--green-color);
 
-					color: $green-color;
+					color: var(--green-color);
 				}
 
 				&.expired div {
@@ -330,10 +330,9 @@ main {
 				& > div {
 					position: relative;
 					padding: var(--timetable-day-padding-x) var(--timetable-day-padding-y);
-					background: $block-color;
+					background: var(--block-color);
 					box-shadow: var(--block-shadow);
 					html.dark & {
-						background: $block-color-dark;
 						box-shadow: $block-shadow-dark;
 					}
 					border-radius: var(--timetable-border-radius);
@@ -430,10 +429,7 @@ main {
 
 							&.vacation {
 								a {
-									color: $vacation-color;
-									html.dark & {
-										color: $vacation-color-dark;
-									}
+									color: var(--green-color);
 								}
 							}
 
@@ -582,10 +578,7 @@ main {
 
 	&.vacation {
 		h5 {
-			color: $vacation-color;
-			html.dark & {
-				color: $vacation-color-dark;
-			}
+			color: var(--green-color);
 		}
 	}
 

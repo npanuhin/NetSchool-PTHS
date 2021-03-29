@@ -61,10 +61,9 @@ main {
 					width: 140px;
 					height: 140px;
 					margin: 0 auto;
-					background-color: $block-color;
+					background-color: var(--block-color);
 					box-shadow: var(--block-shadow);
 					html.dark & {
-						background-color: $block-color-dark;
 						box-shadow: $block-shadow-dark;
 					}
 					border-radius: 50%;
@@ -113,10 +112,9 @@ main {
 
 				box-sizing: border-box;
 
-				background: $block-color;
+				background: var(--block-color);
 				box-shadow: var(--block-shadow);
 				html.dark & {
-					background: $block-color-dark;
 					box-shadow: $block-shadow-dark;
 				}
 

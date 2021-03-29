@@ -15,49 +15,39 @@ $online-media-threshold: 1260px;
 
 
 // COLORS:
-$block-color: #FFF;
-$block-color-dark: #28313d;
-
 $block-shadow-dark: none;
 $text-shadow-dark: none;
 $arrows-shadow-dark: none;
-
-$page-color: hsl(207, 72%, 36%);
 
 html {
 	--page-color:            hsl(207, 72%, 36%);        // #1963A1;
 	--page-color-dark:       hsl(220, 42%,  4%);        // #06090F;
 
+	--block-color:           hsl(0, 0%, 100%);          // #fff
+	--block-color-dark:      hsl(214, 21%, 20%);        // #28313d;
+
 	--text-color-main-light: var(--page-color);         // #1963A1;
 	--text-color-main:       var(--text-color-main-light);
 	--text-color-main-dark:  hsl(210, 17%, 81%);        // #C9D1D9;
 	--orange-color:          hsl(30, 100%, 52%);        // #FF890C;
+	--green-color:           hsl(126, 60%, 32%);        // #20822a;
+	--green-color-dark:      hsl(126, 100%, 35%);       // #00b312;
+	--buttons-color:         hsl(206, 59%, 46%);        // #307FBD;
+	--buttons-color-active:  hsl(210, 60%, 31%);        // #205182;
+
+	// --vk-blue-color:         hsl(212, 91%, 55%);        // #2787F5;
+
+	--orange-gradient:  linear-gradient(92.76deg,
+							 hsl(30, 96%, 68%) 0%,      // #FCB263
+							 hsl(30, 99%, 51%) 52.3%);  // #FE8708
 }
 
 html.dark {
 	--text-color-main: var(--text-color-main-dark);
+	--page-color:      var(--page-color-dark);
+	--green-color:     var(--green-color-dark);
+	--block-color:     var(--block-color-dark);
 }
-
-$green-color:               hsl(126, 60%, 31%);     // #20822a;
-$green-color-dark:          hsl(126, 60%, 31%);     // #20822a;
-
-$light-orange-color:        hsl(31, 100%, 65%);     // #ffa94d;
-
-$orange-gradient: linear-gradient(92.76deg,
-						hsl(30, 96%, 68%) 0%,       // #FCB263
-						hsl(30, 99%, 51%) 52.3%);   // #FE8708
-
-$buttons-color:             hsl(206, 59%, 46%);     // #307FBD;
-$buttons-color-dark:        hsl(206, 59%, 46%);     // #307FBD;
-
-$buttons-active-color:      hsl(210, 60%, 31%);     // #205182;
-$buttons-active-color-dark: hsl(210, 60%, 31%);     // #205182;
-
-$vacation-color:            hsl(126, 60%, 32%);     // #20822A;
-$vacation-color-dark:       hsl(126, 100%, 35%);    // #00b312;
-
-// BRAND COLORS:
-$vk-blue-color: hsl(212, 91%, 55%);                 // #2787F5;
 
 
 
@@ -192,11 +182,7 @@ $vk-blue-color: hsl(212, 91%, 55%);                 // #2787F5;
 html {
 	min-height: 100vh;
 	overflow: auto;
-
-	background: $page-color;
-	&.dark {
-		background: #06090F;
-	}
+	background: var(--page-color);
 }
 
 // Dark mode
@@ -219,10 +205,7 @@ html.wait, html.wait body * {
 
 
 body {
-	background: $page-color;
-	html.dark & {
-		background: #06090F;
-	}
+	background: var(--page-color);
 
 	overflow: hidden;
 }
@@ -298,7 +281,7 @@ main {
 		border-radius: 15px;
 		background: #55ff7d;
 		html.dark & {
-			background: $block-color-dark;
+			background: var(--block-color-dark);
 		}
 
 		text-align: left;
@@ -321,7 +304,6 @@ main {
 
 		span, p {
 			color: #50f;
-			// color: $light-orange-color;
 			font-weight: 600;
 			display: inline;
 		}

@@ -27,10 +27,9 @@ main {
 		border-radius: 30px;
 		text-align: justify;
 
-		background: $block-color;
+		background: var(--block-color);
 		box-shadow: var(--block-shadow);
 		html.dark & {
-			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
 		}
 
@@ -110,10 +109,7 @@ main {
 				height: 45px;
 
 				path {
-					// fill: $buttons-color;
-					// html.dark & {
-					// 	fill: $buttons-color-dark;
-					// }
+					// fill: var(--buttons-color);
 
 					transition: 0.1s fill ease-in-out, 0.1s filter ease-in-out;
 					html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s fill ease-in-out, 0.1s filter ease-in-out !important;}

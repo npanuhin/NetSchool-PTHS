@@ -22,10 +22,9 @@ main {
 		z-index: 10;
 		text-align: center;
 
-		background: $block-color;
+		background: var(--block-color);
 		box-shadow: var(--block-shadow);
 		html.dark & {
-			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
 		}
 		border-radius: 30px;
@@ -115,13 +114,12 @@ main {
 	max-width: 100vw;
 	max-height: 100vw;
 	box-sizing: border-box;
-	background: $block-color;
+	background: var(--block-color);
 	box-shadow: $details-shadow;
 	color: var(--text-color-main);
 
 	html.dark & {
-		background: $block-color-dark;
-		box-shadow: var(--block-shadow);
+		box-shadow: none;
 	}
 
 	visibility: hidden;

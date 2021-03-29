@@ -29,10 +29,9 @@ main {
 		z-index: 10;
 		text-align: center;
 
-		background: $block-color;
+		background: var(--block-color);
 		box-shadow: var(--block-shadow);
 		html.dark & {
-			background: $block-color-dark;
 			box-shadow: $block-shadow-dark;
 		}
 		border-radius: 30px;
@@ -139,10 +138,7 @@ main {
 					white-space: nowrap;
 
 					color: var(--text-color-main);
-					background: $block-color;
-					html.dark & {
-						background: $block-color-dark;
-					}
+					background: var(--block-color);
 
 					&:nth-child(2) {
 						@media (max-width: $desktop) {
@@ -198,10 +194,7 @@ main {
 				}
 
 				.scroll_right {
-					// background: $block-color;
-					// html.dark & {
-					// 	background: $block-color-dark;
-					// }
+					// background: var(--block-color);
 
 					svg {
 						left: 0;
@@ -315,29 +308,24 @@ main {
 								overflow: hidden;
 
 								span {
-									@media (max-width: $desktop) {
-										font-size: 8px;
-										line-height: 10px;
-										padding: 4px 6px 8px 6px;
-										
-									}
+									padding: 0 8px;
 									position: relative;
 									font-family: Manrope;
 									font-style: normal;
 									font-weight: 500;
 									font-size: 20px;
 									line-height: 28px;
+									color: var(--text-color-main);
 
 									white-space: nowrap;
 
-									background: $block-color;
-									color: var(--text-color-main);
+									background: var(--block-color);
 
-									html.dark & {
-										background: $block-color-dark;
+									@media (max-width: $desktop) {
+										font-size: 8px;
+										line-height: 10px;
+										padding: 4px 6px 8px 6px;
 									}
-
-									padding: 0 8px;
 								}
 								
 								&::before {
@@ -443,17 +431,11 @@ main {
 									}
 
 									&.high {
-										color: $green-color;
+										color: var(--green-color);
 									}
 
 									&.expired {
 										color: var(--orange-color);
-									}
-
-									html.dark & {
-										&.high {
-											color: $green-color-dark;
-										}
 									}
 
 									div {
@@ -535,12 +517,11 @@ main {
 	max-width: 100vw;
 	max-height: 100vw;
 	box-sizing: border-box;
-	background: $block-color;
+	background: var(--block-color);
 	box-shadow: $details-shadow;
 	color: var(--text-color-main);
 
 	html.dark & {
-		background: $block-color-dark;
 		box-shadow: $block-shadow-dark;
 	}
 

@@ -54,19 +54,14 @@
 		cursor: pointer;
 
 		.sign-out-icon path {
-			fill: $buttons-color;
-			html.dark & {
-				fill: $buttons-color-dark;
-			}
+			fill: var(--buttons-color);
+
 			transition: 0.08s fill ease-in-out;
 			html.dark_mode_transition & {transition: $dark-mode-transition, 0.08s fill ease-in-out !important;}
 		}
 
 		&:hover .sign-out-icon path {
-			fill: $buttons-active-color;
-			html.dark & {
-				fill: $buttons-active-color-dark;
-			}
+			fill: var(--buttons-color-active);
 		}
 	}
 }
