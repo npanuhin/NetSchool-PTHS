@@ -12,7 +12,6 @@ get_person();
 $remove_success = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confirm'])) {
-
 	try {
 		$db->query('DELETE FROM `users` WHERE `id` = ?i', $person['id']);
 		$db->query('DELETE FROM `messages` WHERE `user_id` = ?i', $person['id']);
@@ -39,13 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 </head>
 
 <body>
-	<!--Да, br-br-br — плохо, но это специально страница без стилей, и здесь пофиг.-->
-	Чисто формально нам, конечно, фиолетово на то, будете ли Вы этим пользоваться или нет…<br> …но мы старались (и можем еще постараться, если будут конструктивные предложения)…<br><br>
-	
+	Чисто формально нам, конечно, фиолетово на то, будете ли Вы этим пользоваться или нет...
+	<br>
+	...но мы старались (и можем еще постараться, если будут конструктивные предложения)...
+	<br><br>
+
 	<?php
-
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confirm'])) {
-
 		if ($remove_success) {
 			echo 'Ваш аккаунт успешно удалён';
 			telegram_log("User deleted\nUsername: {$person['username']}");

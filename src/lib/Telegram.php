@@ -3231,3 +3231,4 @@ if (!function_exists('curl_file_create')) {
             .($mimetype ? ";type=$mimetype" : '');
     }
 }
+?>

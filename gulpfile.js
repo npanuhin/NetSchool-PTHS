@@ -168,6 +168,7 @@ gulp.task('build-css', function () {
     return gulp.src(files['css'], {allowEmpty: true})
 
         .pipe(cleancss({compatibility: 'ie8'}))
+        .pipe(ext_replace('.css', '.max.css'))
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function(file) {
             return Path.parse(file.path).dir;
@@ -180,6 +181,7 @@ gulp.task('reload-css', function () {
         .pipe(changedInPlace())
 
         .pipe(cleancss({compatibility: 'ie8'}))
+        .pipe(ext_replace('.css', '.max.css'))
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function(file) {
             return Path.parse(file.path).dir;
@@ -210,6 +212,7 @@ gulp.task('build-scss', function () {
         //     return Path.join(Path.parse(file.path).dir, 'build');
         // }))
         .pipe(cleancss({compatibility: 'ie8'}))
+        .pipe(ext_replace('.css', '.max.css'))
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function (file) {
             // return Path.parse(file.path).dir;
@@ -236,6 +239,7 @@ gulp.task('reload-scss', function () {
         //     return Path.join(Path.parse(file.path).dir, 'build');
         // }))
         .pipe(cleancss({compatibility: 'ie8'}))
+        .pipe(ext_replace('.css', '.max.css'))
         .pipe(ext_replace('.min.css', '.css'))
         .pipe(gulp.dest(function (file) {
             // return Path.parse(file.path).dir;
@@ -267,6 +271,7 @@ gulp.task('build-js', function () {
         // }))
         // .pipe(terser())
         .pipe(uglify_js())
+        .pipe(ext_replace('.js', '.max.js'))
         .pipe(ext_replace('.min.js', '.js'))
         .pipe(gulp.dest(function(file) {
             // return Path.parse(file.path).dir;
@@ -296,6 +301,7 @@ gulp.task('reload-js', function () {
         // }))
         // .pipe(terser())
         .pipe(uglify_js())
+        .pipe(ext_replace('.js', '.max.js'))
         .pipe(ext_replace('.min.js', '.js'))
         .pipe(gulp.dest(function(file) {
             // return Path.parse(file.path).dir;

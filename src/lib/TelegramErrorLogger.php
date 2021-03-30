@@ -109,3 +109,4 @@ class TelegramErrorLogger
         return $text;
     }
 }
+?>

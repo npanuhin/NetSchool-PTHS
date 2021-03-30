@@ -37,9 +37,8 @@ html {
 
 	// --vk-blue-color:         hsl(212, 91%, 55%);        // #2787F5;
 
-	--orange-gradient:  linear-gradient(92.76deg,
-							 hsl(30, 96%, 68%) 0%,      // #FCB263
-							 hsl(30, 99%, 51%) 52.3%);  // #FE8708
+	--orange-gradient:  linear-gradient(92.76deg, hsl(30, 96%, 68%) 0%, hsl(30, 99%, 51%) 52.3%);
+	//                                            #FCB263               #FE8708
 }
 
 html.dark {

@@ -1,5 +1,6 @@
 .menu_wrapper {
-    width: calc(100% - 200px);
+    width: 970px;
+    max-width: calc(100% - 200px);
     @media (max-width: $main-width) {
         width: calc(65%);
     }
@@ -12,8 +13,6 @@
 
 .menu {
     position: relative;
-    // width: 100%;
-    
     max-height: 0px;
     overflow: hidden;
     transition: 0.3s max-height ease-in-out;
