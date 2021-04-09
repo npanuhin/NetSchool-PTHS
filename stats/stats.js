@@ -39,14 +39,20 @@ function generate_dynamics_chart(chart_data, min_day) {
 				callbacks: {
 					title: function (tooltipItem, data) {
 						let date = new Date(tooltipItem[0]["xLabel"]);
-						
 						let lesson_number = tooltipItem[0].datasetIndex;
-						let point_number = tooltipItem[0].index;
+						//let point_number = tooltipItem[0].index;
 						let lesson_name = data.datasets[lesson_number].label;
 						
 						let marks_for_the_day = source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime());
 						marks_for_the_day = marks_for_the_day.map(mark => mark[0]);
 						
+						/* code to check all the marks
+						for (lesson in data.datasets){
+							let lesson_name = data.datasets[lesson].label;
+							console.log(lesson_name);
+							marks_for_the_day = marks_for_the_day.concat(source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime()));
+						}
+						*/
 						
 						let generated_date = date.getDate() + " " + months_genetive[date.getMonth()] + " " + date.getFullYear();
 						
@@ -117,8 +123,8 @@ function generate_dynamics_chart(chart_data, min_day) {
 
 
 let today = new Date();
-
-today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()) //just to make date equal to others in terms of hours, minutes e.t.c.; ISO format
+console.log(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0'));
+today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0')) //just to make date equal to others in terms of hours, minutes e.t.c.; ISO format; padStart is vital
 
 let html_data = JSON.parse(document.getElementById("data").innerText)
 let main_data = html_data[0];
@@ -147,11 +153,13 @@ for (let i = 0; i < lessons.length; ++i) {
 	
 	for (let day in main_data[lesson]) {
 		var last_y = main_data[lesson][day].toFixed(2);
-		let last_x = new Date(day);
+		var last_x = new Date(day);
 		if (last_x < min_day) min_day = last_x;
 		lesson_data.push({x: last_x, y : last_y})
 	}
-	lesson_data.push({x: today, y : last_y})
+	if(today > last_x){
+		lesson_data.push({x: today, y : last_y})
+	}
 	
 	chart_data["datasets"].push({
 		label: lesson,  // + r_color,
