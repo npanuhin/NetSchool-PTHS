@@ -73,7 +73,9 @@ $profile_colors = [
 	'#39CCCC'
 ];
 
-$_replace_class = [
+$_possible_class_letters = 'АаAaБбbВвB';
+
+$_replace_class_letter = [
 	'/[АаAa]/u' => '[АаAa]',
 	'/[Ббb]/u' => '[Ббb]',
 	'/[ВвB]/u' => '[ВвB]'
@@ -160,15 +162,15 @@ function handle_task_type($task_type) {
 	return isset($_task_types[$task_type]) ? $_task_types[$task_type] : $task_type;
 }
 
-function replace_school_class($school_class) {
-	global $_replace_class, $_class_regex;
+function get_school_class_regex($school_class) {
+	global $_replace_class_letter, $_class_regex, $_possible_class_letters;
 
 	if (preg_match($_class_regex, $school_class, $matches)) {
 		$class = $matches[2];
-		foreach ($_replace_class as $key => $value) {
+		foreach ($_replace_class_letter as $key => $value) {
 			$class = preg_replace($key, $value, $class);
 		}
-		if ($matches[1] && $class) $school_class = $matches[1] . $class;
+		if ($matches[1] && $class) $school_class = $matches[1] . '[' . $_possible_class_letters . ']*' . $class . '[' . $_possible_class_letters . ']*';
 	}
 
 	return $school_class;
