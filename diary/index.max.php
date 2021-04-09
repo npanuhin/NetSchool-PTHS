@@ -257,7 +257,7 @@ $default_mark_rate = 10;
 
 															$has_mark = (!is_null($mark) || $task_expired);
 
-															if ($mark_rate) $mark_rate = $default_mark_rate;
+															if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 
 															?>
 															<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
