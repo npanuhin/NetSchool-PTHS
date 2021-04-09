@@ -39,8 +39,28 @@ function generate_dynamics_chart(chart_data, min_day) {
 				callbacks: {
 					title: function (tooltipItem, data) {
 						let date = new Date(tooltipItem[0]["xLabel"]);
-						return date.getDay() + " " + months_genetive[date.getMonth()] + " " + date.getFullYear()
-					} 
+						
+						let lesson_number = tooltipItem[0].datasetIndex;
+						let point_number = tooltipItem[0].index;
+						let lesson_name = data.datasets[lesson_number].label;
+						
+						let marks_for_the_day = source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime());
+						marks_for_the_day = marks_for_the_day.map(mark => mark[0]);
+						
+						
+						let generated_date = date.getDate() + " " + months_genetive[date.getMonth()] + " " + date.getFullYear();
+						
+						let generated_marks = "оценок нет"
+						if(marks_for_the_day.length == 1){
+							generated_marks = "получена оценка " + marks_for_the_day[0];
+						}
+						else if (marks_for_the_day.length > 1){
+							generated_marks = "получены оценки " + marks_for_the_day;
+						}
+						
+						
+						return generated_date + ", " + generated_marks;
+					}
 				}
 			},
 			legend: {
@@ -64,7 +84,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 				}],
 				xAxes: [{
 					type: 'time',
-					time: {
+					time: { 
 						unit: 'month',
 						displayFormats: {
 							month: "MM"
@@ -74,7 +94,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 						callback: function(value, index, values) {
 							return months[Number(value)-1]
 						},
-						max:  new Date(),
+						max: new Date(),
 						min: min_day,
 						fontFamily: "Manrope",
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
@@ -98,7 +118,17 @@ function generate_dynamics_chart(chart_data, min_day) {
 
 let today = new Date();
 
-let main_data = JSON.parse(document.getElementById("data").innerText);
+today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()) //just to make date equal to others in terms of hours, minutes e.t.c.; ISO format
+
+let html_data = JSON.parse(document.getElementById("data").innerText)
+let main_data = html_data[0];
+let source_marks = html_data[1];
+
+for(lesson in source_marks){
+	for(point in source_marks[lesson]){
+		source_marks[lesson][point][1] = new Date(source_marks[lesson][point][1]);
+	}
+}
 
 let min_day = new Date();
 let chart_data = {datasets: []};
@@ -111,13 +141,13 @@ for (let i = 0; i < lessons.length; ++i) {
 	let lesson = lessons[i],
 		r_color = random_setted_color(360.0 * count / lessons.length);
 
-	if (main_data[lesson].length === 0) continue;  // That means that it's parsed as array and has zero length → no marks, shuld be ignored
+	if (main_data[lesson].length === 0) continue;  // That means that it's parsed as array and has zero length → no marks, should be ignored
 	
 	++count;
 	
 	for (let day in main_data[lesson]) {
 		var last_y = main_data[lesson][day].toFixed(2);
-		let last_x = new Date(day)
+		let last_x = new Date(day);
 		if (last_x < min_day) min_day = last_x;
 		lesson_data.push({x: last_x, y : last_y})
 	}
@@ -138,4 +168,5 @@ generate_dynamics_chart(chart_data, min_day);
 Event.add(window, "resize", () => {
 	generate_dynamics_chart(chart_data, min_day);
 });
-Event.add(html, "themeChange", ()=>{generate_dynamics_chart(chart_data, min_day)})
+
+Event.add(html, "themeChange", () => {generate_dynamics_chart(chart_data, min_day)})

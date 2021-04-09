@@ -85,6 +85,7 @@ $default_mark_rate = 10;
 		
 		$sum_mark_points = [];
 		$sum_weight = [];
+		$source_marks = [];
 		foreach ($diary as $day => $tasks) {
 			foreach ($tasks as $task_data) {
 				$lesson = handle_lesson_name(trim($task_data[0]));
@@ -99,11 +100,13 @@ $default_mark_rate = 10;
 					$sum_weight[$lesson] = [];
 					$sum_mark_points[$lesson][$day_number] = 0;
 					$sum_weight[$lesson][$day_number] = 0;
+					$source_marks[$lesson] = [];
 				}
 				if($task_data[3]&&$task_data[4]){
 					//var_dump($lesson, end($sum_weight[$lesson]), $task_data[3]);
 					$sum_mark_points[$lesson][$day_number] = end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
 					$sum_weight[$lesson][$day_number] = end($sum_weight[$lesson]) + $task_data[3];
+					$source_marks[$lesson][] = [$task_data[4], $day_number];
 				}
 			}
 		}
@@ -113,16 +116,13 @@ $default_mark_rate = 10;
 			foreach($mark_points_per_lesson as $day_number => $_){
 				
 				if (!isset($result[$lesson])) $result[$lesson] = [];
-				//echo $day_number, "-", $sum_mark_points[$lesson][$day_number], "-" ,$sum_weight[$lesson][$day_number], " ";
-				//echo $sum_mark_points[$lesson][$day_number];
 				if($sum_weight[$lesson][$day_number]){
 					$result[$lesson][$day_number] = $sum_mark_points[$lesson][$day_number]/$sum_weight[$lesson][$day_number];
 				}
 			}
-		} 
+		}
 		
-		echo json_encode($result);
-		//echo json_last_error_msg();
+		echo json_encode([$result, $source_marks]);
 	?>
 	
 	</div>
