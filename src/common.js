@@ -5,8 +5,6 @@ var
 
 	interacted = false,
 	
-	// main_bottom_margin = 100,
-
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
@@ -16,7 +14,7 @@ var
 
 	message_alerts = document.getElementsByClassName("message_alert"),
 
-	ui_alert_box = document.getElementsByClassName("ui_alert")[0],
+	ui_alert_box = document.getElementById("ui_alert"),
 	ui_alert_box_timout,
 
 	dark_mode_transition_timeout = 800,
@@ -79,22 +77,22 @@ function swipe_start(e) {
 function swipe_detect(e) {
 	if (e.touches[0].clientX - swipe_start_x > swipe_threshold) { // Swipe right
 		trigger_event(window, "rightSwipe");
-		console.log("rightSwipe");
+		// console.log("rightSwipe");
 		swipe_cancel();
 	}
 	if (swipe_start_x - e.touches[0].clientX  > swipe_threshold) { // Swipe left
 		trigger_event(window, "leftSwipe");
-		console.log("leftSwipe");
+		// console.log("leftSwipe");
 		swipe_cancel();
 	}
 	if (e.touches[0].clientY - swipe_start_y > swipe_threshold) { // Swipe right
 		trigger_event(window, "downSwipe");
-		console.log("downSwipe");
+		// console.log("downSwipe");
 		swipe_cancel();
 	}
 	if (swipe_start_y - e.touches[0].clientY  > swipe_threshold) { // Swipe left
 		trigger_event(window, "upSwipe");
-		console.log("upSwipe");
+		// console.log("upSwipe");
 		swipe_cancel();
 	}
 }

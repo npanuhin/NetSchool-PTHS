@@ -266,7 +266,7 @@ function day_word_case($count) {
 	return 'дней';
 }
 
-function format_days_delta($num, $upper=false) {
+function format_days_diff($num, $upper=false) {
 	if ($num == -2) return $upper ? 'Позавчера': 'позавчера';
 	if ($num == -1) return $upper ? 'Вчера' : 'вчера';
 	if ($num == 0) return $upper ? 'Сегодня' : 'сегодня';

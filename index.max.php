@@ -22,8 +22,6 @@ get_person();
 </head>
 
 <body>
-
-	<?php require_once __DIR__ . '/src/ui_error.php' ?>
 	<?php require_once __DIR__ . '/src/header.php' ?>
 
 	<main>
@@ -49,24 +47,31 @@ get_person();
 
 					if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
 
-					$task_index = $lessons_task_index[$lesson]++;
-
-					if ($task_expired) $tasks[] = [$day, $lesson, $task, $task_index, true];
+					if ($task_expired) $tasks[] = [
+						'day' => $day,
+						'lesson' => $lesson,
+						'task_name' => $task,
+						'task_index' => $lessons_task_index[$lesson]++,
+						'task_expired' => true
+					];
 				}
 			}
 
-			// Tomorrow tasks:
-			$day = new DateTime($SCHOOL_DAY->format('Y-m-d'));
+			// Tasks tomorrow:
 			$lessons_task_index = [];
-			foreach ($diary[$day->format('Y-m-d')] as $task_data) {
+			foreach ($diary[$SCHOOL_DAY->format('Y-m-d')] as $task_data) {
 				$lesson = $task_data[0];
 				$task = $task_data[2];
 
 				if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
 
-				$task_index = $lessons_task_index[$lesson]++;
-
-				$tasks[] = [$day, $lesson, $task, $task_index, false];
+				if ($task_expired) $tasks[] = [
+					'day' => $SCHOOL_DAY,
+					'lesson' => $lesson,
+					'task_name' => $task,
+					'task_index' => $lessons_task_index[$lesson]++,
+					'task_expired' => false
+				];
 			}
 		}
 
@@ -74,22 +79,18 @@ get_person();
 			?>
 			<div class="tasks" title="Просроченные задания и задания текущего дня">
 				<h2>Задания</h2>
+				
 				<ul>
 					<?php
-
 					foreach ($tasks as $task) {
-						$day = $task[0];
-						$lesson = $task[1];
-						$task_name = $task[2];
-						$task_index = $task[3];
-						$task_expired = $task[4];
+						extract($task);
 						?>
 
 						<li
 							<?php
 							if ($task_expired) {
 								?>
-								class="expired" title="Задание просрочено, было задано <?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?>"
+								class="expired" title="Задание просрочено, было задано <?php echo format_days_diff(date_diff($TODAY, $day)->format('%r%a')) ?>"
 								<?php
 							}
 							?>
@@ -100,7 +101,7 @@ get_person();
 								<a href="/diary/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
 
-							<div><?php echo format_days_delta(date_diff($TODAY, $day)->format('%r%a')) ?></div>
+							<div><?php echo format_days_diff(date_diff($TODAY, $day)->format('%r%a')) ?></div>
 						</li>
 
 						<?php
@@ -116,7 +117,7 @@ get_person();
 		<div class="timetable">
 			<svg id="timetable_previous" viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
 				<title>Предыдущая неделя</title>
-				<path d="M1.48438 31.5346L31.5833 1.43668C33.498 -0.478897 36.6023 -0.478897 38.516 1.43668C40.4299 3.35056 40.4299 6.45469 38.516 8.36841L11.8831 35.0005L38.5152 61.6317C40.4291 63.5463 40.4291 66.6501 38.5152 68.564C36.6013 70.4787 33.4972 70.4787 31.5826 68.564L1.4836 38.4656C0.526657 37.5082 0.0487289 36.2547 0.0487289 35.0007C0.0487289 33.746 0.527588 32.4916 1.48438 31.5346Z"/>
+				<?php include __DIR__ . '/files/icons/arrow_thick.path.svg' ?>
 			</svg>
 
 			<?php
@@ -322,7 +323,7 @@ get_person();
 
 			<svg id="timetable_next" viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
 				<title>Следующая неделя</title>
-				<path d="M1.48438 31.5346L31.5833 1.43668C33.498 -0.478897 36.6023 -0.478897 38.516 1.43668C40.4299 3.35056 40.4299 6.45469 38.516 8.36841L11.8831 35.0005L38.5152 61.6317C40.4291 63.5463 40.4291 66.6501 38.5152 68.564C36.6013 70.4787 33.4972 70.4787 31.5826 68.564L1.4836 38.4656C0.526657 37.5082 0.0487289 36.2547 0.0487289 35.0007C0.0487289 33.746 0.527588 32.4916 1.48438 31.5346Z"/>
+				<?php include __DIR__ . '/files/icons/arrow_thick.path.svg' ?>
 			</svg>
 		</div>
 		

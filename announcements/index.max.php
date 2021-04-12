@@ -22,11 +22,9 @@ get_person();
 </head>
 
 <body>
-
 	<?php require_once __DIR__ . '/../src/header.php' ?>
 
 	<main>
-
 		<?php
 		include_once __DIR__ . '/../src/message_alerts.php';
 		require_once __DIR__ . '/../src/menu.html';

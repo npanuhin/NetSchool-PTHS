@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/ui_error.php';
+?>
+
 <div class="menubar">
 	<div class="menu_icon_wrapper" title="Меню">
 		<?php include_once __DIR__ . '/../files/icons/menu.svg' ?>
@@ -17,4 +21,4 @@
 	<div class="exit_icon" title="Выйти"><?php include_once __DIR__ . '/../files/icons/sign-out.svg' ?></div>
 </div>
 
-<div class="ui_alert"></div>
+<div id="ui_alert"></div>
