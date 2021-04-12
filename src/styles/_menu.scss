@@ -1,6 +1,6 @@
 .menu_wrapper {
     width: 970px;
-    max-width: calc(100% - 200px);
+    // max-width: calc(100% - 200px);
     @media (max-width: $main-width) {
         width: calc(65%);
     }
@@ -75,6 +75,9 @@
                 cursor: pointer;
 
                 border-bottom: 2.5px solid transparent;
+                @media (max-width: $desktop) {
+                    border-bottom-width: 2px;
+                }
                 color: #fff;
                 text-shadow: var(--text-shadow);
                 html.dark & {

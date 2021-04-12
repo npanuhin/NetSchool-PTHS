@@ -79,8 +79,6 @@ get_person();
 
 						</div>
 						<div class="content">
-							<h4><?php echo $title ?></h4>
-							
 							<div class="date" title="<?php echo ltrim($date->format('d'), '0') . ' ' . $months_genetive[$date->format('m') - 1] ?>">
 								<?php
 
@@ -88,6 +86,8 @@ get_person();
 
 								?>
 							</div>
+
+							<h4><?php echo $title ?></h4>
 
 							<article>
 								<?php echo $article ?>

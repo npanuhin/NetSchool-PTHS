@@ -1,8 +1,6 @@
 @import '../src/styles/main';
 
 main {
-	// left: 50%;
-	// transform: translateX(-50%);
 	width: $main-width;
 
 	.message_alert {
@@ -126,31 +124,26 @@ main {
 					color: var(--text-color-main);
 				}
 
-				h4 {
-					font-weight: 600;
-					font-size: var(--font-size-big);
-					margin-bottom: 15px;
-
-					&::before {
-						content: "";
-						float: right;
-						width: 200px;
-						height: 1em;
-					}
-				}
-
 				.date {
-					position: absolute;
+					float: right;
 					top: 20px;
 					right: 40px;
 					font-weight: 500;
 					font-size: var(--font-size-big);
+					padding-left: 15px;
+				}
+
+				h4 {
+					font-weight: 600;
+					font-size: var(--font-size-big);
+					margin-bottom: 15px;
 				}
 
 				article {
 					font-weight: 500;
 					font-size: var(--font-size-smaller);
 					line-height: var(--line-height-article);
+					// text-align: justify;
 					
 					a {
 						color: var(--orange-color);
@@ -161,7 +154,7 @@ main {
 					}
 
 					.school_class {
-						cursor: default;
+						cursor: auto;
 						color: var(--orange-color);
 					}
 				}
