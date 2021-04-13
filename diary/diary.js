@@ -349,6 +349,7 @@ function on_table_scroll() {
 // =======================================================================
 
 function apply_period(save=false) {
+	mark_count = [];
 	if (!period_start_input.validity.valid || !period_end_input.validity.valid) return;
 
 	let period_start = period_start_input.value,
