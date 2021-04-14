@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/session.php';
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST['username']) || !isset($_POST['password'])) {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
 	redirect();
 	exit;
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST)) {
 
 header('Content-Type: application/json');
 
-if ($AUTHORIZED) exit(json_encode(array('message', 'Вы уже вошли')));
+if ($AUTHORIZED) exit('success');
 
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
@@ -24,7 +24,7 @@ if (is_null($db) || !$db) {
 	} catch (Exception $e) {
 		// print_r($e);
 		telegram_log("Database connection failed\n\n" . $e->getMessage());
-		exit(json_encode(array('message', 'Database connection failed')));
+		exit(json_encode(array('messerrorage', 'Database connection failed')));
 	}
 }
 
@@ -49,7 +49,7 @@ if (count($data) == 0) {
 
 	telegram_log("User added\nUsername: {$username}");
 
-	exit(json_encode(array('message', 'Указанный логин не был найден, но был добавлен в очередь на обработку.<br>Если вы указали верные данные, вход будет осуществлён автоматически через несколько секунд.<br>В противном случае, ваши данные будут автоматически удалены.')));
+	exit(json_encode(array('message', 'Указанный логин был добавлен в очередь на обработку.<br>Если вы указали верные данные, вход будет осуществлён автоматически через несколько секунд.')));
 }
 
 $person = $data[0];
