@@ -3,6 +3,11 @@
 $container-background: #fff;
 $container-shadow: 10px 10px 20px #205182;
 
+body {
+	position: relative;
+	min-height: 500px;
+	height: 100vh;
+}
 
 .container {
 	position: absolute;
