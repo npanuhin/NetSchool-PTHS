@@ -75,6 +75,44 @@ function generate_dynamics_chart(chart_data, min_day) {
 					fontSize: 10,
 					fontFamily: "Manrope",
 					fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
+				},
+				
+				onClick: function(e, legendItem) {
+					let index = legendItem.datasetIndex;
+					let ci = this.chart;
+					let select_one = !document.getElementById("Select_one").checked;
+					
+					console.log(select_one.value);
+					console.log(select_one);
+					if(select_one){
+						//select only one
+						//this is code I just took from some strange place…
+						let alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+
+						ci.data.datasets.forEach(function(e, i) {
+							let meta = ci.getDatasetMeta(i);
+
+							if (i !== index) {
+							  if (!alreadyHidden) {
+								meta.hidden = meta.hidden === null ? !meta.hidden : null;
+							  }
+							  else if (meta.hidden === null) {
+								meta.hidden = true;
+							  }
+							}
+							else if (i === index) {
+							  meta.hidden = null;
+							}
+					  });
+
+					  ci.update();
+					}
+					else{
+						//standart behaviour
+						console.log(index);
+						ci.getDatasetMeta(index).hidden = !ci.getDatasetMeta(index).hidden;
+						ci.update();
+					}
 				}
 			},
 			scales: {
@@ -118,6 +156,9 @@ function generate_dynamics_chart(chart_data, min_day) {
 			}
 		}
 	});
+	//to hide/show smth special:
+	//window.graph.getDatasetMeta(1).hidden=true;
+	//window.graph.update();
 }
 
 

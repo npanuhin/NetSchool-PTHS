@@ -54,6 +54,15 @@ $default_mark_rate = 10;
 				<?php
 			}
 			?>
+			
+			<div class="toggle-button-cover">
+			Выбор предмета:
+				<div class="button r" id="button-3">
+				  <input type="checkbox" class="checkbox" id="Select_one">
+				  <div class="knobs"></div>
+				  <div class="layer"></div>
+				</div>
+			</div>
 		</div>
 
 	</main>
@@ -125,6 +134,7 @@ $default_mark_rate = 10;
 	?>
 	
 	</div>
+	
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
 	
 	<script type="text/javascript" src="/src/lib/event.js" defer></script>

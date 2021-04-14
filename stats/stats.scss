@@ -48,49 +48,6 @@ main {
 				}
 			}
 		}
-
-		& > p {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 18px;
-			text-align: center;
-			padding-top: 15px;
-
-			color: var(--text-color-main);
-		}
-
-		.period_start_label, .period_end_label {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 21px;
-			color: var(--text-color-main);
-		}
-
-		.period_end_label {
-			margin-left: 30px;
-		}
-
-		.period_start, .period_end {
-			font-family: Manrope;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 18px;
-			color: var(--text-color-main);
-
-			margin: 5px 0 22px 5px;
-
-			padding: 7px 10px;
-			border: 2px solid var(--text-color-main);
-			border-radius: 7px;
-
-			transition: $dark_mode_transition, 0.2s border-color ease-in-out;
-
-			&:focus {
-				border: 2px solid var(--orange-color);
-			}
-		}
 	}
 }
 
@@ -194,4 +151,108 @@ main {
 			fill: var(--text-color-main);
 		}
 	}
+}
+
+#button-3 
+{
+	.knobs:before {
+		content: 'ON';
+		left: 4px;
+		background-color: #03A9F4;
+		
+		position: absolute;
+		top: 4px;
+		width: 20px;
+		height: 10px;
+		color: #fff;
+		font-size: 10px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1;
+		padding: 9px 4px;
+		border-radius: 50%;
+		transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+	}
+	.checkbox:active + .knobs:before
+	{
+		width: 46px;
+		border-radius: 100px;
+	}
+	.checkbox:checked:active + .knobs:before
+	{
+		margin-left: -26px;
+	}
+	
+	.checkbox:checked + .knobs:before
+	{
+		content: 'OFF';
+		left: 42px;
+		background-color: #F44336;
+	}
+	
+}
+
+.toggle-button-cover
+{
+    display: inline-block;
+    position: relative;
+	padding-top: 10px;
+    box-sizing: border-box;
+	font-size: var(--font-size-very-big);
+	color: var(--text-color-main);
+}
+
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+	float: right;
+	margin-left: 20px;
+    position: relative;
+    width: 74px;
+    height: 36px;
+    overflow: hidden;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}
+
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #dddddd;//#ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
 }
