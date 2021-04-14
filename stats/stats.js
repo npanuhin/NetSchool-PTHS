@@ -54,18 +54,18 @@ function generate_dynamics_chart(chart_data, min_day) {
 						}
 						*/
 						
-						let generated_date = date.getDate() + " " + months_genetive[date.getMonth()] + " " + date.getFullYear();
+						let generated_date = date.getDate() + " " + months_genetive[date.getMonth()];
 						
-						let generated_marks = "оценок нет"
+						let generated_marks = ""
 						if(marks_for_the_day.length == 1){
-							generated_marks = "получена оценка " + marks_for_the_day[0];
+							generated_marks = ": " + marks_for_the_day[0];
 						}
 						else if (marks_for_the_day.length > 1){
-							generated_marks = "получены оценки " + marks_for_the_day;
+							generated_marks = ": " + marks_for_the_day;
 						}
 						
 						
-						return generated_date + ", " + generated_marks;
+						return generated_date + generated_marks;
 					}
 				}
 			},
