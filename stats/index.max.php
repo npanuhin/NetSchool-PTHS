@@ -90,7 +90,11 @@ $default_mark_rate = 10;
 			if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
 			if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 		}
-		
+		/*
+			$task_data[3] — weight
+			$task_data[4] — the mark itself
+			$task_data[5] — whether it is expired
+		*/
 		$sum_mark_points = [];
 		$sum_weight = [];
 		$source_marks = [];
@@ -110,7 +114,8 @@ $default_mark_rate = 10;
 					$sum_weight[$lesson][$day_number] = 0;
 					$source_marks[$lesson] = [];
 				}
-				if($task_data[3]&&$task_data[4]){
+				if (!is_null($task_data[4]) || $task_data[5]) {
+					if (is_null($task_data[4])) $task_data[4] = $default_mark;
 					//var_dump($lesson, end($sum_weight[$lesson]), $task_data[3]);
 					$sum_mark_points[$lesson][$day_number] = end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
 					$sum_weight[$lesson][$day_number] = end($sum_weight[$lesson]) + $task_data[3];
