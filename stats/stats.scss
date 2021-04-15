@@ -32,20 +32,21 @@ main {
 		transition: $dark_mode_transition, 0.3s transform ease-in-out;
 
 		.tabs {
-			.tab {
-				h3 {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: var(--font-size-very-big);
-					text-align: center;
-					margin-bottom: 25px;
+			h3 {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: var(--font-size-very-big);
+				text-align: center;
+				margin-bottom: 25px;
 
-					color: var(--text-color-main);
-					@media (max-width: $desktop) {
-						margin-bottom: 0;
-					}
+				color: var(--text-color-main);
+				@media (max-width: $desktop) {
+					margin-bottom: 0;
 				}
+			}
+			.tab {
+				
 			}
 		}
 	}
