@@ -59,13 +59,13 @@ function get_person() {
 
 		if (count($data) > 1) {
 			$AUTHORIZED = false;
-			telegram_log("Too many rows");
+			telegram_log('Too many rows');
 			$UI_ERROR = 'Please, contact administrator (too many rows)';
 		}
 
 		if (count($data) == 0) {
 			$AUTHORIZED = false;
-			telegram_log("Session not found");
+			telegram_log('Session not found');
 			logout();
 			redirect();
 			exit;

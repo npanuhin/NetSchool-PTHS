@@ -54,6 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 			telegram_log("User deletion error\nUsername: {$person['username']}");
 		}
 
+		?>
+
+		<br>
+		<a href="/">Вернуться на главную<a>
+
+		<?php
+
 	} else {
 		?>
 
@@ -61,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 			<input type="submit" name="confirm" value="Удалить аккаунт">
 		</form>
 		<br>
-		<form action="../" method="POST">
+		<form action="/">
 			<input type="submit" value="Я передумал!">
 		</form>
 		<?php
