@@ -188,7 +188,7 @@ main {
 	{
 		content: 'OFF';
 		left: 42px;
-		background-color: var(--orange-color);//hsl(15, 60%, 50%);
+		background-color: hsl(15, 60%, 50%);
 	}
 	
 }
@@ -221,7 +221,7 @@ main {
     width: 74px;
     height: 36px;
     overflow: hidden;
-	margin-top: calc((var(--font-size-very-big) + 4px - 36px )/2);
+	margin-top: calc((var(--font-size-very-big) + 4px - 36px )/2); 
 }
 
 .button.r, .button.r .layer
@@ -254,7 +254,7 @@ main {
 .layer
 {
     width: 100%;
-    background-color: var(--buttons-color); //hsl(250, 20%, 80%); //#dddddd #ebf7fc;
+    background-color: hsl(250, 20%, 80%); //#dddddd #ebf7fc;
     transition: 0.3s ease all;
     z-index: 1;
 }
