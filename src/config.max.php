@@ -285,7 +285,7 @@ function telegram_log($message, $token=null, $chat_id=null, $force=true) {
 	global $UI_ERROR, $config, $telegram;
 
 	if (!$message) {
-		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Log empty message"';
+		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Empty log message"';
 		return;
 	}
 	$message = "=== NetSchool PTHS website ===\n{$message}";

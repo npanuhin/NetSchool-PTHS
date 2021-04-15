@@ -70,8 +70,8 @@ $default_mark_rate = 10;
 	<div class="details"></div>
 	
 	<div id="data" style="display:none">
-	
-	<?php
+		<?php
+
 		$diary = json_decode($person['diary'], true);
 		$period_start = $person["diary_period_start"];
 		$period_end = $person["diary_period_end"];
@@ -134,10 +134,10 @@ $default_mark_rate = 10;
 				}
 			}
 		}
-		
+
 		echo json_encode([$result, $source_marks]);
-	?>
-	
+
+		?>
 	</div>
 	
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>

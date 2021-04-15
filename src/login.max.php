@@ -36,29 +36,32 @@ try {
 	exit(json_encode(array('message', 'Database request failed')));
 }
 
-if (count($data) > 1) exit(json_encode(array('message', 'Please, contact administrator (too many rows)')));
+switch (count($data)) {
+	case 0:
+		try {
+			$data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
+		} catch (Exception $e) {
+			// print_r($e);
+			telegram_log("Database request failed\n\n" . $e->getMessage());
+			exit(json_encode(array('message', 'Database request failed')));
+		}
 
-if (count($data) == 0) {
-	try {
-		$data = $db->query('INSERT INTO `users` (`username`, `password`) VALUES (?s, ?s)', $username, $password);
-	} catch (Exception $e) {
-		// print_r($e);
-		telegram_log("Database request failed\n\n" . $e->getMessage());
-		exit(json_encode(array('message', 'Database request failed')));
-	}
+		telegram_log("User added\nUsername: {$username}");
 
-	telegram_log("User added\nUsername: {$username}");
+		exit(json_encode(array('message', 'Указанный логин был добавлен в очередь на обработку.<br>Если вы указали верные данные, вход будет осуществлён автоматически через несколько секунд.')));
 
-	exit(json_encode(array('message', 'Указанный логин был добавлен в очередь на обработку.<br>Если вы указали верные данные, вход будет осуществлён автоматически через несколько секунд.')));
+	case 1:
+		$person = $data[0];
+
+		if ($person['password'] != $password) exit(json_encode(array('password', 'Неверный пароль')));
+
+		if (is_null($person['last_update'])) exit(json_encode(array('message', 'Ваша учётная запись ещё не готова.<br>Пожалуйста, подождите.')));
+
+		if (!setcookie('session', person_hash($person), time() + 60 * 60 * 24 * 365 * 100, '/; samesite=Lax', $httponly=false)) exit(json_encode(array('message', 'Failed to set cookie')));
+
+		exit('success');
+
+	default:
+		exit(json_encode(array('message', 'Please, contact administrator (too many rows)')));
 }
-
-$person = $data[0];
-
-if ($person['password'] != $password) exit(json_encode(array('password', 'Неверный пароль')));
-
-if (is_null($person['last_update'])) exit(json_encode(array('message', 'Ваша учётная запись ещё не готова.<br>Пожалуйста, подождите.')));
-
-if (!setcookie('session', person_hash($person), time() + 60 * 60 * 24 * 365 * 100, '/; samesite=Lax', $httponly=false)) exit(json_encode(array('message', 'Failed to set cookie')));
-
-echo 'success';
 ?>

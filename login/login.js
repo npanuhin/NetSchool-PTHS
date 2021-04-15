@@ -20,10 +20,10 @@ function check_login(username) {
 				if (req.responseText) {
 					clearInterval(check_interval);
 
-					if (req.responseText == "success") {
+					if (req.responseText == "true") {
 						window.location = "../";
 
-					} else if (req.responseText) {
+					} else if (req.responseText != "false") {
 						// console.log(req.responseText); 
 						message.classList.add("small");
 						message.getElementsByTagName("p")[0].innerHTML = req.responseText;
@@ -66,7 +66,7 @@ Event.add(form, "submit", (e) => {
 			
 			} else {
 				r = JSON.parse(req.responseText);
-				// console.log(r); 
+				console.log(r); 
 
 				if (r[0] == "username") {
 					username_input.classList.add("invalid");
