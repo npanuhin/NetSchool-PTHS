@@ -139,9 +139,10 @@ $default_mark_rate = 10;
 					}
 				}
 			}
+			echo json_encode([$result, $source_marks]);
 		}
 
-		echo json_encode([$result, $source_marks]);
+		
 
 		?>
 	</div>
