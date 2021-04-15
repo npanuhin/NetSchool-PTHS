@@ -159,7 +159,7 @@ main {
 	.knobs:before {
 		content: 'ON';
 		left: 4px;
-		background-color: hsl(200, 60%, 50%);
+		background-color: var(--green-color);//hsl(200, 60%, 50%);
 		
 		position: absolute;
 		top: 4px;
@@ -188,7 +188,7 @@ main {
 	{
 		content: 'OFF';
 		left: 42px;
-		background-color: hsl(15, 60%, 50%);
+		background-color: var(--orange-color);//hsl(15, 60%, 50%);
 	}
 	
 }
@@ -221,6 +221,7 @@ main {
     width: 74px;
     height: 36px;
     overflow: hidden;
+	margin-top: calc((var(--font-size-very-big) + 4px - 36px )/2);
 }
 
 .button.r, .button.r .layer
@@ -253,7 +254,7 @@ main {
 .layer
 {
     width: 100%;
-    background-color: hsl(250, 20%, 80%); //#dddddd #ebf7fc;
+    background-color: var(--buttons-color); //hsl(250, 20%, 80%); //#dddddd #ebf7fc;
     transition: 0.3s ease all;
     z-index: 1;
 }
