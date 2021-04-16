@@ -66,7 +66,7 @@ Event.add(form, "submit", (e) => {
 			
 			} else {
 				r = JSON.parse(req.responseText);
-				console.log(r); 
+				// console.log(r); 
 
 				if (r[0] == "username") {
 					username_input.classList.add("invalid");

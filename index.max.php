@@ -65,7 +65,7 @@ get_person();
 
 				if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
 
-				if ($task_expired) $tasks[] = [
+				$tasks[] = [
 					'day' => $SCHOOL_DAY,
 					'lesson' => $lesson,
 					'task_name' => $task,
