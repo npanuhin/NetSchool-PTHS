@@ -475,10 +475,8 @@ main {
 						width: 100.01%;
 						height: 100.01%;
 						
-						background: var(--page-color-dark);//#aaa;
-						html.dark & {
-							background: var(--text-color);
-						}
+						background: var(--block-color);
+						
 						border-radius: inherit;
 
 						p {
@@ -500,10 +498,8 @@ main {
 								line-height: inherit;
 							}
 
-							color: #fff;
-							html.dark & {
-								color: var(--text-color-main-dark);
-							}
+							color: var(--text-color-main);
+
 						}
 					}
 
