@@ -9,10 +9,7 @@
     z-index: 100;
     top: 0;
     //
-    background: hsl(224, 60%, 41%);
-	html.dark & {
-		background: hsl(224,40%,30%);
-	}
+    background: var(--block-color);
     transition: all 1.0s;  
 	width: 320px;
 	@media (max-width: $desktop) {	
@@ -26,7 +23,8 @@
 
 .menu {
     position: relative;
-    overflow: hidden;
+    overflow: auto;
+	
     transition: 0.3s max-height ease-in-out;
     html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
 	padding-top: 70px;
@@ -65,7 +63,7 @@
                 @media (max-width: $desktop) {
                     border-bottom-width: 2px;
                 }
-                color: #fff;
+                color: var(--text-color-main);
                 text-shadow: var(--text-shadow);
                 html.dark & {
                     color: var(--text-color-main-dark);
