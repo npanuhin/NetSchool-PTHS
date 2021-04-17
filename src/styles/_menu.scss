@@ -2,19 +2,26 @@
     &.shown {
 		left: 0;
 	}
+	
 	left: -360px;
 	display: block;
 	position: fixed;
     z-index: 100;
     top: 0;
     //
-    background: hsl(224deg 60% 41%);
-    transition: all 1.0s;   
-    width: 320px;
+    background: hsl(224, 60%, 41%);
+	html.dark & {
+		background: hsl(224,40%,30%);
+	}
+    transition: all 1.0s;  
+	width: 320px;
+	@media (max-width: $desktop) {	
+		width: 200px;
+	}
     height: 100vh;
     box-shadow: 10px 0 20px rgba(0,0,0,0.4);
     color: #FFF;
-    padding: 40px 20px;
+    padding: 0px 10px;
 }
 
 .menu {
@@ -22,8 +29,10 @@
     overflow: hidden;
     transition: 0.3s max-height ease-in-out;
     html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
-	padding-top: 50px;
-
+	padding-top: 70px;
+	@media (max-width: $desktop) {	
+		padding-top: 20px;
+	}
     ul {
         position: relative;
         margin: 0 auto;
@@ -37,6 +46,10 @@
             margin-left: 18px;
 			padding-top: 25px;
 			padding-left: 30px;
+			@media (max-width: $desktop) {	
+				padding-left: 0px;
+				margin-left: 5px;
+			}
             @media (max-width: $main-width) {
                 margin-left: 0;
             }
