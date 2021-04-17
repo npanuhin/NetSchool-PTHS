@@ -9,7 +9,7 @@ var
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 	
-	menu = document.getElementsByClassName("menu")[0],
+	menu = document.getElementsByClassName("menu_wrapper")[0],
 	menu_links = menu.getElementsByTagName("a"),
 
 	message_alerts = document.getElementsByClassName("message_alert"),
@@ -124,11 +124,18 @@ setTimeout(() => {
 }, 50);
 
 
-Event.add(window, "mousedown", () => {
+Event.add(window, "mousedown", (e) => {
 	if (!interacted) {
 		html.classList.add("interacted");
 		trigger_event(html, "interacted");
 		interacted = true;
+	}
+	if (menu.classList.contains("shown") &&
+			!menu_button.contains(e.target) &&
+			e.target != menu &&
+			!menu.contains(e.target)){
+
+		menu.classList.remove("shown");
 	}
 });
 Event.add(window, "touchstart", () => {

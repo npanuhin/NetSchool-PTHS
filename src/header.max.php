@@ -22,13 +22,3 @@ require_once __DIR__ . '/ui_error.php';
 </div>
 
 <div id="ui_alert"></div>
-<input type="checkbox" id="side-checkbox" />
-<div class="side-panel">
-    <label class="side-button-2" for="side-checkbox">+</label>    
-    <div class="side-title">Выдвижная панель:</div>
-    <p>Информация в панели</p>
-</div>
-<label class="side-button-1" for="side-checkbox">
-	<div class="side-b side-open">Открыть</div>
-	<div class="side-b side-close">Закрыть</div>
-</label>
