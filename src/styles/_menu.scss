@@ -8,7 +8,7 @@
     z-index: 100;
     top: 0;
     //
-    background: #337AB7;
+    background: hsl(224deg 60% 41%);
     transition: all 1.0s;   
     width: 320px;
     height: 100vh;
@@ -22,7 +22,7 @@
     overflow: hidden;
     transition: 0.3s max-height ease-in-out;
     html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
-
+	padding-top: 50px;
 
     ul {
         position: relative;
@@ -35,6 +35,8 @@
         li {
             position: relative;
             margin-left: 18px;
+			padding-top: 25px;
+			padding-left: 30px;
             @media (max-width: $main-width) {
                 margin-left: 0;
             }

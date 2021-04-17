@@ -22,3 +22,4 @@ require_once __DIR__ . '/ui_error.php';
 </div>
 
 <div id="ui_alert"></div>
+<div id="darker"></div>

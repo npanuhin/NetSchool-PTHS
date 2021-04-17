@@ -65,3 +65,19 @@
 		}
 	}
 }
+#darker {
+    position: absolute;
+	pointer-events: none;
+	&.shown {
+		display: block;
+		background: rgba(0,0,0,0.5);
+	}
+	transition: background 0.4s;
+//    display: none;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    z-index: 90;
+}

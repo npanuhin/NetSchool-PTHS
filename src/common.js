@@ -15,6 +15,7 @@ var
 	message_alerts = document.getElementsByClassName("message_alert"),
 
 	ui_alert_box = document.getElementById("ui_alert"),
+	dark_layer = document.getElementById("darker"),
 	ui_alert_box_timout,
 
 	dark_mode_transition_timeout = 800,
@@ -136,6 +137,7 @@ Event.add(window, "mousedown", (e) => {
 			!menu.contains(e.target)){
 
 		menu.classList.remove("shown");
+		dark_layer.classList.remove("shown");
 	}
 });
 Event.add(window, "touchstart", () => {
@@ -158,6 +160,8 @@ setTimeout(() => {
 
 Event.add(menu_button, "mousedown", () => {
 	menu.classList.toggle("shown");
+	dark_layer.classList.toggle("shown");
+	
 	menu_button.classList.toggle("active", menu.classList.contains("shown"));
 });
 
