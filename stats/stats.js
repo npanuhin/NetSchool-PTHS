@@ -27,7 +27,12 @@ function generate_dynamics_chart(chart_data, min_day) {
 	let canvas = document.getElementById("dynamics_canvas"),
 		window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 	
-	if (window.graph) window.graph.destroy();
+	if (window.graph){
+		//console.log('!!!');
+		window.graph.destroy();
+		//canvas.clearRect(0, 0, canvas.width, canvas.height);
+		//return
+	}
 	
 	window.graph = new Chart(canvas, {
 		type: 'line', 
@@ -123,7 +128,8 @@ function generate_dynamics_chart(chart_data, min_day) {
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: '#ccc'
+						color: '#ccc',
+						//zeroLineColor: '#ccc'
 					}
 				}],
 				xAxes: [{
@@ -144,7 +150,8 @@ function generate_dynamics_chart(chart_data, min_day) {
 						fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 					},
 					gridLines: {
-						color: '#ccc'
+						color: '#ccc',
+						zeroLineColor: '#ccc'
 					}
 				}]
 			},
@@ -214,15 +221,16 @@ for (let i = 0; i < lessons.length; ++i) {
 // setTimeout(() => {generate_dynamics_chart(chart_data, min_day)}, 1)
 generate_dynamics_chart(chart_data, min_day);
 
-var saved_width = window.width();
+var saved_width = document.documentElement.clientWidth;
 
 Event.add(window, "resize", () => {
-	if (window.width == saved_width){ 
+	if (document.documentElement.clientWidth == saved_width){ 
 	//on mobiles adress line disappears
 	//and it thinks it is resize
+		console.log('no change', saved_width, document.documentElement.clientWidth);
 		return;
 	}
-	saved_width = window.width()
+	saved_width = document.documentElement.clientWidth;
 	generate_dynamics_chart(chart_data, min_day);
 });
 
