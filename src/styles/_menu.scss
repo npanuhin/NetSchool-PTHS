@@ -2,7 +2,6 @@
 	display: block;
 	position: fixed;
 
-
 	transform: translateX(-100%);
 	box-shadow: none;
 	&.shown {
@@ -24,7 +23,7 @@
 
 	overflow: auto;
 
-	&:before {
+	&:after {
 	    content: "";
     	display: inline-block;
 	    height: 100%;
