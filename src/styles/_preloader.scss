@@ -1,6 +1,6 @@
 main > div:not(.message_alert):not(.menu_wrapper) {
 	opacity: 0;
-	transition: 0.5s opacity ease-in-out; 
+	transition: 0.25s opacity ease-in-out; 
 
 	html.loaded & {
 		transition: 0.5s opacity ease-in-out;

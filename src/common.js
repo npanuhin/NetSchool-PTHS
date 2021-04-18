@@ -164,15 +164,25 @@ Event.add(menu_button, "mousedown", () => {
 });
 
 for (let menu_link of menu_links) {
-	Event.add(menu_link, "click", () => {
+	Event.add(menu_link, "click", (e) => {
+		e.preventDefault();
+
 		html.classList.remove("dark_mode_transition");
 		html.classList.add("wait");
-		// setTimeout(() => {html.classList.remove("loaded")}, 400);
-		html.classList.remove("loaded");
+		// setTimeout(() => {html.classList.remove("loaded")}, 350);
+		// html.classList.remove("loaded");
 
 		menu.classList.remove("shown");
 		html.classList.remove("blackout");
 		menu_button.classList.remove("active");
+
+		setTimeout(() =>{
+			html.classList.remove("loaded");
+		}, 350);
+
+		setTimeout(() => {
+			window.location.replace(e.target.href);
+		}, 100);
 	});
 }
 

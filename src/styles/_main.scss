@@ -192,7 +192,7 @@ html.dark_mode_transition, html.dark_mode_transition * {
 }
 
 // Turn off transition on load
-html:not(.loaded), html:not(.loaded) body *:not(main > div:not(.message_alert)) {
+html:not(.loaded), html:not(.loaded) body *:not(main > div:not(.message_alert):not(.menu_wrapper)) {
 	transition: 0s all linear !important;
 	animation-duration: 0s !important;
 }
@@ -205,7 +205,6 @@ html.wait, html.wait body * {
 
 body {
 	background: var(--page-color);
-
 	overflow: hidden;
 }
 
