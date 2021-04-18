@@ -21,15 +21,6 @@
 		.toggle {
 			transform: translate(calc(-50% + 44px), -50%) rotate(-90deg);
 		}
-
-		& ~ div {
-			transition: 0.75s opacity ease-in-out, 0s visibility 0s linear;
-			html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 0s linear !important;}
-
-			opacity: 1;
-			visibility: visible;
-			pointer-events: auto;
-		}
 	}
 
 	.toggle {
@@ -82,21 +73,4 @@
 	&.wait, &.wait * {
 		cursor: wait;
 	}
-}
-
-.online_media_opacity {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 290;
-	// pointer-events: none;
-	background: rgba(0, 0, 0, 0.7);
-
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-	transition: 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out;
-	html.dark_mode_transition & {transition: $dark-mode-transition, 0.75s opacity ease-in-out, 0s visibility 1.5s ease-in-out !important;}
 }

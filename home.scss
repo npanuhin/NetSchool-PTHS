@@ -17,7 +17,7 @@ main {
 
 		box-sizing: border-box;
 		padding: 20px;
-		border-radius: var(--timetable-border-radius);
+		border-radius: var(--block-border-radius);
 
 		width: calc(100% - 200px);
 		@media (max-width: $desktop) {
@@ -335,7 +335,7 @@ main {
 					html.dark & {
 						box-shadow: $block-shadow-dark;
 					}
-					border-radius: var(--timetable-border-radius);
+					border-radius: var(--block-border-radius);
 
 					h4 {
 						text-align: center;
@@ -537,7 +537,7 @@ main {
 	@media (max-width: $desktop) {
 		padding: 10px 15px;
 	}
-	border-radius: var(--timetable-border-radius-small);
+	border-radius: var(--block-border-radius-small);
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;

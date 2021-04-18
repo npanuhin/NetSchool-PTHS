@@ -9,7 +9,7 @@ var
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
 	
-	menu = document.getElementsByClassName("menu")[0],
+	menu = document.getElementsByClassName("menu_wrapper")[0],
 	menu_links = menu.getElementsByTagName("a"),
 
 	message_alerts = document.getElementsByClassName("message_alert"),
@@ -123,14 +123,28 @@ setTimeout(() => {
 	// onResize();
 }, 50);
 
+Event.add(window, "resize", onResize);
+onResize();
 
-Event.add(window, "mousedown", () => {
+Event.add(window, "mousedown", (e) => {
 	if (!interacted) {
 		html.classList.add("interacted");
 		trigger_event(html, "interacted");
 		interacted = true;
 	}
+
+	if (
+		menu.classList.contains("shown") &&
+		!menu_button.contains(e.target) &&
+		!menu.contains(e.target)
+	){
+		menu.classList.remove("shown");
+		menu_button.classList.toggle("active", menu.classList.contains("shown"));
+		html.classList.toggle("blackout", menu.classList.contains("shown"));
+	}
 });
+
+
 Event.add(window, "touchstart", () => {
 	if (!interacted) {
 		html.classList.add("interacted");
@@ -138,30 +152,42 @@ Event.add(window, "touchstart", () => {
 		interacted = true;
 	}
 });
-
-Event.add(window, "resize", onResize);
-onResize();
-
 Event.add(window, "touchend", swipe_cancel);
 
-setTimeout(() => {
-	html.classList.add("loaded");
-	// onResize();
-}, 50);
 
+// Menu
 Event.add(menu_button, "mousedown", () => {
 	menu.classList.toggle("shown");
+
 	menu_button.classList.toggle("active", menu.classList.contains("shown"));
+	html.classList.toggle("blackout", menu.classList.contains("shown"));
 });
 
 for (let menu_link of menu_links) {
-	Event.add(menu_link, "click", () => {
+	Event.add(menu_link, "click", (e) => {
+		e.preventDefault();
+
 		html.classList.remove("dark_mode_transition");
 		html.classList.add("wait");
-		html.classList.remove("loaded");
+		// setTimeout(() => {html.classList.remove("loaded")}, 350);
+		// html.classList.remove("loaded");
+
+		menu.classList.remove("shown");
+		html.classList.remove("blackout");
+		menu_button.classList.remove("active");
+
+		setTimeout(() =>{
+			html.classList.remove("loaded");
+		}, 350);
+
+		setTimeout(() => {
+			window.location.replace(e.target.href);
+		}, 100);
 	});
 }
 
+
+// Dark mode
 Event.add(dark_mode_button, "mousedown", () => {
 	html.classList.add("wait");
 	
@@ -194,6 +220,8 @@ Event.add(dark_mode_button, "mousedown", () => {
 	);
 });
 
+
+// Logout
 Event.add(logout_button, "click", () => {
 	html.classList.add("wait");
 	
@@ -218,6 +246,8 @@ Event.add(logout_button, "click", () => {
 	);
 });
 
+
+// Messages
 for (let message_alert of message_alerts) {
 	if (message_alert.getElementsByClassName("cross-icon") !== undefined) {
 

@@ -34,7 +34,7 @@ main {
 		html.dark & {
 			box-shadow: $block-shadow-dark;
 		}
-		border-radius: 30px;
+		border-radius: var(--block-border-radius);
 
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}

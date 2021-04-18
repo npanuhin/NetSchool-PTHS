@@ -1,100 +1,80 @@
 .menu_wrapper {
-    width: 970px;
-    // max-width: calc(100% - 200px);
-    @media (max-width: $main-width) {
-        width: calc(65%);
-    }
-    @media (max-width: $desktop) {
-        margin-top: 25px;
-    }
+	display: block;
+	position: fixed;
 
-    margin: 0 auto;
+	transform: translateX(-100%);
+	box-shadow: none;
+	&.shown {
+		transform: translateX(0);
+		box-shadow: 10px 0 20px rgba(0, 0, 0, 0.4);
+	}
+
+	height: 100vh;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	padding: 0 40px 0 30px;
+
+	background: var(--block-color);
+	color: #FFF;
+
+	transition: 0.35s transform ease-in-out, 0.35s box-shadow ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.35s transform ease-in-out, 0.35s box-shadow ease-in-out !important;}
+
+	overflow: auto;
+
+	&:after {
+	    content: "";
+    	display: inline-block;
+	    height: 100%;
+	    vertical-align: middle;
+	}
 }
 
 .menu {
-    position: relative;
-    max-height: 0px;
-    overflow: hidden;
-    transition: 0.3s max-height ease-in-out;
-    html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
+	// position: relative;
+	display: inline-block;
+    vertical-align: middle;
 
-    &.shown {
-        max-height: 140px;
+	transition: 0.3s max-height ease-in-out;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}
 
-        @media (max-width: $main-width) {
-            max-height: 214.8px;
-        }
+	ul {
+		position: relative;
+		margin: 0 auto;
+		width: 100%;
 
-        @media (max-width: 850px) {
-            max-height: 400px;
-        }
+		li {
+			position: relative;
+			padding-bottom: 22px;
+			&:last-child {padding-bottom: 0;}
 
-        @media (max-width: $desktop) {
-            max-height: 300px;
-        }
-    }
-
-    ul {
-        position: relative;
-        margin: 0 auto;
-        width: 100%;
-        width: auto;
-
-        padding-bottom: 10px;
-
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: auto auto auto;
-        grid-row-gap: 10px;
-        grid-column-gap: 100px;
-
-        @media (max-width: $main-width) {
-            grid-template-rows: 1fr 1fr 1fr;
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: 75px;
-        }
-
-        @media (max-width: 850px) {
-            grid-template-rows: auto auto auto auto auto auto;
-            grid-template-columns: auto;
-            grid-row-gap: 5px;
-        }
-
-        li {
-            position: relative;
-            margin-left: 18px;
-            @media (max-width: $main-width) {
-                margin-left: 0;
-            }
-
-            a {
-                font-family: Manrope;
-                font-style: normal;
-                font-weight: bold;
+			a {
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: bold;
 				font-size: var(--font-size-selector);
-                cursor: pointer;
+				cursor: pointer;
 
-                border-bottom: 2.5px solid transparent;
-                @media (max-width: $desktop) {
-                    border-bottom-width: 2px;
-                }
-                color: #fff;
-                text-shadow: var(--text-shadow);
-                html.dark & {
-                    color: var(--text-color-main-dark);
-                    text-shadow: $text-shadow-dark;
-                }
+				border-bottom: 2.5px solid transparent;
+				@media (max-width: $desktop) {
+					border-bottom-width: 2px;
+				}
+				color: var(--text-color-main);
+				html.dark & {
+					color: var(--text-color-main-dark);
+				}
 
-                transition: 0.1s border-color ease-in-out;
-                html.dark_mode_transition & {transition: $dark-mode-transition, border-color ease-in-out !important;}
+				transition: 0.1s border-color ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s border-color ease-in-out !important;}
 
-                &:hover {
-                    border-color: #fff;
-                    html.dark & {
-                        border-color: var(--text-color-main-dark);
-                    }
-                }
-            }
-        }
-    }
+				&:hover {
+					border-color: var(--text-color-main);
+					html.dark & {
+						border-color: var(--text-color-main-dark);
+					}
+				}
+			}
+		}
+	}
 }
