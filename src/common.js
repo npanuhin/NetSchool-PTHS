@@ -176,13 +176,13 @@ for (let menu_link of menu_links) {
 		html.classList.remove("blackout");
 		menu_button.classList.remove("active");
 
-		setTimeout(() =>{
+		setTimeout(() => {
 			html.classList.remove("loaded");
 		}, 350);
 
 		setTimeout(() => {
 			window.location.replace(e.target.href);
-		}, 100);
+		}, 300);
 	});
 }
 
