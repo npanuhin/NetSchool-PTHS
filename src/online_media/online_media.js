@@ -1,18 +1,19 @@
-var online_media_opacity = document.getElementsByClassName("online_media_opacity")[0],
-	online_media = document.getElementsByClassName("online_media")[0],
+var online_media = document.getElementsByClassName("online_media")[0],
 	online_media_toggle = online_media.getElementsByClassName("toggle")[0],
-	online_media_loaded = false,
+	online_media_loaded = false;
 
-	lofi_toggled = false;
+
 
 Event.add(online_media_toggle, "click", () => {
 	online_media.classList.toggle("shown");
+	html.classList.toggle("blackout", online_media.classList.contains("shown"));
 	load_online_media();
 });
 
 Event.add(window, "mousedown", (e) => {
 	if (online_media.classList.contains("shown") && !online_media.contains(e.target)) {
 		online_media.classList.remove("shown");
+		html.classList.toggle("blackout", online_media.classList.contains("shown"));
 	}
 });
 
@@ -71,7 +72,7 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
 	event.target.playVideo();
-	lofi_toggled = true;
+	// lofi_toggled = true;
 }
 
 function onPlayerPlaybackQualityChange(event) {

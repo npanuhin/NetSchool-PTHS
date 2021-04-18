@@ -24,7 +24,7 @@ main {
 		}
 		font-size: var(--font-size-smaller);
 		box-sizing: border-box;
-		border-radius: 30px;
+		border-radius: var(--block-border-radius);
 		text-align: justify;
 
 		background: var(--block-color);

@@ -116,7 +116,7 @@ main {
 					box-shadow: $block-shadow-dark;
 				}
 
-				border-radius: 30px;
+				border-radius: var(--block-border-radius);
 
 				h4, .date, article {
 					font-family: Manrope;

@@ -69,8 +69,8 @@ html.dark {
 
 	--timetable-day-padding-x: 30px;
 	--timetable-day-padding-y: 32px;
-	--timetable-border-radius: 30px;
-	--timetable-border-radius-small: 20px;
+	--block-border-radius: 30px;
+	--block-border-radius-small: 20px;
 	
 	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
@@ -98,8 +98,8 @@ html.dark {
 
 		--timetable-day-padding-x: 18px;
 		--timetable-day-padding-y: 15px;
-		--timetable-border-radius: 22px;
-		--timetable-border-radius-small: 18px;
+		--block-border-radius: 22px;
+		--block-border-radius-small: 18px;
 		
 		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
 		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
@@ -246,6 +246,31 @@ a {
 		opacity: 1;
 		visibility: visible;
 	}
+}
+
+
+#blackout {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	// pointer-events: none;
+	z-index: 90;
+
+	background: rgba(0, 0, 0, 0);
+	visibility: hidden;
+
+	transition: 0.4s background ease-in-out, 0s visibility 0.4s linear !important;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.4s background ease-in-out, 0s visibility 0.4s linear !important;}
+}
+
+html.blackout #blackout {
+	visibility: visible;
+	background: rgba(0, 0, 0, 0.5);
+
+	transition: 0.4s background ease-in-out, 0s visibility 0s linear !important;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0.4s background ease-in-out, 0s visibility 0.4s linear !important;}
 }
 
 

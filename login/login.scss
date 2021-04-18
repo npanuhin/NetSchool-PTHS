@@ -25,7 +25,7 @@ body {
 	}
 
 	background: $container-background;
-	border-radius: 30px;
+	border-radius: var(--block-border-radius);
 	box-shadow: $container-shadow;
 
 	overflow: hidden;
