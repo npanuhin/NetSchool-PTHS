@@ -214,7 +214,15 @@ for (let i = 0; i < lessons.length; ++i) {
 // setTimeout(() => {generate_dynamics_chart(chart_data, min_day)}, 1)
 generate_dynamics_chart(chart_data, min_day);
 
+var saved_width = window.width();
+
 Event.add(window, "resize", () => {
+	if (window.width == saved_width){ 
+	//on mobiles adress line disappears
+	//and it thinks it is resize
+		return;
+	}
+	saved_width = window.width()
 	generate_dynamics_chart(chart_data, min_day);
 });
 
