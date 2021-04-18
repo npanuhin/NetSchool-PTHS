@@ -28,10 +28,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 		window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 	
 	if (window.graph){
-		//console.log('!!!');
 		window.graph.destroy();
-		//canvas.clearRect(0, 0, canvas.width, canvas.height);
-		//return
 	}
 	
 	window.graph = new Chart(canvas, {
@@ -87,8 +84,6 @@ function generate_dynamics_chart(chart_data, min_day) {
 					let ci = this.chart;
 					let select_one = !document.getElementById("Select_one").checked;
 					
-					console.log(select_one.value);
-					console.log(select_one);
 					if(select_one){
 						//select only one
 						//this is code I just took from some strange place…
@@ -114,7 +109,6 @@ function generate_dynamics_chart(chart_data, min_day) {
 					}
 					else{
 						//standart behaviour
-						console.log(index);
 						ci.getDatasetMeta(index).hidden = !ci.getDatasetMeta(index).hidden;
 						ci.update();
 					}
@@ -171,7 +165,6 @@ function generate_dynamics_chart(chart_data, min_day) {
 
 
 let today = new Date();
-console.log(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0'));
 today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0')) //just to make date equal to others in terms of hours, minutes e.t.c.; ISO format; padStart is vital
 
 let html_data = JSON.parse(document.getElementById("data").innerText)
@@ -227,7 +220,6 @@ Event.add(window, "resize", () => {
 	if (document.documentElement.clientWidth == saved_width){ 
 	//on mobiles adress line disappears
 	//and it thinks it is resize
-		console.log('no change', saved_width, document.documentElement.clientWidth);
 		return;
 	}
 	saved_width = document.documentElement.clientWidth;
