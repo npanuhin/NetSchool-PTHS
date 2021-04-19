@@ -13,7 +13,7 @@ main {
 			margin-top: 40px;
 		}
 
-		.zoom_lessons, .zoom_courses, .holidays {
+		.zoom_lessons, .zoom_courses, .holidays, .cources{
 			position: relative;
 			box-sizing: border-box;
 			margin: 50px auto 0 auto;
@@ -134,5 +134,63 @@ main {
 				}
 			}
 		}
+		
+		.cources {
+			.table{
+				position: relative;
+				//width: calc(100% - 200px);
+				margin: auto;//30px 0 0 100px;
+				//padding-top: 75px;
+				padding-left: 10px;
+				display: grid;
+				grid-template-rows: auto auto auto;
+				grid-template-columns: 1fr 1fr;
+				grid-row-gap: 30px;
+				grid-column-gap: 30px;
+
+				.day {
+					width: auto;
+					margin: auto;
+					padding-bottom: 25px;
+
+					height: auto;
+
+					h5 {
+						font-family: Manrope;
+						font-style: normal;
+						font-weight: 600;
+						font-size: var(--font-size-big);
+						//line-height: 33px;
+						
+						text-align: center;
+
+						color: var(--text-color-main);
+
+						margin-bottom: 20px;
+					}
+
+					ul li {
+						font-family: Manrope;
+						font-style: normal;
+						font-weight: normal;
+						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
+						//line-height: 28px;
+
+						color: var(--text-color-main);
+
+						margin-bottom: 10px;
+
+						span {
+							font-family: inherit;
+							font-style: inherit;
+							font-weight: inherit;
+							font-size: inherit;
+							color: var(--orange-color);
+						}
+					}
+				}
+			}
+		}
 	}
+	
 }

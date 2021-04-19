@@ -43,8 +43,88 @@ get_person();
 
 				<table></table>
 			</div>
+			
+			<?php
 
+			$has_cources = false;
+			foreach ($cur_week as $day) {
+				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
+					if (!is_null($item)) {
+						$type = $item[0];
+						$name = $item[1];
 
+						if ($type == 'event' && $name) {
+							$has_cources = true;
+							break;
+						}
+					}
+				}
+				if ($has_cources) break;
+			}
+
+			if ($has_cources) {
+				?>
+
+				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($MONDAY->format('d'), '0') . ' ' . $months_genetive[$MONDAY->format('m') - 1] ?> по <?php echo ltrim($SUNDAY->format('d'), '0') . ' ' . $months_genetive[$SUNDAY->format('m') - 1] ?>">
+					<h3>Спецкурсы<br><span>на этой неделе</span></h3>
+					<div class="table">
+					<?php
+					$weekday_index = 0;
+
+					foreach ($cur_week as $day) {
+						?>
+						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<h5><?php echo $weekdays[$weekday_index] ?></h5>
+
+							<ul>
+								<?php
+
+								foreach ($timetable[$day->format('Y-m-d')] as $item) {
+									if (!is_null($item)) {
+										$type = trim($item[0]);
+										$name = trim($item[1]);
+										// $start_time = trim($item[2]);
+										// $end_time = trim($item[3]);
+
+										if ($type == 'event') {
+											// $start_time = new DateTime($start_time);
+											// $end_time = new DateTime($end_time);
+
+											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+											if (trim($match[1][0])) {
+												$name = trim($match[1][0]);
+											}
+											$cabinet = trim($match[2][0]);
+
+											?>
+											<li title="<?php echo $name ?> (кабинет <?php echo $cabinet ?>)">
+												<?php
+												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
+
+												echo $name . ' <span>' . $cabinet . '</span>';
+												?>
+											</li>
+											<?php
+										}
+									}
+								}
+
+								?>
+							</ul>
+						</div>
+						<?php
+						++$weekday_index;
+					}
+
+					?>
+					</div>
+				</div>
+
+				<?php
+			}
+			?>
+			
 			<div class="zoom_courses" title="Спецкурсы, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
 				<h3>Спецкурсы в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
 				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
@@ -83,7 +163,7 @@ get_person();
 				
 				?>
 			</div>
-
+			
 		</div>
 
 	</main>
