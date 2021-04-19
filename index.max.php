@@ -46,8 +46,8 @@ get_person();
 					$day = new DateTime($date);
 
 					if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
-
-					if ($task_expired) $tasks[] = [
+					$fixable_period = class_to_diary_period($db, $person['class']);
+					if ($task_expired&&between($day, $fixable_period[0], $fixable_period[1])) $tasks[] = [
 						'day' => $day,
 						'lesson' => $lesson,
 						'task_name' => $task,

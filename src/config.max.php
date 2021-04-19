@@ -343,4 +343,11 @@ function telegram_log_error_handler($errno, $errstr, $errfile, $errline) {
 }
 
 set_error_handler('telegram_log_error_handler');
+
+function between($val, $a, $b){
+	$min = min($a, $b);
+	$max = max($a, $b);
+	if($val >= $min && $val <= $max) return true;
+	return false;
+}
 ?>
