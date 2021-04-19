@@ -47,10 +47,14 @@ function update_edu(){
 
 			let json = JSON.parse(req.responseText),
 				new_table = document.createElement("table");
-			
-			new_table.innerHTML = tablify_edu(json);
+				
+			if (json.length) {
+				new_table.innerHTML = tablify_edu(json);
 
-			zoom_lessons.replaceChild(new_table, zoom_lessons.getElementsByTagName("table")[0]);
+				zoom_lessons.replaceChild(new_table, zoom_lessons.getElementsByTagName("table")[0]);
+				
+				zoom_lessons.classList.add("shown");
+			}
 		},
 		(req) => {
 			console.log(req);
@@ -70,10 +74,13 @@ function update_edu(){
 
 			let json = JSON.parse(req.responseText),
 				new_table = document.createElement("table");
-			
-			new_table.innerHTML = tablify_edu(json);
+			if (json.length) {
+				new_table.innerHTML = tablify_edu(json);
 
-			zoom_courses.replaceChild(new_table, zoom_courses.getElementsByTagName("table")[0]);
+				zoom_courses.replaceChild(new_table, zoom_courses.getElementsByTagName("table")[0]);
+				zoom_courses.classList.add("shown");
+			}
+			
 		},
 		(req) => {
 			console.log(req);

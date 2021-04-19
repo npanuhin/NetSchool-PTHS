@@ -103,7 +103,12 @@ main {
 				}
 			}
 		}
-
+		.zoom_lessons, .zoom_courses{
+			display: none;
+			&.shown {
+				display: block;
+			}
+		}
 		.holidays {
 
 			h3 {
