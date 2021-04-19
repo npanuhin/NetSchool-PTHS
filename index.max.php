@@ -124,6 +124,7 @@ get_person();
 			$timetable = json_decode($person['timetable'], true);
 
 			$week_period = new DatePeriod($TRUE_SCHOOL_YEAR_BEGIN, DateInterval::createFromDateString('1 week'), $TRUE_SCHOOL_YEAR_END);
+			
 			foreach ($week_period as $monday) {
 				$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
 				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week ' . $SCHOOL_DAY_BORDER->format('H:i'));

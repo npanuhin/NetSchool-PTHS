@@ -13,7 +13,7 @@ main {
 			margin-top: 40px;
 		}
 
-		.zoom_lessons, .zoom_courses, .holidays, .cources{
+		.zoom_lessons, .zoom_courses, .holidays, .cources, .lessons{
 			position: relative;
 			box-sizing: border-box;
 			margin: 50px auto 0 auto;
@@ -54,6 +54,27 @@ main {
 						height: 34px;
 					}
 				}
+			}
+			
+			h6 {
+				margin-top: 10px;
+
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: var(--font-size-usual);
+				line-height: var(--line-height-compact);
+				text-align: center;
+
+				color: var(--text-color-main);
+			}
+			
+			.article {
+				font-family: Manrope;
+				font-style: normal;
+				font-size: var(--font-size-smaller);
+				color: var(--text-color-main);
+				text-align: center;
 			}
 
 			.details {
@@ -103,6 +124,8 @@ main {
 				}
 			}
 		}
+		
+		
 		.zoom_lessons, .zoom_courses{
 			display: none;
 			&.shown {
@@ -125,18 +148,7 @@ main {
 
 				color: var(--text-color-main);
 
-				h6 {
-					margin-top: 10px;
-
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: var(--font-size-usual);
-					line-height: var(--line-height-compact);
-					text-align: center;
-
-					color: var(--text-color-main);
-				}
+				
 			}
 		}
 		
