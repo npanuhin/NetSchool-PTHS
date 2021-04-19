@@ -132,7 +132,7 @@ get_person();
 
 				<div class="<?php
 					echo $monday->format('Y-m-d');
-					if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown';
+					if ($school_week_start <= $NOW && $NOW < $school_week_end) echo ' shown displayed';
 					if ($monday == $MONDAY) echo ' cur_week';
 				?>">
 

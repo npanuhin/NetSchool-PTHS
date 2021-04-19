@@ -35,31 +35,40 @@ function resize_table() {
 
 // ===========================================================================================================
 
+function goto_week(week_index) {
+	cur_week = week_index;
+
+	weeks[cur_week].classList.add("displayed");
+
+	for (let i = 0; i < weeks.length; ++i) if (i != cur_week) weeks[i].classList.remove("shown");
+	weeks[cur_week].classList.add("shown");
+
+	timetable_previous.classList.toggle("hidden", cur_week <= 0);
+	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
+
+	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+
+	setTimeout(() => {
+		for (let i = 0; i < weeks.length; ++i) if (i != cur_week) weeks[i].classList.remove("displayed");
+	}, 500);
+}
+
 function goto_day(date) {
-	cur_week = Array.prototype.slice.call(weeks).indexOf(
-		timetable.getElementsByClassName(date)[0].parentNode.parentNode
+	goto_week(
+		Array.prototype.slice.call(weeks).indexOf(
+			timetable.getElementsByClassName(date)[0].parentNode.parentNode
+		)
 	);
-
-	for (let week of weeks) week.classList.remove("shown");
-	weeks[cur_week].classList.add("shown");
-
-	timetable_previous.classList.toggle("hidden", cur_week <= 0);
-	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
-
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 }
 
-function goto_week(week) {
-	cur_week = week;
-
-	for (let week of weeks) week.classList.remove("shown");
-	weeks[cur_week].classList.add("shown");
-
-	timetable_previous.classList.toggle("hidden", cur_week <= 0);
-	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
-
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
+function previos_week() {
+	goto_week(Math.max(cur_week - 1, 0));
 }
+
+function next_week() {
+	goto_week(Math.min(cur_week + 1, weeks.length - 1));
+}
+
 
 // ===========================================================================================================
 
@@ -133,41 +142,14 @@ function toggle_details_lock(event) {
 
 // ===========================================================================================================
 
-function show_previos_week() {
-	cur_week = Math.max(cur_week - 1, 0);
-
-	for (let week of weeks) week.classList.remove("shown");
-	weeks[cur_week].classList.add("shown");
-
-	timetable_previous.classList.toggle("hidden", cur_week <= 0);
-	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
-
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
-}
-
-function show_next_week() {
-	cur_week = Math.min(cur_week + 1, weeks.length - 1);
-
-	for (let week of weeks) week.classList.remove("shown");
-	weeks[cur_week].classList.add("shown");
-
-	timetable_previous.classList.toggle("hidden", cur_week <= 0);
-	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
-
-	timetable.style.height = weeks[cur_week].offsetHeight + "px";
-}
-
-
-// ===========================================================================================================
-
 Event.add(window, "resize", resize_table);
 Event.add(window, "load", resize_table);
 setTimeout(resize_table());
 
-Event.add(timetable_previous, "mousedown", show_previos_week);
-Event.add(window, "rightSwipe", show_previos_week);
-Event.add(timetable_next, "mousedown", show_next_week);
-Event.add(window, "leftSwipe", show_next_week);
+Event.add(timetable_previous, "mousedown", previos_week);
+Event.add(window, "rightSwipe", previos_week);
+Event.add(timetable_next, "mousedown", next_week);
+Event.add(window, "leftSwipe", next_week);
 
 for (let goto_today_button of goto_today_buttons) {
 	Event.add(goto_today_button, "mousedown", () => {
