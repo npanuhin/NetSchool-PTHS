@@ -171,6 +171,7 @@ get_person();
 			</div>
 
 			<div class="zoom_lessons" title="Уроки, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
+
 				<h3>Уроки в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
 				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
 
@@ -231,11 +232,11 @@ get_person();
 											$cabinet = trim($match[2][0]);
 
 											?>
-											<li title="<?php echo $name ?> (кабинет <?php echo $cabinet ?>)">
+											<li title="<?php echo "{$name} (кабинет {$cabinet} )"?>">
 												<?php
 												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
 
-												echo $name . ' <span>' . $cabinet . '</span>';
+												echo "{$name} <span>{$cabinet}</span>";
 												?>
 											</li>
 											<?php

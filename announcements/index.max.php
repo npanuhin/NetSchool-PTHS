@@ -37,7 +37,7 @@ get_person();
 				try {
 					$announcements = $db->getAll('SELECT * FROM `announcements` ORDER BY `date` DESC');
 				} catch (Exception $e) {
-					telegram_log("Database request failed\n\n" . $e->getMessage());
+					telegram_log("Database request failed\n\n{$e->getMessage()}");
 					exit(json_encode(array('message', 'Database request failed')));
 				}
 
@@ -64,7 +64,7 @@ get_person();
 							<div class="profile_photo" style="<?php
 
 								if ($author && isset($profile_photos[$author])) {
-									echo 'background-image: url(\'' . $profile_photos[$author] . '\')';
+									echo "background-image: url('{$profile_photos[$author]}')";
 								} else {
 									echo 'background: ' . color_from_string($author);
 								}

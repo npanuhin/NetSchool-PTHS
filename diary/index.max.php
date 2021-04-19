@@ -221,13 +221,13 @@ $default_mark_rate = 10;
 
 											if ($empty_width) {
 												?>
-												<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
+												<td<?php if ($empty_width > 1) echo " colspan=\"{$empty_width}\"" ?>></td>
 												<?php
 											}
 											$empty_width = 0;
 											?>
 
-											<td class="<?php echo $day ?> <?php
+											<td class="<?php echo $day ?><?php
 												if (isset($days[$day]) && $days[$day]) {
 													echo ' filled';
 													if ($days_expired_key[$day])     echo ' expired';
@@ -258,7 +258,7 @@ $default_mark_rate = 10;
 															if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 
 															?>
-															<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
+															<span id="<?php echo "{$day}-{$lesson}-{$task_index}" ?>"
 																<?php
 
 																if (!is_null($mark) || $task_expired) {
@@ -270,12 +270,11 @@ $default_mark_rate = 10;
 																	if ($task_expired) echo ' class="expired"';
 
 																	if ($mark) {
-																		echo ' data-mark="' . $mark . '"';
+																		echo " data-mark=\"{$mark}\"";
 																	} else {
-																		echo ' data-mark="' . $default_mark . '"';
+																		echo " data-mark=\"{$default_mark}\"";
 																	}
-
-																	echo ' data-rate="' . $mark_rate . '"';
+																	echo " data-rate=\"{$mark_rate}\"";
 																}
 
 																?>
@@ -310,7 +309,8 @@ $default_mark_rate = 10;
 																	$ext_task_data = '';
 																	foreach ($task_data_ext as $key => $value) {
 																		if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
-																			$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
+																			$value = nl2br($value);
+																			$ext_task_data .= "{$key}:<p>{$value}</p>";
 																		}
 																	}
 
@@ -338,7 +338,7 @@ $default_mark_rate = 10;
 
 									if ($empty_width) {
 										?>
-										<td<?php if ($empty_width > 1) echo ' colspan="' . $empty_width . '"' ?>></td>
+										<td<?php if ($empty_width > 1) echo " colspan=\"{$empty_width}\"" ?>></td>
 										<?php
 									}
 									?>
