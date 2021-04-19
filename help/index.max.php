@@ -96,9 +96,10 @@ get_person();
 			<a class="vk_link" href="https://vk.com/netschool_pths" target="_blank" title="Группа ВКонтакте">
 				<?php include_once __DIR__ . '/../files/icons/vk.svg' ?>
 			</a>
+
 			<!-- © Никита Панюхин, Ева Пальчикова, Андрей Ситников, Марк Ипатов, 2021 -->
-		</div>  
-		
+		</div>
+
 	</main>
 
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
