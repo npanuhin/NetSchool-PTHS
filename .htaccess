@@ -13,6 +13,7 @@ Options  -Indexes
 
 ServerSignature Off
 AddDefaultCharset UTF-8
+php_value default_charset "utf-8"
 
 
 #==========================| Redirect |==========================
