@@ -22,7 +22,7 @@ var
 	// 	return value != "day" && value != "today"
 	// }),
 
-	goto_today_buttons = timetable.getElementsByTagName("button"),
+	goto_today_button = document.getElementById("goto_today"),
 
 	details_block = document.getElementsByClassName("details")[0],
 	details_lock = false,
@@ -42,6 +42,7 @@ function goto_week(week_index) {
 
 	for (let i = 0; i < weeks.length; ++i) if (i != cur_week) weeks[i].classList.remove("shown");
 	weeks[cur_week].classList.add("shown");
+	toggle_goto_today_button();
 
 	timetable_previous.classList.toggle("hidden", cur_week <= 0);
 	timetable_next.classList.toggle("hidden", cur_week >= weeks.length - 1);
@@ -67,6 +68,10 @@ function previos_week() {
 
 function next_week() {
 	goto_week(Math.min(cur_week + 1, weeks.length - 1));
+}
+
+function toggle_goto_today_button() {
+	goto_today_button.classList.toggle("shown", cur_week != today_week);
 }
 
 
@@ -151,11 +156,10 @@ Event.add(window, "rightSwipe", previos_week);
 Event.add(timetable_next, "mousedown", next_week);
 Event.add(window, "leftSwipe", next_week);
 
-for (let goto_today_button of goto_today_buttons) {
-	Event.add(goto_today_button, "mousedown", () => {
-		goto_week(today_week);
-	});
-}
+toggle_goto_today_button();
+Event.add(goto_today_button, "mousedown", () => {
+	goto_week(today_week);
+});
 
 for (let lesson of lessons) {
 	let details = lesson.getElementsByTagName("div")[0];

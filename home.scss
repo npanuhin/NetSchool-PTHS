@@ -140,6 +140,46 @@ main {
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
+
+		#goto_today {
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			@media (max-width: $desktop) {
+				top: 1px;
+			}
+			@media (max-width: 380px) {
+				position: static;
+				top: 0;
+			}
+
+			padding: 7px;
+
+			font-family: Manrope;
+			font-style: normal;
+			font-weight: 600;
+			font-size: var(--font-size-middle);
+			line-height: 27px;
+			cursor: pointer;
+
+			z-index: 30;
+
+			color: #fff;
+			html.dark & {
+				color: var(--text-color-main-dark);
+			}
+
+			transition: 0.2s opacity 0.1s ease-in-out;
+			html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s opacity 0s ease-in-out !important;}
+			opacity: 0;
+
+			&.shown {
+				transition: 0.3s opacity 0.1s ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s opacity 0.1s ease-in-out !important;}
+				opacity: 1;
+			}
+		}
+
 		#timetable_previous, #timetable_next {
 			position: absolute;
 			top: calc(36px + 50%);
@@ -210,11 +250,14 @@ main {
 			display: none;
 
 			h3 {
+				width: calc(100% - 165px);
+				@media (max-width: 380px) {
+					width: 100%;
+				}
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: bold;
 				font-size: var(--font-size-selector);
-				// line-height: var(--line-height-large);
 				color: #FFF;
 				text-shadow: var(--text-shadow);
 				html.dark & {
@@ -259,43 +302,6 @@ main {
 					opacity: 1;
 					transform: translateY(0px);
 				}
-			}
-
-			& > button {
-				position: absolute;
-				@media (max-width: 380px) {
-					position: static;
-					top: 0;
-				}
-				@media (max-width: $desktop) {
-					top: 1px;
-				}
-				opacity: 0;
-				top: 10px;
-				right: 20px;
-
-				padding: 7px;
-
-				font-family: Manrope;
-				font-style: normal;
-				font-weight: 600;
-				font-size: var(--font-size-middle);
-				line-height: 27px;
-				cursor: pointer;
-
-				color: #fff;
-				html.dark & {
-					color: var(--text-color-main-dark);
-				}
-
-				transition: 0.2s opacity 0.1s ease-in-out;
-				html.dark_mode_transition & {transition: $dark-mode-transition, 0.2s opacity 0s ease-in-out !important;}
-			}
-
-			&.shown > button {
-				transition: 0.3s opacity 0.1s ease-in-out;
-				html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s opacity 0.1s ease-in-out !important;}
-				opacity: 1;
 			}
 
 			// Week days
