@@ -282,18 +282,20 @@ function format_days_diff($num, $upper=false) {
 
 // ============================================ LOG ============================================
 
-function telegram_log($message, $token=null, $chat_id=null, $force=true) {
+function telegram_log($message, $force=true) {
 	global $UI_ERROR, $config, $telegram;
 
 	if (!$message) {
-		if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Empty log message"';
+		// if ($force) $UI_ERROR = 'Please contact administrator with the following message: "Empty log message"';
+		$message = 'Empty log message';
 		return;
 	}
-	$message = "=== NetSchool PTHS website ===\n{$message}";
+
+	$message = mb_convert_encoding($message, 'utf-8');
 
 	$telegram->sendMessage(array(
 		'chat_id' => $config['telegram_chatid'],
-		'text' => $message
+		'text' => "=== NetSchool PTHS website ===\n{$message}"
 	));
 }
 

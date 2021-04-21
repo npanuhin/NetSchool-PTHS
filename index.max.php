@@ -115,6 +115,8 @@ get_person();
 		?>
 
 		<div class="timetable">
+			<button id="goto_today" title="Перейти к текущей неделе">Сегодня &#8594;</button>
+
 			<svg id="timetable_previous" viewBox="0 0 40 70" xmlns="http://www.w3.org/2000/svg">
 				<title>Предыдущая неделя</title>
 				<?php include __DIR__ . '/files/icons/arrow_thick.path.svg' ?>
@@ -138,18 +140,10 @@ get_person();
 				?>">
 
 					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
-						<?php echo ltrim($monday->format('d'), '0') . ' ' . $months_genetive[$monday->format('m') - 1]?>
-						-
-						<?php echo ltrim($sunday->format('d'), '0') . ' ' . $months_genetive[$sunday->format('m') - 1]?>
-					</h3>
-
-					<?php
-					if ($TODAY->getTimestamp() < $monday->getTimestamp() || $sunday->getTimestamp() < $TODAY->getTimestamp()) {
-						?>
-						<button title="Перейти к текущей неделе">Сегодня &#8594;</button>
 						<?php
-					}
-					?>
+						echo ltrim($monday->format('d'), '0') . '&nbsp;' . $months_genetive[$monday->format('m') - 1] . '&nbsp;- ' . ltrim($sunday->format('d'), '0') . '&nbsp;' . $months_genetive[$sunday->format('m') - 1]
+						?>
+					</h3>
 					
 					<div>
 						<?php
@@ -275,8 +269,8 @@ get_person();
 															$details = [];
 
 															// if ($start_time) $details[] = 'Тип: ' . $type;
-															if ($start_time) $details[] = 'Начало: ' . $start_time->format('Y-m-d H:i');
-															if ($end_time) $details[] = 'Конец: ' . $end_time->format('Y-m-d H:i');
+															if ($start_time) $details[] = 'Начало: ' . $start_time->format('H:i');
+															if ($end_time) $details[] = 'Конец: ' . $end_time->format('H:i');
 															if ($cabinet) $details[] = 'Кабинет: ' . $cabinet;
 
 															echo implode('<br>', $details);
