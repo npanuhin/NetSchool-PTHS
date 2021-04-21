@@ -37,8 +37,6 @@ get_person();
 			?>
 			<div class="lessons">
 				<div class="article">
-				
-				
 					<?php
 						$day = $TODAY;
 						if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
@@ -69,49 +67,52 @@ get_person();
 							$zoom_day = ($has_any_lesson && !$has_any_cabinet);
 
 							?>
-
 							<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
-							<table><tr><th>Урок</th><th>Начало</th><th>Конец</th><th>Кабинет</th></tr><tbody>
-								<?php
+							<table>
+								<tr>
+									<th>Урок</th>
+									<th>Начало</th>
+									<th>Конец</th>
+									<th>Кабинет</th>
+								</tr>
+								<tbody>
+									<?php
 
-								$lesson_index = 0;
+									$lesson_index = 0;
 
-								foreach ($timetable[$day->format('Y-m-d')] as $item) {
-									echo "<tr>";
+									foreach ($timetable[$day->format('Y-m-d')] as $item) {
+										echo "<tr>";
 
-									if (!is_null($item)) {
-										$type = $item[0];
-										$name = $item[1];
-										$start_time = $item[2];
-										$end_time = $item[3];
+										if (!is_null($item)) {
+											$type = $item[0];
+											$name = $item[1];
+											$start_time = $item[2];
+											$end_time = $item[3];
 
-										if (is_null($name)) {
-											++$lesson_index;
-											?>
+											if (is_null($name)) {
+												++$lesson_index;
+												?>
 
-											<td>
-											<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"> 
-											</div>
-											</td>
-
-											<?php
-										} else if ($type == 'lesson' || $type == 'vacation') {
-
-											++$lesson_index;
-
-											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
-
-											if (isset($match[1][0]) && trim($match[1][0])) {
-												$name = trim($match[1][0]);
-											}
-
-											$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
-
-											$start_time = new DateTime($start_time);
-											$end_time = new DateTime($end_time);
-											?>
+												<td colspan="4">
+													<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>">Перерыв</div>
+												</td>
 
 												<?php
+											} else if ($type == 'lesson' || $type == 'vacation') {
+
+												++$lesson_index;
+
+												preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+												if (isset($match[1][0]) && trim($match[1][0])) {
+													$name = trim($match[1][0]);
+												}
+
+												$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
+
+												$start_time = new DateTime($start_time);
+												$end_time = new DateTime($end_time);
+
 												$classes = array();
 												if ($type == 'vacation') {
 													$classes[] = 'vacation';
@@ -145,8 +146,9 @@ get_person();
 									} else {
 										++$lesson_index;
 										?>
-
-										<tr class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></tr>
+										<td colspan="4">>
+											<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></div>
+										</td>
 
 										<?php
 									}
@@ -166,7 +168,7 @@ get_person();
 						}
 						?>
 						</tbody>
-				</table>
+					</table>
 				</div>
 			</div>
 
