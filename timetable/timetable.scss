@@ -156,6 +156,7 @@ main {
 		.lessons .no_lesson{
 			text-align: center;
 			background: var(--timetable-gap);
+			color: var(--text-color-main-light);
 		}
 		.cources {
 			.table{
@@ -183,6 +184,9 @@ main {
 						font-style: normal;
 						font-weight: normal;
 						width: 60%;
+						@media (max-width: $desktop) {
+							width: 90%;
+						}
 						margin: auto;
 						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
 						//line-height: 28px;
