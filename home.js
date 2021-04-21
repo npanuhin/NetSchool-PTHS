@@ -14,6 +14,7 @@ var
 		timetable.getElementsByClassName("shown")[0]
 	),
 	days = document.querySelectorAll(".timetable > div > div"),
+	week_displayed_clear_timeout,
 
 	lessons = document.querySelectorAll(".timetable > div > div ul li"),
 
@@ -49,7 +50,8 @@ function goto_week(week_index) {
 
 	timetable.style.height = weeks[cur_week].offsetHeight + "px";
 
-	setTimeout(() => {
+	clearTimeout(week_displayed_clear_timeout);
+	week_displayed_clear_timeout = setTimeout(() => {
 		for (let i = 0; i < weeks.length; ++i) if (i != cur_week) weeks[i].classList.remove("displayed");
 	}, 500);
 }
