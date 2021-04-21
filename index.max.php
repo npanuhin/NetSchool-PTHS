@@ -268,8 +268,8 @@ get_person();
 															$details = [];
 
 															// if ($start_time) $details[] = 'Тип: ' . $type;
-															if ($start_time) $details[] = 'Начало: ' . $start_time->format('Y-m-d H:i');
-															if ($end_time) $details[] = 'Конец: ' . $end_time->format('Y-m-d H:i');
+															if ($start_time) $details[] = 'Начало: ' . $start_time->format('H:i');
+															if ($end_time) $details[] = 'Конец: ' . $end_time->format('H:i');
 															if ($cabinet) $details[] = 'Кабинет: ' . $cabinet;
 
 															echo implode('<br>', $details);
