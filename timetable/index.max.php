@@ -201,16 +201,15 @@ get_person();
 			if ($has_cources) {
 				?>
 
-				<div class="cources" title="Спецкурсы на неделе с <?php echo ltrim($MONDAY->format('d'), '0') . ' ' . $months_genetive[$MONDAY->format('m') - 1] ?> по <?php echo ltrim($SUNDAY->format('d'), '0') . ' ' . $months_genetive[$SUNDAY->format('m') - 1] ?>">
-					<h3>Спецкурсы<br><span>на этой неделе</span></h3>
+				<div class="cources">
 					<div class="table">
 					<?php
 					$weekday_index = 0;
-
-					foreach ($cur_week as $day) {
-						?>
+					$day = $SCHOOL_DAY;
+					$weekday_index = $day->format('N') - 1;
+					?>
 						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
-							<h3><?php echo $weekdays[$weekday_index] ?></h3>
+							<h6><?php echo $weekdays[$weekday_index] ?></h6>
 
 							<ul>
 								<?php
@@ -251,7 +250,6 @@ get_person();
 						</div>
 						<?php
 						++$weekday_index;
-					}
 
 					?>
 					</div>
