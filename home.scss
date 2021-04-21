@@ -613,6 +613,12 @@ main {
 			color: var(--orange-color);
 		}
 	}
+	//color: hsl(207, 20%, 60%);
+	.info{
+		display: inline-block;
+		//color: var(--text-color-main);
+		font-weight: 600;
+	}
 
 	&.shown {
 		visibility: visible;
