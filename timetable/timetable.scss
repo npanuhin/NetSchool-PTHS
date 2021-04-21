@@ -96,7 +96,7 @@ main {
 				border-spacing: 10px 3px;
 				border-collapse: separate;
 				table-layout: fixed;
-
+				line-height: var(--line-height-compact);
 				tr {
 					th, td {
 						font-family: Manrope;
@@ -113,8 +113,9 @@ main {
 					}
 					
 					td {
+						font-size: var(--font-size-smaller);
 						&.center {
-							font-size: var(--font-size-smaller);
+							
 						 	text-align: center;
 						}
 						text-align: center;
@@ -151,7 +152,10 @@ main {
 				
 			}
 		}
-		
+		.lessons .no_lesson{
+			text-align: center;
+			background: var(--timetable-gap);
+		}
 		.cources {
 			.table{
 				position: relative;

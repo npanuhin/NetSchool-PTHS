@@ -38,7 +38,7 @@ get_person();
 			<div class="lessons">
 				<div class="article">
 					<?php
-						$day = $TODAY;
+						$day = $SCHOOL_DAY;
 						if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
 
 							$lessons = [];
@@ -126,9 +126,9 @@ get_person();
 
 												?>
 
-													<td><h5<?php if (!is_null($start_time) || !is_null($end_time) || $cabinet) echo ' style="margin-bottom: 7px"' ?>>
+													<td>
 														<?php echo handle_lesson_name($name) ?>
-													</h5></td>
+													</td>
 
 													<?php
 
@@ -210,7 +210,7 @@ get_person();
 					foreach ($cur_week as $day) {
 						?>
 						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
-							<h5><?php echo $weekdays[$weekday_index] ?></h5>
+							<h3><?php echo $weekdays[$weekday_index] ?></h3>
 
 							<ul>
 								<?php
