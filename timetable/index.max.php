@@ -205,7 +205,7 @@ get_person();
 					<div class="table">
 					<?php
 					$weekday_index = 0;
-					$day = $SCHOOL_DAY;
+					$day = $SCHOOL_COURSES_DAY;
 					$weekday_index = $day->format('N') - 1;
 					?>
 						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">

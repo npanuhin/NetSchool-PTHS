@@ -105,8 +105,9 @@ $TRUE_SCHOOL_YEAR_BEGIN = new DateTime($SCHOOL_YEAR_BEGIN->format('Y-m-d') . ' m
 $TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monday next week');
 
 $SCHOOL_DAY_BORDER = new DateTime('15:00');
+$SCHOOL_COURSES_DAY_BORDER = new DateTime('18:30');//some courses start at 18:00, and for thoses, who are late… 
 $SCHOOL_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
-
+$SCHOOL_COURSES_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_COURSES_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
 
 
 // =========================================== UTILS ===========================================
