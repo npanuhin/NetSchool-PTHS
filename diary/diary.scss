@@ -1,11 +1,7 @@
 @import '../src/styles/main';
 
 $details-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
-// $details-expired-shadow: 2px 1px 15px rgba(255, 0, 0, 0.3);
 $details-expired-shadow: 1px 1px 11px -4px var(--orange-color);
-
-// $mark-expired-color: rgba(255, 0, 0, 0.1);
-// $mark-expired-color-dark: rgba(255, 0, 0, 0.25);
 
 $today-color: rgba(0, 255, 0, 0.2);
 $today-color-dark: rgba(0, 255, 0, 0.2);
@@ -117,8 +113,8 @@ main {
 				top: -7px;
 				padding-top: 7px;
 
-			    li {
-			    	padding: 6px 12px;
+				li {
+					padding: 6px 12px;
 					height: 28px;
 
 					font-family: Manrope;
@@ -182,27 +178,21 @@ main {
 					}
 				}
 
-				.scroll_left {
-					svg {
-						right: 0;
+				.scroll_left svg {
+					right: 0;
+					transform: scale(0.9, 1) translateY(-50%);
+				
+					&:hover {
 						transform: scale(0.9, 1) translateY(-50%);
-					
-						&:hover {
-							transform: scale(0.9, 1) translateY(-50%);
-						}
 					}
 				}
 
-				.scroll_right {
-					// background: var(--block-color);
+				.scroll_right svg {
+					left: 0;
+					transform: scale(-0.9, 1) translateY(-50%);
 
-					svg {
-						left: 0;
+					&:hover {
 						transform: scale(-0.9, 1) translateY(-50%);
-
-						&:hover {
-							transform: scale(-0.9, 1) translateY(-50%);
-						}
 					}
 				}
 			}
@@ -229,6 +219,7 @@ main {
 					border-top-left-radius: 8px;
 				}
 			}
+
 			.right_column {
 				position: relative;
 				left: -1px;
@@ -304,6 +295,7 @@ main {
 							td {
 								position: relative;
 								padding: 4px 30px;
+								text-align: center;
 
 								overflow: hidden;
 
@@ -348,53 +340,52 @@ main {
 							@media (max-width: $desktop) {
 								height: 50px;
 							}
+
 							td {
+								padding: 4px 20px;
+
+								font-family: Manrope;
+								font-style: normal;
+								font-weight: 500;
+								font-size: 20px;
+								line-height: 28px;
+								text-align: center;
+								color: var(--text-color-main);
+
 								@media (max-width: $desktop) {
 									font-size: 8px;
 									line-height: 14px;
 									padding: 6px 6px;
 									height: 10px;
 								}
-								font-family: Manrope;
-								font-style: normal;
-								font-weight: 500;
-								font-size: 20px;
-								line-height: 28px;
-								color: var(--text-color-main);
 
 								white-space: nowrap;
-
-								padding: 4px 20px;
 
 								&.today {
 									border-top-left-radius: 15px;
 									border-top-right-radius: 15px;
+
+									background: $today-color;
+									html.dark & {
+										background: $today-color-dark;
+									}
 								}
 							}
 						}
 
-						td {
-							position: relative;
-							white-space: nowrap;
-							text-align: center;
-							box-sizing: border-box;
-							@media (max-width: $desktop) {
-								height: auto;
-								padding: 4px 6px;
-							}
-							height: 40px;
-
-							padding: 0 6px;
-
-							& > div {
-								font-size: 0;
+						&:nth-child(n + 3) {
+							td {
 								position: relative;
-								// width: 62%;
-								height: 100%;
-
-								left: 50%;
-								transform: translateX(-50%);
+								white-space: nowrap;
 								text-align: center;
+								box-sizing: border-box;
+
+								height: 40px;
+								padding: 0 6px;
+								@media (max-width: $desktop) {
+									height: auto;
+									padding: 4px 6px;
+								}
 
 								span {
 									@media (max-width: $desktop) {
@@ -442,33 +433,34 @@ main {
 										display: none;
 									}
 								}
-							}
 
-							&.filled > div::before {
-								content: "";
-								position: absolute;
-								box-sizing: border-box;
-								width: 100%;
-								height: 100%;
-								top: 0;
-								left: 0;
-								border: 1px solid var(--text-color-main);
-								border-radius: 3px;
-							}
+								&.filled::before {
+									content: "";
+									position: absolute;
+									box-sizing: border-box;
+									width: calc(100% - 12px);
+									height: 100%;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									border: 1px solid var(--text-color-main);
+									border-radius: 3px;
+								}
 
-							&.selected > div::before {
-								border-width: 2px;
-								border-color: var(--orange-color);
-							}
+								&.selected::before {
+									border-width: 2px;
+									border-color: var(--orange-color);
+								}
 
-							&.expired > div::before {
-								border-color: var(--orange-color);
-							}
+								&.expired::before {
+									border-color: var(--orange-color);
+								}
 
-							&.today {
-								background: $today-color;
-								html.dark & {
-									background: $today-color-dark;
+								&.today {
+									background: $today-color;
+									html.dark & {
+										background: $today-color-dark;
+									}
 								}
 							}
 						}

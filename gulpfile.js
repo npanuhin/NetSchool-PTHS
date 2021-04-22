@@ -27,7 +27,7 @@ var
 
     // PHP, HTML
     minify_php      = require('gulp-php-minify'),
-    htmlmin         = require('gulp-htmlmin'),
+    htmlmin         = require('gulp-html-minifier-terser'),
 
     // Clean:
     clean           = require('gulp-clean'),
@@ -93,13 +93,12 @@ var
         caseSensitive: true,
         collapseInlineTagWhitespace: false,
         collapseWhitespace: true,
-        conservativeCollapse: false,
-        continueOnParseError: true,
         quoteCharacter: '"',
-        removeAttributeQuotes: false,
         removeComments: true,
-        removeStyleLinkTypeAttributes: true,
-        decodeEntities: true
+        trimCustomFragments: true,
+
+        sortAttributes: true,
+        sortClassName: true
     }
 
 

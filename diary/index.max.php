@@ -234,99 +234,97 @@ $default_mark_rate = 10;
 												}
 												if ($day == $TODAY->format('Y-m-d')) echo ' today';
 											?>">
-												<div>
-													<?php
-													if (isset($days[$day]) && $days[$day]) {
+												<?php
+												if (isset($days[$day]) && $days[$day]) {
 
-														$tasks = $days[$day];
+													$tasks = $days[$day];
 
-														$task_index = 0;
+													$task_index = 0;
 
-														for ($task_index = 0; $task_index < count($tasks); ++$task_index) {
-															$task_data = $tasks[$task_index];
+													for ($task_index = 0; $task_index < count($tasks); ++$task_index) {
+														$task_data = $tasks[$task_index];
 
-															$mark = $task_data[0];
-															$mark_rate = $task_data[1];
-															$task = $task_data[2];
-															$task_type = $task_data[3];
-															$task_expired = $task_data[4];
-															$teacher = $task_data[5];
-															$task_data_ext = $task_data[6];
+														$mark = $task_data[0];
+														$mark_rate = $task_data[1];
+														$task = $task_data[2];
+														$task_type = $task_data[3];
+														$task_expired = $task_data[4];
+														$teacher = $task_data[5];
+														$task_data_ext = $task_data[6];
 
-															$has_mark = (!is_null($mark) || $task_expired);
+														$has_mark = (!is_null($mark) || $task_expired);
 
-															if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
+														if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
 
-															?>
-															<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
-																<?php
+														?>
+														<span id="<?php echo $day . '-' . $lesson . '-' . $task_index ?>"
+															<?php
 
-																if (!is_null($mark) || $task_expired) {
+															if (!is_null($mark) || $task_expired) {
 
-																	// $classes = [];
-																	// if ($task_expired) $classes[] = 'expired';
-																	// if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
+																// $classes = [];
+																// if ($task_expired) $classes[] = 'expired';
+																// if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
 
-																	if ($task_expired) echo ' class="expired"';
-
-																	if ($mark) {
-																		echo ' data-mark="' . $mark . '"';
-																	} else {
-																		echo ' data-mark="' . $default_mark . '"';
-																	}
-
-																	echo ' data-rate="' . $mark_rate . '"';
-																}
-
-																?>
-															>
-																<?php
+																if ($task_expired) echo ' class="expired"';
 
 																if ($mark) {
-																	echo $mark;
-																} else if ($task_expired) {
-																	echo $default_mark;
+																	echo ' data-mark="' . $mark . '"';
 																} else {
-																	echo '-';
+																	echo ' data-mark="' . $default_mark . '"';
 																}
 
-																?>
+																echo ' data-rate="' . $mark_rate . '"';
+															}
 
-																<div>
-																	<?php
-
-																	if ($task) {
-																		?>
-																		<h5><?php echo $task ?></h5>
-																		<?php
-																	}
-
-																	$task_data = [];
-
-																	if ($teacher) $task_data[] = 'Учитель: ' . $teacher;
-																	if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
-																	if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
-
-																	$ext_task_data = '';
-																	foreach ($task_data_ext as $key => $value) {
-																		if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
-																			$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
-																		}
-																	}
-
-																	if ($ext_task_data) $task_data[] = $ext_task_data;
-
-																	echo implode('<br>', $task_data);
-																	?>
-																</div>
-																
-															</span>
-
+															?>
+														>
 															<?php
-														}
+
+															if ($mark) {
+																echo $mark;
+															} else if ($task_expired) {
+																echo $default_mark;
+															} else {
+																echo '-';
+															}
+
+															?>
+
+															<div>
+																<?php
+
+																if ($task) {
+																	?>
+																	<h5><?php echo $task ?></h5>
+																	<?php
+																}
+
+																$task_data = [];
+
+																if ($teacher) $task_data[] = 'Учитель: ' . $teacher;
+																if ($task_type) $task_data[] = 'Тип: ' . handle_task_type($task_type);
+																if ($mark_rate) $task_data[] = 'Вес: ' . $mark_rate;
+
+																$ext_task_data = '';
+																foreach ($task_data_ext as $key => $value) {
+																	if ($key && $value && !in_array($key, $disabled_task_data_keys)) {
+																		$ext_task_data .= $key . ':<p>' . nl2br($value) . '</p>';
+																	}
+																}
+
+																if ($ext_task_data) $task_data[] = $ext_task_data;
+
+																echo implode('<br>', $task_data);
+																?>
+															</div>
+															
+														</span>
+
+														<?php
 													}
-													?>
-												</div>
+												}
+												?>
 											</td>
 
 											<?php
