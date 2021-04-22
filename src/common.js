@@ -74,24 +74,35 @@ function swipe_start(e) {
 	Event.add(window, "touchmove", swipe_detect);
 }
 
+function trigger_swipe(swipe) {
+	if (swipe == "leftSwipe" && menu.classList.contains("shown")) {
+		menu.classList.remove("shown");
+		menu_button.classList.toggle("active", menu.classList.contains("shown"));
+		html.classList.toggle("blackout", menu.classList.contains("shown"));
+
+	} else {
+		trigger_event(window, "leftSwipe");
+	}
+}
+
 function swipe_detect(e) {
 	if (e.touches[0].clientX - swipe_start_x > swipe_threshold) { // Swipe right
-		trigger_event(window, "rightSwipe");
+		trigger_swipe("rightSwipe");
 		// console.log("rightSwipe");
 		swipe_cancel();
 	}
 	if (swipe_start_x - e.touches[0].clientX  > swipe_threshold) { // Swipe left
-		trigger_event(window, "leftSwipe");
+		trigger_swipe("leftSwipe");
 		// console.log("leftSwipe");
 		swipe_cancel();
 	}
 	if (e.touches[0].clientY - swipe_start_y > swipe_threshold) { // Swipe right
-		trigger_event(window, "downSwipe");
+		trigger_swipe("downSwipe");
 		// console.log("downSwipe");
 		swipe_cancel();
 	}
 	if (swipe_start_y - e.touches[0].clientY  > swipe_threshold) { // Swipe left
-		trigger_event(window, "upSwipe");
+		trigger_swipe("upSwipe");
 		// console.log("upSwipe");
 		swipe_cancel();
 	}
@@ -133,6 +144,7 @@ Event.add(window, "mousedown", (e) => {
 		interacted = true;
 	}
 
+	// Closing menu
 	if (
 		menu.classList.contains("shown") &&
 		!menu_button.contains(e.target) &&
@@ -158,7 +170,6 @@ Event.add(window, "touchend", swipe_cancel);
 // Menu
 Event.add(menu_button, "mousedown", () => {
 	menu.classList.toggle("shown");
-
 	menu_button.classList.toggle("active", menu.classList.contains("shown"));
 	html.classList.toggle("blackout", menu.classList.contains("shown"));
 });
