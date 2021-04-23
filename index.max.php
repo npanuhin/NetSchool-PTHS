@@ -88,11 +88,9 @@ get_person();
 
 						<li
 							<?php
-							if ($task_expired) {
-								?>
-								class="expired" title="Задание просрочено, было задано<?php echo ' ' . format_days_diff(date_diff($TODAY, $day)->format('%r%a')) ?>"
-								<?php
-							}
+							if ($task_expired) echo ' class="expired"';
+
+							echo ' title="' . ($NOW > $day ? 'Было задано' : 'Необходимо сдать') . ' ' . format_days_diff(date_diff($TODAY, $day)->format('%r%a')) . '"';
 							?>
 						>
 							<?php echo $lesson . ': ' ?>
