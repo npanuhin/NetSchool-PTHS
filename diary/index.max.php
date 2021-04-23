@@ -286,7 +286,7 @@ $default_mark_rate = 10;
 															} else if ($task_expired) {
 																echo $default_mark;
 															} else {
-																echo '−';
+																echo '-';
 															}
 
 															?>
