@@ -32,7 +32,7 @@ get_person();
 		$diary = json_decode($person['diary'], true);
 		$tasks = [];
 
-		if (!is_null($diary)) {
+		if ($diary) {
 
 			// Expired tasks:
 			foreach ($diary as $date => $day_tasks) {
@@ -58,20 +58,23 @@ get_person();
 			}
 
 			// Tasks tomorrow:
-			$lessons_task_index = [];
-			foreach ($diary[$SCHOOL_DAY->format('Y-m-d')] as $task_data) {
-				$lesson = $task_data[0];
-				$task = $task_data[2];
+			if (isset($diary[$SCHOOL_DAY->format('Y-m-d')])) {
 
-				if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
+				$lessons_task_index = [];
+				foreach ($diary[$SCHOOL_DAY->format('Y-m-d')] as $task_data) {
+					$lesson = $task_data[0];
+					$task = $task_data[2];
 
-				$tasks[] = [
-					'day' => $SCHOOL_DAY,
-					'lesson' => $lesson,
-					'task_name' => $task,
-					'task_index' => $lessons_task_index[$lesson]++,
-					'task_expired' => false
-				];
+					if (!isset($lessons_task_index[$lesson])) $lessons_task_index[$lesson] = 0;
+
+					$tasks[] = [
+						'day' => $SCHOOL_DAY,
+						'lesson' => $lesson,
+						'task_name' => $task,
+						'task_index' => $lessons_task_index[$lesson]++,
+						'task_expired' => false
+					];
+				}
 			}
 		}
 

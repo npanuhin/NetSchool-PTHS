@@ -39,7 +39,7 @@ $default_mark_rate = 10;
 			<?php
 
 			$diary = json_decode($person['diary'], true);
-			if (is_null($diary)) {
+			if (!$diary) {
 				?>
 
 				<p>Оценки не загружены. Подождите немного (~2-15 min).</p>
