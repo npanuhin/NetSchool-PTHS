@@ -48,7 +48,6 @@ $default_mark_rate = 10;
 			} else {
 
 				$all_days = [$TODAY->format('Y-m-d')];
-				$all_average_marks = [];
 				$table = [];
 				foreach ($diary as $day => $tasks) {
 					foreach ($tasks as $task_data) {
@@ -194,26 +193,12 @@ $default_mark_rate = 10;
 
 									<?php
 									$days_expired_key = [];
-									$average_mark = 0;
-									$rate_summ = 0;
 									foreach ($days as $day => $marks) {
 										foreach ($marks as $mark_data) {
-											$mark = $mark_data[0];
-											$mark_rate = $mark_data[1];
 											$task_expired = $mark_data[4];
-
-											if (!is_null($mark) || $task_expired) {
-												if (is_null($mark)) $mark = $default_mark;
-												if (is_null($mark_rate)) $mark_rate = $default_mark_rate;
-												
-												$average_mark += $mark * $mark_rate;
-												$rate_summ += $mark_rate;
-											}
-
 											$days_expired_key[$day] = isset($days_expired_key[$day]) ? $days_expired_key[$day] | $task_expired : $task_expired;
 										}
 									}
-									$all_average_marks[$lesson] = $average_mark / $rate_summ;
 
 									$empty_width = 0;
 									foreach ($all_days as $day) {
@@ -362,11 +347,10 @@ $default_mark_rate = 10;
 						</li>
 
 						<?php
-						foreach ($all_average_marks as $lesson => $average_mark) {
+						foreach ($all_lessons as $lesson) {
 							?>
 							<li>
 								-
-								<?php // echo round($average_mark, 2, PHP_ROUND_HALF_DOWN) ?>
 							</li>
 							<?php
 						}
