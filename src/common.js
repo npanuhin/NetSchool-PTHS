@@ -81,7 +81,7 @@ function trigger_swipe(swipe) {
 		html.classList.toggle("blackout", menu.classList.contains("shown"));
 
 	} else {
-		trigger_event(window, "leftSwipe");
+		trigger_event(window, swipe);
 	}
 }
 
