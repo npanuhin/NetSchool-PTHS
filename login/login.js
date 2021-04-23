@@ -6,7 +6,7 @@ var
 	password_input = document.getElementById("password"),
 	message = document.getElementsByClassName("message")[0],
 
-	check_delay = 5000;
+	check_delay = 3000;
 
 function check_login(username) {
 	let check_interval = setInterval(() => {
@@ -17,18 +17,20 @@ function check_login(username) {
 			},
 			(req) => {
 				// console.log(req.responseText);
-				if (req.responseText) {
+
+				if (req.responseText == "true") {          // Account ready for usage
 					clearInterval(check_interval);
+					window.location = "../";
 
-					if (req.responseText == "true") {
-						window.location = "../";
+				} else if (req.responseText == "false") {  // Account not ready
+					// Pass
 
-					} else if (req.responseText != "false") {
-						// console.log(req.responseText); 
-						message.classList.add("small");
-						message.getElementsByTagName("p")[0].innerHTML = req.responseText;
-						html.classList.remove("wait");
-					}
+				} else if (req.responseText) {             // Error message or account_does_not_exist message
+					clearInterval(check_interval);         // (was probably deleted due to an incorrect username/password) 
+
+					message.classList.add("small");
+					message.getElementsByTagName("p")[0].innerHTML = req.responseText;
+					html.classList.remove("wait");
 				}
 			},
 			(req) => {

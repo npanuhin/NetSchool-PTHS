@@ -2,13 +2,17 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/session.php';
 
+// Result is:
+// true - account ready for usage
+// false - account not ready
+// {message} - error message or account_does_not_exist message (was probably deleted due to an incorrect username/password) 
+
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST) || !isset($_POST['username'])) {
 	header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
 	redirect();
 	exit;
 }
-
-header('Content-Type: application/json');
 
 if ($AUTHORIZED) exit('success');
 
