@@ -401,7 +401,7 @@ function apply_period(save=false) {
 			average_mark = Math.round((average_mark / rate_summ - 0.001) * 100) / 100;
 			right_column_li[tr_index].innerHTML = average_mark;
 		} else {
-			right_column_li[tr_index].innerHTML = "-";
+			right_column_li[tr_index].innerHTML = "—";
 		}
 
 		for (let day of line.getElementsByTagName("td")) {
