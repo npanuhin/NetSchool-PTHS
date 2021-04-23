@@ -227,7 +227,7 @@ $default_mark_rate = 10;
 											$empty_width = 0;
 											?>
 
-											<td class="<?php echo $day ?> <?php
+											<td class="<?php echo $day ?><?php
 												if (isset($days[$day]) && $days[$day]) {
 													echo ' filled';
 													if ($days_expired_key[$day])     echo ' expired';

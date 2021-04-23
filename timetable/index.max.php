@@ -65,7 +65,7 @@ get_person();
 					$holiday_end = new DateTime(trim($holiday['end']));
 					?>
 
-					<div class="holiday" title="<?php echo $holiday['name'] ?> каникулы: с <?php echo ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] ?> по <?php echo ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
+					<div class="holiday" title="<?php echo $holiday['name'] . ' каникулы: с ' . ltrim($holiday_start->format('d'), '0') . ' ' . $months_genetive[$holiday_start->format('m') - 1] . ' по ' . ltrim($holiday_end->format('d'), '0') . ' ' . $months_genetive[$holiday_end->format('m') - 1] ?>">
 
 						<h6><?php echo $holiday['name'] ?></h6>
 

@@ -90,7 +90,7 @@ get_person();
 							<?php
 							if ($task_expired) {
 								?>
-								class="expired" title="Задание просрочено, было задано <?php echo format_days_diff(date_diff($TODAY, $day)->format('%r%a')) ?>"
+								class="expired" title="Задание просрочено, было задано<?php echo ' ' . format_days_diff(date_diff($TODAY, $day)->format('%r%a')) ?>"
 								<?php
 							}
 							?>
@@ -138,7 +138,7 @@ get_person();
 					if ($monday == $MONDAY) echo ' cur_week';
 				?>">
 
-					<h3 title="Неделя с <?php echo $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y')?> по <?php echo $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y')?>">
+					<h3 title="<?php echo 'Неделя с ' . $monday->format('d') . ' ' . $months_genetive[$monday->format('m') - 1] . ' ' . $monday->format('Y') . ' по ' . $sunday->format('d') . ' ' . $months_genetive[$sunday->format('m') - 1] . ' ' . $sunday->format('Y') ?>">
 						<?php
 						echo ltrim($monday->format('d'), '0') . '&nbsp;' . $months_genetive[$monday->format('m') - 1] . '&nbsp;- ' . ltrim($sunday->format('d'), '0') . '&nbsp;' . $months_genetive[$sunday->format('m') - 1]
 						?>
