@@ -227,10 +227,15 @@ get_person();
 
 											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-											if (trim($match[1][0])) {
+											if (isset($match[1][0]) && trim($match[1][0])) {
 												$name = trim($match[1][0]);
 											}
-											$cabinet = trim($match[2][0]);
+
+											if (isset($match[2][0]) && trim($match[2][0])) {
+												$cabinet = trim($match[2][0]);
+											} else {
+												$cabinet = '';
+											}
 
 											?>
 											<li title="<?php echo "{$name} (кабинет {$cabinet} )"?>">
