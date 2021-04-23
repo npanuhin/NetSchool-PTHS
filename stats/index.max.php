@@ -78,8 +78,8 @@ $default_mark_rate = 10;
 
 		$diary = json_decode($person['diary'], true);
 		if (!is_null($diary)) {
-			$period_start = $person["diary_period_start"];
-			$period_end = $person["diary_period_end"];
+			$period_start = $person['diary_period_start'];
+			$period_end = $person['diary_period_end'];
 
 			if (is_null($period_start) || is_null($period_end)) {
 
@@ -90,16 +90,19 @@ $default_mark_rate = 10;
 				if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 				set_diary_period($db, $person, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
-			
+
 			} else {
+
 				if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
 				if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 			}
+
 			/*
 				$task_data[3] — weight
 				$task_data[4] — the mark itself
 				$task_data[5] — whether it is expired
 			*/
+
 			$sum_mark_points = [];
 			$sum_weight = [];
 			$source_marks = [];
@@ -107,12 +110,12 @@ $default_mark_rate = 10;
 				foreach ($tasks as $task_data) {
 					$lesson = handle_lesson_name(trim($task_data[0]));
 					$date = new DateTime($day);
-					if(($date > $period_end) || ($date < $period_start)){
+					if (($date > $period_end) || ($date < $period_start)) {
 						continue;
 					}
-					$day_number = $date->format("Y-m-d");//ISO format
+					$day_number = $date->format('Y-m-d'); // ISO format
 					
-					if(!isset($sum_mark_points[$lesson])){
+					if (!isset($sum_mark_points[$lesson])) {
 						$sum_mark_points[$lesson] = [];
 						$sum_weight[$lesson] = [];
 						$sum_mark_points[$lesson][$day_number] = 0;
@@ -121,7 +124,7 @@ $default_mark_rate = 10;
 					}
 					if (!is_null($task_data[4]) || $task_data[5]) {
 						if (is_null($task_data[4])) $task_data[4] = $default_mark;
-						//var_dump($lesson, end($sum_weight[$lesson]), $task_data[3]);
+						// var_dump($lesson, end($sum_weight[$lesson]), $task_data[3]);
 						$sum_mark_points[$lesson][$day_number] = end($sum_mark_points[$lesson]) + $task_data[4]*$task_data[3];
 						$sum_weight[$lesson][$day_number] = end($sum_weight[$lesson]) + $task_data[3];
 						$source_marks[$lesson][] = [$task_data[4], $day_number];
@@ -130,11 +133,11 @@ $default_mark_rate = 10;
 			}
 			
 			$result = [];
-			foreach($sum_mark_points as $lesson => $mark_points_per_lesson){
-				foreach($mark_points_per_lesson as $day_number => $_){
+			foreach ($sum_mark_points as $lesson => $mark_points_per_lesson) {
+				foreach($mark_points_per_lesson as $day_number => $_) {
 					
 					if (!isset($result[$lesson])) $result[$lesson] = [];
-					if($sum_weight[$lesson][$day_number]){
+					if ($sum_weight[$lesson][$day_number]) {
 						$result[$lesson][$day_number] = $sum_mark_points[$lesson][$day_number]/$sum_weight[$lesson][$day_number];
 					}
 				}
@@ -152,8 +155,10 @@ $default_mark_rate = 10;
 	<script type="text/javascript" src="/src/lib/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>
+
 	<script type="text/javascript" src="/src/lib/chart.js" defer></script>
 	<script type="text/javascript" src="build/stats.min.js" defer></script>
+
 	<script type="text/javascript" src="/src/online_media/build/online_media.min.js" defer></script>
 </body>
 

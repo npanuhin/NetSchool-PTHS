@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST) && isset($_POST['confi
 		$remove_success = true;
 
 	} catch (Exception $e) {
-		telegram_log("Database connection failed\n\n" . $e->getMessage());
+		telegram_log("Database connection failed\n\n{$e->getMessage()}");
 		echo 'Database connection failed';
 	}
 }

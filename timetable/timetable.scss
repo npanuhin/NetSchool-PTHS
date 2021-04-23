@@ -13,7 +13,7 @@ main {
 			margin-top: 40px;
 		}
 
-		.zoom_lessons, .zoom_courses, .holidays {
+		.zoom_lessons, .zoom_courses, .holidays, .cources, .lessons{
 			position: relative;
 			box-sizing: border-box;
 			margin: 50px auto 0 auto;
@@ -55,6 +55,28 @@ main {
 					}
 				}
 			}
+			
+			h6 {
+				margin-top: 10px;
+				margin-bottom: 30px;
+
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: var(--font-size-usual);
+				line-height: var(--line-height-compact);
+				text-align: center;
+
+				color: var(--text-color-main);
+			}
+			
+			.article {
+				font-family: Manrope;
+				font-style: normal;
+				font-size: var(--font-size-smaller);
+				color: var(--text-color-main);
+				text-align: center;
+			}
 
 			.details {
 				font-family: Manrope;
@@ -68,14 +90,14 @@ main {
 			}
 
 			table {
-				margin: 30px auto 0 auto;
+				margin: 0 auto 0 auto;
 				// table-layout: fixed;
 				width: 100%;
 
 				border-spacing: 10px 3px;
 				border-collapse: separate;
 				table-layout: fixed;
-
+				line-height: var(--line-height-compact);
 				tr {
 					th, td {
 						font-family: Manrope;
@@ -92,8 +114,9 @@ main {
 					}
 					
 					td {
+						font-size: var(--font-size-smaller);
 						&.center {
-							font-size: var(--font-size-smaller);
+							
 						 	text-align: center;
 						}
 						text-align: center;
@@ -103,7 +126,14 @@ main {
 				}
 			}
 		}
-
+		
+		
+		.zoom_lessons, .zoom_courses{
+			display: none;
+			&.shown {
+				display: block;
+			}
+		}
 		.holidays {
 
 			h3 {
@@ -120,19 +150,64 @@ main {
 
 				color: var(--text-color-main);
 
-				h6 {
-					margin-top: 10px;
+				
+			}
+		}
+		.lessons .no_lesson{
+			text-align: center;
+			background: var(--timetable-gap);
+			color: var(--text-color-main-light);
+		}
+		.cources {
+			.table{
+				position: relative;
+				//width: calc(100% - 200px);
+				margin: auto;//30px 0 0 100px;
 
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: 600;
-					font-size: var(--font-size-usual);
-					line-height: var(--line-height-compact);
-					text-align: center;
+				//padding-top: 75px;
+				padding-left: 10px;
+				//display: grid;
+				//grid-template-rows: auto auto auto;
+				//grid-template-columns: 1fr 1fr;
+				//grid-row-gap: 30px;
+				//grid-column-gap: 30px;
 
-					color: var(--text-color-main);
+				.day {
+					width: auto;
+					margin: auto;
+					padding-bottom: 25px;
+
+					height: auto;
+
+					ul li {
+						font-family: Manrope;
+						font-style: normal;
+						font-weight: normal;
+						width: 60%;
+						@media (max-width: $desktop) {
+							width: 90%;
+						}
+						margin: auto;
+						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
+						//line-height: 28px;
+						//float: left;
+
+						color: var(--text-color-main);
+
+						margin-bottom: 10px;
+
+						span {
+							font-family: inherit;
+							font-style: inherit;
+							font-weight: inherit;
+							font-size: inherit;
+							color: var(--orange-color);
+							float: right;
+						}
+					}
 				}
 			}
 		}
 	}
+	
 }

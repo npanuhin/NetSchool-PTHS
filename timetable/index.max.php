@@ -29,22 +29,236 @@ get_person();
 		include_once __DIR__ . '/../src/message_alerts.php';
 		require_once __DIR__ . '/../src/menu.html';
 		?>
-
+		
 		<div class="timetable">
 			<?php
 			$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
 			$timetable = json_decode($person['timetable'], true);
 			?>
+			<div class="lessons">
+				<div class="article">
+					<?php
+						$day = $SCHOOL_DAY;
+						if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
 
+							$lessons = [];
+							$vacations = [];
+							$has_any_lesson = false;
+							$has_any_cabinet = false;
+
+							foreach ($timetable[$day->format('Y-m-d')] as $item) {
+								if (!is_null($item)) {
+									$type = $item[0];
+									$name = $item[1];
+
+									if (!is_null($name) && ($type == 'lesson')) {
+										$has_any_lesson = true;
+
+										preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+										if (isset($match[2][0]) && trim($match[2][0])) {
+											$has_any_cabinet = true;
+											break;
+										}
+									}
+								}
+							}
+
+							$zoom_day = ($has_any_lesson && !$has_any_cabinet);
+
+							?>
+							<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
+							<table>
+								<tr>
+									<th>Урок</th>
+									<th>Начало</th>
+									<th>Конец</th>
+									<th>Кабинет</th>
+								</tr>
+								<tbody>
+									<?php
+
+									$lesson_index = 0;
+
+									foreach ($timetable[$day->format('Y-m-d')] as $item) {
+										echo "<tr>";
+
+										if (!is_null($item)) {
+											$type = $item[0];
+											$name = $item[1];
+											$start_time = $item[2];
+											$end_time = $item[3];
+
+											if (is_null($name)) {
+												++$lesson_index;
+												?>
+
+												<td colspan="4">
+													<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>">Перерыв</div>
+												</td>
+
+												<?php
+											} else if ($type == 'lesson' || $type == 'vacation') {
+
+												++$lesson_index;
+
+												preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+												if (isset($match[1][0]) && trim($match[1][0])) {
+													$name = trim($match[1][0]);
+												}
+
+												$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
+
+												$start_time = new DateTime($start_time);
+												$end_time = new DateTime($end_time);
+
+												$classes = array();
+												if ($type == 'vacation') {
+													$classes[] = 'vacation';
+												}
+
+												if ($type == 'lesson' && $start_time <= $NOW && $NOW <= $end_time) {
+													$classes[] = 'cur_lesson';
+												}
+
+												if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
+
+												?>
+
+													<td>
+														<?php echo handle_lesson_name($name) ?>
+													</td>
+
+													<?php
+
+													$details = [];
+
+													// if ($start_time) $details[] = 'Тип: ' . $type;
+													echo '<td>', $start_time->format('H:i'),'</td>';
+													echo '<td>', $end_time->format('H:i'),'</td>';
+													echo '<td>', $cabinet,'</td>';
+
+													?>
+
+											<?php
+										}
+									} else {
+										++$lesson_index;
+										?>
+										<td colspan="4">>
+											<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></div>
+										</td>
+
+										<?php
+									}
+									echo "</tr>";
+								}
+								?>
+
+							<?php
+						} else {
+							?>
+
+							<div class="pending">
+								<p>Раписание на этот день не загружено</p>
+							</div>
+
+							<?php
+						}
+						?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
 			<div class="zoom_lessons" title="Уроки, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
+
 				<h3>Уроки в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
 				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
 
 				<table></table>
 			</div>
+			
+			<?php
 
+			$has_cources = false;
+			foreach ($cur_week as $day) {
+				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
+					if (!is_null($item)) {
+						$type = $item[0];
+						$name = $item[1];
 
+						if ($type == 'event' && $name) {
+							$has_cources = true;
+							break;
+						}
+					}
+				}
+				if ($has_cources) break;
+			}
+
+			if ($has_cources) {
+				?>
+
+				<div class="cources">
+					<div class="table">
+					<?php
+					$weekday_index = 0;
+					$day = $SCHOOL_COURSES_DAY;
+					$weekday_index = $day->format('N') - 1;
+					?>
+						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+							<h6><?php echo $weekdays[$weekday_index] ?></h6>
+
+							<ul>
+								<?php
+
+								foreach ($timetable[$day->format('Y-m-d')] as $item) {
+									if (!is_null($item)) {
+										$type = trim($item[0]);
+										$name = trim($item[1]);
+										// $start_time = trim($item[2]);
+										// $end_time = trim($item[3]);
+
+										if ($type == 'event') {
+											// $start_time = new DateTime($start_time);
+											// $end_time = new DateTime($end_time);
+
+											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+											if (trim($match[1][0])) {
+												$name = trim($match[1][0]);
+											}
+											$cabinet = trim($match[2][0]);
+
+											?>
+											<li title="<?php echo "{$name} (кабинет {$cabinet} )"?>">
+												<?php
+												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
+
+												echo "{$name} <span>{$cabinet}</span>";
+												?>
+											</li>
+											<?php
+										}
+									}
+								}
+
+								?>
+							</ul>
+						</div>
+						<?php
+						++$weekday_index;
+
+					?>
+					</div>
+				</div>
+
+				<?php
+			}
+			?>
+			
 			<div class="zoom_courses" title="Спецкурсы, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
 				<h3>Спецкурсы в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
 				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
@@ -83,7 +297,7 @@ get_person();
 				
 				?>
 			</div>
-
+			
 		</div>
 
 	</main>
