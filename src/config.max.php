@@ -106,9 +106,15 @@ $TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monda
 
 $SCHOOL_DAY_BORDER = new DateTime('15:00');
 $SCHOOL_COURSES_DAY_BORDER = new DateTime('18:30');//some courses start at 18:00, and for thoses, who are late… 
-$SCHOOL_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
-$SCHOOL_COURSES_DAY = $NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_COURSES_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW;
+$SCHOOL_DAY = clone ($NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW);
+$SCHOOL_COURSES_DAY = clone ($NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_COURSES_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW);
 
+
+echo $SCHOOL_DAY->format('Y-m-d'). ' '.$SCHOOL_COURSES_DAY->format('Y-m-d');
+
+if($SCHOOL_DAY == $SUNDAY) $SCHOOL_DAY -> add(date_interval_create_from_date_string('1 day'));
+
+if($SCHOOL_COURSES_DAY == $SUNDAY) $SCHOOL_COURSES_DAY -> add(date_interval_create_from_date_string('1 day'));
 
 // =========================================== UTILS ===========================================
 
