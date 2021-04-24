@@ -1,38 +1,75 @@
 <?php
 
+/*
+expires: once-seen — disappears when user just open it
+
+expires: limited-time — disappears after the specified time is reached
++ expires_at: the date PHP understands (prob. ISO)
+
+Ex.:
+{
+	"id": 3,
+    "expires": "limited-time",
+    "msg_text": "Это сообщение должно исчезнуть в 22:46",
+    "expires_at": "2021-04-24 22:46"
+}
+
+any other — needs manual closing. Not recommended because users are too lazy…
+
+Ex.:
+
+{
+	"id": 4,
+	"msg_text": "This one should be stable"
+}
+
+id is needed (simultaneously to be responsible for closing) to be easier to manage the messages. For ex., you can create message for all the users, than, when it will become redundant, remove all with this id. That means flexebility in terms of expiring and text for different users.
+*/
+
 // Insert if not exists
+
 $db->query('
-		INSERT INTO `messages` (`user_id`, `pro_tip_hover`, `official_warning`, `zoom_page`)
-		SELECT * FROM (
-			SELECT
-			?i AS `user_id`,
-			?s AS `pro_tip_hover`,
-			?s AS `official_warning`,
-			?s AS `zoom_page`
-		) AS tmp
-		WHERE NOT EXISTS (
-		    SELECT 1 FROM `messages` WHERE `user_id` = ?i
-		) LIMIT 1;
-	',
-	$person['id'],
-	'<p title="Да, например, вот так">ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию.',
-	'<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>.',
-	'Вы можете использовать <kbd>Ctrl -/+</kbd> или <kbd>Ctrl + <div class="mouse"></div></kbd> для изменения масштаба',
-	$person['id']
-);
+	UPDATE netschool.messages
+	SET msg_data = ?s
+	WHERE (`user_id` = ?i) AND (`msg_data` IS NULL) 
+	', 
+	'[
+	    {
+	        "id": 0,
+	        "expires": "once-seen",
+	        "msg_text": "<p title=\"Да, например, вот так\">ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию."
+	    },
+	    {
+	        "id": 1,
+	        "expires": "once-seen",
+	        "msg_text": "<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>."
+	    },
+	    {
+	        "id": 2,
+	        "expires": "once-seen",
+	        "msg_text": "Вы можете использовать <kbd>Ctrl -/+</kbd> или <kbd>Ctrl + <div class=\"mouse\"></div></kbd> для изменения масштаба"
+	    }
+	]', $person['id']);
 
-$messages = $db->getRow('SELECT * FROM `messages` WHERE `user_id` = ?i', $person['id']);
+$messages = json_decode($db -> getRow('SELECT msg_data FROM `messages` WHERE `user_id` = ?i', $person['id'])['msg_data']);
 
-foreach ($messages as $key => $message) {
-	if ($key != 'user_id' && $message) {
+
+// In fact, this removes not all the messages in one time, but it looks like a feature…
+foreach ($messages as $index=>$message) {
 		?>
 
-		<div class="message_alert" id="message_alert_<?php echo $key ?>">
+		<div class="message_alert" id="message_alert_<?php echo $message->id?>">
 			<?php
 
-			echo nl2br($message);
-			// include __DIR__ . '/../files/icons/cross.svg';
+			echo nl2br($message->msg_text);
 
+			$expired = (($message->expires == "once-seen") or (($message -> expires == 'limited-time') and (new DateTime($message -> expires_at) < new DateTime('NOW'))));
+
+			if($expired){
+				array_splice($messages, $index, 1);
+			}
+
+			
 			?>
 
 			<svg class="cross-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +79,14 @@ foreach ($messages as $key => $message) {
 		</div>
 
 		<?php
-	}
 }
+
+
+$db->query('
+		UPDATE netschool.messages
+		SET msg_data = ?s
+		WHERE `user_id` = ?i',
+		json_encode($messages), 
+		$person['id']);
+
 ?>
