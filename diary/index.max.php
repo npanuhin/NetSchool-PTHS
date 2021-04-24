@@ -86,7 +86,7 @@ $default_mark_rate = 10;
 					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
 
 					set_diary_period($db, $person, $period_start->format('Y-m-d'), $period_end->format('Y-m-d'));
-				
+
 				} else {
 					if (!($period_start instanceof DateTime)) $period_start = new DateTime($period_start);
 					if (!($period_end instanceof DateTime)) $period_end = new DateTime($period_end);
@@ -125,7 +125,7 @@ $default_mark_rate = 10;
 					</ul>
 
 					<div class="scrollbox">
-					
+
 						<table>
 							<!-- Months -->
 							<tr>
@@ -303,7 +303,7 @@ $default_mark_rate = 10;
 																echo implode('<br>', $task_data);
 																?>
 															</div>
-															
+
 														</span>
 
 														<?php

@@ -23,7 +23,7 @@ get_person();
 
 <body>
 	<?php require_once __DIR__ . '/../src/header.php' ?>
-	
+
 	<main>
 		<?php
 		include_once __DIR__ . '/../src/message_alerts.php';
@@ -32,7 +32,7 @@ get_person();
 		$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
 		$timetable = json_decode($person['timetable'], true);
 		?>
-		
+
 		<div class="timetable">
 			<div class="lessons">
 				<?php
@@ -138,7 +138,7 @@ get_person();
 
 				<table></table>
 			</div>
-			
+
 			<?php
 
 			$has_cources = false;
@@ -213,7 +213,7 @@ get_person();
 				<?php
 			}
 			?>
-			
+
 			<div class="zoom_courses" title="Спецкурсы, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
 				<h3>Спецкурсы в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
 				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
@@ -246,7 +246,7 @@ get_person();
 
 						?>
 					</div>
-					
+
 					<?php
 				}
 				?>

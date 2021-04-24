@@ -474,12 +474,12 @@ class SafeMySQL
 		if (!$res)
 		{
 			$error = mysqli_error($this->conn);
-			
+
 			end($this->stats);
 			$key = key($this->stats);
 			$this->stats[$key]['error'] = $error;
 			$this->cutStats();
-			
+
 			$this->error("$error. Full query: [$query]");
 		}
 		$this->cutStats();

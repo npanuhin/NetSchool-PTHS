@@ -6,7 +6,7 @@ $arrows-color-dark: #5c6670;
 
 main {
 	width: $main-width;
-	
+
 	.tasks {
 		position: relative;
 		margin: 45px auto 45px auto;
@@ -86,7 +86,7 @@ main {
 					// 	width: 100%;
 					// 	height: 1.7px;
 					// 	background: var(--orange-color);
-						
+
 					// 	opacity: 0;
 					// 	transition: 0.07s opacity ease-in-out;
 					// 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.07s opacity ease-in-out !important;}
@@ -224,7 +224,7 @@ main {
 			}
 			left: -130px;
 			transform: translateY(-50%);
-			
+
 			&:hover {
 				transform: translateX(-6px) translateY(-50%);
 			}
@@ -359,11 +359,11 @@ main {
 
 					.day_info {
 						position: relative;
-						
+
 						font-family: Manrope;
 						font-style: normal;
 						font-weight: normal;
-						// TODO: font and line-height. height → 10px on mobile? 
+						// TODO: font and line-height. height → 10px on mobile?
 						font-size: var(--font-size-smaller);
 
 						width: 100%;
@@ -404,7 +404,7 @@ main {
 								top: -11.7px;
 								left: 9px;
 							}
-							
+
 							&, &::before, &::after {
 								font-family: inherit;
 								font-style: inherit;
@@ -485,9 +485,9 @@ main {
 						left: 0;
 						width: 100.01%;
 						height: 100.01%;
-						
+
 						background: var(--block-color);
-						
+
 						border-radius: inherit;
 
 						p {
@@ -504,7 +504,7 @@ main {
 							font-style: normal;
 							font-weight: normal;
 							font-size: var(--font-size-usual);
-							line-height: 30px; 
+							line-height: 30px;
 							@media (max-width: $desktop) {
 								line-height: inherit;
 							}
@@ -583,7 +583,7 @@ main {
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
-	
+
 	background: #fff;
 	box-shadow: var(--block-shadow);
 	color: var(--text-color-main);

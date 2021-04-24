@@ -134,7 +134,7 @@ gulp.task('reload-html', function () {
 
 gulp.task('build-php', function () {
     return gulp.src(files['php'], {allowEmpty: true})
-       
+
         .pipe(minify_php())
         .pipe(htmlmin(htmlmin_settings))
         .pipe(ext_replace('.php', '.max.php'))
@@ -266,7 +266,7 @@ gulp.task('build-js', function () {
         //             // }
         //         ]
         //     ],
-            
+
         // }))
         // .pipe(terser())
         .pipe(uglify_js())
@@ -296,7 +296,7 @@ gulp.task('reload-js', function () {
         //             // }
         //         ]
         //     ],
-            
+
         // }))
         // .pipe(terser())
         .pipe(uglify_js())

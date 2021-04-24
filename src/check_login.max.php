@@ -5,7 +5,7 @@ require_once __DIR__ . '/session.php';
 // Result is:
 // true - account ready for usage
 // false - account not ready
-// {message} - error message or account_does_not_exist message (was probably deleted due to an incorrect username/password) 
+// {message} - error message or account_does_not_exist message (was probably deleted due to an incorrect username/password)
 
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST) || !isset($_POST) || !isset($_POST['username'])) {
@@ -46,10 +46,10 @@ switch (count($data)) {
 		if (!is_null($person['last_update'])) {
 			if (!setcookie('session', person_hash($person), time() + 60 * 60 * 24 * 365 * 100, '/; samesite=Lax', $httponly=false))
 				exit('Failed to set cookie');
-			
+
 			exit('true');
 		}
-	
+
 		exit('false');
 
 	default:

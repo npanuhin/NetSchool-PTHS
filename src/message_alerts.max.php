@@ -32,7 +32,7 @@ foreach ($messages as $key => $message) {
 
 			echo nl2br($message);
 			// include __DIR__ . '/../files/icons/cross.svg';
-			
+
 			?>
 
 			<svg class="cross-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

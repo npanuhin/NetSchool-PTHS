@@ -52,7 +52,7 @@ main {
 			}
 			margin: 35px 0 0 0;
 		}
-	
+
 		.question {
 			font-weight: 600;
 			color: var(--orange-color);
@@ -62,9 +62,9 @@ main {
 			}
 			margin-top: 22px;
 			margin-bottom: 6px;
-			
+
 			.del {
-				text-decoration: line-through; 
+				text-decoration: line-through;
 				display: inline-block;
 				color: inherit;
 				font-weight: inherit;
@@ -77,7 +77,7 @@ main {
 
 		& > p {
 			margin-top: 12px;
-			
+
 			&::before {
 				content: "";
 				display: inline-block;
@@ -87,7 +87,7 @@ main {
 			}
 		}
 		.del {
-			text-decoration: line-through; 
+			text-decoration: line-through;
 			display: inline-block;
 		}
 		a {
@@ -96,7 +96,7 @@ main {
 				text-decoration: underline;
 			}
 		}
-		
+
 		.github_link, .vk_link {
 			display: inline-block;
 			float: right;

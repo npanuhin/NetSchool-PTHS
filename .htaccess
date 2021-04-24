@@ -18,7 +18,7 @@ php_value default_charset "utf-8"
 
 #==========================| Redirect |==========================
 
-RewriteEngine on 
+RewriteEngine on
 Rewritecond %{HTTP_HOST} !^netschool.npanuhin\.me$
 Rewritecond %{HTTP_HOST} !^netschool\.loc$
 Rewritecond %{HTTP_HOST} !^192\.168\.[0-9]{0,3}\.[0-9]{0,3}$
@@ -92,10 +92,10 @@ ErrorDocument 500 /fails/500.html
 # Not Implemented
 ErrorDocument 501 /fails/501.html
 
-# Bad Gateway 
+# Bad Gateway
 ErrorDocument 502 /fails/502.html
 
-# Service Unavailable 
+# Service Unavailable
 ErrorDocument 503 /fails/503.html
 
 # Gateway Timeout

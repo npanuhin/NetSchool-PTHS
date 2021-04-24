@@ -38,7 +38,7 @@ $result = mb_convert_encoding(file_get_contents($href, false, stream_context_cre
     'http' => array(
         'method'  => 'POST',
         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => "nweek={$nweek}&nclass={$class}&nteacher=-" 
+        'content' => "nweek={$nweek}&nclass={$class}&nteacher=-"
     )
 ))), 'utf-8', 'koi8-r');
 

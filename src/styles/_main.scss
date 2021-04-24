@@ -72,7 +72,7 @@ html.dark {
 	--timetable-day-padding-y: 32px;
 	--block-border-radius: 30px;
 	--block-border-radius-small: 20px;
-	
+
 	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
 	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 	--arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
@@ -101,7 +101,7 @@ html.dark {
 		--timetable-day-padding-y: 15px;
 		--block-border-radius: 22px;
 		--block-border-radius-small: 18px;
-		
+
 		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
 		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
 		--arrows-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
@@ -155,8 +155,8 @@ html.dark {
 	padding: 0;
 	width: auto;
 	height: auto;
-	// top: 0; 
-	// left: 0; 
+	// top: 0;
+	// left: 0;
 	text-decoration: none;
 	list-style: none;
 	text-align: left;
@@ -168,12 +168,12 @@ html.dark {
 	transform-origin: center center;
 	font-family: Arial, Helvetica, sans-serif;
 
-	// box-sizing: border-box; 
-	// box-sizing: content-box; 
+	// box-sizing: border-box;
+	// box-sizing: content-box;
 
-	// image-rendering: optimizeQuality; 
+	// image-rendering: optimizeQuality;
 	// backface-visibility: hidden;
-	// transition-duration: 0s;  
+	// transition-duration: 0s;
 
 	background: none;
 	border: none;
@@ -290,11 +290,11 @@ main {
 			width: $main-width - 20px;
 			max-width: calc(100% - 20px);
 		}
-		
+
 		box-sizing: border-box;
 		width: $main-width - 200px;
 		max-width: calc(100% - 200px);
-		
+
 		@media (max-width: $desktop) {
 			padding: 12px 50px 12px 10px;
 			margin-bottom: 10px;

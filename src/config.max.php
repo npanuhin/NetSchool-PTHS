@@ -105,7 +105,7 @@ $TRUE_SCHOOL_YEAR_BEGIN = new DateTime($SCHOOL_YEAR_BEGIN->format('Y-m-d') . ' m
 $TRUE_SCHOOL_YEAR_END = new DateTime($SCHOOL_YEAR_END->format('Y-m-d') . ' monday next week');
 
 $SCHOOL_DAY_BORDER = new DateTime('15:00');
-$SCHOOL_COURSES_DAY_BORDER = new DateTime('18:30');//some courses start at 18:00, and for thoses, who are late… 
+$SCHOOL_COURSES_DAY_BORDER = new DateTime('18:30'); // some courses start at 18:00, and for thoses, who are late...
 $SCHOOL_DAY = clone ($NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW);
 $SCHOOL_COURSES_DAY = clone ($NOW < (new DateTime($TODAY->format('Y-m-d') . ' ' . $SCHOOL_COURSES_DAY_BORDER->format('H:i'))) ? $TODAY : $TOMORROW);
 
@@ -121,7 +121,7 @@ function redirect($url='/') {
 
 function dbConnect() {
 	global $config;
-	
+
 	return new SafeMysql(array(
 		'host' => $config['db_hostname'],
 		'user' => $config['db_username'],
@@ -205,7 +205,7 @@ function class_to_diary_period($db, $class) {
 
 			if ($NOW <= new DateTime($holidays[0]['end'])) {
 				return array(
-					$TRUE_SCHOOL_YEAR_BEGIN, 
+					$TRUE_SCHOOL_YEAR_BEGIN,
 					new DateTime($holidays[0]['start'])
 				);
 
@@ -279,7 +279,7 @@ function format_days_diff($num, $upper=false) {
 	if ($num == 1) return $upper ? 'Послезавтра' : 'послезавтра';
 
 	if ($num < 0) return -$num . ' ' . day_word_case($num) . ' назад';
-	
+
 	return ($upper ? 'Через ' : 'через ') . $num . ' ' . day_word_case($num);
 }
 

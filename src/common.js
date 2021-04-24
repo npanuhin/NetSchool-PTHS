@@ -4,11 +4,11 @@ var
 	main = document.getElementsByTagName("main")[0],
 
 	interacted = false,
-	
+
 	menu_button = document.getElementsByClassName("menu_icon_wrapper")[0],
 	dark_mode_button = document.getElementsByClassName("moon_icon_wrapper")[0],
 	logout_button = document.getElementsByClassName("exit_icon")[0],
-	
+
 	menu = document.getElementsByClassName("menu_wrapper")[0],
 	menu_links = menu.getElementsByTagName("a"),
 
@@ -201,7 +201,7 @@ for (let menu_link of menu_links) {
 // Dark mode
 Event.add(dark_mode_button, "mousedown", () => {
 	html.classList.add("wait");
-	
+
 	ajax(
 		"POST",
 		"/src/toggle_dark_mode.php",
@@ -235,7 +235,7 @@ Event.add(dark_mode_button, "mousedown", () => {
 // Logout
 Event.add(logout_button, "click", () => {
 	html.classList.add("wait");
-	
+
 	ajax(
 		"POST",
 		"/src/logout.php",
@@ -264,7 +264,7 @@ for (let message_alert of message_alerts) {
 
 		Event.add(message_alert.getElementsByClassName("cross-icon")[0], "click", () => {
 			html.classList.add("wait");
-			
+
 			ajax(
 				"POST",
 				"/src/message_alert_close.php",

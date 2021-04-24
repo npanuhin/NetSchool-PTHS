@@ -12,7 +12,7 @@ function tablify_edu(json){
 			<th>Занятие</th>
 			<th>Ссылка</th>
 		</tr>`;
-		
+
 	for (let i in json){
 		s += "<tr>";
 
@@ -20,7 +20,7 @@ function tablify_edu(json){
 		s += "<td>" + lesson["time"]    + "</td>";
 		s += "<td>" + lesson["teacher"] + "</td>";
 		s += "<td>" + lesson["name"]    + "</td>";
-		
+
 		s += "<td class=\"center\">";
 		if (lesson["href"]) {
 			s += "<a href=\"" + lesson["href"] + "\" target=\"_blank\">Zoom</a>";
@@ -47,12 +47,12 @@ function update_edu(){
 
 			let json = JSON.parse(req.responseText),
 				new_table = document.createElement("table");
-				
+
 			if (json.length) {
 				new_table.innerHTML = tablify_edu(json);
 
 				zoom_lessons.replaceChild(new_table, zoom_lessons.getElementsByTagName("table")[0]);
-				
+
 				zoom_lessons.classList.add("shown");
 			}
 		},
@@ -80,7 +80,7 @@ function update_edu(){
 				zoom_courses.replaceChild(new_table, zoom_courses.getElementsByTagName("table")[0]);
 				zoom_courses.classList.add("shown");
 			}
-			
+
 		},
 		(req) => {
 			console.log(req);

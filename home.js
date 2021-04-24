@@ -83,10 +83,10 @@ function show_details(windowX, windowY, element) {
 	if (details_lock) return;
 
 	details_block.innerHTML = element.getElementsByTagName("div")[0].innerHTML;
-	
+
 	details_block.classList.toggle("cur_lesson", element.classList.contains("cur_lesson"));
 	details_block.classList.toggle("vacation", element.classList.contains("vacation"));
-	
+
 	locate_details(windowX, windowY);
 	details_block.classList.add("shown");
 }

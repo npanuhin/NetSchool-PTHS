@@ -22,7 +22,7 @@ function ajax(method, path, data = {}, success = () => {}, error = () => {}, com
     let Request = false;
     if (window.XMLHttpRequest) {
         Request = new XMLHttpRequest();
-    
+
     } else if (window.ActiveXObject) {
         try {
             Request = new ActiveXObject("Microsoft.XMLHTTP");
@@ -70,7 +70,7 @@ function ajax(method, path, data = {}, success = () => {}, error = () => {}, com
 
         // Посылаем запрос
         Request.send(data);
-   
+
     } else {
         // Если это GET-запрос: Посылаем нуль-запрос
         Request.send(null);

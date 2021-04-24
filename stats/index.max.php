@@ -7,7 +7,7 @@ if (!$AUTHORIZED) {
 	redirect('/login/');
 	exit;
 }
-get_person(); 
+get_person();
 
 $default_mark = 1;
 $default_mark_rate = 10;
@@ -34,7 +34,7 @@ $default_mark_rate = 10;
 		?>
 
 		<div class="stats">
-			
+
 			<div class="tabs">
 			<?php
 
@@ -45,11 +45,11 @@ $default_mark_rate = 10;
 				<h3>Оценки не загружены. Подождите немного (~2-15 min).</h3>
 
 				<?php
-			} 
+			}
 			else {
 				?>
 				<div class="tab avg_dinamic">
-				
+
 					<h3>Динамика среднего балла</h3>
 					<canvas id="dynamics_canvas"></canvas>
 				</div>
@@ -57,8 +57,8 @@ $default_mark_rate = 10;
 			}
 			?>
 			</div>
-				
-			
+
+
 			<div class="toggle-button-cover">
 			Выбор предмета:
 				<div class="button r" id="button-3">
@@ -72,7 +72,7 @@ $default_mark_rate = 10;
 	</main>
 
 	<div class="details"></div>
-	
+
 	<div id="data" style="display:none">
 		<?php
 
@@ -114,7 +114,7 @@ $default_mark_rate = 10;
 						continue;
 					}
 					$day_number = $date->format('Y-m-d'); // ISO format
-					
+
 					if (!isset($sum_mark_points[$lesson])) {
 						$sum_mark_points[$lesson] = [];
 						$sum_weight[$lesson] = [];
@@ -131,11 +131,11 @@ $default_mark_rate = 10;
 					}
 				}
 			}
-			
+
 			$result = [];
 			foreach ($sum_mark_points as $lesson => $mark_points_per_lesson) {
 				foreach($mark_points_per_lesson as $day_number => $_) {
-					
+
 					if (!isset($result[$lesson])) $result[$lesson] = [];
 					if ($sum_weight[$lesson][$day_number]) {
 						$result[$lesson][$day_number] = $sum_mark_points[$lesson][$day_number]/$sum_weight[$lesson][$day_number];
@@ -145,13 +145,13 @@ $default_mark_rate = 10;
 			echo json_encode([$result, $source_marks]);
 		}
 
-		
+
 
 		?>
 	</div>
-	
+
 	<?php include_once __DIR__ . '/../src/online_media/online_media.php' ?>
-	
+
 	<script type="text/javascript" src="/src/lib/event.js" defer></script>
 	<script type="text/javascript" src="/src/build/ajax.min.js" defer></script>
 	<script type="text/javascript" src="/src/build/common.min.js" defer></script>

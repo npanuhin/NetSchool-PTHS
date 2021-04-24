@@ -26,7 +26,7 @@ function check_login(username) {
 					// Pass
 
 				} else if (req.responseText) {             // Error message or account_does_not_exist message
-					clearInterval(check_interval);         // (was probably deleted due to an incorrect username/password) 
+					clearInterval(check_interval);         // (was probably deleted due to an incorrect username/password)
 
 					message.classList.add("small");
 					message.getElementsByTagName("p")[0].innerHTML = req.responseText;
@@ -65,10 +65,10 @@ Event.add(form, "submit", (e) => {
 			// console.log(req.responseText);
 			if (req.responseText == "success") {
 				window.location = "../";
-			
+
 			} else {
 				r = JSON.parse(req.responseText);
-				// console.log(r); 
+				// console.log(r);
 
 				if (r[0] == "username") {
 					username_input.classList.add("invalid");

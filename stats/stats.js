@@ -26,13 +26,13 @@ function getRatio(window_width) {
 function generate_dynamics_chart(chart_data, min_day) {
 	let canvas = document.getElementById("dynamics_canvas"),
 		window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	
-	if (window.graph){
+
+	if (window.graph) {
 		window.graph.destroy();
 	}
-	
+
 	window.graph = new Chart(canvas, {
-		type: 'line', 
+		type: 'line',
 		data: chart_data,
 		options: {
 			responsive: true,
@@ -44,29 +44,29 @@ function generate_dynamics_chart(chart_data, min_day) {
 						let lesson_number = tooltipItem[0].datasetIndex;
 						//let point_number = tooltipItem[0].index;
 						let lesson_name = data.datasets[lesson_number].label;
-						
+
 						let marks_for_the_day = source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime());
 						marks_for_the_day = marks_for_the_day.map(mark => mark[0]);
-						
+
 						/* code to check all the marks
-						for (lesson in data.datasets){
+						for (lesson in data.datasets) {
 							let lesson_name = data.datasets[lesson].label;
 							console.log(lesson_name);
 							marks_for_the_day = marks_for_the_day.concat(source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime()));
 						}
 						*/
-						
+
 						let generated_date = date.getDate() + " " + months_genetive[date.getMonth()];
-						
+
 						let generated_marks = ""
-						if(marks_for_the_day.length == 1){
+						if (marks_for_the_day.length == 1) {
 							generated_marks = ": " + marks_for_the_day[0];
 						}
-						else if (marks_for_the_day.length > 1){
+						else if (marks_for_the_day.length > 1) {
 							generated_marks = ": " + marks_for_the_day;
 						}
-						
-						
+
+
 						return generated_date + generated_marks;
 					}
 				}
@@ -78,13 +78,13 @@ function generate_dynamics_chart(chart_data, min_day) {
 					fontFamily: "Manrope",
 					fontColor: (html.classList.contains("dark") ? text_color_dark : text_color)
 				},
-				
+
 				onClick: function(e, legendItem) {
 					let index = legendItem.datasetIndex;
 					let ci = this.chart;
 					let select_one = !document.getElementById("Select_one").checked;
-					
-					if(select_one){
+
+					if (select_one) {
 						//select only one
 						//this is code I just took from some strange place…
 						let alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
@@ -128,7 +128,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 				}],
 				xAxes: [{
 					type: 'time',
-					time: { 
+					time: {
 						unit: 'month',
 						displayFormats: {
 							month: "MM"
@@ -152,7 +152,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 			hover: {
 			  mode: 'x'
 			},
-			animation: { 
+			animation: {
 				duration: 0
 			}
 		}
@@ -171,8 +171,8 @@ let html_data = JSON.parse(document.getElementById("data").innerText)
 let main_data = html_data[0];
 let source_marks = html_data[1];
 
-for(lesson in source_marks){
-	for(point in source_marks[lesson]){
+for(lesson in source_marks) {
+	for(point in source_marks[lesson]) {
 		source_marks[lesson][point][1] = new Date(source_marks[lesson][point][1]);
 	}
 }
@@ -189,19 +189,19 @@ for (let i = 0; i < lessons.length; ++i) {
 		r_color = random_setted_color(360.0 * count / lessons.length);
 
 	if (main_data[lesson].length === 0) continue;  // That means that it's parsed as array and has zero length → no marks, should be ignored
-	
+
 	++count;
-	
+
 	for (let day in main_data[lesson]) {
 		var last_y = main_data[lesson][day].toFixed(2);
 		var last_x = new Date(day);
 		if (last_x < min_day) min_day = last_x;
 		lesson_data.push({x: last_x, y : last_y})
 	}
-	if(today > last_x){
+	if (today > last_x) {
 		lesson_data.push({x: today, y : last_y})
 	}
-	
+
 	chart_data["datasets"].push({
 		label: lesson,  // + r_color,
 		borderColor: r_color,
@@ -217,7 +217,7 @@ generate_dynamics_chart(chart_data, min_day);
 var saved_width = document.documentElement.clientWidth;
 
 Event.add(window, "resize", () => {
-	if (document.documentElement.clientWidth == saved_width){ 
+	if (document.documentElement.clientWidth == saved_width) {
 	//on mobiles adress line disappears
 	//and it thinks it is resize
 		return;

@@ -120,14 +120,14 @@ main {
 					font-family: Manrope;
 					font-style: normal;
 					font-weight: 500;
-					
+
 					@media (max-width: $desktop) {
 						font-size: 9px;
 						line-height: 10px;
 						padding: 6px 6px;
 						height: 12.9px
 					}
-					
+
 					font-size: 20px;
 					line-height: 28px;
 
@@ -140,7 +140,7 @@ main {
 						@media (max-width: $desktop) {
 							height: 55px;
 						}
-						
+
 						height: 58px;
 					}
 				}
@@ -181,7 +181,7 @@ main {
 				.scroll_left svg {
 					right: 0;
 					transform: scale(0.9, 1) translateY(-50%);
-				
+
 					&:hover {
 						transform: scale(0.9, 1) translateY(-50%);
 					}
@@ -319,7 +319,7 @@ main {
 										padding: 4px 6px 8px 6px;
 									}
 								}
-								
+
 								&::before {
 									content: "";
 									position: absolute;
@@ -527,7 +527,7 @@ main {
 	h5 {
 		text-align: center;
 		width: 100%;
-		
+
 		font-weight: 600;
 	}
 
@@ -536,7 +536,7 @@ main {
 		text-align: center;
 
 		a {
-			
+
 			@media (max-width: $desktop) {
 				font-size: 12px;
 			}

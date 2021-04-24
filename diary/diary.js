@@ -15,7 +15,7 @@ var
 
 	left_column = document.querySelector(".diary > div > ul:first-child"),
 	// left_column_li = left_column.getElementsByTagName("li"),
-	
+
 	right_column = document.querySelector(".diary > div > ul:last-child"),
 	right_column_li = right_column.getElementsByTagName("li"),
 
@@ -98,36 +98,36 @@ function show_graph_details(windowX, windowY, line_index) {
 
 	details_block.classList.remove("expired");
 	details_block.classList.add("graph");
-	
+
 	let marks = mark_count[line_index - 2];
 	if (!marks) return;
-	
+
 	for (let mark in marks) {
 		if (marks[mark] === 0) delete marks[mark];
 	}
 	let keys = Object.keys(marks),
 		values = Object.values(marks);
-	
+
 	if (keys.length === 0) return; // no marks — no graph
-	
+
 	if (html.classList.contains("dark")) {
 		graph_colors = {
-			1: "hsla(0,   80%, 70%)", 
-			2: "hsla(35,  80%, 70%)", 
+			1: "hsla(0,   80%, 70%)",
+			2: "hsla(35,  80%, 70%)",
 			3: "hsla(60,  80%, 60%)",
 			4: "hsla(180, 80%, 70%)",
 			5: "hsla(120, 80%, 70%)"
 		};
 	} else {
 		graph_colors = {
-			1: "hsla(0, 75%, 70%)", 
-			2: "hsla(35, 75%, 70%)", 
+			1: "hsla(0, 75%, 70%)",
+			2: "hsla(35, 75%, 70%)",
 			3: "hsla(60, 75%, 70%)",
 			4: "hsla(200, 75%, 70%)",
 			5: "hsla(120, 75%, 70%)"
 		};
 	}
-	
+
 	let dataset = {
 		labels: keys,
 		datasets: [{
@@ -137,7 +137,7 @@ function show_graph_details(windowX, windowY, line_index) {
 			borderWidth: 1
 		}]
 	};
-	
+
 	// details_block.innerHTML = '<canvas id="mark_dispersion_canvas"></canvas>'
 	// let canvas = document.getElementById("mark_dispersion_canvas");
 
@@ -146,9 +146,9 @@ function show_graph_details(windowX, windowY, line_index) {
 	let canvas = document.createElement("canvas");
 	canvas.id = "mark_dispersion_canvas";
 	details_block.append(canvas);
-	
+
 	window.graph = new Chart(canvas, {
-		type: 'bar', 
+		type: 'bar',
 		data: dataset,
 		options: {
 			responsive: true,
@@ -234,7 +234,7 @@ function hide_details(force=false) {
 
 function toggle_details_lock(event) {
 	let empty_click = true;
-	
+
 	for (let task of tasks) {
 		if (task.contains(event.target)) {
 			details_lock = false;
@@ -291,7 +291,7 @@ function onhashchange() {
 				details_lock = true;
 				return;
 			}
-			
+
 			scroll_table.scrollLeft = day.offsetLeft - scroll_table.offsetWidth / 2 + day.offsetWidth / 2;
 			locate_details(
 				(task_element.getBoundingClientRect().left + task_element.getBoundingClientRect().right) / 2,

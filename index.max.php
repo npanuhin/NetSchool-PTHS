@@ -82,7 +82,7 @@ get_person();
 			?>
 			<div class="tasks" title="Просроченные задания и задания текущего дня">
 				<h2>Задания</h2>
-				
+
 				<ul>
 					<?php
 					foreach ($tasks as $task) {
@@ -97,7 +97,7 @@ get_person();
 							?>
 						>
 							<?php echo $lesson . ': ' ?>
-							
+
 							<span>
 								<a href="/diary/#<?php echo $day->format('Y-m-d') . '-' . $lesson . '-' . $task_index ?>"><?php echo $task_name ?></a>
 							</span>
@@ -127,7 +127,7 @@ get_person();
 			$timetable = json_decode($person['timetable'], true);
 
 			$week_period = new DatePeriod($TRUE_SCHOOL_YEAR_BEGIN, DateInterval::createFromDateString('1 week'), $TRUE_SCHOOL_YEAR_END);
-			
+
 			foreach ($week_period as $monday) {
 				$sunday = new DateTime($monday->format('Y-m-d') . ' Sunday this week');
 				$school_week_start = new DateTime($monday->format('Y-m-d') . ' Saturday last week ' . $SCHOOL_DAY_BORDER->format('H:i'));
@@ -145,7 +145,7 @@ get_person();
 						echo ltrim($monday->format('d'), '0') . '&nbsp;' . $months_genetive[$monday->format('m') - 1] . '&nbsp;- ' . ltrim($sunday->format('d'), '0') . '&nbsp;' . $months_genetive[$sunday->format('m') - 1]
 						?>
 					</h3>
-					
+
 					<div>
 						<?php
 						$day_period = new DatePeriod($monday, DateInterval::createFromDateString('1 day'), $sunday);
@@ -312,7 +312,7 @@ get_person();
 						}
 						?>
 					</div>
-				
+
 				</div>
 				<?php
 			}
@@ -323,7 +323,7 @@ get_person();
 				<?php include __DIR__ . '/files/icons/arrow_thick.path.svg' ?>
 			</svg>
 		</div>
-		
+
 	</main>
 
 	<div class="details"></div>
