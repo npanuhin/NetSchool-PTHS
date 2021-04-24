@@ -14,6 +14,9 @@ Ex.:
     "expires_at": "2021-04-24 22:46"
 }
 
+expires: limited-seen — disappears after it is LOADED specified number of times. In fact, once-seen is limited-seen with expires_at = 1
++ expires_at: just a number of suggested looks. Ex. — look at standart announcements.
+
 any other — needs manual closing. Not recommended because users are too lazy…
 
 Ex.:
@@ -36,17 +39,20 @@ $db->query('
 	'[
 	    {
 	        "id": 1,
-	        "expires": "once-seen",
+	        "expires": "limited-seen",
+	        "expires_at": 10,
 	        "msg_text": "<p title=\"Да, например, вот так\">ProTip!</p> Наведите на элемент, чтобы увидеть дополнительную информацию."
 	    },
 	    {
 	        "id": 2,
-	        "expires": "once-seen",
+	        "expires": "limited-seen",
+	        "expires_at": 10,
 	        "msg_text": "<p>Обратите внимание!</p> Вся информация, предоставленная на этом сайте, <p>НЕ ЯВЛЯЕТСЯ ОФИЦИАЛЬНОЙ</p>."
 	    },
 	    {
 	        "id": 3,
-	        "expires": "once-seen",
+	        "expires": "limited-seen",
+	        "expires_at": 10,
 	        "msg_text": "Вы можете использовать <kbd>Ctrl -/+</kbd> или <kbd>Ctrl + <div class=\"mouse\"></div></kbd> для изменения масштаба"
 	    }
 	]', $person['id']);
@@ -54,7 +60,6 @@ $db->query('
 $messages = json_decode($db -> getRow('SELECT msg_data FROM `messages` WHERE `user_id` = ?i', $person['id'])['msg_data']);
 
 
-// In fact, this removes not all the messages in one time, but it looks like a feature…
 foreach ($messages as $index=>$message) {
 		?>
 
@@ -66,7 +71,14 @@ foreach ($messages as $index=>$message) {
 			$expired = (($message->expires == "once-seen") or (($message -> expires == 'limited-time') and (new DateTime($message -> expires_at) < new DateTime('NOW'))));
 
 			if($expired){
-				array_splice($messages, $index, 1);
+				unset($messages[$index]);
+			}
+			else if ($message->expires == "limited-seen"){
+				--$message->expires_at;
+
+				if ($message->expires_at <= 0){
+					unset($messages[$index]);
+				}
 			}
 
 			
@@ -81,6 +93,8 @@ foreach ($messages as $index=>$message) {
 		<?php
 }
 
+//this is needed to create back from "crippled" array a normal one.
+$messages = array_values($messages);
 
 $db->query('
 		UPDATE netschool.messages
