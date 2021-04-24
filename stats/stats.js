@@ -42,7 +42,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 					title: function (tooltipItem, data) {
 						let date = new Date(tooltipItem[0]["xLabel"]);
 						let lesson_number = tooltipItem[0].datasetIndex;
-						//let point_number = tooltipItem[0].index;
+						// let point_number = tooltipItem[0].index;
 						let lesson_name = data.datasets[lesson_number].label;
 
 						let marks_for_the_day = source_marks[lesson_name].filter(element => element[1].getTime() == date.getTime());
@@ -85,8 +85,8 @@ function generate_dynamics_chart(chart_data, min_day) {
 					let select_one = !document.getElementById("Select_one").checked;
 
 					if (select_one) {
-						//select only one
-						//this is code I just took from some strange place…
+						// select only one
+						// this is code I just took from some strange place…
 						let alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
 
 						ci.data.datasets.forEach(function(e, i) {
@@ -108,7 +108,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 					  ci.update();
 					}
 					else{
-						//standart behaviour
+						// standart behaviour
 						ci.getDatasetMeta(index).hidden = !ci.getDatasetMeta(index).hidden;
 						ci.update();
 					}
@@ -123,7 +123,7 @@ function generate_dynamics_chart(chart_data, min_day) {
 					},
 					gridLines: {
 						color: '#ccc',
-						//zeroLineColor: '#ccc'
+						// zeroLineColor: '#ccc'
 					}
 				}],
 				xAxes: [{
@@ -157,15 +157,17 @@ function generate_dynamics_chart(chart_data, min_day) {
 			}
 		}
 	});
-	//to hide/show smth special:
-	//window.graph.getDatasetMeta(1).hidden=true;
-	//window.graph.update();
+	// to hide/show smth special:
+	// window.graph.getDatasetMeta(1).hidden=true;
+	// window.graph.update();
 }
 
 
 
 let today = new Date();
-today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0')) //just to make date equal to others in terms of hours, minutes e.t.c.; ISO format; padStart is vital
+
+// just to make date equal to others in terms of hours, minutes e.t.c.; ISO format; padStart is vital
+today = new Date(today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0'))
 
 let html_data = JSON.parse(document.getElementById("data").innerText)
 let main_data = html_data[0];
@@ -218,8 +220,8 @@ var saved_width = document.documentElement.clientWidth;
 
 Event.add(window, "resize", () => {
 	if (document.documentElement.clientWidth == saved_width) {
-	//on mobiles adress line disappears
-	//and it thinks it is resize
+	// on mobiles adress line disappears
+	// and it thinks it is resize
 		return;
 	}
 	saved_width = document.documentElement.clientWidth;

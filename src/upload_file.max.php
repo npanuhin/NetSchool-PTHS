@@ -17,7 +17,7 @@ if (!isset($_FILES) || !isset($_FILES['file'])) exit('No files');
 // Проверка errors
 if ($_FILES['file']['error'] != 0) exit('Upload error');
 
-//Переданный массив сохраняем в переменной
+// Переданный массив сохраняем в переменной
 $file = $_FILES['file'];
 
 // Проверяем размер файла

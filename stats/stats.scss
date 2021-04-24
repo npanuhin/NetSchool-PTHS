@@ -158,7 +158,7 @@ main {
 	.knobs::before {
 		content: 'ON';
 		left: 4px;
-		background-color: var(--green-color);//hsl(200, 60%, 50%);
+		background-color: var(--green-color); // hsl(200, 60%, 50%);
 
 		position: absolute;
 		top: 4px;
@@ -245,7 +245,7 @@ main {
 
 .layer {
     width: 100%;
-    background-color: hsl(250, 20%, 80%); //#dddddd #ebf7fc;
+    background-color: hsl(250, 20%, 80%); // #dddddd #ebf7fc;
     transition: 0.3s ease all;
     z-index: 1;
 }
