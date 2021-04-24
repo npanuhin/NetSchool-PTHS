@@ -28,61 +28,59 @@ get_person();
 		<?php
 		include_once __DIR__ . '/../src/message_alerts.php';
 		require_once __DIR__ . '/../src/menu.html';
+
+		$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
+		$timetable = json_decode($person['timetable'], true);
 		?>
 		
 		<div class="timetable">
-			<?php
-			$cur_week = new DatePeriod($MONDAY, DateInterval::createFromDateString('1 day'), $SUNDAY);
-			$timetable = json_decode($person['timetable'], true);
-			?>
 			<div class="lessons">
-				<div class="article">
-					<?php
-					$day = $SCHOOL_DAY;
-					if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
+				<?php
+				$day = $SCHOOL_DAY;
+				if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
 
-						$lessons = [];
-						$vacations = [];
-						$has_any_lesson = false;
-						$has_any_cabinet = false;
+					// Currently it's not used, but it could be used if needed:
 
+					// $has_any_lesson = false;
+					// $has_any_cabinet = false;
+
+					// foreach ($timetable[$day->format('Y-m-d')] as $item) {
+					// 	if (!is_null($item)) {
+					// 		$type = $item[0];
+					// 		$name = $item[1];
+
+					// 		if (!is_null($name) && ($type == 'lesson')) {
+					// 			$has_any_lesson = true;
+
+					// 			preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+					// 			if (isset($match[2][0]) && trim($match[2][0])) {
+					// 				$has_any_cabinet = true;
+					// 				break;
+					// 			}
+					// 		}
+					// 	}
+					// }
+					// $zoom_day = ($has_any_lesson && !$has_any_cabinet);
+					?>
+
+					<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
+
+					<table>
+						<tr>
+							<th>Урок</th>
+							<th>Начало</th>
+							<th>Конец</th>
+							<th>Кабинет</th>
+						</tr>
+
+						<?php
+						$lesson_index = 0;
 						foreach ($timetable[$day->format('Y-m-d')] as $item) {
-							if (!is_null($item)) {
-								$type = $item[0];
-								$name = $item[1];
+							?>
 
-								if (!is_null($name) && ($type == 'lesson')) {
-									$has_any_lesson = true;
-
-									preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
-
-									if (isset($match[2][0]) && trim($match[2][0])) {
-										$has_any_cabinet = true;
-										break;
-									}
-								}
-							}
-						}
-
-						$zoom_day = ($has_any_lesson && !$has_any_cabinet);
-						//currently it's not used, but it could be used if there is any need…
-
-						?>
-						<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
-						<table>
 							<tr>
-								<th>Урок</th>
-								<th>Начало</th>
-								<th>Конец</th>
-								<th>Кабинет</th>
-							</tr>
-							<?php
-
-							$lesson_index = 0;
-
-							foreach ($timetable[$day->format('Y-m-d')] as $item) {
-								echo "<tr>";
-
+								<?php
 								if (!is_null($item)) {
 									$type = $item[0];
 									$name = $item[1];
@@ -99,39 +97,38 @@ get_person();
 
 										<?php
 									} else if ($type == 'lesson' || $type == 'vacation') {
-
 										++$lesson_index;
 
 										preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-										if (isset($match[1][0]) && trim($match[1][0])) {
-											$name = trim($match[1][0]);
-										}
+										if (isset($match[1][0]) && trim($match[1][0])) $name = trim($match[1][0]);
 
 										$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
 
 										$start_time = new DateTime($start_time);
 										$end_time = new DateTime($end_time);
 
-										echo '<td>' . handle_lesson_name($name) . '</td>';
+										?>
+										<td><?php echo handle_lesson_name($name) ?></td>
 
-										$details = [];
+										<td><?php echo $start_time->format('H:i') ?></td>
+										<td><?php echo $end_time->format('H:i') ?></td>
+										<td><?php echo $cabinet ?></td>
 
-										// if ($start_time) $details[] = 'Тип: ' . $type;
-										echo '<td>', $start_time->format('H:i'),'</td>';
-										echo '<td>', $end_time->format('H:i'),'</td>';
-										echo '<td>', $cabinet,'</td>';
+										<?php
 									}
 								}
-								echo "</tr>";
-							} ?>
+								?>
+							</tr>
 
-						</table>
+							<?php
+						}
+						?>
+					</table>
 
 					<?php
-					}
-					?>
-				</div>
+				}
+				?>
 			</div>
 
 			<div class="zoom_lessons" title="Уроки, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
@@ -161,64 +158,55 @@ get_person();
 			}
 
 			if ($has_cources) {
+				$day = $SCHOOL_COURSES_DAY;
+				$weekday_index = get_weekday($day);
 				?>
 
 				<div class="cources">
-					<div class="table">
-					<?php
-					$weekday_index = 0;
-					$day = $SCHOOL_COURSES_DAY;
-					$weekday_index = $day->format('N') - 1;
-					?>
-						<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
-							<h6><?php echo $weekdays[$weekday_index] ?></h6>
+					<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+						<h6><?php echo $weekdays[$weekday_index] ?></h6>
 
-							<ul>
-								<?php
+						<ul>
+							<?php
 
-								foreach ($timetable[$day->format('Y-m-d')] as $item) {
-									if (!is_null($item)) {
-										$type = trim($item[0]);
-										$name = trim($item[1]);
-										// $start_time = trim($item[2]);
-										// $end_time = trim($item[3]);
+							foreach ($timetable[$day->format('Y-m-d')] as $item) {
+								if (!is_null($item)) {
+									$type = trim($item[0]);
+									$name = trim($item[1]);
+									// $start_time = trim($item[2]);
+									// $end_time = trim($item[3]);
 
-										if ($type == 'event') {
-											// $start_time = new DateTime($start_time);
-											// $end_time = new DateTime($end_time);
+									if ($type == 'event') {
+										// $start_time = new DateTime($start_time);
+										// $end_time = new DateTime($end_time);
 
-											preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+										preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-											if (isset($match[1][0]) && trim($match[1][0])) {
-												$name = trim($match[1][0]);
-											}
-
-											if (isset($match[2][0]) && trim($match[2][0])) {
-												$cabinet = trim($match[2][0]);
-											} else {
-												$cabinet = '';
-											}
-
-											?>
-											<li title="<?php echo "{$name} (кабинет {$cabinet} )"?>">
-												<?php
-												// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
-
-												echo "{$name} <span>{$cabinet}</span>";
-												?>
-											</li>
-											<?php
+										if (isset($match[1][0]) && trim($match[1][0])) {
+											$name = trim($match[1][0]);
 										}
+
+										if (isset($match[2][0]) && trim($match[2][0])) {
+											$cabinet = trim($match[2][0]);
+										} else {
+											$cabinet = '';
+										}
+
+										?>
+										<li title="<?php echo "{$name} (кабинет {$cabinet} )"?>">
+											<?php
+											// echo $start_time->format('H:i') . ' - ' . $end_time->format('H:i');
+
+											echo "{$name} <span>{$cabinet}</span>";
+											?>
+										</li>
+										<?php
 									}
 								}
+							}
 
-								?>
-							</ul>
-						</div>
-						<?php
-						++$weekday_index;
-
-					?>
+							?>
+						</ul>
 					</div>
 				</div>
 
@@ -261,10 +249,8 @@ get_person();
 					
 					<?php
 				}
-				
 				?>
 			</div>
-			
 		</div>
 
 	</main>

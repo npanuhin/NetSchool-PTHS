@@ -6,6 +6,12 @@ main {
 	.timetable {
 		width: 100%;
 
+		font-family: Manrope;
+		font-style: normal;
+		font-size: var(--font-size-smaller);
+		color: var(--text-color-main);
+		text-align: center;
+
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
 
@@ -69,14 +75,6 @@ main {
 
 				color: var(--text-color-main);
 			}
-			
-			.article {
-				font-family: Manrope;
-				font-style: normal;
-				font-size: var(--font-size-smaller);
-				color: var(--text-color-main);
-				text-align: center;
-			}
 
 			.details {
 				font-family: Manrope;
@@ -116,7 +114,6 @@ main {
 					td {
 						font-size: var(--font-size-smaller);
 						&.center {
-							
 						 	text-align: center;
 						}
 						text-align: center;
@@ -126,22 +123,20 @@ main {
 				}
 			}
 		}
-		
-		
+
 		.zoom_lessons, .zoom_courses{
 			display: none;
 			&.shown {
 				display: block;
 			}
 		}
-		.holidays {
 
+		.holidays {
 			h3 {
 				margin-bottom: 20px;
 			}
 
 			.holiday {
-
 				font-family: Manrope;
 				font-style: normal;
 				font-weight: normal;
@@ -149,8 +144,6 @@ main {
 				text-align: center;
 
 				color: var(--text-color-main);
-
-				
 			}
 		}
 		.lessons .no_lesson{
@@ -158,57 +151,54 @@ main {
 			background: var(--timetable-gap);
 			color: var(--text-color-main-light);
 			border-radius: 10px;
+			@media (max-width: $desktop) {
+				border-radius: 5px;
+			}
 		}
 		.cources {
-			.table{
-				position: relative;
-				//width: calc(100% - 200px);
-				margin: auto;//30px 0 0 100px;
+			// width: calc(100% - 200px);
 
-				//padding-top: 75px;
-				padding-left: 10px;
-				//display: grid;
-				//grid-template-rows: auto auto auto;
-				//grid-template-columns: 1fr 1fr;
-				//grid-row-gap: 30px;
-				//grid-column-gap: 30px;
+			// padding-top: 75px;
+			// display: grid;
+			// grid-template-rows: auto auto auto;
+			// grid-template-columns: 1fr 1fr;
+			// grid-row-gap: 30px;
+			// grid-column-gap: 30px;
 
-				.day {
-					width: auto;
+			.day {
+				width: auto;
+				margin: auto;
+				padding-bottom: 25px;
+
+				height: auto;
+
+				ul li {
+					font-family: Manrope;
+					font-style: normal;
+					font-weight: normal;
+					width: 60%;
+					@media (max-width: $desktop) {
+						width: 90%;
+					}
 					margin: auto;
-					padding-bottom: 25px;
+					font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
+					//line-height: 28px;
+					//float: left;
 
-					height: auto;
+					color: var(--text-color-main);
 
-					ul li {
-						font-family: Manrope;
-						font-style: normal;
-						font-weight: normal;
-						width: 60%;
-						@media (max-width: $desktop) {
-							width: 90%;
-						}
-						margin: auto;
-						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
-						//line-height: 28px;
-						//float: left;
+					margin-bottom: 10px;
 
-						color: var(--text-color-main);
-
-						margin-bottom: 10px;
-
-						span {
-							font-family: inherit;
-							font-style: inherit;
-							font-weight: inherit;
-							font-size: inherit;
-							color: var(--orange-color);
-							float: right;
-						}
+					span {
+						font-family: inherit;
+						font-style: inherit;
+						font-weight: inherit;
+						font-size: inherit;
+						color: var(--orange-color);
+						float: right;
 					}
 				}
 			}
 		}
 	}
-	
 }
