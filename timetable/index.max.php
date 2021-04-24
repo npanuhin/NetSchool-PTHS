@@ -38,137 +38,99 @@ get_person();
 			<div class="lessons">
 				<div class="article">
 					<?php
-						$day = $SCHOOL_DAY;
-						if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
+					$day = $SCHOOL_DAY;
+					if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
 
-							$lessons = [];
-							$vacations = [];
-							$has_any_lesson = false;
-							$has_any_cabinet = false;
+						$lessons = [];
+						$vacations = [];
+						$has_any_lesson = false;
+						$has_any_cabinet = false;
 
-							foreach ($timetable[$day->format('Y-m-d')] as $item) {
-								if (!is_null($item)) {
-									$type = $item[0];
-									$name = $item[1];
+						foreach ($timetable[$day->format('Y-m-d')] as $item) {
+							if (!is_null($item)) {
+								$type = $item[0];
+								$name = $item[1];
 
-									if (!is_null($name) && ($type == 'lesson')) {
-										$has_any_lesson = true;
+								if (!is_null($name) && ($type == 'lesson')) {
+									$has_any_lesson = true;
 
-										preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+									preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
 
-										if (isset($match[2][0]) && trim($match[2][0])) {
-											$has_any_cabinet = true;
-											break;
-										}
+									if (isset($match[2][0]) && trim($match[2][0])) {
+										$has_any_cabinet = true;
+										break;
 									}
 								}
 							}
+						}
 
-							$zoom_day = ($has_any_lesson && !$has_any_cabinet);
+						$zoom_day = ($has_any_lesson && !$has_any_cabinet);
+						//currently it's not used, but it could be used if there is any need…
 
-							?>
-							<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
-							<table>
-								<tr>
-									<th>Урок</th>
-									<th>Начало</th>
-									<th>Конец</th>
-									<th>Кабинет</th>
-								</tr>
-								<tbody>
-									<?php
+						?>
+						<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
+						<table>
+							<tr>
+								<th>Урок</th>
+								<th>Начало</th>
+								<th>Конец</th>
+								<th>Кабинет</th>
+							</tr>
+							<?php
 
-									$lesson_index = 0;
+							$lesson_index = 0;
 
-									foreach ($timetable[$day->format('Y-m-d')] as $item) {
-										echo "<tr>";
+							foreach ($timetable[$day->format('Y-m-d')] as $item) {
+								echo "<tr>";
 
-										if (!is_null($item)) {
-											$type = $item[0];
-											$name = $item[1];
-											$start_time = $item[2];
-											$end_time = $item[3];
+								if (!is_null($item)) {
+									$type = $item[0];
+									$name = $item[1];
+									$start_time = $item[2];
+									$end_time = $item[3];
 
-											if (is_null($name)) {
-												++$lesson_index;
-												?>
-
-												<td colspan="4">
-													<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>">Перерыв</div>
-												</td>
-
-												<?php
-											} else if ($type == 'lesson' || $type == 'vacation') {
-
-												++$lesson_index;
-
-												preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
-
-												if (isset($match[1][0]) && trim($match[1][0])) {
-													$name = trim($match[1][0]);
-												}
-
-												$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
-
-												$start_time = new DateTime($start_time);
-												$end_time = new DateTime($end_time);
-
-												$classes = array();
-												if ($type == 'vacation') {
-													$classes[] = 'vacation';
-												}
-
-												if ($type == 'lesson' && $start_time <= $NOW && $NOW <= $end_time) {
-													$classes[] = 'cur_lesson';
-												}
-
-												if (!empty($classes)) echo ' class="' . implode(' ', $classes) . '"';
-
-												?>
-
-													<td>
-														<?php echo handle_lesson_name($name) ?>
-													</td>
-
-													<?php
-
-													$details = [];
-
-													// if ($start_time) $details[] = 'Тип: ' . $type;
-													echo '<td>', $start_time->format('H:i'),'</td>';
-													echo '<td>', $end_time->format('H:i'),'</td>';
-													echo '<td>', $cabinet,'</td>';
-
-													?>
-
-											<?php
-										}
-									} else {
+									if (is_null($name)) {
 										++$lesson_index;
 										?>
-										<td colspan="4">>
-											<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>"></div>
+
+										<td colspan="4">
+											<div class="no_lesson" title="<?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] . ': нет ' . $lesson_index . '-го урока' ?>">Перерыв</div>
 										</td>
 
 										<?php
+									} else if ($type == 'lesson' || $type == 'vacation') {
+
+										++$lesson_index;
+
+										preg_match_all('/(.*)\[(\d+)\]/', $name, $match, PREG_PATTERN_ORDER);
+
+										if (isset($match[1][0]) && trim($match[1][0])) {
+											$name = trim($match[1][0]);
+										}
+
+										$cabinet = (isset($match[2][0]) ? trim($match[2][0]) : '');
+
+										$start_time = new DateTime($start_time);
+										$end_time = new DateTime($end_time);
+
+										echo '<td>' . handle_lesson_name($name) . '</td>';
+
+										$details = [];
+
+										// if ($start_time) $details[] = 'Тип: ' . $type;
+										echo '<td>', $start_time->format('H:i'),'</td>';
+										echo '<td>', $end_time->format('H:i'),'</td>';
+										echo '<td>', $cabinet,'</td>';
 									}
-									echo "</tr>";
 								}
-								?>
+								echo "</tr>";
+							} ?>
 
-							<?php
-						} else {
-							?>
+						</table>
 
-							<div class="pending">
-								<p>Раписание на этот день не загружено</p>
-							</div>
-
-							<?php
-						}
-						?>
-						</tbody>
-					</table>
+					<?php
+					}
+					?>
 				</div>
 			</div>
 
