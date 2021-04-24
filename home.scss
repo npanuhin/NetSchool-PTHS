@@ -469,10 +469,7 @@ main {
 									left: 0;
 									width: 100%;
 									height: 15px;
-									background: #C9DDF0;
-									html.dark & {
-										background: #5c6670;
-									}
+									background: var(--timetable-gap);
 									border-radius: 2px;
 								}
 							}

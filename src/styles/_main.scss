@@ -22,7 +22,8 @@ $arrows-shadow-dark: none;
 html {
 	--page-color:            hsl(207, 72%, 36%);        // #1963A1;
 	--page-color-dark:       hsl(220, 42%,  4%);        // #06090F;
-	--timetable-gap: #C9DDF0;
+	--timetable-gap: 		 #C9DDF0;
+	--timetable-gap-dark: 	 #5c6670;
 
 	--block-color:           hsl(0, 0%, 100%);          // #fff
 	--block-color-dark:      hsl(214, 21%, 20%);        // #28313d;
@@ -47,6 +48,7 @@ html.dark {
 	--page-color:      var(--page-color-dark);
 	--green-color:     var(--green-color-dark);
 	--block-color:     var(--block-color-dark);
+	--timetable-gap:   var(--timetable-gap-dark);
 }
 
 
