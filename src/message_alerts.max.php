@@ -61,16 +61,19 @@ $messages = json_decode($db -> getRow('SELECT msg_data FROM `messages` WHERE `us
 
 
 foreach ($messages as $index=>$message) {
+		if (($message -> expires == 'limited-time') and (new DateTime($message -> expires_at) < new DateTime('NOW'))){
+			unset($messages[$index]);
+			continue; // if msg is expired this way, we should hide it as soon as possible
+		}
 		?>
 
 		<div class="message_alert" id="message_alert_<?php echo $message->id?>">
 			<?php
 
+			
 			echo nl2br($message->msg_text);
 
-			$expired = (($message->expires == "once-seen") or (($message -> expires == 'limited-time') and (new DateTime($message -> expires_at) < new DateTime('NOW'))));
-
-			if($expired){
+			if($message->expires == "once-seen"){
 				unset($messages[$index]);
 			}
 			else if ($message->expires == "limited-seen"){
