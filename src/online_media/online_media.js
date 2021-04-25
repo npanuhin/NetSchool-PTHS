@@ -34,7 +34,7 @@ function load_online_media(argument) {
 
 	online_media.classList.add("wait");
 
-	var tag = document.createElement('script');
+	var tag = document.createElement("script");
 	tag.src = "https://www.youtube.com/iframe_api";
 	document.body.append(tag);
 	online_media_loaded = true;
@@ -62,10 +62,10 @@ function onYouTubePlayerAPIReady() {
 		},
 
 		events: {
-			'onReady': onPlayerReady,
-			'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
-			'onStateChange': onPlayerStateChange,
-			'onError': onPlayerError
+			"onReady": onPlayerReady,
+			"onPlaybackQualityChange": onPlayerPlaybackQualityChange,
+			"onStateChange": onPlayerStateChange,
+			"onError": onPlayerError
 		}
 	});
 }
