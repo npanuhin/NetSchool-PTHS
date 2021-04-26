@@ -80,17 +80,50 @@
 
 	.moon_icon_wrapper {
  		position: absolute;
- 		top: 10px;
- 		left: 10px;
- 		fill: var(--buttons-color);
+ 		top: 15px;
+ 		left: 5px;
 		.moon-icon {
-
-			width: 90px;
+			path {
+				fill: var(--buttons-color);
+			}
+			width: 70px;
 			padding: 10.5px 17px;
 		}
 
 		&:hover, &.active {
 			.moon-icon path {
+				fill: var(--buttons-color-active);
+			}
+		}
+	}
+
+	.mail_icon_wrapper {
+ 		position: absolute;
+ 		top: 10px;
+ 		left: 170px;
+ 		.counter {
+ 			text-align: center;
+		    position: relative;
+		    left: 80px;
+		    background: blueviolet;
+		    border-radius: 30px;
+		    width: 20px;
+		    height: 20px;
+		    top: -110px;
+		    padding: 10px;
+ 		}
+		.mail-icon {
+			path {
+				fill: var(--buttons-color);
+			}
+			width: 90px;
+			padding: 10.5px 17px;
+			//top: -40px;
+   			//position: relative;
+		}
+
+		&:hover, &.active {
+			.mail-icon path {
 				fill: var(--buttons-color-active);
 			}
 		}
