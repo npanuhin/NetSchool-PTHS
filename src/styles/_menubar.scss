@@ -22,25 +22,11 @@
 		.menu-icon {
 			padding: 8px 17px;
 			width: 50px;
-
+			
 		}
 
 		&:hover, &.active {
 			.menu-icon path {
-				fill: var(--buttons-color-active);
-			}
-		}
-	}
-
-	.moon_icon_wrapper {
-
-		.moon-icon {
-			width: 40px;
-			padding: 10.5px 17px;
-		}
-
-		&:hover, &.active {
-			.moon-icon path {
 				fill: var(--buttons-color-active);
 			}
 		}
