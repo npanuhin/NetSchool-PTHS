@@ -81,6 +81,9 @@
 	.moon_icon_wrapper {
  		position: absolute;
  		top: 15px;
+ 		@media (max-width: $desktop) {
+ 			left: -5px;
+ 		}
  		left: 5px;
 		.moon-icon {
 			path {
@@ -100,6 +103,9 @@
 	.mail_icon_wrapper {
  		position: absolute;
  		top: 10px;
+ 		@media (max-width: $desktop) {
+ 			left: 85px;
+ 		}
  		left: 170px;
  		.counter {
  			text-align: center;
@@ -112,6 +118,9 @@
 		    top: -110px;
 		    padding: 10px;
 		    user-select: none;
+		    @media (max-width: $desktop) {
+		    	padding: 7px;
+		    }
 		    &.no_messages{
 		    	background: hsl(250, 100%, 70%);//var(--green-color);
 		    	font-size: var(--font-size-big);
