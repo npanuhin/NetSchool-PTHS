@@ -4,8 +4,21 @@
 			<?php include_once __DIR__ . '/../files/icons/moon.svg' ?>
 		</div>
 		<div class="mail_icon_wrapper" title="Почта">
-			<?php include_once __DIR__ . '/../files/icons/mail.svg' ?>
-			<div class="counter">10</div>
+			<?php include_once __DIR__ . '/../files/icons/mail.svg'?>
+			<?php $is_read = $person['mail'] == 0 ;
+			?>
+			<div class="counter <?php if($is_read) echo ' no_messages'?>"
+				title="<?php echo $is_read ? 'Почты нет' : 'Непрочитанная почта в нетскуле: ' . $person['mail']?>">
+				<?php
+				if(!$is_read){
+					echo $person['mail'];
+				}
+				else{
+					echo '✔';
+					// "✓✔✅√";
+				} 
+				?>
+			</div>
 		</div>
 		<ul>
 			<li><a href="/">Главная</a></li>

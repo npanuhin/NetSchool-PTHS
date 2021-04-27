@@ -105,12 +105,18 @@
  			text-align: center;
 		    position: relative;
 		    left: 80px;
-		    background: blueviolet;
+		    background: var(--orange-color);
 		    border-radius: 30px;
 		    width: 20px;
 		    height: 20px;
 		    top: -110px;
 		    padding: 10px;
+		    user-select: none;
+		    &.no_messages{
+		    	background: hsl(250, 100%, 70%);//var(--green-color);
+		    	font-size: var(--font-size-big);
+		    	padding: 2px 10px 18px 10px;
+		    }
  		}
 		.mail-icon {
 			path {
