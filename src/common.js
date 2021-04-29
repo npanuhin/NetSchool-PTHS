@@ -276,9 +276,7 @@ for (let message_alert of message_alerts) {
 
 					if (req.responseText == "success") {
 						message_alert.classList.add("hidden");
-						setTimeout(() => {
-							message_alert.remove();
-						}, 650);
+						setTimeout(message_alert.remove, 650);
 					} else {
 						alert("Error");
 						alert(req.responseText);
