@@ -24,7 +24,7 @@ if (is_null($db) || !$db) {
 	} catch (Exception $e) {
 		// print_r($e);
 		telegram_log("Database connection failed\n\n" . $e->getMessage());
-		exit(json_encode(array('messerrorage', 'Database connection failed')));
+		exit(json_encode(array('message', 'Database connection failed')));
 	}
 }
 
