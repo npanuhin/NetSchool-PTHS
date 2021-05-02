@@ -123,7 +123,7 @@ main {
 
 					@media (max-width: $desktop) {
 						font-size: 9px;
-						line-height: 10px;
+						line-height: normal;
 						padding: 6px 6px;
 						height: 12.9px
 					}
@@ -315,7 +315,7 @@ main {
 
 									@media (max-width: $desktop) {
 										font-size: 8px;
-										line-height: 10px;
+										line-height: normal;
 										padding: 4px 6px 8px 6px;
 									}
 								}
@@ -338,7 +338,7 @@ main {
 						&:nth-child(2) {
 							height: 70px;
 							@media (max-width: $desktop) {
-								height: 50px;
+								height: 52px;
 							}
 
 							td {
@@ -354,7 +354,7 @@ main {
 
 								@media (max-width: $desktop) {
 									font-size: 8px;
-									line-height: 14px;
+									line-height: normal;
 									padding: 6px 6px;
 									height: 10px;
 								}
@@ -383,16 +383,16 @@ main {
 								height: 40px;
 								padding: 0 6px;
 								@media (max-width: $desktop) {
-									height: auto;
-									padding: 3px 6px;
+									height: 12px;
 								}
 
 								span {
 									@media (max-width: $desktop) {
 										font-size: 9px;
-										line-height: 9px;
-										padding: 9px 6px 0px 6px;
-										height: 10px;
+										line-height: normal;
+										height: 25px;
+										top: 0px;
+										transform: none;
 									}
 									display: inline-block;
 									position: relative;
