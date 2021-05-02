@@ -1,3 +1,5 @@
+$github-icon-color-dark: #f0f6fc;
+$github-icon-hover-color-dark: rgba(240,246,252,0.7);
 .menu_wrapper {
 	display: block;
 	position: fixed;
@@ -144,6 +146,64 @@
 			.mail-icon path {
 				fill: var(--buttons-color-active);
 			}
+		}
+	}
+
+	.github_link, .vk_link {
+		//display: inline-block;
+		position: absolute;
+		//float: right;
+		cursor: pointer;
+		font-size: 0;
+		top: calc(95% - 100px);
+		left: 30px;
+
+		@media (max-width: $desktop) {
+			top: calc(95% - 70px); 
+			left: 20px;
+		}
+		
+		//margin: 15px 0 0 15px;
+
+		svg {
+			width: 100px;
+			height: 100px;
+			@media (max-width: $desktop) {
+				width: 70px;
+				height: 70px;
+			}
+
+			path {
+				// fill: var(--buttons-color);
+
+				transition: 0.1s fill ease-in-out, 0.1s filter ease-in-out;
+				html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s fill ease-in-out, 0.1s filter ease-in-out !important;}
+			}
+		}
+	}
+	.github_link {
+		left: 160px;
+		@media (max-width: $desktop) {
+			left: 100px;
+		}
+		svg path {
+			fill: #000;
+			html.dark & {
+				fill: $github-icon-color-dark;
+			}
+		}
+
+		&:hover svg path {
+			fill: #666;
+			html.dark & {
+				fill: $github-icon-hover-color-dark;
+			}
+		}
+	}
+
+	.vk_link {
+		&:hover svg .st0 {
+			fill: #1F6CC4;
 		}
 	}
 }
