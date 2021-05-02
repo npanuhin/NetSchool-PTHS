@@ -125,6 +125,9 @@
 		    	background: hsl(250, 100%, 70%);//var(--green-color);
 		    	font-size: var(--font-size-big);
 		    	padding: 2px 10px 18px 10px;
+		    	@media (max-width: $desktop) {
+			    	padding: 7px;
+			    }
 		    }
  		}
 		.mail-icon {
