@@ -64,7 +64,7 @@ try {
 		$messages = json_decode($messages, true);
 	}
 
-	foreach ($messages as $index => $message) {
+	foreach ($messages as $index => &$message) {
 		if (
 			$message['expires'] == 'limited-time' &&
 			new DateTime($message['expires_at']) < new DateTime('NOW')
