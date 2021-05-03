@@ -573,26 +573,25 @@ main {
 	left: 0;
 	z-index: 50;
 	padding: 15px 20px;
+
 	@media (max-width: $desktop) {
 		padding: 10px 15px;
 	}
+
 	border-radius: var(--block-border-radius-small);
 	// white-space: nowrap;
 	max-width: 100vw;
 	max-height: 100vw;
+	box-sizing: border-box;
 
-	background: #fff;
+	background: var(--block-color);
 	box-shadow: var(--block-shadow);
 	color: var(--text-color-main);
-	html.dark & {
-		background: #353f4c;
-		box-shadow: var(--block-shadow); // Not block-shadow-dark
-	}
 
 	visibility: hidden;
 	opacity: 0;
-	transition: 0.1s opacity ease-in-out, 0s visibility 0.2s;
-	html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
+	transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s;
+	html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0.2s !important;}
 
 	// line-height: var(--line-height-compact);
 
@@ -610,7 +609,7 @@ main {
 			color: var(--orange-color);
 		}
 	}
-	// color: hsl(207, 20%, 60%);
+
 	.info{
 		display: inline-block;
 		// color: var(--text-color-main);
@@ -620,8 +619,8 @@ main {
 	&.shown {
 		visibility: visible;
 		opacity: 1;
-		transition: 0.1s opacity ease-in-out, 0s visibility 0s;
-		html.dark_mode_transition & {transition: $dark-mode-transition, 0.1s opacity ease-in-out, 0s visibility 0s !important;}
+		transition: 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s;
+		html.dark_mode_transition & {transition: $dark-mode-transition, 0s box-shadow, 0.1s opacity ease-in-out, 0s visibility 0s !important;}
 	}
 
 	&.vacation {
