@@ -267,7 +267,7 @@ for (let message_alert of message_alerts) {
 
 			ajax(
 				"POST",
-				"/src/message_alert_close.max.php",
+				"/src/message_alert_close.php",
 				{
 					"name": message_alert.id.slice(14)
 				},
