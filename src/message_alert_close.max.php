@@ -20,15 +20,15 @@ get_person();
 $name = trim($_POST['name']);
 
 try {
-	$messages = json_decode($db->getRow('SELECT msg_data FROM `messages` WHERE `user_id` = ?i', $person['id'])['msg_data'], true);
+	$messages = json_decode($db->getRow('SELECT `msg_data` FROM `messages` WHERE `user_id` = ?i', $person['id'])['msg_data'], true);
 	foreach ($messages as $index => $message) {
-		if ($message->id == $name){
+		if ($message['id'] == $name){
 			array_splice($messages, $index, 1);
 			break;
 		}
 	}
 	$db->query('
-		UPDATE `netschool.messages`
+		UPDATE `messages`
 		SET `msg_data` = ?s
 		WHERE `user_id` = ?i',
 		json_encode($messages), 
