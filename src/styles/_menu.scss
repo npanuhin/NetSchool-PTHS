@@ -51,6 +51,10 @@ $github-icon-hover-color-dark: rgba(240,246,252,0.7);
 			padding-bottom: 22px;
 			&:last-child {padding-bottom: 0;}
 
+			@media (max-height: 600px) {
+				padding-bottom: 10px;
+			}
+
 			a {
 				font-family: Manrope;
 				font-style: normal;
@@ -59,9 +63,12 @@ $github-icon-hover-color-dark: rgba(240,246,252,0.7);
 				cursor: pointer;
 
 				border-bottom: 2.5px solid transparent;
+
 				@media (max-width: $desktop) {
 					border-bottom-width: 2px;
 				}
+
+
 				color: var(--text-color-main);
 				html.dark & {
 					color: var(--text-color-main-dark);
