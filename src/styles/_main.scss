@@ -56,7 +56,6 @@ html.dark {
 // Desktop
 :root {
 	--font-size-small: 14px;
-	--font-size-smaller-but-even-smaller-in-mobile: 16px;
 	--font-size-smaller: 16px;
 	--font-size-usual: 18px;
 	--font-size-middle: 21px;
@@ -85,7 +84,6 @@ html.dark {
 @media (max-width: $desktop) {
 	:root {
 		--font-size-small: 8px;
-		--font-size-smaller-but-even-smaller-in-mobile: 8px;
 		--font-size-smaller: 10px;
 		--font-size-usual: 10px;
 		--font-size-middle: 12px;

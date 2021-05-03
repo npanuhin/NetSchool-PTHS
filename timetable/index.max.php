@@ -64,7 +64,7 @@ get_person();
 					// $zoom_day = ($has_any_lesson && !$has_any_cabinet);
 					?>
 
-					<h6><?php echo $weekdays[get_weekday($day)] ?></h6>
+					<h5><?php echo $weekdays[get_weekday($day)] ?></h5>
 
 					<table>
 						<tr>
@@ -164,7 +164,7 @@ get_person();
 
 				<div class="cources">
 					<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
-						<h6><?php echo $weekdays[$weekday_index] ?></h6>
+						<h5><?php echo $weekdays[$weekday_index] ?></h5>
 
 						<ul>
 							<?php

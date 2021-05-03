@@ -28,7 +28,7 @@ main {
 			width: calc(100% - 200px);
 			@media (max-width: $desktop) {
 				margin: 25px auto 0 auto;
-				padding: 15px 5px 35px 5px;
+				padding: 15px 5px 10px 5px;
 				width: calc(100% - 20px);
 			}
 
@@ -62,7 +62,7 @@ main {
 				}
 			}
 
-			h6 {
+			h5 {
 				margin-top: 10px;
 				margin-bottom: 30px;
 
@@ -85,11 +85,12 @@ main {
 				text-align: center;
 
 				color: var(--text-color-main);
+
+				margin-bottom: 25px;
 			}
 
 			table {
 				margin: 0 auto 0 auto;
-				// table-layout: fixed;
 				width: 100%;
 
 				border-spacing: 10px 3px;
@@ -100,7 +101,11 @@ main {
 					th, td {
 						font-family: Manrope;
 						font-style: normal;
-						font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
+						font-size: 16px;
+
+						@media (max-width: $desktop) {
+							font-size: 8px;
+						}
 					}
 
 					th {
@@ -112,7 +117,7 @@ main {
 					}
 
 					td {
-						font-size: var(--font-size-smaller);
+						font-size: var(--font-size-small);
 						&.center {
 						 	text-align: center;
 						}
@@ -134,6 +139,19 @@ main {
 		.holidays {
 			h3 {
 				margin-bottom: 20px;
+			}
+
+			h6 {
+				margin-top: 10px;
+
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: 600;
+				font-size: var(--font-size-usual);
+				line-height: var(--line-height-compact);
+				text-align: center;
+
+				color: var(--text-color-main);
 			}
 
 			.holiday {
@@ -165,38 +183,27 @@ main {
 			// grid-row-gap: 30px;
 			// grid-column-gap: 30px;
 
-			.day {
-				width: auto;
-				margin: auto;
-				padding-bottom: 25px;
+			.day ul li {
+				margin: 0 auto 10px auto;
+				font-family: Manrope;
+				font-style: normal;
+				font-weight: normal;
+				width: 60%;
+				font-size: 16px;
+				color: var(--text-color-main);
 
-				height: auto;
+				@media (max-width: $desktop) {
+					width: 90%;
+					font-size: 8px;
+				}
 
-				ul li {
-					font-family: Manrope;
-					font-style: normal;
-					font-weight: normal;
-					width: 60%;
-					@media (max-width: $desktop) {
-						width: 90%;
-					}
-					margin: auto;
-					font-size: var(--font-size-smaller-but-even-smaller-in-mobile);
-					// line-height: 28px;
-					// float: left;
-
-					color: var(--text-color-main);
-
-					margin-bottom: 10px;
-
-					span {
-						font-family: inherit;
-						font-style: inherit;
-						font-weight: inherit;
-						font-size: inherit;
-						color: var(--orange-color);
-						float: right;
-					}
+				span {
+					font-family: inherit;
+					font-style: inherit;
+					font-weight: inherit;
+					font-size: inherit;
+					color: var(--orange-color);
+					float: right;
 				}
 			}
 		}
