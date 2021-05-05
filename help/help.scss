@@ -29,9 +29,6 @@ main {
 
 		background: var(--block-color);
 		box-shadow: var(--block-shadow);
-		html.dark & {
-			box-shadow: $block-shadow-dark;
-		}
 
 		h1 {
 			text-align: center;

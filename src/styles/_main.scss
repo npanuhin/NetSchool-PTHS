@@ -14,10 +14,7 @@ $dark-mode-transition: 0.5s color ease-in-out,
 $online-media-threshold: 1260px;
 
 
-// COLORS:
-$block-shadow-dark: none;
-$text-shadow-dark: none;
-$arrows-shadow-dark: none;
+// ===============================| COLORS |===============================
 
 html {
 	--page-color:            hsl(207, 72%, 36%);        // #1963A1;
@@ -39,8 +36,8 @@ html {
 
 	// --vk-blue-color:         hsl(212, 91%, 55%);        // #2787F5;
 
-	--orange-gradient:  linear-gradient(92.76deg, hsl(30, 96%, 68%) 0%, hsl(30, 99%, 51%) 52.3%);
-	//                                            #FCB263               #FE8708
+	--orange-gradient: linear-gradient(92.76deg, hsl(30, 96%, 68%) 0%, hsl(30, 99%, 51%) 52.3%);
+	//                                           #FCB263               #FE8708
 }
 
 html.dark {
@@ -52,9 +49,9 @@ html.dark {
 }
 
 
+// ===============================| SIZES, SHADOWS |===============================
 
-// Desktop
-:root {
+html {
 	--font-size-small: 14px;
 	--font-size-smaller: 16px;
 	--font-size-usual: 18px;
@@ -74,15 +71,23 @@ html.dark {
 	--block-border-radius: 30px;
 	--block-border-radius-small: 20px;
 
-	--block-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.25);
-	--text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
-	--arrows-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+	--block-shadow:   10px 10px 20px 10px rgba(0, 0, 0, 0.25);
+	--text-shadow:    10px 10px 10px      rgba(0, 0, 0, 0.25);
+	--arrows-shadow:  10px 10px 20px      rgba(0, 0, 0, 0.25);
+	--details-shadow: 3px  3px  20px      rgba(0, 0, 0, 0.25);
+}
+
+html.dark {
+	--block-shadow:   none;
+	--text-shadow:    none;
+	--arrows-shadow:  none;
+	--details-shadow: 3px  3px  17px      rgba(0, 0, 0, 0.6);
 }
 
 
 // Mobile
 @media (max-width: $desktop) {
-	:root {
+	html {
 		--font-size-small: 8px;
 		--font-size-smaller: 10px;
 		--font-size-usual: 10px;
@@ -97,14 +102,23 @@ html.dark {
 		--line-height-medium: 25px;
 		--line-height-large: 36px;
 
-		--timetable-day-padding-x: 18px;
-		--timetable-day-padding-y: 15px;
-		--block-border-radius: 22px;
+		--timetable-day-padding-x:   18px;
+		--timetable-day-padding-y:   15px;
+		--block-border-radius:       22px;
 		--block-border-radius-small: 18px;
 
-		--block-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.25);
-		--text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
-		--arrows-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+		--block-shadow:   5px    5px    10px 5px rgba(0, 0, 0, 0.25);
+		--text-shadow:    5px    5px    5px      rgba(0, 0, 0, 0.25);
+		--arrows-shadow:  5px    5px    10px     rgba(0, 0, 0, 0.25);
+		--details-shadow: 2px    2px    10px     rgba(0, 0, 0, 0.25);
+	}
+
+	html.dark {
+		--block-shadow:  none;
+		--text-shadow:   none;
+		--arrows-shadow: none;
+
+		--details-shadow: 2px    2px    9px    rgba(0, 0, 0, 0.6);
 	}
 }
 

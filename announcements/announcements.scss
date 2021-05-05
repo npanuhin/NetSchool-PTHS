@@ -61,9 +61,6 @@ main {
 					margin: 0 auto;
 					background-color: var(--block-color);
 					box-shadow: var(--block-shadow);
-					html.dark & {
-						box-shadow: $block-shadow-dark;
-					}
 					border-radius: 50%;
 
 					background-size: cover;
@@ -86,7 +83,6 @@ main {
 					text-shadow: var(--text-shadow);
 					html.dark & {
 						color: var(--text-color-main-dark);
-						text-shadow: $text-shadow-dark;
 					}
 				}
 
@@ -112,10 +108,6 @@ main {
 
 				background: var(--block-color);
 				box-shadow: var(--block-shadow);
-				html.dark & {
-					box-shadow: $block-shadow-dark;
-				}
-
 				border-radius: var(--block-border-radius);
 
 				h4, .date, article {

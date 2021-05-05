@@ -1,7 +1,5 @@
 @import 'src/styles/main';
 
-$expired-color: rgb(255, 80, 80);
-
 $arrows-color-dark: #5c6670;
 
 main {
@@ -26,10 +24,6 @@ main {
 
 		background: var(--block-color);
 		box-shadow: var(--block-shadow);
-
-		html.dark & {
-			box-shadow: $block-shadow-dark;
-		}
 
 		transition: 0.3s transform ease-in-out;
 		html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s transform ease-in-out !important;}
@@ -186,9 +180,6 @@ main {
 			height: calc(100% - 72px);
 			width: 40px;
 			filter: drop-shadow(var(--arrows-shadow));
-			html.dark & {
-				filter: drop-shadow($arrows-shadow-dark);
-			}
 			cursor: pointer;
 			padding: 0 45px;
 
@@ -262,7 +253,6 @@ main {
 				text-shadow: var(--text-shadow);
 				html.dark & {
 					color: var(--text-color-main-dark);
-					text-shadow: $text-shadow-dark;
 				}
 
 				animation: week_header_hide 0.5s ease-in-out forwards;
@@ -343,9 +333,6 @@ main {
 					padding: var(--timetable-day-padding-x) var(--timetable-day-padding-y);
 					background: var(--block-color);
 					box-shadow: var(--block-shadow);
-					html.dark & {
-						box-shadow: $block-shadow-dark;
-					}
 					border-radius: var(--block-border-radius);
 
 					h4 {
@@ -568,7 +555,7 @@ main {
 	box-sizing: border-box;
 
 	background: var(--block-color);
-	box-shadow: var(--block-shadow);
+	box-shadow: var(--details-shadow);
 	color: var(--text-color-main);
 
 	visibility: hidden;
