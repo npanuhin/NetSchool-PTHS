@@ -29,16 +29,20 @@ var
     minify_php      = require('gulp-php-minify'),
     htmlmin         = require('gulp-html-minifier-terser'),
 
+    // MARKDOWN
+    markdown        = require('gulp-markdown'),
+
     // Clean:
     clean           = require('gulp-clean'),
 
     files = {
-        'scss':  ['/nosuchfileexists'],
-        'html':  ['/nosuchfileexists'],
-        'css':   ['/nosuchfileexists'],
-        'php':   ['/nosuchfileexists'],
-        'js':    ['/nosuchfileexists'],
-        'clean': ['/nosuchfileexists']
+        'scss':  ['/.nosuchfileexists'],
+        'html':  ['/.nosuchfileexists'],
+        'css':   ['/.nosuchfileexists'],
+        'php':   ['/.nosuchfileexists'],
+        'js':    ['/.nosuchfileexists'],
+        'md':    ['/.nosuchfileexists'],
+        'clean': ['/.nosuchfileexists']
     };
 
     files['html'].push('fails/*.max.html');
@@ -68,6 +72,7 @@ var
     files['scss'].push('help/*.scss');
     files['scss'].push('fails/*.scss');
     files['scss'].push('stats/*.scss');
+    files['scss'].push('terms/*.scss');
 
     files['js'].push('*.js');
     files['js'].push('src/*.js');
@@ -79,6 +84,8 @@ var
     files['js'].push('help/*.js');
     files['js'].push('stats/*.js');
     files['js'].push('!gulpfile.js');
+
+    files['md'].push('terms/*.md');
 
     files['clean'].push('**/build');
     files['clean'].push('**/*.php');
@@ -313,6 +320,34 @@ gulp.task('reload-js', function () {
 });
 
 
+// =============================== MARKDOWN ==============================
+
+gulp.task('build-md', function () {
+    return gulp.src(files['md'], {allowEmpty: true})
+
+        .pipe(markdown())
+
+        .pipe(gulp.dest(function(file) {
+            return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
+        }))
+});
+
+gulp.task('reload-md', function () {
+    return gulp.src(files['md'], {allowEmpty: true})
+        .pipe(changedInPlace())
+
+        .pipe(markdown())
+
+        .pipe(gulp.dest(function(file) {
+            return Path.parse(file.path).dir;
+            // return Path.join(Path.parse(file.path).dir, 'build');
+        }))
+
+    .pipe(livereload())
+});
+
+
 // ================================ CLEAN ================================
 
 gulp.task('clean', function () {
@@ -322,7 +357,7 @@ gulp.task('clean', function () {
 
 // ================================ MAIN ================================
 
-gulp.task('build', gulp.parallel('build-html', 'build-php', 'build-css', 'build-scss', 'build-js'));
+gulp.task('build', gulp.parallel('build-html', 'build-php', 'build-css', 'build-scss', 'build-js', 'build-md'));
 gulp.task('deploy', gulp.series('clean', 'build'));
 
 gulp.task('default', function () {
@@ -332,4 +367,5 @@ gulp.task('default', function () {
     gulp.watch(files['css'], gulp.series('reload-css'));
     gulp.watch(files['scss'], gulp.series('reload-scss'));
     gulp.watch(files['js'], gulp.series('reload-js'));
+    gulp.watch(files['md'], gulp.series('reload-md'));
 });

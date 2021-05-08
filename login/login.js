@@ -2,8 +2,15 @@ var
 	html = document.getElementsByTagName("html")[0],
 	body = document.getElementsByTagName("body")[0],
 	form = document.getElementById("login_form"),
+
 	username_input = document.getElementById("username"),
 	password_input = document.getElementById("password"),
+
+	checkbox = document.getElementById("cbx"),
+	checkbox_svg = form.getElementsByTagName("svg")[0],
+
+	submit_input = document.getElementById("submit"),
+
 	message = document.getElementsByClassName("message")[0],
 
 	check_delay = 3000;
@@ -19,7 +26,7 @@ function check_login(username) {
 				// console.log(req.responseText);
 
 				if (req.responseText == "true") {          // Account ready for usage
-					clearInterval(check_interval);
+					clearIntestrokerval(check_interval);
 					window.location = "../";
 
 				} else if (req.responseText == "false") {  // Account not ready
@@ -43,6 +50,11 @@ function check_login(username) {
 	}, check_delay);
 }
 
+
+Event.add(checkbox, "change", () => {
+	checkbox_svg.classList.remove("invalid")
+});
+
 Event.add(form, "submit", (e) => {
 	e.preventDefault();
 	html.classList.add("wait");
@@ -51,7 +63,14 @@ Event.add(form, "submit", (e) => {
 	password_input.classList.remove("invalid");
 
 	let username = username_input.value.trim(),
-		password = password_input.value.trim();
+		password = password_input.value.trim(),
+		terms_approved = checkbox.checked;
+
+	if (!terms_approved) {
+		checkbox_svg.classList.add("invalid");
+		html.classList.remove("wait");
+		return;
+	}
 
 	message.classList.add("shown");
 
