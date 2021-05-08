@@ -117,13 +117,13 @@ function onResize() {
 	// MOBILE = (document.documentElement.clientWidth <= min_desktop_width);
 	MOBILE = (window.innerWidth <= min_desktop_width);
 
-	if (MOBILE) {
-		Event.add(window, "touchstart", swipe_start);
+	// if (MOBILE) {
+	// 	Event.add(window, "touchstart", swipe_start);
 
-	} else {
-		Event.remove(window, "touchstart", swipe_start);
-		Event.remove(window, "touchmove", swipe_detect);
-	}
+	// } else {
+	// 	Event.remove(window, "touchstart", swipe_start);
+	// 	Event.remove(window, "touchmove", swipe_detect);
+	// }
 }
 
 
@@ -133,6 +133,8 @@ setTimeout(() => {
 	html.classList.add("loaded");
 	// onResize();
 }, 50);
+
+Event.add(window, "touchstart", swipe_start);
 
 Event.add(window, "resize", onResize);
 onResize();
