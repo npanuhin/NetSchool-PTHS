@@ -34,7 +34,7 @@ get_person();
 		?>
 
 		<div class="timetable">
-			<div class="lessons">
+			<div class="lessons" title="Уроки сегодня (<?php echo $weekdays[get_weekday($SCHOOL_DAY)] . ', ' . ltrim($SCHOOL_DAY->format('d'), '0') . ' ' . $months_genetive[$SCHOOL_DAY->format('m') - 1] ?>) по расписанию NetSchool">
 				<?php
 				$day = $SCHOOL_DAY;
 				if (isset($timetable[$day->format('Y-m-d')]) && !is_null($timetable[$day->format('Y-m-d')])) {
@@ -64,7 +64,7 @@ get_person();
 					// $zoom_day = ($has_any_lesson && !$has_any_cabinet);
 					?>
 
-					<h5><?php echo $weekdays[get_weekday($day)] ?></h5>
+					<h5 title="<?php echo $weekdays[get_weekday($SCHOOL_DAY)] . ', ' . ltrim($SCHOOL_DAY->format('d'), '0') . ' ' . $months_genetive[$SCHOOL_DAY->format('m') - 1] ?>"><?php echo $weekdays[get_weekday($SCHOOL_DAY)] ?></h5>
 
 					<table>
 						<tr>
@@ -131,10 +131,10 @@ get_person();
 				?>
 			</div>
 
-			<div class="zoom_lessons" title="Уроки, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
+			<div class="zoom_lessons" title="Уроки, которые сегодня (<?php echo $weekdays[get_weekday($TODAY)] . ', ' . ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
 
 				<h3>Уроки в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
-				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
+				<div class="details" title="<?php echo $weekdays[get_weekday($TODAY)] . ', ' . ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
 
 				<table></table>
 			</div>
@@ -142,19 +142,16 @@ get_person();
 			<?php
 
 			$has_cources = false;
-			foreach ($cur_week as $day) {
-				foreach ($timetable[$TODAY->format('Y-m-d')] as $item) {
-					if (!is_null($item)) {
-						$type = $item[0];
-						$name = $item[1];
+			foreach ($timetable[$SCHOOL_COURSES_DAY->format('Y-m-d')] as $item) {
+				if (!is_null($item)) {
+					$type = $item[0];
+					$name = $item[1];
 
-						if ($type == 'event' && $name) {
-							$has_cources = true;
-							break;
-						}
+					if ($type == 'event' && $name) {
+						$has_cources = true;
+						break;
 					}
 				}
-				if ($has_cources) break;
 			}
 
 			if ($has_cources) {
@@ -162,8 +159,8 @@ get_person();
 				$weekday_index = get_weekday($day);
 				?>
 
-				<div class="cources">
-					<div class="day" title="<?php echo $weekdays[$weekday_index] ?>, <?php echo ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+				<div class="cources" title="Спецкурсы сегодня <?php echo $weekdays[get_weekday($day)] . ', ' . ltrim($day->format('d'), '0') . ' ' . $months_genetive[$day->format('m') - 1] ?>">
+					<div class="day">
 						<h5><?php echo $weekdays[$weekday_index] ?></h5>
 
 						<ul>
@@ -214,9 +211,9 @@ get_person();
 			}
 			?>
 
-			<div class="zoom_courses" title="Спецкурсы, которые сегодня (<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
+			<div class="zoom_courses" title="Спецкурсы, которые сегодня (<?php echo $weekdays[get_weekday($TODAY)] . ', ' . ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>) проходят дистанционно на платформе https://zoom.us">
 				<h3>Спецкурсы в <img class="zoom-icon" src="/files/icons/zoom_blue.svg" alt="zoom"></h3>
-				<div class="details" title="<?php echo ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
+				<div class="details" title="<?php echo $weekdays[get_weekday($TODAY)] . ', ' . ltrim($TODAY->format('d'), '0') . ' ' . $months_genetive[$TODAY->format('m') - 1] ?>">сегодня</div>
 
 				<table></table>
 			</div>
