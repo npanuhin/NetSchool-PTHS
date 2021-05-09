@@ -197,8 +197,7 @@ gulp.task('build-scss', function () {
     return gulp.src(files['scss'], {allowEmpty: true})
 
         .pipe(sass({
-            includePaths: ['C:\\OpenServer\\node_modules'],
-            includePaths: ['C:\\OpenServer\\domains\\node_modules'],
+            includePaths: ['C:\\OpenServer\\node_modules', 'C:\\OpenServer\\domains\\node_modules']
         }).on('error', sass.logError))
         .pipe(autoprefixer({
             brousers: ['last 3 versions', '> 5%'],
@@ -224,8 +223,7 @@ gulp.task('reload-scss', function () {
         // .pipe(changedInPlace())
 
         .pipe(sass({
-            includePaths: ['C:\\OpenServer\\node_modules'],
-            includePaths: ['C:\\OpenServer\\domains\\node_modules'],
+            includePaths: ['C:\\OpenServer\\node_modules', 'C:\\OpenServer\\domains\\node_modules']
         }).on('error', sass.logError))
         .pipe(autoprefixer({
             brousers: ['last 3 versions', '> 5%'],
