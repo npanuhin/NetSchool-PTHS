@@ -180,4 +180,5 @@ for (let lesson of lessons) {
 	}
 }
 Event.add(window, "mousedown", toggle_details_lock);
+Event.add(window, "touchstart", toggle_details_lock);
 Event.add(details_block, "mouseleave", hide_details);

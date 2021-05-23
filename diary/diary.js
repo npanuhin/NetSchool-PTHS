@@ -505,7 +505,9 @@ for (let line_index = 0, avg_mark_tile; line_index < right_column_li.length; ++l
 	});
 }
 Event.add(window, "mousedown", toggle_details_lock);
+Event.add(window, "touchstart", toggle_details_lock);
 Event.add(details_block, "mouseleave", () => {hide_details()});
+
 Event.add(window, "load", () => {
 	setTimeout(() => {
 		Event.add(window, "scroll", () => {hide_details(true)});
