@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/../config.php';
+?>
+
 <div class="online_media">
 	<div class="toggle">Online Media</div>
 

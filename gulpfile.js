@@ -56,6 +56,7 @@ var
     files['php'].push('delete/*.max.php');
     files['php'].push('help/*.max.php');
     files['php'].push('stats/*.max.php');
+    files['php'].push('land/*.max.php');
 
     files['scss'].push('*.scss');
     files['scss'].push('src/*.scss');
@@ -68,6 +69,7 @@ var
     files['scss'].push('help/*.scss');
     files['scss'].push('fails/*.scss');
     files['scss'].push('stats/*.scss');
+    files['scss'].push('land/*.scss');
 
     files['js'].push('*.js');
     files['js'].push('src/*.js');

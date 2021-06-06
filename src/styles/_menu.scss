@@ -24,17 +24,17 @@
 	overflow: auto;
 
 	&:after {
-	    content: "";
-    	display: inline-block;
-	    height: 100%;
-	    vertical-align: middle;
+		content: "";
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
 	}
 }
 
 .menu {
 	// position: relative;
 	display: inline-block;
-    vertical-align: middle;
+	vertical-align: middle;
 
 	transition: 0.3s max-height ease-in-out;
 	html.dark_mode_transition & {transition: $dark-mode-transition, 0.3s max-height ease-in-out !important;}

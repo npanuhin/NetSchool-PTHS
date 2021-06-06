@@ -356,4 +356,15 @@ function between($val, $a, $b){
 	if($val >= $min && $val <= $max) return true;
 	return false;
 }
+
+
+
+// LANDING PAGE
+
+if (!isset($LANDING_PAGE) || !$LANDING_PAGE) {
+	redirect('/land');
+	exit;
+}
+
+
 ?>

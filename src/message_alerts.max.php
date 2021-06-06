@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 
 /*
 expires: once-seen — disappears when user just open it

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/config.php';
+
 // Creates $AUTHORIZED flag, $db and $person variables
 
 $AUTHORIZED = isset($_COOKIE['session']);

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 
 function trigger_ui_error($message) {
 	?>
