@@ -1,0 +1,12 @@
+{
+	"fails": {
+		"db_conn_failed": "Database connection failed",
+		"db_req_failed": "Database request failed",
+
+		"db_many_rows": "Please, contact administrator (too many rows)",
+
+		"setcookie": "Failed to set cookie"
+	},
+
+	"wrong_credentials": "Логин/пароль неверны или достигнут лимит 3 попытки в минуту. Пожалуйста, проверьте правильность данных и попробуйте снова.",
+}
