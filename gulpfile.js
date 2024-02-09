@@ -42,7 +42,9 @@ var
     };
 
     files['html'].push('fails/*.max.html');
+    files['html'].push('land/*.max.html');
     files['html'].push('src/*.max.html');
+    files['html'].push('*.max.html');
 
     files['php'].push('*.max.php');
     files['php'].push('fails/*.max.php');
@@ -86,6 +88,7 @@ var
     files['clean'].push('**/*.php');
     files['clean'].push('!src/lib/*.php');
     files['clean'].push('!**/*.max.php');
+    files['clean'].push('!**/*.max.dynamic.php');
     files['clean'].push('**/*.html');
     files['clean'].push('!**/*.max.html');
 

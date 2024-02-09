@@ -14,9 +14,14 @@ build/
 
 # ... but keep non-generated code and libraries
 !*.max.php
+!*.max.dynamic.php
 !*.max.html
 !/src/lib/*
 
 
 # Always keep .htaccess
 !.htaccess
+
+
+# Temporarily stop ignoring index file
+!index.html
